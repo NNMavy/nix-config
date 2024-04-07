@@ -26,9 +26,5 @@
       tmux.enable = true;
       alacritty.enable = true;
     };
-    devops.colima = {
-      enable = true;
-      startService = true;
-    };
   };
 }
