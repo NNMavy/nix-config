@@ -1,6 +1,5 @@
 ---
-# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
-name: Renovate
+name: "Renovate"
 
 on:
   workflow_dispatch:
@@ -21,53 +20,31 @@ on:
   schedule:
     - cron: "0 6 * * *"
   push:
-    branches:
-      - main
+    branches: ["main"]
     paths:
-      - ".github/renovate.json5"
-      - ".github/renovate/**.json"
-      - ".github/renovate/**.json5"
-      - ".github/workflows/renovate.yaml"
-
-concurrency:
-  group: ${{ github.ref }}-${{ github.workflow }}
-  cancel-in-progress: true
-
-env:
-  LOG_LEVEL: debug
-  DRY_RUN: false
-  RENOVATE_AUTODISCOVER: true
-  RENOVATE_AUTODISCOVER_FILTER: "${{ github.repository }}"
-  RENOVATE_DRY_RUN: "${{ inputs.dryRun == true }}"
-  RENOVATE_PLATFORM: github
-  RENOVATE_PLATFORM_COMMIT: true
-  WORKFLOW_RENOVATE_VERSION: "${{ inputs.version || 'latest' }}"
+      - .github/renovate-bot.json5
+      - .github/renovate.json5
+      - .github/renovate/**.json5
+      - .github/workflows/renovate.yaml
 
 jobs:
   renovate:
     name: Renovate
-    runs-on: ubuntu-latest
+    runs-on: docker
+    container:
+      image: ghcr.io/renovatebot/renovate:latest
     steps:
-      - name: Generate Token
-        uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2.1.0
-        id: generate-token
-        with:
-          app_id: "${{ secrets.BOT_APP_ID }}"
-          private_key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
-
       - name: Checkout
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        uses: https://github.com/actions/checkout@v4.1.1
         with:
-          token: "${{ steps.generate-token.outputs.token }}"
-
-      - name: Override default config from dispatch variables
-        run: |
-          echo "DRY_RUN=${{ github.event.inputs.dryRun || env.DRY_RUN }}" >> "${GITHUB_ENV}"
-          echo "LOG_LEVEL=${{ github.event.inputs.logLevel || env.LOG_LEVEL }}" >> "${GITHUB_ENV}"
-
-      - name: Renovate
-        uses: renovatebot/github-action@7d358366277001f3316d7fa54ff49a81c0158948 # v40.1.7
-        with:
-          configurationFile: .github/renovate.json5
-          token: "${{ steps.generate-token.outputs.token }}"
-          renovate-version: "${{ env.WORKFLOW_RENOVATE_VERSION }}"
+          token: ${{ secrets.TOKEN }}
+      - name: Run Renovate
+        run: renovate
+        env: 
+          LOG_LEVEL: debug
+          RENOVATE_TOKEN: ${{ secrets.RENOVATE_GITEA_TOKEN}}
+          RENOVATE_DRY_RUN: false
+          RENOVATE_CONFIG_FILE: .github/renovate-bot.json5
+          RENOVATE_AUTODISCOVER: true
+          RENOVATE_AUTODISCOVER_FILTER: "${{ gitea.repository }}"
+          GITHUB_COM_TOKEN: ${{ secrets.GH_TOKEN }}

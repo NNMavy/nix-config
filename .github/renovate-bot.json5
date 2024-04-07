@@ -1,0 +1,7 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "username": "bot-ross",
+  "gitAuthor": "bot-ross <bot-ross@users.noreply.gitea.nnhome.eu>",
+  "platform": "gitea",
+  "endpoint": "https://gitea.nnhome.eu/api/v1"
+}
