@@ -55,11 +55,7 @@ in {
     ../_modules
     ./hosts/${hostname}
   ];
-
-  home.file = {
-    ".gitconfig.work".source = ./config/git/gitconfig.work;
-  };
-
+  
   modules = {
     editors = {
       vscode = {

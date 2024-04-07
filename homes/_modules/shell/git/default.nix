@@ -29,7 +29,6 @@ in {
         extraConfig = {
           gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
           gpg.format = "ssh";
-          "includeIf \"gitdir:~/fstq/\"" = { path = "~/.gitconfig.work"; };
           color = {ui = "auto";};
           core = {
             autocrlf = "input";
@@ -79,6 +78,21 @@ in {
           "result"
           ".DS_Store"
           ".decrypted-*"
+        ];
+
+        includes = [
+          {
+            condition = "gitdir:~/fstq/";
+            contents = {
+              user = {
+                name = "Rene Koens";
+                email = "r.koens@fullstaq.com";
+                # signingkey = "/run/secrets/github-signingkey-detsys";
+                signingkey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC4Ty7xGPlMyTaqBO+G5fn9V6PUuqgl1iga9GkzYAYLfshCopGlwtQogKv9alii+QbEh6ZcvsxVGJ3qf8aFIooq5d+d8Ul38rO2rbCujtNWIdFC6ktC97c7XOWrAqyxXEoaS9ntn5+tVH0+JKvcM0WE/PPNtzjVBKWwFX3kDB3GHGPShuqnRhznrB738Ry6E/ECGljObuq9GRSJlU0DaWnwvBV8OyTMjmXGdLOgZAsFVau1+SRaiBajnoCe0tsXeq/m+LjEH7bveC540HK//RFEPiZI6ogoJqx64dVGyqNabOREdzbqfvyPB4DI1pezJlPpFlk6UgYudvasAV4XF8anahqgXJglK3PSsQfxh8HsV4vCZSIpVSByqYtTimQCbYMquvFRjiNSYF4JOEkCJDwMiLgbswlsSfoMsBhQPPLtzgsPF2iwHaZNKIC3TxwfG84ApcEA1UJ0u7yBQzviK7fvhd+ppSxPhv7wRTK9WplHz5BKz0f+EdQNpcwaFHLePJk=";
+              };
+              gpg.format = "ssh";
+            };
+          }
         ];
       };
 
