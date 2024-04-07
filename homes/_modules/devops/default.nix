@@ -8,7 +8,6 @@ with lib; let
   cfg = config.modules.devops;
 in {
   imports = [
-    ./colima
     ./fluxcd
     ./k9s
   ];
@@ -39,16 +38,6 @@ in {
       shellAliases = {
         k = "kubectl";
         tf = "terraform";
-      };
-      functions = {
-        kcon = {
-          description = "Switch active talos/kubctl environments";
-          body = builtins.readFile ./_functions/kcon.fish;
-        };
-        leases = {
-          description = "Show VyOS DHCP leases";
-          body = builtins.readFile ./_functions/leases.fish;
-        };
       };
     };
   };

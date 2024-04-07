@@ -55,8 +55,12 @@ in {
     ../_modules
     ./hosts/${hostname}
   ];
-  
+
   modules = {
+    devops = {
+      enable = true;
+    };
+
     editors = {
       vscode = {
         inherit extensions;

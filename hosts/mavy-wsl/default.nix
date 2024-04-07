@@ -24,7 +24,6 @@ in {
     shell = pkgs.fish;
     packages = [pkgs.home-manager];
     openssh.authorizedKeys.keys = [(builtins.readFile ../../homes/mavy/config/ssh/ssh.pub)];
-    hashedPasswordFile = config.sops.secrets.mavy-password.path;
     isNormalUser = true;
     extraGroups =
       ["wheel"]
@@ -35,11 +34,6 @@ in {
   };
   users.groups.mavy = {
     gid = 1000;
-  };
-
-  sops.secrets.mavy-password = {
-    sopsFile = ../../homes/mavy/hosts/peppernuts/secrets.sops.yaml;
-    neededForUsers = true;
   };
 
   system.activationScripts.postActivation.text = ''
