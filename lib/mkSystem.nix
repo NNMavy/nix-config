@@ -29,7 +29,7 @@ in {
             extraSpecialArgs = {
               inherit inputs hostname system flake-packages;
             };
-            users.scotte = ../. + "/homes/scotte";
+            users.mavy = ../. + "/homes/mavy";
           };
         }
         ../hosts/_modules/common
@@ -67,7 +67,7 @@ in {
             extraSpecialArgs = {
               inherit inputs hostname system flake-packages;
             };
-            users.scotte = ../. + "/homes/scotte";
+            users.mavy = ../. + "/homes/mavy";
           };
         }
         ../hosts/_modules/common

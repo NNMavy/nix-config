@@ -258,7 +258,7 @@
 
       screencapture = {
         # The filesystem path to which screencaptures should be written
-        location = "/Users/scotte/Download/Screenshots";
+        location = "/Users/mavy/Download/Screenshots";
         # The image format to use, such as "jpg"
         type = "png";
         # Disable drop shadow border around screencaptures. The default is false
@@ -357,7 +357,7 @@
 
     # See https://github.com/mathiasbynens/dotfiles/blob/master/.macos
     activationScripts.postUserActivation.text = ''
-        mkdir -p /Users/scotte/Downloads/Screenshots
+        mkdir -p /Users/mavy/Downloads/Screenshots
 
         # Never go into computer sleep mode
         sudo /usr/sbin/systemsetup -setcomputersleep Off > /dev/null
@@ -381,7 +381,7 @@
       #   defaults write com.apple.screensaver askForPassword -int 1
       #   defaults write com.apple.screensaver askForPasswordDelay -int 0
       #   # Save screenshots to Downloads/Screenshots
-      #   defaults write com.apple.screencapture location -string "/Users/scotte/Downloads/Screenshots"
+      #   defaults write com.apple.screencapture location -string "/Users/mavy/Downloads/Screenshots"
       #   # Enable HiDPI display modes (requires restart)
       #   sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
         ###############################################################################
@@ -392,7 +392,7 @@
         # Set HOME as the default location for new Finder windows
         # For other paths, use `PfLo` and `file:///full/path/here/`
         defaults write com.apple.finder NewWindowTarget -string "PfLo"
-        defaults write com.apple.finder NewWindowTargetPath -string "file:///Users/scotte/"
+        defaults write com.apple.finder NewWindowTargetPath -string "file:///Users/mavy/"
         # Avoid creating .DS_Store files on network or USB volumes
         defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
         defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true

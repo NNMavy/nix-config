@@ -1,15 +1,11 @@
 ---
 keys:
-  - &scotte age1p28u8xjm5sf7jdavc8xsqtw7lxgscefxs7a5dtqszr2885xeputsh9y64y
-  - &hera age1y5775nrh792zh2z4c8xpxf432e5xdwj03g4lgvcuv69zrzk0ju0qfruczz
-  - &nixvm age12cwljj0azxcsre5kmf8hpmvt9m9lszmpwhp08794c5wd78ckne3qhh89cz
-  - &ragnar age159dryl0uvkx3pjr0n36lf3cx0wqx96a4dpjgxmezpc8tlzppas0sdazq5h
+  - &mavy age1g6p9753ng4g6d4qqjzttdzvrx2klhguj7wp9t0y84s9s88zs6pss4z33uq
+  - &peppernuts age1sah6je06ds9mxkjvym2phm95etw2wdx4v7nrx223narsrx5dwvaskmkcls
 
 creation_rules:
   - path_regex: .*\.sops\.yaml$
     key_groups:
       - age:
-          - *scotte
-          - *hera
-          - *nixvm
-          - *ragnar
+          - *mavy
+          - *peppernuts

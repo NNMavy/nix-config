@@ -1,5 +1,5 @@
 {
-  description = "Scotte's Nix Configuration";
+  description = "Mavy's Nix Configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -65,6 +65,16 @@
     # Talhelper
     talhelper = {
       url = "github:budimanjojo/talhelper";
+    };
+
+    # import the Nix Flake for nix-ld-rs
+    nix-ld-rs = {
+      url = "github:nix-community/nix-ld-rs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs-unstable";
+        flake-utils.follows = "flake-utils";
+        flake-compat.follows = "flake-compat";
+      };
     };
   };
 

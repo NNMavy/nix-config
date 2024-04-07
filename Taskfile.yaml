@@ -2,6 +2,9 @@
 version: "3"
 
 includes:
+  nix:
+    taskfile: ".taskfiles/nix"
+    dir: .taskfiles/nix
   sops:
     taskfile: ".taskfiles/sops"
     dir: .taskfiles/sops
@@ -11,7 +14,7 @@ tasks:
     desc: Set the git remote URL to be used via ssh
     silent: true
     cmds:
-      - git remote set-url origin git@github.com:szinn/nix-config.git
+      - git remote set-url origin git@github.com:nnmavy/nix-config.git
 
   default:
     silent: true

@@ -71,7 +71,7 @@ if [[ isDarwin ]]; then
       --logger pretty \
       --extra-conf "sandbox = false" \
       --extra-conf "experimental-features = nix-command flakes" \
-      --extra-conf "trusted-users = scotte"
+      --extra-conf "trusted-users = mavy"
     log "Validating Nix installation..."
     ./nix-installer self-test --logger pretty
     rm ./nix-installer
