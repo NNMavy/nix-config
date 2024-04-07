@@ -3,6 +3,7 @@
   lib,
   config,
   inputs,
+  options,
   ...
 }:
 with lib; let
@@ -15,6 +16,10 @@ with lib; let
 in {
   options.modules.editors.vscode = {
     enable = mkEnableOption "vscode";
+    wsl = mkOption {
+      type = types.bool;
+      default = false;
+    };
     extensions = mkOption {
       type = types.listOf types.package;
       default = [];
@@ -30,7 +35,7 @@ in {
 
   # Point settings.json to configPath
   config = mkMerge [
-    (mkIf cfg.enable {
+    (mkIf (cfg.enable && !cfg.wsl) {
       programs.vscode = {
         enable = true;
         mutableExtensionsDir = true;
@@ -53,6 +58,18 @@ in {
       programs.fish.shellAliases = {
         code = "/opt/homebrew/bin/code";
       };
+    })
+    (mkIf (cfg.enable && cfg.wsl) {
+      home.file = {
+        vscode-server-fix = {
+          target = ".vscode-server/server-env-setup";
+          text = ''
+          # Make sure that basic commands are available
+          PATH=$PATH:/run/current-system/sw/bin/
+          '';
+        };
+      };
+
     })
     (mkIf cfg.server-enable {
       home.packages = with pkgs; [

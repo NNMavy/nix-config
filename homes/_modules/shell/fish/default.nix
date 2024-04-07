@@ -17,6 +17,18 @@ in {
       programs.fish = {
         enable = true;
 
+        plugins = [
+          {
+            name = "replay";
+            src = pkgs.fetchFromGitHub {
+              owner = "jorgebucaran";
+              repo = "replay.fish";
+              rev = "bd8e5b89ec78313538e747f0292fcaf631e87bd2";
+              hash = "sha256-bM6+oAd/HXaVgpJMut8bwqO54Le33hwO9qet9paK1kY=";
+            };
+          }
+        ];
+
         shellAliases = {
           m = "less";
           ls = "${pkgs.eza}/bin/eza --group";
@@ -43,6 +55,10 @@ in {
           brewup = {
             description = "Update homebrew applications";
             body = builtins.readFile ./functions/brewup.fish;
+          };
+          commit = {
+            description = "git conventional commits";
+            body = builtins.readFile ./functions/commit.fish;
           };
           fish_prompt = {
             description = "Set the fish prompt";
@@ -85,6 +101,9 @@ in {
           end
 
           # Paths are in reverse priority order
+          update_path /mnt/c/Program\ Files/1Password\ CLI
+          update_path /mnt/c/Program\ Files/Microsoft\ VS\ Code/bin
+          update_path /mnt/c/windows/system32
           update_path /opt/homebrew/opt/postgresql@16/bin
           update_path /opt/homebrew/bin
           update_path ${homeDirectory}/.krew/bin

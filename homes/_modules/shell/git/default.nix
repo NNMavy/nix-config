@@ -28,6 +28,8 @@ in {
         userEmail = cfg.email;
         extraConfig = {
           gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
+          gpg.format = "ssh";
+          "includeIf \"gitdir:~/fstq/\"" = { path = "~/.gitconfig.work"; };
           color = {ui = "auto";};
           core = {
             autocrlf = "input";
@@ -42,7 +44,7 @@ in {
           };
           init = {defaultBranch = "main";};
           commit = {gpgSign = true;};
-          user = {signing.key = "B2F1677DB0348B42";};
+          user = {signingkey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDZ/Tn0MifZtxPMhWpPtRzjXMeHKcFAYXvGKMuhPRbRxST8e2JQZ8j/5uCDRh8jXI4EYCZGtgHemuekiAsJBUvWpDImUGqySSot6gWkDnAlyEt2GUDdWByqjI6hlIXXrxqk6SSI8WCU7NnyIJj9INBK3+2dKr6pkoz3Eoneo7qfryxI8IOPFJeTFEOt2+8FPew3PtAwDeydR29/kIjGMXlidZC2w0ILmGjkkbYpgVMTUKIRBmsTjLy4wMp7Dr7H88DhJbLVC4fwv/LNlXoUOoFkYTNj/reT1OtBPZurmIQ6/28xPDFBmFZ++yVfQMrur/F9Z70dX3hYm+IOOZIC0hxL";};
           diff = {colorMoved = "default";};
           fetch = {prune = "true";};
           interactive = {diffFilter = "delta --color-only";};

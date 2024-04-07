@@ -3,5 +3,5 @@
   lib,
   ...
 }: {
-  time.timeZone = lib.mkDefault "America/Toronto";
+  time.timeZone = lib.mkDefault "Europe/Amsterdam";
 }

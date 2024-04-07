@@ -3,8 +3,7 @@
 
   inputs = {
     # Nixpkgs and unstable
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -82,7 +81,6 @@
     nix-ld-rs = {
       url = "github:nix-community/nix-ld-rs";
       inputs = {
-        nixpkgs.follows = "nixpkgs-unstable";
         flake-utils.follows = "flake-utils";
         flake-compat.follows = "flake-compat";
       };
@@ -113,18 +111,16 @@
       in {
         nixosConfigurations = {
           # $ git add . ; sudo nixos-rebuild --flake . switch
-          hera = mkSystemLib.mkNixosSystem "x86_64-linux" "hera" overlays flake-packages;
+          peppernuts = mkSystemLib.mkNixosSystem "x86_64-linux" "peppernuts" overlays flake-packages;
           # $ git add . ; sudo nixos-rebuild --flake . switch
-          nixvm = mkSystemLib.mkNixosSystem "aarch64-linux" "nixvm" overlays flake-packages;
+          nixvm = mkSystemLib.mkNixosSystem "x86_64-linux" "nixvm" overlays flake-packages;
           # $ git add . ; sudo nixos-rebuild --flake . switch
-          ragnar = mkSystemLib.mkNixosSystem "x86_64-linux" "ragnar" overlays flake-packages;
+          mavy-wsl = mkSystemLib.mkWSLSystem "x86_64-linux" "mavy-wsl" overlays flake-packages;
         };
 
         darwinConfigurations = {
           # $ git add . ; darwin-rebuild --flake . switch
           macvm = mkSystemLib.mkDarwinSystem "aarch64-darwin" "macvm" overlays flake-packages;
-          # $ git add . ; darwin-rebuild --flake . switch
-          odin = mkSystemLib.mkDarwinSystem "aarch64-darwin" "odin" overlays flake-packages;
         };
 
         # Convenience output that aggregates the outputs for home, nixos.

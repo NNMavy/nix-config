@@ -56,6 +56,10 @@ in {
     ./hosts/${hostname}
   ];
 
+  home.file = {
+    ".gitconfig.work".source = ./config/git/gitconfig.work;
+  };
+
   modules = {
     editors = {
       vscode = {
@@ -66,7 +70,10 @@ in {
     };
 
     security = {
-      one-password.enable = true;
+      one-password = {
+        enable = true;
+        wsl = true;
+      };
       gnupg.enable = true;
       ssh = {
         enable = true;
@@ -77,8 +84,8 @@ in {
       fish.enable = true;
       git = {
         enable = true;
-        username = "Scotte Zinn";
-        email = "scotte@zinn.ca";
+        username = "Rene Koens";
+        email = "mavy@ninjanerd.eu";
         allowedSigners = builtins.readFile ./config/ssh/allowed_signers;
       };
     };
