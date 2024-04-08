@@ -8,8 +8,8 @@
 in {
   imports = [
     ./hardware-configuration.nix
-    #./hyprland.nix
-    ./plasma.nix
+    ./hypr.nix
+    #./plasma.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.common-gpu-intel
   ];

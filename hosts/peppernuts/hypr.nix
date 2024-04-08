@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  lib,
   ...
 }: {
   services = {
@@ -17,10 +18,16 @@
       xkb.layout = "us";
       xkb.variant = "";
       displayManager.sddm.enable = true;
-      desktopManager.plasma5.enable = true;
+      windowManager.session = lib.singleton {
+        name = "hypr";
+        start = ''
+          ${pkgs.hypr}/bin/Hypr &
+          waitPID=$!
+        '';
+      };
     };
   };
-
+  
   security.rtkit.enable = true;
   security.polkit.enable = true;
 
@@ -30,6 +37,8 @@
   environment.systemPackages = with pkgs; [
     openssl
     firefox
+    hypr
+    rofi
   ];
 
   fonts = {
