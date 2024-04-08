@@ -40,7 +40,7 @@ jobs:
           token: ${{ secrets.TOKEN }}
       - name: Run Renovate
         run: renovate
-        env: 
+        env:
           LOG_LEVEL: debug
           RENOVATE_TOKEN: ${{ secrets.RENOVATE_GITEA_TOKEN}}
           RENOVATE_DRY_RUN: false

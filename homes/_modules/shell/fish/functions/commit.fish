@@ -14,7 +14,7 @@ if count $argv > /dev/null
     else if string match '*!^' $commit_type > /dev/null
         set commit_type (string trim --chars="!^" $commit_type)
         set commit_description (string join " " $commit_description $argv[2..-1])
-        set commit_message "$commit_type!: $commit_description"   
+        set commit_message "$commit_type!: $commit_description"
     # Include commit scope and optionally include breaking change
     else
         set commit_scope $argv[2]

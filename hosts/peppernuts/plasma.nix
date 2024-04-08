@@ -21,11 +21,6 @@
     };
   };
 
-  programs._1password-gui = {
-    enable = true;
-    polkitPolicyOwners = ["mavy"];
-  };
-
   security.rtkit.enable = true;
   security.polkit.enable = true;
 

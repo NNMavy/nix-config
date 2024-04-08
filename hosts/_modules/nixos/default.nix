@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./applications
     ./filesystems
     ./services
     ./users

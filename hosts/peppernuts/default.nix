@@ -61,6 +61,9 @@ in {
   '';
 
   modules = {
+    applications = {
+      one-password.enable = true;
+    };
     services = {
       openssh.enable = true;
     };

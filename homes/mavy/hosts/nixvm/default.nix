@@ -25,7 +25,7 @@
     shell = {
       tmux.enable = true;
       alacritty.enable = true;
-      starship.enable= true;
+      starship.enable = true;
     };
   };
 }

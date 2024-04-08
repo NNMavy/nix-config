@@ -1,11 +1,11 @@
 {
+  lib,
   config,
   pkgs,
-  lib,
   ...
 }:
 with lib; let
-  cfg = config.modules.security.one-password;
+  cfg = config.modules.applications.one-password;
 
   op-wsl-proxy = pkgs.writeShellScriptBin "op" ''
     if [ -n "$WSL_DISTRO_NAME" ] && command -v op.exe >/dev/null; then
@@ -42,7 +42,7 @@ with lib; let
   '';
   wslAgentScript = "source ${lib.getExe wsl-ssh-agent}";
 in {
-  options.modules.security.one-password = {
+  options.modules.applications.one-password = {
     enable = mkEnableOption "_1password";
     wsl = mkOption {
       type = types.bool;
@@ -52,17 +52,20 @@ in {
 
   config = mkMerge [
     (mkIf (cfg.enable && !cfg.wsl) {
-      home.packages = with pkgs; [
-        _1password
-        _1password-gui
-      ];
+      programs = {
+        _1password.enable = true;
+        _1password-gui = {
+          enable = true;
+          polkitPolicyOwners = ["mavy"];
+        };
+      };
       
       # autostart 1password
-      home.file."${config.xdg.configHome}/autostart/1password.desktop".text = builtins.readFile "${pkgs._1password-gui}/share/applications/1password.desktop";
+      home-manager.users.mavy.home.file.".config/autostart/1password.desktop".text = builtins.readFile "${pkgs._1password-gui}/share/applications/1password.desktop";
     })
 
     (mkIf (cfg.enable && cfg.wsl) {
-      home.packages = [
+      home-manager.users.mavy.home.packages = [
         op-wsl-proxy
         wsl-ssh-agent
       ];
@@ -75,7 +78,7 @@ in {
     })
 
     (mkIf cfg.enable {
-      home.sessionVariables = {
+      home-manager.users.mavy.home.sessionVariables = {
         SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
       };
     })

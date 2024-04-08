@@ -64,12 +64,11 @@ in {
         vscode-server-fix = {
           target = ".vscode-server/server-env-setup";
           text = ''
-          # Make sure that basic commands are available
-          PATH=$PATH:/run/current-system/sw/bin/
+            # Make sure that basic commands are available
+            PATH=$PATH:/run/current-system/sw/bin/
           '';
         };
       };
-
     })
     (mkIf cfg.server-enable {
       home.packages = with pkgs; [

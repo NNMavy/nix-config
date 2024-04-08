@@ -3,7 +3,6 @@
   pkgs,
   ...
 }:
-
 pkgs.stdenvNoCC.mkDerivation rec {
   pname = "npiperelay";
   version = "0.1.0";

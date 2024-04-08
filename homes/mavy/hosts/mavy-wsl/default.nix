@@ -20,9 +20,6 @@
         wsl = true;
       };
     };
-    security = {
-      one-password.wsl = true;
-    };
     shell = {
       starship.enable = true;
       tmux.enable = true;

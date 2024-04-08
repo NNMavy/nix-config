@@ -12,8 +12,23 @@ in {
     ./hardware-configuration.nix
   ];
 
+  wsl = {
+    enable = true;
+    #wsl.docker-desktop.enable = true;
+    defaultUser = "mavy";
+    interop.includePath = false;
+  };
+
   networking = {
     hostName = "mavy-wsl";
+  };
+
+
+  programs = {
+    nix-ld = {
+      enable = true;
+      package = inputs.nix-ld-rs.packages.${pkgs.system}.nix-ld-rs;
+    };
   };
 
   users.users.mavy = {
@@ -43,11 +58,16 @@ in {
 
   # Enable printing changes on nix build etc with nvd
   system.activationScripts.report-changes = ''
-    PATH=$PATH:${lib.makeBinPath [ pkgs.nvd pkgs.nix ]}
+    PATH=$PATH:${lib.makeBinPath [pkgs.nvd pkgs.nix]}
     nvd diff $(ls -dv /nix/var/nix/profiles/system-*-link | tail -2)
   '';
 
   modules = {
+    applications = {
+      one-password.enable = true;
+      one-password.wsl = true;
+    };
+
     services = {
       openssh.enable = false;
     };

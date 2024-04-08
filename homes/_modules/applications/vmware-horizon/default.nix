@@ -12,9 +12,8 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs;
-      [
-        vmware-horizon-client
-      ];
+    home.packages = with pkgs; [
+      vmware-horizon-client
+    ];
   };
 }

@@ -115,7 +115,7 @@
           # $ git add . ; sudo nixos-rebuild --flake . switch
           nixvm = mkSystemLib.mkNixosSystem "x86_64-linux" "nixvm" overlays flake-packages;
           # $ git add . ; sudo nixos-rebuild --flake . switch
-          mavy-wsl = mkSystemLib.mkWSLSystem "x86_64-linux" "mavy-wsl" overlays flake-packages;
+          mavy-wsl = mkSystemLib.mkNixosSystem "x86_64-linux" "mavy-wsl" overlays flake-packages;
         };
 
         darwinConfigurations = {

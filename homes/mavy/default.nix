@@ -70,9 +70,6 @@ in {
     };
 
     security = {
-      one-password = {
-        enable = true;
-      };
       gnupg.enable = true;
       ssh = {
         enable = true;
