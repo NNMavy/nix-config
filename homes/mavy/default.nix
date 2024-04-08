@@ -72,7 +72,6 @@ in {
     security = {
       one-password = {
         enable = true;
-        wsl = true;
       };
       gnupg.enable = true;
       ssh = {

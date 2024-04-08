@@ -15,10 +15,13 @@
   modules = {
     editors = {
       neovim.enable = true;
-      vscode = { 
+      vscode = {
         enable = true;
         wsl = true;
-      };  
+      };
+    };
+    security = {
+      one-password.wsl = true;
     };
     shell = {
       starship.enable = true;

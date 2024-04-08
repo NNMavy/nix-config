@@ -14,10 +14,9 @@ in {
   ];
 
   networking = {
-    hostName = "pepeprnuts";
-    hostId = "decaf108";
-    useDHCP = true;
+    hostName = "peppernuts";
     firewall.enable = false;
+    networkmanager.enable = true;
   };
 
   hardware.opengl = {
@@ -41,7 +40,7 @@ in {
     extraGroups =
       ["wheel"]
       ++ ifGroupsExist [
-        "network"
+        "networkmanager"
         "samba-users"
       ];
   };

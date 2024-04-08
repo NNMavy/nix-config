@@ -62,8 +62,8 @@ in {
       home.sessionVariables = {
         SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
       };
-      
-      home.packages = with pkgs; [
+
+      home.packages = [
         op-wsl-proxy
         wsl-ssh-agent
       ];
