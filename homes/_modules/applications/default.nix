@@ -1,5 +1,6 @@
 {...}: {
   imports = [
     ./devonthink
+    ./vmware-horizon
   ];
 }

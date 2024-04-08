@@ -25,10 +25,7 @@
     shell = {
       tmux.enable = true;
       alacritty.enable = true;
-    };
-    devops.colima = {
-      enable = true;
-      startService = true;
+      starship.enable= true;
     };
   };
 }

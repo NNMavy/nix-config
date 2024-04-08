@@ -10,6 +10,10 @@
     settings.trusted-users = ["root" "@wheel"];
   };
 
+  programs = {
+    _1password-gui.polkitPolicyOwners = [ "mavy" ];
+  };
+
   # Increase open file limit for sudoers
   security.pam.loginLimits = [
     {

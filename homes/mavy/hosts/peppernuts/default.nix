@@ -18,6 +18,7 @@
   };
 
   modules = {
+    applications.vmware-horizon.enable = true;
     editors = {
       neovim.enable = true;
       # vscode.server-enable = true;
