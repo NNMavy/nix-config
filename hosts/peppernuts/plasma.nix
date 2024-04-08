@@ -23,7 +23,7 @@
 
   programs._1password-gui = {
     enable = true;
-    polkitPolicyOwners = [ "mavy" ];
+    polkitPolicyOwners = ["mavy"];
   };
 
   security.rtkit.enable = true;
@@ -32,6 +32,7 @@
   sound.enable = true;
   hardware.pulseaudio.enable = false;
 
+  environment.pathsToLink = ["/share"];
   environment.systemPackages = with pkgs; [
     openssl
     firefox
