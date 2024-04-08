@@ -56,6 +56,9 @@ in {
         _1password
         _1password-gui
       ];
+      
+      # autostart 1password
+      home.file."${config.xdg.configHome}/autostart/1password.desktop".text = builtins.readFile "${pkgs._1password-gui}/share/applications/1password.desktop";
     })
 
     (mkIf (cfg.enable && cfg.wsl) {

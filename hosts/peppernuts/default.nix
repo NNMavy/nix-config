@@ -30,6 +30,7 @@ in {
 
   users.users.mavy = {
     uid = 1000;
+    description = "Rene Koens";
     name = "mavy";
     home = "/home/mavy";
     group = "mavy";
