@@ -40,7 +40,7 @@ with lib; let
       (setsid ${pkgs.socat}/bin/socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"$WINPATH/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
     fi
   '';
-   wslAgentScript = "source ${lib.getExe wsl-ssh-agent}";
+  wslAgentScript = "source ${lib.getExe wsl-ssh-agent}";
 in {
   options.modules.security.one-password = {
     enable = mkEnableOption "_1password";
@@ -59,10 +59,6 @@ in {
     })
 
     (mkIf (cfg.enable && cfg.wsl) {
-      home.sessionVariables = {
-        SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
-      };
-
       home.packages = [
         op-wsl-proxy
         wsl-ssh-agent
@@ -72,6 +68,12 @@ in {
         shellInit = ''
           replay "${wslAgentScript}"
         '';
+      };
+    })
+
+    (mkIf cfg.enable {
+      home.sessionVariables = {
+        SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
       };
     })
   ];

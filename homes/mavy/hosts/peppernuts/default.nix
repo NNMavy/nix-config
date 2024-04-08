@@ -6,7 +6,7 @@
 }: {
   imports = [
     inputs.hyprland.homeManagerModules.default
-    ./hyprland
+    #./hyprland
   ];
 
   home = {
