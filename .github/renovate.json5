@@ -1,8 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "github>szinn/renovate-config",
-    "github>szinn/nix-config//.github/renovate/customManagers.json5"
+    "github>NNMavy/renovate-config",
+    "github>NNMavy/nix-config//.github/renovate/customManagers.json5"
   ],
   "ignorePaths": [
     "result"
