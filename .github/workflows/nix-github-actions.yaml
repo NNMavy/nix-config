@@ -16,7 +16,7 @@ concurrency:
 jobs:
   nix-build:
     strategy:
-      fail-fast: false # let it build all the targets
+      fail-fast: true # let it build all the targets
       matrix:
         include:
           - system: mavy-wsl
