@@ -36,7 +36,7 @@ jobs:
             auto-optimise-store = true
             system-features = nixos-test benchmark big-parallel kvm
             access-tokens = github.com=${{ secrets.GH_TOKEN }}
-            experimental-features = nix-command flakes
+            experimental-features = nix-command flakes fetch-tree
       - uses: https://github.com/DeterminateSystems/magic-nix-cache-action@main
       - uses: https://github.com/cachix/cachix-action@18cf96c7c98e048e10a83abd92116114cd8504be # v14
         if: ${{ !github.event.pull_request.head.repo.fork }}
