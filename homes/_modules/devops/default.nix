@@ -24,6 +24,7 @@ in {
       krew
       kubectl
       kubectl-cnpg
+      kubectx
       kubernetes-helm
       kustomize_4
       minio-client
@@ -37,6 +38,8 @@ in {
     programs.fish = {
       shellAliases = {
         k = "kubectl";
+        kn = "kubens";
+        kc = "kubectx";
         tf = "terraform";
       };
     };
