@@ -7,6 +7,7 @@
   ];
 
   documentation.nixos.enable = false;
+  documentation.man.generateCaches = false;
 
   nix = {
     gc.dates = "weekly";
