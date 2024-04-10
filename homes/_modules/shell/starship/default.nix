@@ -22,6 +22,7 @@ in {
           "$git_status"
           "$\{custom.direnv\}"
           "$fill"
+          "$kubernetes"
           "$python"
           "$status"
           "$cmd_duration"
@@ -76,6 +77,12 @@ in {
 
         fill = {
           symbol = " ";
+        };
+
+        kubernetes = {
+          disabled = false;
+          symbol = "󱃾 ";
+          format = "[\${symbol}\${context} \\($namespace\\) ]($style)";
         };
 
         python = {
