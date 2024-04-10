@@ -25,6 +25,7 @@ in {
           dig
           du-dust
           duf
+          envsubst
           eza
           fd
           fzf
@@ -76,8 +77,10 @@ in {
           enable = true;
           flags = ["--disable-up-arrow"];
           settings = {
-            workspaces = "true";
-            ctrl_n_shortcuts = "true";
+            sync_address = "https://atuin.nnhome.eu";
+            auto_sync = true;
+            sync_frequency = "1m";
+            search_mode = "fuzzy";
           };
         };
         ripgrep = {

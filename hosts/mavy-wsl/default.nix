@@ -14,7 +14,6 @@ in {
 
   wsl = {
     enable = true;
-    #wsl.docker-desktop.enable = true;
     defaultUser = "mavy";
     interop.includePath = false;
   };
@@ -64,6 +63,7 @@ in {
 
   modules = {
     applications = {
+      docker-desktop.enable = true;
       one-password.enable = true;
       one-password.wsl = true;
     };
