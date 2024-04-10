@@ -6,6 +6,8 @@
     ./users
   ];
 
+  documentation.nixos.enable = false;
+
   nix = {
     gc.dates = "weekly";
     settings.trusted-users = ["root" "@wheel"];
