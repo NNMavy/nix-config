@@ -1,8 +1,10 @@
 {
   colorschemes = {
     tokyonight = {
-      enable = true;
-      style = "night";
+      settings = {
+        enable = true;
+        style = "night";
+      };
     };
   };
 }
