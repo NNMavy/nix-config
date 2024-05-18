@@ -10,6 +10,19 @@ on:
       - "**.nix"
       - "flake.lock"
 
+env:
+  nix-conf: |-
+    access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+    auto-optimise-store = true
+    experimental-features = nix-command flakes
+    system-features = nixos-test benchmark big-parallel kvm
+    fallback = true # build from source if a binary substitute fails
+    # substituters = https://cache.garnix.io https://cache.nixos.org/ https://nix-cache.heimat.dev https://nix-community.cachix.org
+    substituters = https://cache.garnix.io https://cache.nixos.org/ https://nix-community.cachix.org
+    trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+    extra-platforms = aarch64-linux
+    builders-use-substitutes = true
+
 jobs:
   build:
     if: github.event.pull_request.draft == false
@@ -33,15 +46,10 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get install -y xz-utils;
 
-      - name: Install nix
-        uses: cachix/install-nix-action@v27
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
         with:
-          extra_nix_config: |
-            extra-platforms = aarch64-linux
-            auto-optimise-store = true
-            system-features = nixos-test benchmark big-parallel kvm
-            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-            experimental-features = nix-command flakes
+          extra-conf: ${{ env.nix-conf }}
 
       - uses: DeterminateSystems/magic-nix-cache-action@main
 
