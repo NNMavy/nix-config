@@ -18,14 +18,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: ubuntu-latest
-            target: citadel
-          - os: ubuntu-latest
-            target: rickenbacker
-          - os: ubuntu-latest
-            target: dns01
-          - os: ubuntu-latest
-            target: dns02
+          - system: mavy-wsl
+            os: arc-runner-set-nix-config
+          - system: peppernuts
+            os: arc-runner-set-nix-config
     steps:
       - name: Create nix mount point
         if: contains(matrix.os, 'ubuntu')
