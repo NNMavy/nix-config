@@ -73,9 +73,12 @@
     };
 
     # Talhelper
-    talhelper = {
-      url = "github:budimanjojo/talhelper";
-    };
+    # talhelper = {
+    #   url = "github:budimanjojo/talhelper";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #   };
+    # };
 
     # import the Nix Flake for nix-ld-rs
     nix-ld-rs = {
