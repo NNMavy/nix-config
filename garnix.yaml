@@ -1,6 +1,7 @@
 ---
 # Config for garnix.io builds & caching
 builds:
+  exclude: []
   include:
     - homeConfigurations.*
     - nixosConfigurations.*
