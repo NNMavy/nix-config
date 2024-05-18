@@ -18,9 +18,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - system: mavy-wsl
+          - target: mavy-wsl
             os: arc-runner-set-nix-config
-          - system: peppernuts
+          - target: peppernuts
             os: arc-runner-set-nix-config
     steps:
       - name: Create nix mount point
