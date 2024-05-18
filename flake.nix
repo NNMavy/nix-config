@@ -62,16 +62,6 @@
       url = "github:oxalica/rust-overlay";
     };
 
-    # Hyprland
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
     # Talhelper
     # talhelper = {
     #   url = "github:budimanjojo/talhelper";

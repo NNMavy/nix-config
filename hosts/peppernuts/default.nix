@@ -8,10 +8,8 @@
 in {
   imports = [
     ./hardware-configuration.nix
-    ./hypr.nix
-    #./plasma.nix
+    ./plasma.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel
-    inputs.nixos-hardware.nixosModules.common-gpu-intel
   ];
 
   networking = {
