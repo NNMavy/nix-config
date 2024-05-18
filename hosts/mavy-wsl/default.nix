@@ -22,7 +22,6 @@ in {
     hostName = "mavy-wsl";
   };
 
-
   programs = {
     nix-ld = {
       enable = true;

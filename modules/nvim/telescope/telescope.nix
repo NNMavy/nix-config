@@ -87,7 +87,7 @@
             action = "buffers";
             desc = "[] Find existing buffers";
           };
-        };  
+        };
       };
     };
   };
