@@ -3,9 +3,7 @@
   pkgs,
   lib,
   ...
-}: 
-{
-
+}: {
   home.file.".config/hypr/hypr.conf".source = ./configs/hypr.conf;
 
   xdg.configFile = {
@@ -14,5 +12,4 @@
       recursive = true;
     };
   };
-
 }

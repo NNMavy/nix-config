@@ -20,7 +20,7 @@ in {
 
       # unit-script-docker-desktop-proxy-start
       systemd.services.docker-desktop-proxy = {
-        path = [ pkgs.mount ];
+        path = [pkgs.mount];
         script = lib.mkForce ''
           ${proxyPath} proxy "C:\Program Files\Docker\Docker\resources" --docker-desktop-root ${dockerRoot}
         '';
@@ -28,10 +28,10 @@ in {
       };
 
       systemd.paths.docker-desktop-proxy = {
-        enable = top.docker-desktop.enable;
+        inherit (top.docker-desktop) enable;
         description = "Watcher for Docker Desktop proxy integration";
         # IDEA can we shift the burden to docker-desktop-proxy.service itself?
-        wantedBy = [ "multi-user.target" ];
+        wantedBy = ["multi-user.target"];
 
         pathConfig = {
           PathExists = proxyPath;

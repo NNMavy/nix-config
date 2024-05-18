@@ -1,0 +1,9 @@
+---
+# Config for garnix.io builds & caching
+builds:
+  exclude: []
+  include:
+    - homeConfigurations.*
+    - nixosConfigurations.*
+    - packages.x86_64-linux.*
+    - packages.aarch64-linux.*
