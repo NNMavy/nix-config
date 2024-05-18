@@ -1,5 +1,5 @@
 ---
-name: Pull Request
+name: Build and diff Nix systems
 permissions:
   pull-requests: write
   contents: read
