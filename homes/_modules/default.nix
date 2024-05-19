@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./applications
+    ./desktops
     ./development
     ./devops
     ./editors

@@ -8,7 +8,6 @@
 in {
   imports = [
     ./hardware-configuration.nix
-    ./plasma.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel
   ];
 
@@ -61,6 +60,9 @@ in {
   modules = {
     applications = {
       one-password.enable = true;
+    };
+    desktops = {
+      plasma.enable = true;
     };
     services = {
       openssh.enable = true;

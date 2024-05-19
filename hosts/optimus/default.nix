@@ -8,13 +8,12 @@
 in {
   imports = [
     ./hardware-configuration.nix
-    ./plasma.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel
   ];
 
   networking = {
     hostName = "optimus";
-    firewall.enable = false;
+    firewall.enable = true;
     networkmanager.enable = true;
   };
 
