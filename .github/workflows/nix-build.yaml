@@ -38,7 +38,7 @@ jobs:
           sudo apt-get update && sudo apt-get install -y xz-utils;
 
       - name: Install nix
-        uses: cachix/install-nix-action@v27
+        uses: cachix/install-nix-action@ba0dd844c9180cbf77aa72a116d6fbc515d0e87b # v27
         with:
           extra_nix_config: |
             extra-platforms = aarch64-linux
@@ -95,7 +95,7 @@ jobs:
           echo "${delimiter}" >> "${GITHUB_OUTPUT}"
 
       - name: Comment report in pr
-        uses: marocchino/sticky-pull-request-comment@v2
+        uses: marocchino/sticky-pull-request-comment@331f8f5b4215f0445d3c07b4967662a32a2d3e31 # v2
         if: ${{ !startswith(github.ref, 'dependabot') }}
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
