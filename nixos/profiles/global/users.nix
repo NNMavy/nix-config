@@ -29,6 +29,7 @@ in
         "podman"
         "audio" # pulseaudio
         "libvirtd"
+        "kah"
       ];
 
     openssh.authorizedKeys.keys = [
@@ -37,5 +38,12 @@ in
 
     # packages = [ pkgs.home-manager ];
   };
+
+  # extra user for containers
+  users.users.kah = {
+    uid = 568;
+    group = "kah";
+  };
+  users.groups.kah = { };
 
 }

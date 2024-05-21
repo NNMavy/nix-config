@@ -1,7 +1,10 @@
-{ config, ... }:
-{
+{ config, ... }: let
+  isEd25519 = k: k.type == "ed25519";
+  getKeyPath = k: k.path;
+  keys = builtins.filter isEd25519 config.services.openssh.hostKeys;
+in {
 
-  sops.age.sshKeyPaths = [ "/persist/etc/ssh/ssh_host_ed25519_key" ];
+  sops.age.sshKeyPaths = map getKeyPath keys;
   # # Secret for machine-specific pushover
   # sops.secrets."services/pushover/env" = {
   #   sopsFile = ./secrets.sops.yaml;

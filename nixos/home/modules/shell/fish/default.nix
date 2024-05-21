@@ -17,6 +17,18 @@ in
       programs.fish = {
         enable = true;
 
+        plugins = [
+          {
+            name = "replay";
+            src = pkgs.fetchFromGitHub {
+              owner = "jorgebucaran";
+              repo = "replay.fish";
+              rev = "bd8e5b89ec78313538e747f0292fcaf631e87bd2";
+              hash = "sha256-bM6+oAd/HXaVgpJMut8bwqO54Le33hwO9qet9paK1kY=";
+            };
+          }
+        ];
+
         shellAliases = {
           m = "less";
           ls = "${pkgs.eza}/bin/eza --group";

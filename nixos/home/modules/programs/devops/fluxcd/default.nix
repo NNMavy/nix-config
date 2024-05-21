@@ -23,6 +23,10 @@ in
         eval (${pkgs.fluxcd}/bin/flux completion fish)
       '';
       functions = {
+        commit = {
+          description = "git conventional commits";
+          body = builtins.readFile ./functions/commit.fish;
+        };
         flretry = {
           description = "Retry a flux update";
           body = builtins.readFile ./functions/flretry.fish;
