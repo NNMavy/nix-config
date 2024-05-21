@@ -7,8 +7,10 @@ with config;
   ];
 
   config = {
-    myHome.username = "mavy";
-    myHome.homeDirectory = "/home/mavy/";
+    myHome = {
+      username = "mavy";
+      homeDirectory = "/home/mavy/";
+    };
 
 
     # services.gpg-agent.pinentryPackage = pkgs.pinentry-qt;

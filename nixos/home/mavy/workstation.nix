@@ -5,35 +5,36 @@ with config;
     ./global.nix
   ];
 
-  myHome.programs.firefox.enable = true;
+  myHome = {
+    programs.firefox.enable = true;
 
-  myHome.security = {
-    ssh = {
-      #TODO make this dynamic
-      enable = true;
-      matchBlocks = {
-        citadel = {
-          hostname = "mavy-wsl";
-          port = 22;
-          identityFile = "~/.ssh/id_ed25519";
+    security = {
+      ssh = {
+        #TODO make this dynamic
+        enable = true;
+        matchBlocks = {
+          mavy-wsl = {
+            hostname = "mavy-wsl";
+            port = 22;
+            identityFile = "~/.ssh/id_ed25519";
+          };
         };
       };
     };
-  };
 
-  myHome.shell = {
+    shell = {
 
-    starship.enable = true;
-    fish.enable = true;
-    wezterm.enable = true;
+      starship.enable = true;
+      fish.enable = true;
+      wezterm.enable = true;
 
-    git = {
-      enable = true;
-      username = "Rene Koens";
-      email = "mavy@ninjanerd.eu";
-      # signingKey = ""; # TODO setup signing keys n shit
+      git = {
+        enable = true;
+        username = "Rene Koens";
+        email = "mavy@ninjanerd.eu";
+        # signingKey = ""; # TODO setup signing keys n shit
+      };
     };
-
   };
 
   home = {

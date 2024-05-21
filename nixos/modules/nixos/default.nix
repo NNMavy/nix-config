@@ -13,43 +13,45 @@ with lib;
     ./security
   ];
 
-  options.mySystem.persistentFolder = mkOption {
-    type = types.str;
-    description = "persistent folder for nixos mutable files";
-    default = "/persist";
-  };
+  options = {
+    mySystem = {
+      persistentFolder = mkOption {
+        type = types.str;
+        description = "persistent folder for nixos mutable files";
+        default = "/persist";
+      };
 
-  options.mySystem.nasFolder = mkOption {
-    type = types.str;
-    description = "folder where nas mounts reside";
-    default = "/mnt/nas";
+      nasFolder = mkOption {
+        type = types.str;
+        description = "folder where nas mounts reside";
+        default = "/mnt/nas";
+      };
+      domain = mkOption {
+        type = types.str;
+        description = "domain for hosted services";
+        default = "";
+      };
+      internalDomain = mkOption {
+        type = types.str;
+        description = "domain for local devices";
+        default = "";
+      };
+      purpose = mkOption {
+        type = types.str;
+        description = "System purpose";
+        default = "Production";
+      };
+      monitoring.prometheus.scrapeConfigs = mkOption {
+        type = lib.types.listOf lib.types.attrs;
+        description = "Prometheus scrape targets";
+        default = [ ];
+      };
+    };
   };
-  options.mySystem.domain = mkOption {
-    type = types.str;
-    description = "domain for hosted services";
-    default = "";
-  };
-  options.mySystem.internalDomain = mkOption {
-    type = types.str;
-    description = "domain for local devices";
-    default = "";
-  };
-  options.mySystem.purpose = mkOption {
-    type = types.str;
-    description = "System purpose";
-    default = "Production";
-  };
-  options.mySystem.monitoring.prometheus.scrapeConfigs = mkOption {
-    type = lib.types.listOf lib.types.attrs;
-    description = "Prometheus scrape targets";
-    default = [ ];
-  };
-
 
   config = {
     systemd.tmpfiles.rules = [
       "d ${config.mySystem.persistentFolder} 777 - - -" #The - disables automatic cleanup, so the file wont be removed after a period
     ];
-
   };
 }
