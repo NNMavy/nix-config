@@ -10,7 +10,7 @@ with lib;
   boot = {
 
     initrd.availableKernelModules = [ "virtio_pci" ];
-    kernelModules = ["kvm-amd"];
+    kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
 
     # for managing/mounting ntfs

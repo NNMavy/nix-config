@@ -16,7 +16,7 @@
 
     boot = {
       initrd = {
-        availableKernelModules = ["virtio_pci"];
+        availableKernelModules = [ "virtio_pci" ];
         kernelModules = [ ];
       };
       kernelModules = [ "kvm-amd" ];
@@ -59,7 +59,7 @@
       "/mnt/wslg/distro" = {
         device = "none";
         fsType = "none";
-        options = ["bind"];
+        options = [ "bind" ];
       };
 
       "/usr/lib/wsl/lib" = {
@@ -75,15 +75,15 @@
       "/mnt/wslg/.X11-unix" = {
         device = "/mnt/wslg/.X11-unix";
         fsType = "none";
-        options = ["bind"];
+        options = [ "bind" ];
       };
     };
 
     swapDevices = [
-      {device = "/dev/disk/by-uuid/5b8c0e08-97d7-45c4-a229-87ed303a87d2";}
+      { device = "/dev/disk/by-uuid/5b8c0e08-97d7-45c4-a229-87ed303a87d2"; }
     ];
 
-    };
+  };
 
 
 }

@@ -1,13 +1,13 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib; let
   cfg = config.myHome.programs.k9s;
 
-in {
+in
+{
   options.myHome.programs.k9s = {
     enable = mkEnableOption "k9s";
   };
@@ -58,8 +58,8 @@ in {
           imageScans = {
             enable = false;
             exclusions = {
-              namespaces = [];
-              labels = {};
+              namespaces = [ ];
+              labels = { };
             };
           };
           logger = {

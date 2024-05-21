@@ -1,18 +1,18 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib; let
   cfg = config.myHome.programs.fluxcd;
 
-in {
+in
+{
   options.myHome.programs.fluxcd = {
     enable = mkEnableOption "fluxcd";
   };
 
-    config = mkIf cfg.enable {
+  config = mkIf cfg.enable {
     home.packages = with pkgs; [
       fluxcd
     ];

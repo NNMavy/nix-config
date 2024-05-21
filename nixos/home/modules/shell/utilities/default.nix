@@ -79,7 +79,7 @@ in
       };
       atuin = {
         enable = true;
-        flags = ["--disable-up-arrow"];
+        flags = [ "--disable-up-arrow" ];
         settings = {
           sync_address = "https://atuin.nnhome.eu";
           auto_sync = true;
@@ -89,7 +89,7 @@ in
       };
       ripgrep = {
         enable = true;
-        arguments = ["--glob=!vendor" "--hidden" "--line-number" "--no-heading" "--sort=path"];
+        arguments = [ "--glob=!vendor" "--hidden" "--line-number" "--no-heading" "--sort=path" ];
       };
       zoxide = {
         enable = true;

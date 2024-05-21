@@ -1,7 +1,6 @@
-{
-  lib,
-  pkgs,
-  ...
+{ lib
+, pkgs
+, ...
 }:
 pkgs.stdenvNoCC.mkDerivation rec {
   pname = "npiperelay";

@@ -1,8 +1,7 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
+{ lib
+, config
+, pkgs
+, ...
 }:
 with lib; let
   cfg = config.mySystem.security.one-password;
@@ -41,7 +40,8 @@ with lib; let
     fi
   '';
   wslAgentScript = "source ${lib.getExe wsl-ssh-agent}";
-in {
+in
+{
   options.mySystem.security.one-password = {
     enable = mkEnableOption "one-password";
     wsl = mkOption {
@@ -56,7 +56,7 @@ in {
         _1password.enable = true;
         _1password-gui = {
           enable = true;
-          polkitPolicyOwners = ["mavy"];
+          polkitPolicyOwners = [ "mavy" ];
         };
       };
 
