@@ -1,0 +1,20 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>NNMavy/renovate-config",
+    "github>NNMavy/nix-config//.github/renovate/customManagers.json5"
+  ],
+  "ignorePaths": [
+    "result"
+  ],
+
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": [
+      "before 11pm"
+    ]
+  },
+  "nix": {
+    "enabled": true
+  }
+}
