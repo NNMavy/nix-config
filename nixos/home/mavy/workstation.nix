@@ -16,7 +16,11 @@ with config;
           mavy-wsl = {
             hostname = "mavy-wsl";
             port = 22;
-            identityFile = "~/.ssh/id_ed25519";
+          };
+
+          peppernuts = {
+            hostname = "peppernuts";
+            port = 22;
           };
         };
       };
@@ -26,6 +30,7 @@ with config;
 
       starship.enable = true;
       fish.enable = true;
+      utilities.enable = true;
       wezterm.enable = true;
 
       git = {

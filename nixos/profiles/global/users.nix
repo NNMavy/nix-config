@@ -24,6 +24,7 @@ in
       ]
       ++ ifTheyExist [
         "network"
+        "networkmanager"
         "samba-users"
         "docker"
         "podman"
