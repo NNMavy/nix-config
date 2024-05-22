@@ -16,13 +16,6 @@ with config;
       ssh = {
         #TODO make this dynamic
         enable = true;
-        matchBlocks = {
-          mavy-wsl = {
-            hostname = "mavy-wsl";
-            port = 22;
-            identityFile = "~/.ssh/id_ed25519";
-          };
-        };
       };
     };
 

@@ -34,6 +34,7 @@ with config;
         EDITOR = "vim";
         VISUAL = "vim";
         ZDOTDIR = "/home/pinpox/.config/zsh";
+        SOPS_AGE_KEY_FILE = "${config.xdg.configHome}/sops/age/keys.txt";
       };
 
     };
