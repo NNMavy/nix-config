@@ -30,5 +30,5 @@ with lib;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  services.xserver.videoDrivers = ["intel"];
+  services.xserver.videoDrivers = [ "intel" ];
 }
