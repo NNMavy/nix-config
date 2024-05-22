@@ -6,7 +6,11 @@ with config;
   ];
 
   myHome = {
-    programs.firefox.enable = true;
+    programs = {
+      firefox.enable = true;
+      k9s.enable = true;
+      fluxcd.enable = true;
+    };
 
     security = {
       ssh = {
