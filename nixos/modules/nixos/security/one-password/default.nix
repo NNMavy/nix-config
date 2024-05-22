@@ -53,7 +53,9 @@ in
   config = mkMerge [
     (mkIf (cfg.enable && !cfg.wsl) {
       programs = {
-        _1password.enable = true;
+        _1password = {
+          enable = true;
+        };
         _1password-gui = {
           enable = true;
           polkitPolicyOwners = [ "mavy" ];

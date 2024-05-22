@@ -28,7 +28,7 @@ in
             gdm.enable = true;
             defaultSession = "gnome"; # TODO move to config overlay
 
-            autoLogin.enable = true;
+            autoLogin.enable = false;
             autoLogin.user = "mavy"; # TODO move to config overlay
           };
         desktopManager = {
@@ -40,7 +40,29 @@ in
       };
       udev.packages = optionals cfg.systrayicons [ pkgs.gnome.gnome-settings-daemon ]; # support appindicator
 
+      # Conventient services
+      printing.enable = true;
+      fprintd.enable = true;
+    };
 
+    # Fonts
+    fonts = {
+      packages = with pkgs; [
+        noto-fonts
+        noto-fonts-cjk
+        noto-fonts-emoji
+
+        (nerdfonts.override {fonts = ["FiraCode"];})
+      ];
+
+      fontconfig = {
+        enable = true;
+        defaultFonts = {
+          monospace = ["FiraCode Nerd Font"];
+          serif = ["Noto Serif"];
+          sansSerif = ["Noto Sans"];
+        };
+      };
     };
 
     # systyray icons
