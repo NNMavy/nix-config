@@ -52,15 +52,15 @@ in
         noto-fonts-cjk
         noto-fonts-emoji
 
-        (nerdfonts.override {fonts = ["FiraCode"];})
+        (nerdfonts.override { fonts = [ "FiraCode" ]; })
       ];
 
       fontconfig = {
         enable = true;
         defaultFonts = {
-          monospace = ["FiraCode Nerd Font"];
-          serif = ["Noto Serif"];
-          sansSerif = ["Noto Sans"];
+          monospace = [ "FiraCode Nerd Font" ];
+          serif = [ "Noto Serif" ];
+          sansSerif = [ "Noto Sans" ];
         };
       };
     };

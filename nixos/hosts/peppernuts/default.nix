@@ -18,18 +18,19 @@
     networking.hostName = "peppernuts";
 
     fileSystems."/" =
-      { device = "/dev/disk/by-uuid/2c701071-7628-4dd3-a537-33f273f94f1c";
+      {
+        device = "/dev/disk/by-uuid/2c701071-7628-4dd3-a537-33f273f94f1c";
         fsType = "ext4";
       };
 
     fileSystems."/boot" =
-      { device = "/dev/disk/by-uuid/0043-49AE";
+      {
+        device = "/dev/disk/by-uuid/0043-49AE";
         fsType = "vfat";
       };
 
     swapDevices =
-      [ { device = "/dev/disk/by-uuid/57122c7d-8c27-4f00-a142-7b4af6ad6ec0"; }
-      ];
+      [{ device = "/dev/disk/by-uuid/57122c7d-8c27-4f00-a142-7b4af6ad6ec0"; }];
 
   };
 }
