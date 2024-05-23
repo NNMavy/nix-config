@@ -28,7 +28,7 @@
   search = import ./search.nix { inherit pkgs; };
   extensions = with pkgs.nur.repos.rycee.firefox-addons; [
     ublock-origin
-    bitwarden
+    onepassword-password-manager
     darkreader
     vimium
     languagetool # setup against my personal language-tools
