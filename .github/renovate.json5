@@ -9,11 +9,11 @@
   ],
 
   "lockFileMaintenance": {
-    "enabled": true,
-    "schedule": [
-      "before 11pm"
-    ]
+      "enabled": "true",
+      "automerge": "true",
+      "schedule": [ "before 4am on Sunday" ],
   },
+
   "nix": {
     "enabled": true
   }
