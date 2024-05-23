@@ -15,7 +15,7 @@ in
   config = mkIf cfg.enable {
     programs.k9s = {
       enable = true;
-      package = pkgs.k9s;
+      package = pkgs.unstable.k9s; # TODO: Switch back to stable at some point
 
       aliases = {
         aliases = {
