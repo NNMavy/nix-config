@@ -57,6 +57,14 @@
       url = "github:bluskript/nix-inspect";
     };
 
+    # Talhelper
+    talhelper = {
+      url = "github:budimanjojo/talhelper";
+      inputs = {
+        nixpkgs.follows = "nixpkgs-unstable";
+      };
+    };
+
     # import the Nix Flake for nix-ld-rs
     nix-ld-rs = {
       url = "github:nix-community/nix-ld-rs";

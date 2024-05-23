@@ -2,6 +2,7 @@
 , config
 , self
 , pkgs
+, inputs
 , ...
 }:
 with lib;
@@ -27,6 +28,7 @@ in
       minio-client
       opentofu
       talosctl
+      inputs.talhelper.packages.${pkgs.system}.default
       terraform
     ];
     programs.fish = {
