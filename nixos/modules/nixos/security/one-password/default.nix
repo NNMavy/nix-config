@@ -66,7 +66,7 @@ in
       home-manager.users.mavy.home.file.".config/autostart/1password.desktop".text = builtins.readFile "${pkgs._1password-gui}/share/applications/1password.desktop";
       home-manager.users.mavy.programs = {
         ssh.extraConfig = ''
-          IdentityAgent "$HOME/.1password/agent.sock"
+          IdentityAgent "~/.1password/agent.sock"
         '';
         git.extraConfig = {
           gpg = {
