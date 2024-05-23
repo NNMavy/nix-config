@@ -62,6 +62,19 @@ in
         };
       };
 
+      # Disable keyring ssh agent
+      nixpkgs.overlays = [
+        (final: prev: {
+          gnome = prev.gnome.overrideScope' (gfinal: gprev: {
+            gnome-keyring = gprev.gnome-keyring.overrideAttrs (oldAttrs: {
+              configureFlags = oldAttrs.configureFlags or [ ] ++ [
+                "--disable-ssh-agent"
+              ];
+            });
+          });
+        })
+      ];
+
       # autostart 1password
       home-manager.users.mavy.home.file.".config/autostart/1password.desktop".text = builtins.readFile "${pkgs._1password-gui}/share/applications/1password.desktop";
     })
