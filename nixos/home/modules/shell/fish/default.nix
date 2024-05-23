@@ -124,15 +124,6 @@ in
       home.sessionVariables.fish_greeting = "";
 
       programs.nix-index.enable = true;
-
-      # programs.fish = {
-      #   functions = {
-      #     agent = {
-      #       description = "Start SSH agent";
-      #       body = builtins.readFile ./functions/agent.fish;
-      #     };
-      #   };
-      # };
     })
     (mkIf (cfg.enable && pkgs.stdenv.isLinux) {
       programs.fish = {

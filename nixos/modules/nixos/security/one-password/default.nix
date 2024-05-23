@@ -62,21 +62,22 @@ in
         };
       };
 
-      # Disable keyring ssh agent
-      nixpkgs.overlays = [
-        (final: prev: {
-          gnome = prev.gnome.overrideScope' (gfinal: gprev: {
-            gnome-keyring = gprev.gnome-keyring.overrideAttrs (oldAttrs: {
-              configureFlags = oldAttrs.configureFlags or [ ] ++ [
-                "--disable-ssh-agent"
-              ];
-            });
-          });
-        })
-      ];
-
       # autostart 1password
       home-manager.users.mavy.home.file.".config/autostart/1password.desktop".text = builtins.readFile "${pkgs._1password-gui}/share/applications/1password.desktop";
+      home-manager.users.mavy.programs = {
+        ssh.extraConfig = ''
+          IdentityAgent "$HOME/.1password/agent.sock"
+        '';
+        git.extraConfig = {
+          gpg = {
+            format = "ssh";
+            ssh = {
+              allowedSignersFile = "~/.ssh/allowed_signers";
+              program = "${pkgs._1password-gui}/bin/op-ssh-sign";
+            };
+          };
+        };
+      };
     })
 
     (mkIf (cfg.enable && cfg.wsl) {
