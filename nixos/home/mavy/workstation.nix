@@ -54,7 +54,7 @@ with config;
         discord
         steam
         spotify
-        orca-slicer
+        prusa-slicer
         yubioath-flutter
         yubikey-manager-qt
         flameshot

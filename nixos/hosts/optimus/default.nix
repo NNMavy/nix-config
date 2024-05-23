@@ -7,7 +7,7 @@
 
     mySystem = {
       services.openssh.enable = true;
-      security.wheelNeedsSudoPassword = false;
+      security.wheelNeedsSudoPassword = true;
     };
 
     boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "uas" "usb_storage" "sd_mod" ];
