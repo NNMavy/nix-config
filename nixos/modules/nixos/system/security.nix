@@ -30,7 +30,7 @@ in
         # Don't bother with the lecture or the need to keep state about who's been lectured
         sudo.extraConfig = "Defaults lecture=\"never\"";
 
-        pam.enableSSHAgentAuth = cfg.sshAgentAuth.enable;
+        pam.sshAgentAuth.enable = cfg.sshAgentAuth.enable;
 
         # Increase open file limit for sudoers
         pam.loginLimits = mkIf cfg.increaseWheelLoginLimits [

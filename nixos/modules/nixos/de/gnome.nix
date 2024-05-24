@@ -21,22 +21,25 @@ in
 
     # GNOME plz
     services = {
+      displayManager =
+        {
+          defaultSession = "gnome"; # TODO move to config overlay
+          autoLogin.enable = false;
+        };
       xserver = {
         enable = true;
         displayManager =
           {
             gdm.enable = true;
-            defaultSession = "gnome"; # TODO move to config overlay
-
-            autoLogin.enable = false;
-            autoLogin.user = "mavy"; # TODO move to config overlay
           };
         desktopManager = {
           # GNOME
           gnome.enable = true;
         };
 
-        layout = "us"; # `localctl` will give you
+        xkb = {
+          layout = "us"; # `localctl` will give you
+        };
       };
       udev.packages = optionals cfg.systrayicons [ pkgs.gnome.gnome-settings-daemon ]; # support appindicator
 
@@ -132,7 +135,6 @@ in
         cheese # webcam tool
         gnome-music
         gnome-terminal
-        gedit # text editor
         epiphany # web browser
         geary # email reader
         evince # document viewer
