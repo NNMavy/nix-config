@@ -9,6 +9,7 @@ with config;
 
     de.gnome.enable = true;
     devops.talos.enable = true;
+    editor.vscodium.enable = true;
 
     security.one-password.enable = true;
 

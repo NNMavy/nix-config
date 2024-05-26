@@ -4,6 +4,7 @@ keys:
   - &mavy age1g6p9753ng4g6d4qqjzttdzvrx2klhguj7wp9t0y84s9s88zs6pss4z33uq
   - &mavy-wsl age103waa2xysflght90yj6pzgf9gc6r8j2gtnnlzn7637t93wa0gp9s5cu4lm
   - &peppernuts age1sah6je06ds9mxkjvym2phm95etw2wdx4v7nrx223narsrx5dwvaskmkcls
+  - &optimus age189pxewr77cudxhkla42uxn8ak2vwdevjp2jsuy59zhdkrpyrr4yqm9ujaz
 
 creation_rules:
   - path_regex: .*\.sops\.yaml$
@@ -13,3 +14,4 @@ creation_rules:
           - *mavy
           - *mavy-wsl
           - *peppernuts
+          - *optimus
