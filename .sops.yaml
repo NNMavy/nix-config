@@ -1,5 +1,6 @@
 ---
 keys:
+  - &bumblebee age18s9qyam9udt3ryjqpyfxsh925a9eaxf4du60cpgkjv4g8l089efsj72pja
   - &mavy age1g6p9753ng4g6d4qqjzttdzvrx2klhguj7wp9t0y84s9s88zs6pss4z33uq
   - &mavy-wsl age103waa2xysflght90yj6pzgf9gc6r8j2gtnnlzn7637t93wa0gp9s5cu4lm
   - &peppernuts age1sah6je06ds9mxkjvym2phm95etw2wdx4v7nrx223narsrx5dwvaskmkcls
@@ -8,6 +9,7 @@ creation_rules:
   - path_regex: .*\.sops\.yaml$
     key_groups:
       - age:
+          - *bumblebee
           - *mavy
           - *mavy-wsl
           - *peppernuts

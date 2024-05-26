@@ -166,6 +166,19 @@
         in
         rec {
 
+          "bumblebee" = mkNixosConfig {
+            # NixOS Server
+            hostname = "bumblebee";
+            system = "x86_64-linux";
+            hardwareModules = [
+              ./nixos/profiles/hw-generic-x86.nix
+            ];
+            profileModules = [
+              ./nixos/profiles/role-server.nix
+              { home-manager.users.mavy = ./nixos/home/mavy/server.nix; }
+            ];
+          };
+
           "mavy-wsl" = mkNixosConfig {
             # NixOS wsl
             hostname = "mavy-wsl";
