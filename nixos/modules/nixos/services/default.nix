@@ -5,8 +5,8 @@
     # ./cloudflare-dyndns
     # ./maddy
     # ./dnscrypt-proxy2
-    # ./cockpit
-    # ./podman
+    ./cockpit
+    ./podman
     # ./traefik
     # ./nfs
     # ./nix-serve
@@ -24,7 +24,7 @@
     # ./prometheus
     # ./radicale
     # ./node-red
-    # ./nginx
+    ./nginx
     # ./miniflux
     # ./calibre-web
     # ./rss-bridge

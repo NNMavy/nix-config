@@ -8,7 +8,7 @@ with lib;
     ./de
     ./editor
     #./hardware
-    #./containers
+    ./containers
     ./lib.nix
     ./security
   ];

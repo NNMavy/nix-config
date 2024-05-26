@@ -8,9 +8,26 @@
     mySystem = {
       purpose = "Homelab";
       persistentFolder = "/persist";
-      system.impermanence.enable = true;
-      services.openssh.enable = true;
-      security.wheelNeedsSudoPassword = false;
+      system = {
+        impermanence.enable = true;
+        motd.networkInterfaces = [ "enp1s0" ];
+      };
+
+      services = {
+        # Enable core services
+        openssh.enable = true;
+        podman.enable = true;
+
+        # Enable Ingress
+        nginx.enable = true;
+
+        # Enable hosted services
+        gatus.enable = true;
+
+
+
+      };
+      security.acme.enable = true;
     };
 
     boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
