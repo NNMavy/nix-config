@@ -23,7 +23,7 @@ let
       group = "servers";
       url = "icmp://unifi.${config.mySystem.internalDomain}";
       interval = "1m";
-      alerts = [{ type = "pushover"; }];
+      alerts = [{ type = "telegram"; }];
       conditions = [ "[CONNECTED] == true" ];
     }
     {
@@ -31,7 +31,7 @@ let
       group = "servers";
       url = "icmp://pikvm.${config.mySystem.internalDomain}";
       interval = "1m";
-      alerts = [{ type = "pushover"; }];
+      alerts = [{ type = "telegram"; }];
       conditions = [ "[CONNECTED] == true" ];
     }
 
@@ -97,7 +97,7 @@ in
       forceSSL = true;
       locations."^~ /" = {
         proxyPass = "http://${app}:${builtins.toString port}";
-        extraConfig = "resolver 10.88.0.1;";
+        extraConfig = "resolver 172.16.20.11;";
       };
     };
 
