@@ -7,7 +7,8 @@
     ./nix.nix
     ./zfs.nix
     ./impermanence.nix
-    ./nfs
     ./motd
+    ./nfs
+    ./telegram
   ];
 }

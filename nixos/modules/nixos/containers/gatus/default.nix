@@ -97,7 +97,7 @@ in
       forceSSL = true;
       locations."^~ /" = {
         proxyPass = "http://${app}:${builtins.toString port}";
-        extraConfig = "resolver 172.16.20.11;";
+        extraConfig = "resolver 10.88.0.1;";
       };
     };
 

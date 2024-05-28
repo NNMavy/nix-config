@@ -30,7 +30,7 @@ with lib;
 
       shell.fish.enable = true;
       # But wont enable plugins globally, leave them for workstations
-      system.resticBackup.remote.location = "s3:https://f3b4625a2d02b0e6d1dec5a44f427191.r2.cloudflarestorage.com/nixos-restic";
+      system.resticBackup.remote.location = "s3:s3.eu-central-003.backblazeb2.com/nixos-restic";
     };
 
     environment.systemPackages = with pkgs; [

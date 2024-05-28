@@ -11,6 +11,7 @@
       system = {
         impermanence.enable = true;
         motd.networkInterfaces = [ "enp1s0" ];
+        resticBackup.remote.enable = true;
       };
 
       services = {

@@ -7,10 +7,10 @@ in
 {
 
   sops.age.sshKeyPaths = map getKeyPath keys;
-  # # Secret for machine-specific pushover
-  # sops.secrets."services/pushover/env" = {
-  #   sopsFile = ./secrets.sops.yaml;
-  # };
+  # Secret for machine-specific telegram
+  sops.secrets."services/telegram/env" = {
+    sopsFile = ./secrets.sops.yaml;
+  };
   # sops.secrets.pushover-user-key = {
   #   sopsFile = ./secrets.sops.yaml;
   # };
