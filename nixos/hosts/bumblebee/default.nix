@@ -24,10 +24,11 @@
 
         # Enable hosted services
         gatus.enable = true;
-
-
-
+        powerdns = {
+          enable = false;
+        };
       };
+
       security.acme.enable = true;
     };
 
