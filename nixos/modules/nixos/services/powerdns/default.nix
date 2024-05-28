@@ -5,6 +5,7 @@
 }:
 with lib;
 let
+  # pdns config
   cfg = config.mySystem.services.powerdns;
   persistentFolder = "${config.mySystem.persistentFolder}/nixos/pdns"; # TODO refactor using bind mounts
   user = "pdns";
@@ -26,6 +27,10 @@ let
     api=yes
     api-key=$APIKEY
   '';
+
+  # pdns admin ui config
+  app = "pdns";
+  image = "powerdns image";
 in
 {
   options.mySystem.services.powerdns =
@@ -47,9 +52,9 @@ in
     services.powerdns = {
       enable = true;
       extraConfig = pdnsConfig;
-      secretFile = config.sops.secrets."system/services/powerdns/apiKey".path;
+      secretFile = config.sops.secrets."services/powerdns/apiKey".path;
     };
-    sops.secrets."system/services/powerdns/apiKey" = {
+    sops.secrets."services/powerdns/apiKey" = {
       sopsFile = ./secrets.sops.yaml;
       restartUnits = [ "pdns.service" ];
     };
@@ -80,6 +85,27 @@ in
         ''
       )
     ];
+
+    virtualisation.oci-containers.containers.${app} = mkIf cfg.admin-ui {
+      image = "${image}";
+      user = "${user}:${group}";
+      environmentFiles = [ config.sops.secrets."services/powerdns/env".path ];
+      volumes = [
+        "/etc/localtime:/etc/localtime:ro"
+
+      ];
+
+      extraOptions = [ "--cap-add=NET_RAW" ]; # Required for ping/etc to do monitoring
+    };
+
+    services.nginx.virtualHosts."${app}.${config.networking.domain}" = mkIf cfg.admin-ui {
+      useACMEHost = config.networking.domain;
+      forceSSL = true;
+      locations."^~ /" = {
+        proxyPass = "http://${app}:${builtins.toString port}";
+        extraConfig = "resolver 10.88.0.1;";
+      };
+    };
 
     networking.firewall = mkIf cfg.openFirewall {
 
