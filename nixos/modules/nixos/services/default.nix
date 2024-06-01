@@ -12,7 +12,6 @@
     # ./glances
     # ./syncthing
     ./restic
-    ./powerdns
     # ./adguardhome
     # ./postgresql
     # ./blocky

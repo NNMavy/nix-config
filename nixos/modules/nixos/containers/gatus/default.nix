@@ -101,21 +101,21 @@ in
       };
     };
 
-    services.vmagent = {
-      prometheusConfig = {
-        scrape_configs = [
-          {
-            job_name = "gatus";
-            # scrape_timeout = "40s";
-            static_configs = [
-              {
-                targets = [ "https://${app}.${config.mySystem.domain}" ];
-              }
-            ];
-          }
-        ];
-      };
-    };
+    # services.vmagent = {
+    #   prometheusConfig = {
+    #     scrape_configs = [
+    #       {
+    #         job_name = "gatus";
+    #         # scrape_timeout = "40s";
+    #         static_configs = [
+    #           {
+    #             targets = [ "https://${app}.${config.mySystem.domain}" ];
+    #           }
+    #         ];
+    #       }
+    #     ];
+    #   };
+    # };
 
 
     # mySystem.services.homepage.infrastructure = mkIf cfg.addToHomepage [
