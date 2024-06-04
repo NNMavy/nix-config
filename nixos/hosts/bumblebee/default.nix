@@ -23,6 +23,7 @@
         nginx.enable = true;
 
         # Enable hosted services
+        backrest.enable = true;
         gatus.enable = true;
       };
 

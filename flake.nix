@@ -211,7 +211,7 @@
           };
 
           "optimus" = mkNixosConfig {
-            # Old Laptop
+            # New Laptop
 
             hostname = "optimus";
             system = "x86_64-linux";
