@@ -10,7 +10,7 @@ with lib;
   config = {
 
 
-    # Enable monitoring for remote scraiping
+    # Enable monitoring for remote scraping
     mySystem.services.monitoring.enable = true;
     mySystem.services.rebootRequiredCheck.enable = true;
     mySystem.security.wheelNeedsSudoPassword = false;
