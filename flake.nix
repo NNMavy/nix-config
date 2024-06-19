@@ -15,6 +15,14 @@
     # nur
     nur.url = "github:nix-community/NUR";
 
+    # hyprland
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     # nix-community hardware quirks
     # https://github.com/nix-community
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -78,6 +86,7 @@
     { self
     , nixpkgs
     , nixos-wsl
+    , hyprland
     , sops-nix
     , home-manager
     , nix-vscode-extensions
