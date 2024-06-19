@@ -16,6 +16,7 @@ let
 
   # persistentFolder = "${config.mySystem.persistentFolder}/var/lib/${appFolder}";
   containerPersistentFolder = "/config";
+
   extraEndpoints = [
     # TODO refactor these out into their own file or fake host?
     {
@@ -33,6 +34,54 @@ let
       interval = "1m";
       alerts = [{ type = "telegram"; }];
       conditions = [ "[CONNECTED] == true" ];
+    }
+    {
+      name = "ntpns-pi-01 internal DNS";
+      group = "dns";
+      url = "ntpns-pi-01.${config.mySystem.internalDomain}:53";
+      dns = {
+        query-name = "udm.nnhome.eu";
+        query-type = "A";
+      };
+      interval = "1m";
+      alerts = [{ type = "telegram"; }];
+      conditions = [ "[DNS_RCODE] == NOERROR" ];
+    }
+    {
+      name = "ntpns-pi-02 internal DNS";
+      group = "dns";
+      url = "ntpns-pi-02.${config.mySystem.internalDomain}:53";
+      dns = {
+        query-name = "udm.nnhome.eu";
+        query-type = "A";
+      };
+      interval = "1m";
+      alerts = [{ type = "telegram"; }];
+      conditions = [ "[DNS_RCODE] == NOERROR" ];
+    }
+    {
+      name = "ntpns-pi-01 external DNS";
+      group = "dns";
+      url = "ntpns-pi-01.${config.mySystem.internalDomain}:53";
+      dns = {
+        query-name = "google.nl";
+        query-type = "A";
+      };
+      interval = "1m";
+      alerts = [{ type = "telegram"; }];
+      conditions = [ "[DNS_RCODE] == NOERROR" ];
+    }
+    {
+      name = "ntpns-pi-02 external DNS";
+      group = "dns";
+      url = "ntpns-pi-02.${config.mySystem.internalDomain}:53";
+      dns = {
+        query-name = "google.nl";
+        query-type = "A";
+      };
+      interval = "1m";
+      alerts = [{ type = "telegram"; }];
+      conditions = [ "[DNS_RCODE] == NOERROR" ];
     }
 
   ] ++ builtins.concatMap (cfg: cfg.config.mySystem.services.gatus.monitors)
