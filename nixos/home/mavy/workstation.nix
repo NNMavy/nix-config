@@ -3,7 +3,16 @@ with config;
 {
   imports = [
     ./global.nix
+    inputs.catppuccin.homeManagerModules.catppuccin
   ];
+
+
+  # Set theme for home-manager
+  catppuccin = {
+    enable = true;
+    flavor = "macchiato";
+    accent = "teal";
+  };
 
   myHome = {
     programs = {
@@ -54,7 +63,7 @@ with config;
         discord
         steam
         spotify
-        prusa-slicer
+        orca-slicer
         yubioath-flutter
         yubikey-manager-qt
         flameshot

@@ -51,10 +51,6 @@ with config;
         fzf
         ripgrep
 
-        brightnessctl
-
-
-
       ];
 
   };

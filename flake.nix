@@ -16,12 +16,24 @@
     nur.url = "github:nix-community/NUR";
 
     # hyprland
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland ={
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+
+    hyprland-hyprspace = {
+      url = "github:KZDKM/Hyprspace";
+      inputs.hyprland.follows = "hyprland";
+
+    };
+
+    # Catppuccin
+    catppuccin.url = "github:catppuccin/nix";
 
     # nix-community hardware quirks
     # https://github.com/nix-community
@@ -87,6 +99,7 @@
     , nixpkgs
     , nixos-wsl
     , hyprland
+    , catppuccin
     , sops-nix
     , home-manager
     , nix-vscode-extensions
@@ -137,6 +150,7 @@
               # here we import all the modules and setup home-manager
             , baseModules ? [
                 sops-nix.nixosModules.sops
+                catppuccin.nixosModules.catppuccin
                 home-manager.nixosModules.home-manager
                 impermanence.nixosModules.impermanence
                 nixos-wsl.nixosModules.default
@@ -145,6 +159,7 @@
                 ./nixos/hosts/${hostname}   # load this host's config folder for machine-specific config
                 {
                   home-manager = {
+                    backupFileExtension = "backup";
                     useUserPackages = true;
                     useGlobalPkgs = true;
                     extraSpecialArgs = {

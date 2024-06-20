@@ -18,6 +18,15 @@ in
 
     # Ref: https://wiki.hyprland.org/Nix/
 
+    sound.enable = true;
+
+    # Set theme for nixos
+    catppuccin = {
+      enable = true;
+      flavor = "macchiato";
+      accent = "teal";
+    };
+
     # hyprland plz
     programs = {
       dconf.enable = true;
@@ -33,9 +42,28 @@ in
     };
 
     services = {
-      hypridle.enable = true;
       printing.enable = true;
       fprintd.enable = true;
+
+      # Sound stuff
+      pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+        # lowLatency.enable = true;
+      };
+
+      # Enable Display Manager]
+      greetd = {
+        enable = true;
+        settings = {
+          default_session = {
+            command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --time-format '%I:%M %p | %a • %h | %F' --cmd Hyprland";
+            user = "greeter";
+          };
+        };
+      };
     };
 
     # Fonts
@@ -44,21 +72,19 @@ in
         noto-fonts
         noto-fonts-cjk
         noto-fonts-emoji
-
-        (nerdfonts.override { fonts = [ "FiraCode" ]; })
+        nerd-font-patcher
       ];
-
-      fontconfig = {
-        enable = true;
-        defaultFonts = {
-          monospace = [ "FiraCode Nerd Font" ];
-          serif = [ "Noto Serif" ];
-          sansSerif = [ "Noto Sans" ];
-        };
-      };
     };
 
     environment.systemPackages = with pkgs; [
+      greetd.tuigreet
+
+      networkmanagerapplet
+
+      pamixer                           # pulseaudio command line mixer
+      pavucontrol                       # pulseaudio volume controle (GUI)
+      playerctl                         # controller for media players
+
       wl-screenrec
       wl-clipboard
       wl-clip-persist
@@ -66,16 +92,19 @@ in
       xdg-utils
       wtype
       wlrctl
-      waybar
       rofi-wayland
+      wofi
       wlogout
+
+      wayland
 
       pyprland
       hyprpicker
       hyprcursor
       hyprpaper
 
-      wezterm
+      poweralertd
+      kitty
 
       fish
       starship
@@ -83,8 +112,9 @@ in
 
       qutebrowser
       zathura
-      mpv
-      imv
+      mpv                               # video player
+      imv                               # image viewer
+      killall
     ];
   };
 }

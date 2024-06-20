@@ -23,6 +23,9 @@ with config;
     plymouth.enable = true;
   };
 
+  # Enable networking
+  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+
   nix.settings = {
     # Avoid disk full issues
     max-free = lib.mkDefault (1000 * 1000 * 1000);
@@ -30,7 +33,7 @@ with config;
   };
 
   # set xserver videodrivers if used
-  services.xserver.enable = true;
+  services.xserver.enable = false;
 
   services = {
     fwupd.enable = config.boot.loader.systemd-boot.enable;
@@ -44,6 +47,7 @@ with config;
     # Convenient services
     printing.enable = true;
 
+
   };
 
   hardware = {
@@ -52,6 +56,7 @@ with config;
       enable = true;
       drives = [ "/dev/disk/by-id/*" ];
     };
+    pulseaudio.enable = false;
   };
 
   environment.systemPackages = with pkgs; [
