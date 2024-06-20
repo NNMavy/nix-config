@@ -21,7 +21,7 @@ let
     # TODO refactor these out into their own file or fake host?
     {
       name = "firewall";
-      group = "servers";
+      group = "infrastructure";
       url = "icmp://unifi.${config.mySystem.internalDomain}";
       interval = "1m";
       alerts = [{ type = "telegram"; }];
@@ -37,7 +37,7 @@ let
     }
     {
       name = "ntpns-pi-01 internal DNS";
-      group = "dns";
+      group = "infrastructure";
       url = "ntpns-pi-01.${config.mySystem.internalDomain}:53";
       dns = {
         query-name = "udm.nnhome.eu";
@@ -49,7 +49,7 @@ let
     }
     {
       name = "ntpns-pi-02 internal DNS";
-      group = "dns";
+      group = "infrastructure";
       url = "ntpns-pi-02.${config.mySystem.internalDomain}:53";
       dns = {
         query-name = "udm.nnhome.eu";
@@ -61,7 +61,7 @@ let
     }
     {
       name = "ntpns-pi-01 external DNS";
-      group = "dns";
+      group = "infrastructure";
       url = "ntpns-pi-01.${config.mySystem.internalDomain}:53";
       dns = {
         query-name = "google.nl";
@@ -73,7 +73,7 @@ let
     }
     {
       name = "ntpns-pi-02 external DNS";
-      group = "dns";
+      group = "infrastructure";
       url = "ntpns-pi-02.${config.mySystem.internalDomain}:53";
       dns = {
         query-name = "google.nl";
