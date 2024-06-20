@@ -16,7 +16,7 @@
     nur.url = "github:nix-community/NUR";
 
     # hyprland
-    hyprland ={
+    hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };

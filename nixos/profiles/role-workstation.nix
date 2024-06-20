@@ -24,7 +24,7 @@ with config;
   };
 
   # Enable networking
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   nix.settings = {
     # Avoid disk full issues

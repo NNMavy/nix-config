@@ -81,9 +81,9 @@ in
 
       networkmanagerapplet
 
-      pamixer                           # pulseaudio command line mixer
-      pavucontrol                       # pulseaudio volume controle (GUI)
-      playerctl                         # controller for media players
+      pamixer # pulseaudio command line mixer
+      pavucontrol # pulseaudio volume controle (GUI)
+      playerctl # controller for media players
 
       wl-screenrec
       wl-clipboard
@@ -112,8 +112,8 @@ in
 
       qutebrowser
       zathura
-      mpv                               # video player
-      imv                               # image viewer
+      mpv # video player
+      imv # image viewer
       killall
     ];
   };
