@@ -6,29 +6,34 @@ pkgs.stdenv.mkDerivation rec {
   pname = "atlas-probe";
   version = "2.6.3";
 
+  hardeningDisable = [ "format" ];
+
   src = pkgs.fetchzip {
     url = "https://github.com/RIPE-NCC/ripe-atlas-probe-measurements/archive/refs/tags/2.6.3.tar.gz";
-    sha256 = "sha256-GcwreB8BXYGNKJihE2xeelsroy+JFqLK1NK7Ycqxw5g=";
-    stripRoot = false;
+    sha256 = "sha256-JPLwlnV8UYiiiPNLTT92nvxpB6l9kLGxy4iEUzdacH0=";
+    stripRoot = true;
   };
 
   buildInputs = [
     pkgs.autoconf
+    pkgs.automake
+    pkgs.libtool
+    pkgs.ncurses
   ];
 
-  makeFlags = [ "DESTDIR=$(out)" "PREFIX=" ];
+  makeFlags = [ "DESTDIR=$(out)" "PREFIX=$out/atlas" ];
 
   configurePhase = ''
   '';
 
   buildPhase = ''
-    cd $sourceRoot/libevent-2.1.11-stable
+    cd libevent-2.1.11-stable  # first build libevent
     autoreconf --install
     ./configure --prefix=$out/atlas
     make install
-    cd ..
-    make defconfig
-    make
+    cd ../
+    make menuconfig     # This creates a file called ".config"
+    make                # This creates the "busybox" executable
   '';
 
   installPhase = ''
