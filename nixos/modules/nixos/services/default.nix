@@ -2,6 +2,7 @@
   imports = [
     ./monitoring.nix
     ./reboot-required-check.nix
+    ./atlas-probe
     # ./cloudflare-dyndns
     # ./maddy
     # ./dnscrypt-proxy2
@@ -21,7 +22,6 @@
     # ./minio
     # ./tdarr
     # ./phpipam
-    # ./atlas
 
   ];
 }
