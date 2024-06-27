@@ -14,7 +14,7 @@ buildPythonPackage rec {
   disabled = pythonOlder "3.10";
 
   propagatedBuildInputs = [
-    ( with pkgs.python3Packages; [
+    (with pkgs.python3Packages; [
       aiofiles
       GitPython
       mashumaro
@@ -30,7 +30,7 @@ buildPythonPackage rec {
   doCheck = false;
 
   meta = with lib; {
-    homepage = https://github.com/allenporter/flux-local;
+    homepage = "https://github.com/allenporter/flux-local";
     description = "flux-local is a set of tools and libraries for managing a local flux gitops repository focused on validation steps to help improve quality of commits, PRs, and general local testing.";
   };
 }
