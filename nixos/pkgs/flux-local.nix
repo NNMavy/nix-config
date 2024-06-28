@@ -1,14 +1,12 @@
 { pkgs, lib, stdenv, buildPythonPackage, pythonOlder, fetchPypi }:
 
 buildPythonPackage rec {
-  pname = "flux-local";
+  pname = "flux_local";
   version = "5.3.1";
-  format = "wheel";
 
   src = fetchPypi {
-    inherit pname version format;
-    python = "py3";
-    sha256 = "43a782100c6055f9f4ba428f2bf6989605fae09af7e16b378c01c00fee4979fb";
+    inherit pname version;
+    sha256 = "2d45abf1eebe6d79756c73cb60a182c4928f4b3c14818e91bac3fb38047ba252";
   };
 
   disabled = pythonOlder "3.10";
