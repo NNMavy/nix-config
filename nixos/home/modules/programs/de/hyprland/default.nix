@@ -267,7 +267,7 @@ in
         ];
 
         monitor = [
-          ",preferred,auto,auto"
+          "desc:BOE 0x095F,highres,auto,1.25"
         ];
 
       };
