@@ -38,6 +38,7 @@
       "hyprland/workspaces" = {
         active-only = false;
         disable-scroll = true;
+        show-special = true;
         format = "{icon}";
         on-click = "activate";
         format-icons = {
@@ -46,8 +47,10 @@
           "3" = "󰭹";
           "4" = "";
           "5" = "";
+          browser = "";
+          onepass = "󰟵";
           urgent = "";
-          default = "";
+          
           sort-by-number = true;
         };
         persistent-workspaces = {
