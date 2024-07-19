@@ -57,7 +57,6 @@ in
           "wl-paste --watch cliphist store &"
         ];
 
-
         input = {
           kb_layout = "us";
           numlock_by_default = true;
@@ -172,6 +171,8 @@ in
           "${super}, F, fullscreen"
           "${super}, D, exec, pkill wofi || wofi --show drun"
           "${super}, R, exec, rofi -show drun"
+          "${super}, L, exec, hyprlock; 1password --lock"
+          "CONTROL_SHIFT, space, exec, 1password --disable-gpu --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto --socket=wayland --quick-access"
 
           # switch focus
           "${super}, left, movefocus, l"
@@ -191,6 +192,9 @@ in
           "${super}, 9, workspace, 9"
           "${super}, 0, workspace, 10"
 
+          "${super}, b, togglespecialworkspace, browser"
+          "${super}, p, togglespecialworkspace, onepass"
+
           # same as above, but switch to the workspace
           "${super} SHIFT, 1, movetoworkspacesilent, 1" # movetoworkspacesilent
           "${super} SHIFT, 2, movetoworkspacesilent, 2"
@@ -203,6 +207,9 @@ in
           "${super} SHIFT, 9, movetoworkspacesilent, 9"
           "${super} SHIFT, 0, movetoworkspacesilent, 10"
           "${super} CTRL, c, movetoworkspace, empty"
+          
+          "${super} SHIFT, b, movetoworkspace, special:browser"
+          "${super} SHIFT, p, movetoworkspace, special:onepass"
         ];
 
         # mouse binding
@@ -267,7 +274,7 @@ in
         ];
 
         monitor = [
-          "desc:BOE 0x095F,highres,auto,1.25"
+          "desc:BOE 0x095F,2256x1504@60.00,auto,1.4"
         ];
 
       };

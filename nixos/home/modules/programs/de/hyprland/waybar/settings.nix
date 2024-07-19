@@ -22,9 +22,6 @@
       ];
       modules-right = [
         "tray"
-        "cpu"
-        "memory"
-        "disk"
         "pulseaudio"
         "battery"
         "network"
@@ -44,12 +41,11 @@
         format = "{icon}";
         on-click = "activate";
         format-icons = {
-          "1" = "󰈹";
-          "2" = "";
-          "3" = "󰘙";
-          "4" = "󰙯";
-          "5" = "";
-          "6" = "";
+          "1" = "";
+          "2" = "󰘙";
+          "3" = "󰭹";
+          "4" = "";
+          "5" = "";
           urgent = "";
           default = "";
           sort-by-number = true;
@@ -61,21 +57,6 @@
           "4" = [ ];
           "5" = [ ];
         };
-      };
-      memory = {
-        format = "󰟜 {}%";
-        format-alt = "󰟜 {used} GiB"; # 
-        interval = 2;
-      };
-      cpu = {
-        format = "  {usage}%";
-        format-alt = "  {avg_frequency} GHz";
-        interval = 2;
-      };
-      disk = {
-        # path = "/";
-        format = "󰋊 {percentage_used}%";
-        interval = 60;
       };
       network = {
         format-wifi = "  {signalStrength}%";
