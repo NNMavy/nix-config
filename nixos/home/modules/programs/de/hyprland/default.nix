@@ -28,26 +28,27 @@ in
 
         env = [
           "BROWSER,firefox"
-          # "QT_IM_MODULE,fcitx"
-          # "XMODIFIERS,@im=fcitx"
-          # "SDL_IM_MODULE,fcitx"
-          # "GLFW_IM_MODULE,ibus"
-          # "SWWW_TRANSITION,grow"
-          # "SWWW_TRANSITION_STEP,200"
-          # "SWWW_TRANSITION_DURATION,1.5"
-          # "SWWW_TRANSITION_FPS,240"
-          # "SWWW_TRANSITION_WAVE,80,40"
-          # "QT_AUTO_SCREEN_SCALE_FACTOR,1"
-          # "QT_QPA_PLATFORM,wayland;xcb"
-          # "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-          # "QT_QPA_PLATFORMTHEME,qt5ct"
-          # "QT_STYLE_OVERRIDE,kvantum"
+          "NIXOS_OZONE_WL, 1"
+          "NIXPKGS_ALLOW_UNFREE, 1"
+          "XDG_CURRENT_DESKTOP, Hyprland"
+          "XDG_SESSION_TYPE, wayland"
+          "XDG_SESSION_DESKTOP, Hyprland"
+          "GDK_BACKEND, wayland, x11"
+          "CLUTTER_BACKEND, wayland"
+          "QT_QPA_PLATFORM=wayland;xcb"
+          "QT_WAYLAND_DISABLE_WINDOWDECORATION, 1"
+          "QT_AUTO_SCREEN_SCALE_FACTOR, 1"
+          "SDL_VIDEODRIVER, wayland"
+          "MOZ_ENABLE_WAYLAND, 1"
         ];
 
         exec-once = [
-          "systemctl --user import-environment &"
+          #"${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &"
+          "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
+          "systemctl --user import-environment"
+          "polkit-agent-helper-1"
           "hash dbus-update-activation-environment 2>/dev/null &"
-          "dbus-update-activation-environment --systemd &"
+          "dbus-update-activation-environment --systemd --all"
           "wl-clip-persist --clipboard both"
           "hypridle"
           "nm-applet &"
@@ -99,7 +100,7 @@ in
         };
 
         master = {
-          new_is_master = true;
+          # new_is_master = true;
           special_scale_factor = 1;
           no_gaps_when_only = false;
         };
@@ -274,7 +275,7 @@ in
         ];
 
         monitor = [
-          "desc:BOE 0x095F,2256x1504@60.00,auto,1.4"
+          "eDP-1,2256x1504@60.00,0x0,1.566667"
         ];
 
       };
