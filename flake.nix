@@ -153,7 +153,7 @@
                 catppuccin.nixosModules.catppuccin
                 home-manager.nixosModules.home-manager
                 impermanence.nixosModules.impermanence
-                nixos-wsl.nixosModules.default
+                # nixos-wsl.nixosModules.default
                 ./nixos/profiles/global.nix # all machines get a global profile
                 ./nixos/modules/nixos # all machines get nixos modules
                 ./nixos/hosts/${hostname}   # load this host's config folder for machine-specific config
@@ -221,7 +221,6 @@
 
           "peppernuts" = mkNixosConfig {
             # Old Laptop
-
             hostname = "peppernuts";
             system = "x86_64-linux";
             hardwareModules = [

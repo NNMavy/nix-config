@@ -51,6 +51,14 @@ with config;
         fzf
         ripgrep
 
+        brightnessctl
+          go
+
+        cue
+        goss
+        dgoss
+        natscli
+
       ];
 
   };

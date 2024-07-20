@@ -5,6 +5,10 @@
 with config;
 {
 
+  imports = [
+    inputs.nixos-wsl.nixosModules.default
+  ];
+
   mySystem = {
     security.one-password.enable = true;
     security.one-password.wsl = true;
