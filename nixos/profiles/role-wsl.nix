@@ -7,6 +7,8 @@ with config;
 
   imports = [
     inputs.nixos-wsl.nixosModules.default
+    # Import this here since it is broken with nixos-hardware
+    ./nixos/modules/nixos/programs/docker-desktop
   ];
 
   mySystem = {

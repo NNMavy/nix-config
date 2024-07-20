@@ -1,7 +1,8 @@
 {
   imports = [
     ./devops
-    ./docker-desktop
+    # See wsl role
+    # ./docker-desktop
     ./shell
   ];
 }
