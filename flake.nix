@@ -35,16 +35,16 @@
     # Catppuccin
     catppuccin.url = "github:catppuccin/nix";
 
-    # nix-community hardware quirks
-    # https://github.com/nix-community
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
     flake-utils.url = "github:numtide/flake-utils";
 
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
     };
+
+    # nix-community hardware quirks
+    # https://github.com/nix-community
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     # home-manager - home user+dotfile manager
     # https://github.com/nix-community/home-manager
@@ -235,8 +235,7 @@
           };
 
           "optimus" = mkNixosConfig {
-            # Old Laptop
-
+            # Framework
             hostname = "optimus";
             system = "x86_64-linux";
             hardwareModules = [

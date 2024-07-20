@@ -172,7 +172,7 @@ in
           "${super}, D, exec, pkill wofi || wofi --show drun"
           "${super}, R, exec, rofi -show drun"
           "${super}, L, exec, hyprlock; 1password --lock"
-          "CONTROL_SHIFT, space, exec, 1password --disable-gpu --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto --socket=wayland --quick-access"
+          "CONTROL_SHIFT, space, exec, 1password --quick-access"
 
           # switch focus
           "${super}, left, movefocus, l"
