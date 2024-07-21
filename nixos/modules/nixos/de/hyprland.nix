@@ -64,11 +64,11 @@ in
           };
         };
       };
-
-      gnome.gnome-keyring.enable = true;
     };
 
     security.pam.services.greetd.enableGnomeKeyring = true;
+    security.pam.services.greetd.enableKwallet = true;
+    security.pam.services.kwallet.enableKwallet = true;
 
     # Fonts
     fonts = {
@@ -83,10 +83,12 @@ in
 
     environment.systemPackages = with pkgs; [
       greetd.tuigreet
-      gnome.gnome-keyring
-      gnome.seahorse
       polkit
+      libsForQt5.kwallet
+      libsForQt5.kwallet-pam
+      libsForQt5.kwalletmanager
       libsForQt5.polkit-kde-agent
+      inputs.iio-hyprland.packages.${pkgs.system}.default
 
 
       networkmanagerapplet

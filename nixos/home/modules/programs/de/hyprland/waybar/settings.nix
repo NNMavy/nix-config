@@ -22,9 +22,11 @@
       ];
       modules-right = [
         "tray"
+        "group/group-backlight"
         "pulseaudio"
         "battery"
         "network"
+        "group/group-power"
       ];
       clock = {
         calendar = {
@@ -94,6 +96,66 @@
         format-time = "{H}h{M}m";
         tooltip = true;
         tooltip-format = "{time}";
+      };
+      # Screen backlight group
+      idle_inhibitor = {
+        format = "{icon}";
+        format-icons = {
+          activated = "";
+          deactivated = "";
+        };
+      };
+      backlight = {
+        #device = "intel_backlight";
+        format = "{icon}";
+        format-icons = ["" "" "" "" "" "" "" "" ""];
+        tooltip = false;
+      };
+      "backlight/slider" = {};
+      "group/group-backlight" = {
+        drawer = {
+          children-class = "not-backlight";
+          transition-duration = 500;
+          transition-left-to-right = false;
+        };
+        # The first module in the list is shown as the initial button
+        modules = ["backlight" "idle_inhibitor" "backlight/slider"];
+        orientation = "inherit";
+      };
+      "custom/poweroff" = {
+        format = "";
+        on-click = "hyprctl dispatch exec 'systemctl poweroff'";
+        tooltip = false;
+      };
+      "custom/quit" = {
+        format = "󰗼";
+        on-click = "hyprctl dispatch exit";
+        tooltip = false;
+      };
+      "custom/reboot" = {
+        format = "󰜉";
+        on-click = "hyprctl dispatch exec 'systemctl reboot'";
+        tooltip = false;
+      };
+      "custom/lock" = {
+        format = "";
+        on-click = "hyprctl dispatch exec 'loginctl lock-session'";
+        tooltip = false;
+      };
+      "custom/suspend" = {
+        format = "󰤄";
+        on-click = "hyprctl dispatch exec 'loginctl lock-session & sleep 0.5 && systemctl suspend'";
+        tooltip = false;
+      };
+      "group/group-power" = {
+        drawer = {
+          children-class = "not-power";
+          transition-duration = 500;
+          transition-left-to-right = false;
+        };
+        # The first module in the list is shown as the initial button
+        modules = ["custom/poweroff" "custom/quit" "custom/lock" "custom/suspend" "custom/reboot"];
+        orientation = "inherit";
       };
       "custom/launcher" = {
         format = "";

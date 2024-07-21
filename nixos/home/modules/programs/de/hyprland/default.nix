@@ -43,12 +43,12 @@ in
         ];
 
         exec-once = [
-          #"${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &"
-          "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
-          "systemctl --user import-environment"
           "polkit-agent-helper-1"
-          "hash dbus-update-activation-environment 2>/dev/null &"
-          "dbus-update-activation-environment --systemd --all"
+          "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
+          "${pkgs.kwallet-pam}/libexec/pam_kwallet_init"
+          "kwalletd5"
+          "systemctl --user import-environment"
+          "hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd --all"
           "wl-clip-persist --clipboard both"
           "hypridle"
           "nm-applet &"
@@ -56,6 +56,7 @@ in
           "poweralertd &"
           "waybar &"
           "wl-paste --watch cliphist store &"
+          "iio-hyprland"
         ];
 
         input = {
@@ -272,6 +273,14 @@ in
           "float,title:^(branchdialog)$"
           "float,title:^(Confirm to replace files)$"
           "float,title:^(File Operation Progress)$"
+          # kwallet
+          "center,class:^(org.kde.kwalletd5)$"
+          "dimaround,class:^(org.kde.kwalletd5)$"
+          # polkit
+          "float, class:^org.kde.polkit-kde-authentication-agent-1$"
+          "center 1, class:^org.kde.polkit-kde-authentication-agent-1$"
+          "size 560 360, class:^org.kde.polkit-kde-authentication-agent-1$"
+          "dimaround, class:^org.kde.polkit-kde-authentication-agent-1$"
         ];
 
         monitor = [

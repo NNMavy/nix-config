@@ -32,6 +32,8 @@
 
     };
 
+    iio-hyprland.url = "github:JeanSchoeller/iio-hyprland";
+
     # Catppuccin
     catppuccin.url = "github:catppuccin/nix";
 
