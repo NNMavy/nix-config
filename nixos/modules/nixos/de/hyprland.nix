@@ -84,12 +84,24 @@ in
     environment.systemPackages = with pkgs; [
       greetd.tuigreet
       polkit
+      libsForQt5.qtstyleplugin-kvantum
+      libsForQt5.qt5ct
       libsForQt5.kwallet
       libsForQt5.kwallet-pam
       libsForQt5.kwalletmanager
       libsForQt5.polkit-kde-agent
       inputs.iio-hyprland.packages.${pkgs.system}.default
       catppuccin-cursors.macchiatoDark
+      # GTK is not supported by the catppuccin module, so add it manually.
+      (catppuccin-gtk.override {
+        variant = "macchiato";
+        accents = [ config.catppuccin.accent ];
+      })
+
+      (catppuccin-kvantum.override {
+        variant = "Macchiato";
+        accent = "Teal";
+      })
       # KDE is not supported by the catppuccin module, so add it manually.
       (catppuccin-kde.override {
         flavour = [ config.catppuccin.flavor ];
