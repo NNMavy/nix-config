@@ -90,6 +90,7 @@ in
       libsForQt5.kwallet-pam
       libsForQt5.kwalletmanager
       libsForQt5.polkit-kde-agent
+      iio-sensor-proxy
       inputs.iio-hyprland.packages.${pkgs.system}.default
       catppuccin-cursors.macchiatoDark
       # GTK is not supported by the catppuccin module, so add it manually.

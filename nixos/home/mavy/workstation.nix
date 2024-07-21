@@ -62,16 +62,18 @@ with config;
       [
         #apps
         discord
-        steam
+        slack
         spotify
         orca-slicer
         yubioath-flutter
         yubikey-manager-qt
         flameshot
+        flake.multiviewer-for-f1
         vlc
 
         # cli
         bat
+        brightnessctl
         dbus
         direnv
         git
@@ -79,10 +81,6 @@ with config;
         python3
         fzf
         ripgrep
-
-        brightnessctl
-
-
 
       ];
 

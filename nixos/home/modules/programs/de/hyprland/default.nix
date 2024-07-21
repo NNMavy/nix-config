@@ -58,7 +58,7 @@ in
           "poweralertd &"
           "waybar &"
           "wl-paste --watch cliphist store &"
-          "iio-hyprland"
+          "iio-hyprland eDP-1"
         ];
 
         input = {
