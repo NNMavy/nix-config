@@ -52,7 +52,7 @@ in
           "wl-clip-persist --clipboard both"
           "hypridle"
           "nm-applet &"
-          "hyprctl setcursor Nordzy-cursors 22 &"
+          "hyprctl setcursor Catppuccin-Macchiato-Dark-Cursors 22 &"
           "poweralertd &"
           "waybar &"
           "wl-paste --watch cliphist store &"

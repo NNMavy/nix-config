@@ -89,7 +89,13 @@ in
       libsForQt5.kwalletmanager
       libsForQt5.polkit-kde-agent
       inputs.iio-hyprland.packages.${pkgs.system}.default
-
+      pkgs.catppuccin-cursors.macchiatoDark
+      # KDE is not supported by the catppuccin module, so add it manually.
+      (pkgs.catppuccin-kde.override {
+        flavour = [ config.catppuccin.flavor ];
+        accents = [ config.catppuccin.accent ];
+        winDecStyles = [ "modern" ];
+      })
 
       networkmanagerapplet
 
