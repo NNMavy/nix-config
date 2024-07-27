@@ -8,9 +8,10 @@ with config;
 
   config = {
     myHome = {
-      username = "mavy";
-      homeDirectory = "/home/mavy/";
+      username = "rkoens";
+      homeDirectory = "/home/rkoens/";
     };
+
 
     systemd.user.sessionVariables = {
       EDITOR = "vim";

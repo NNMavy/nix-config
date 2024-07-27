@@ -7,7 +7,7 @@ with config;
 
   mySystem = {
 
-    de.gnome.enable = true;
+    de.hyprland.enable = true;
     devops.talos.enable = true;
     editor.vscodium.enable = true;
 
@@ -23,6 +23,9 @@ with config;
     plymouth.enable = true;
   };
 
+  # Enable networking
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+
   nix.settings = {
     # Avoid disk full issues
     max-free = lib.mkDefault (1000 * 1000 * 1000);
@@ -30,7 +33,7 @@ with config;
   };
 
   # set xserver videodrivers if used
-  services.xserver.enable = true;
+  services.xserver.enable = false;
 
   services = {
     fwupd.enable = config.boot.loader.systemd-boot.enable;
@@ -43,6 +46,7 @@ with config;
 
     # Convenient services
     printing.enable = true;
+    blueman.enable = true;
 
   };
 
@@ -52,6 +56,13 @@ with config;
       enable = true;
       drives = [ "/dev/disk/by-id/*" ];
     };
+    pulseaudio.enable = false;
+  };
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryPackage = pkgs.pinentry-curses;
   };
 
   environment.systemPackages = with pkgs; [
@@ -74,6 +85,8 @@ with config;
     sops
     pre-commit
     qrencode
+    pinentry-curses
+    blueman
 
     # nix dev
     dnscontrol # for updating internal DNS servers with homelab services
