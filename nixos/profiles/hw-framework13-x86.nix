@@ -36,6 +36,9 @@ with lib;
   # Needed for desktop environments to detect/manage display brightness
   hardware.sensor.iio.enable = true;
 
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   services.xserver.videoDrivers = [ "intel" ];

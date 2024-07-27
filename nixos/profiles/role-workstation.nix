@@ -46,7 +46,7 @@ with config;
 
     # Convenient services
     printing.enable = true;
-
+    blueman.enable = true;
 
   };
 
@@ -57,6 +57,12 @@ with config;
       drives = [ "/dev/disk/by-id/*" ];
     };
     pulseaudio.enable = false;
+  };
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryPackage = pkgs.pinentry-curses;
   };
 
   environment.systemPackages = with pkgs; [
@@ -79,6 +85,8 @@ with config;
     sops
     pre-commit
     qrencode
+    pinentry-curses
+    blueman
 
     # nix dev
     dnscontrol # for updating internal DNS servers with homelab services

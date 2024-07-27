@@ -124,7 +124,6 @@ in
       wtype
       wlrctl
       rofi-wayland
-      wofi
       wlogout
 
       wayland

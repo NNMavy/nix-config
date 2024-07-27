@@ -22,6 +22,7 @@ in
       krew
       kubectl
       kubectl-cnpg
+      kubelogin
       kubectx
       kubernetes-helm
       kustomize_4

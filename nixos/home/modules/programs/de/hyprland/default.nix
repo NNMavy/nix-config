@@ -1,6 +1,7 @@
 { lib
 , pkgs
 , osConfig
+, config
 , inputs
 , ...
 }:
@@ -17,6 +18,13 @@ in
   ];
 
   config = lib.mkIf osConfig.mySystem.de.hyprland.enable {
+    programs = {
+      kitty.catppuccin = {
+        enable = true;
+        flavor = "${config.catppuccin.flavor}";
+      };
+    };
+
     wayland.windowManager.hyprland = {
       enable = true;
       xwayland = {
@@ -173,7 +181,6 @@ in
           "${super}, Q, killactive,"
           "${super}, Return, exec, kitty"
           "${super}, F, fullscreen"
-          "${super}, D, exec, pkill wofi || wofi --show drun"
           "${super}, R, exec, rofi -show drun"
           "${super}, L, exec, hyprlock; 1password --lock"
           "CONTROL_SHIFT, space, exec, 1password --quick-access"
