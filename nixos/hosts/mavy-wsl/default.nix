@@ -41,11 +41,6 @@
         fsType = "tmpfs";
       };
 
-      "/lib/modules/5.15.146.1-microsoft-standard-WSL2" = {
-        device = "none";
-        fsType = "overlay";
-      };
-
       "/" = {
         device = "/dev/disk/by-uuid/19e61ca8-cb9c-4d0e-9c78-ff457fe4c843";
         fsType = "ext4";
