@@ -6,6 +6,7 @@ with config;
     inputs.catppuccin.homeManagerModules.catppuccin
   ];
 
+  # TODO: Make op stuff conditional and honestly cleanup this entire mess.
 
   # Set theme for home-manager
   catppuccin = {
@@ -19,8 +20,21 @@ with config;
       enable = true;
       flavor = "Macchiato";
     };
+    ssh.extraConfig = ''
+      IdentityAgent "~/.1password/agent.sock"
+    '';
+    git.extraConfig = {
+      user.signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILNcxEQPS3HMkDgPwVUTuO5cP0Nv5Ua8jV3exudERtLK";
+      commit.gpgsign = true;
+      gpg = {
+        format = "ssh";
+        ssh = {
+          allowedSignersFile = "~/.ssh/allowed_signers";
+          program = "${pkgs._1password-gui}/bin/op-ssh-sign";
+        };
+      };
+    };
   };
-
   myHome = {
     programs = {
       firefox.enable = true;
@@ -33,13 +47,8 @@ with config;
         #TODO make this dynamic
         enable = true;
         matchBlocks = {
-          mavy-wsl = {
-            hostname = "mavy-wsl";
-            port = 22;
-          };
-
-          peppernuts = {
-            hostname = "peppernuts";
+          optimus = {
+            hostname = "optimus";
             port = 22;
           };
         };
@@ -56,27 +65,36 @@ with config;
       git = {
         enable = true;
         username = "Rene Koens";
-        email = "mavy@ninjanerd.eu";
+        email = "rene.koens@jumbo.com";
       };
     };
   };
 
+  home.file.".ssh/jumbo-key.pub".text = ''
+    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILNcxEQPS3HMkDgPwVUTuO5cP0Nv5Ua8jV3exudERtLK
+  '';
 
+  home.file.".config/1Password/ssh/agent.toml".text = ''
+    [[ssh-keys]]
+    vault = "Jumbo"
+  '';
+
+  home.sessionVariables = {
+    SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
+  };
 
   home = {
     # Install these packages for my user
     packages = with pkgs;
       [
         #apps
-        discord
         slack
         spotify
-        orca-slicer
         yubioath-flutter
         yubikey-manager-qt
         flameshot
-        flake.multiviewer-for-f1
         vlc
+        teams-for-linux
 
         # cli
         bat
@@ -89,6 +107,14 @@ with config;
         fzf
         ripgrep
 
+        # Custom
+        git-crypt
+        dbeaver-bin
+        mongodb-compass
+        openconnect
+        openfortivpn
+        vpn-slice
+        python311Packages.keyring
       ];
 
   };

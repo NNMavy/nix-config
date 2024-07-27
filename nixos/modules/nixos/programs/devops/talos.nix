@@ -23,6 +23,7 @@ in
       kubectl
       kubectl-cnpg
       kubectx
+      kubelogin-oidc
       kubernetes-helm
       kustomize_4
       minio-client

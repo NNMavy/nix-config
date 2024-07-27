@@ -15,7 +15,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    # xdg.configFile."wezterm/wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink cfg.configPath;
     programs.wezterm.package = pkgs.unstable.wezterm;
     programs.wezterm = {
       enable = true;

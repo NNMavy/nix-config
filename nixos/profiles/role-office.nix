@@ -1,20 +1,12 @@
-{ pkgs
-, config
-, ...
-}:
+{ config, lib, pkgs, imports, boot, self, inputs, ... }:
+# Role for dev stations
+# Could be a workstation or a headless server.
+
 let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in
 {
-
-  sops.secrets = {
-    mavy-password = {
-      sopsFile = ./secrets.sops.yaml;
-      neededForUsers = true;
-    };
-  };
-
-  users.users.mavy = {
+  users.users.rkoens = {
     isNormalUser = true;
     shell = pkgs.fish;
     hashedPasswordFile = config.sops.secrets.mavy-password.path;
@@ -38,12 +30,4 @@ in
     ]; # TODO do i move to ingest github creds?
 
   };
-
-  # extra user for containers
-  users.users.kah = {
-    uid = 568;
-    group = "kah";
-  };
-  users.groups.kah = { };
-
 }

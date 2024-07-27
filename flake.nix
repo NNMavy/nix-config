@@ -15,9 +15,27 @@
     # nur
     nur.url = "github:nix-community/NUR";
 
-    # nix-community hardware quirks
-    # https://github.com/nix-community
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    # hyprland
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hyprland-hyprspace = {
+      url = "github:KZDKM/Hyprspace";
+      inputs.hyprland.follows = "hyprland";
+
+    };
+
+    iio-hyprland.url = "github:JeanSchoeller/iio-hyprland";
+
+    # Catppuccin
+    catppuccin.url = "github:catppuccin/nix";
 
     flake-utils.url = "github:numtide/flake-utils";
 
@@ -25,6 +43,10 @@
       url = "github:edolstra/flake-compat";
       flake = false;
     };
+
+    # nix-community hardware quirks
+    # https://github.com/nix-community
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     # home-manager - home user+dotfile manager
     # https://github.com/nix-community/home-manager
@@ -78,6 +100,8 @@
     { self
     , nixpkgs
     , nixos-wsl
+    , hyprland
+    , catppuccin
     , sops-nix
     , home-manager
     , nix-vscode-extensions
@@ -128,14 +152,16 @@
               # here we import all the modules and setup home-manager
             , baseModules ? [
                 sops-nix.nixosModules.sops
+                catppuccin.nixosModules.catppuccin
                 home-manager.nixosModules.home-manager
                 impermanence.nixosModules.impermanence
-                nixos-wsl.nixosModules.default
+                # nixos-wsl.nixosModules.default
                 ./nixos/profiles/global.nix # all machines get a global profile
                 ./nixos/modules/nixos # all machines get nixos modules
                 ./nixos/hosts/${hostname}   # load this host's config folder for machine-specific config
                 {
                   home-manager = {
+                    backupFileExtension = "backup";
                     useUserPackages = true;
                     useGlobalPkgs = true;
                     extraSpecialArgs = {
@@ -197,7 +223,6 @@
 
           "peppernuts" = mkNixosConfig {
             # Old Laptop
-
             hostname = "peppernuts";
             system = "x86_64-linux";
             hardwareModules = [
@@ -211,8 +236,7 @@
           };
 
           "optimus" = mkNixosConfig {
-            # Old Laptop
-
+            # Framework
             hostname = "optimus";
             system = "x86_64-linux";
             hardwareModules = [
@@ -221,7 +245,11 @@
             profileModules = [
               ./nixos/profiles/role-workstation.nix
               ./nixos/profiles/role-dev.nix
-              { home-manager.users.mavy = ./nixos/home/mavy/workstation.nix; }
+              ./nixos/profiles/role-office.nix
+              {
+                home-manager.users.mavy = ./nixos/home/mavy/workstation.nix;
+                home-manager.users.rkoens = ./nixos/home/rkoens/workstation.nix;
+              }
             ];
           };
 
