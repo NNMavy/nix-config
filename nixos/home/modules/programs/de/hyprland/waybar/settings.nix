@@ -52,7 +52,7 @@
           browser = "";
           onepass = "󰟵";
           urgent = "";
-          
+
           sort-by-number = true;
         };
         persistent-workspaces = {
@@ -108,10 +108,10 @@
       backlight = {
         #device = "intel_backlight";
         format = "{icon}";
-        format-icons = ["" "" "" "" "" "" "" "" ""];
+        format-icons = [ "" "" "" "" "" "" "" "" "" ];
         tooltip = false;
       };
-      "backlight/slider" = {};
+      "backlight/slider" = { };
       "group/group-backlight" = {
         drawer = {
           children-class = "not-backlight";
@@ -119,7 +119,7 @@
           transition-left-to-right = false;
         };
         # The first module in the list is shown as the initial button
-        modules = ["backlight" "idle_inhibitor" "backlight/slider"];
+        modules = [ "backlight" "idle_inhibitor" "backlight/slider" ];
         orientation = "inherit";
       };
       "custom/poweroff" = {
@@ -154,7 +154,7 @@
           transition-left-to-right = false;
         };
         # The first module in the list is shown as the initial button
-        modules = ["custom/poweroff" "custom/quit" "custom/lock" "custom/suspend" "custom/reboot"];
+        modules = [ "custom/poweroff" "custom/quit" "custom/lock" "custom/suspend" "custom/reboot" ];
         orientation = "inherit";
       };
       "custom/launcher" = {

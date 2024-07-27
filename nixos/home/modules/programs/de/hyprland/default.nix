@@ -211,7 +211,7 @@ in
           "${super} SHIFT, 9, movetoworkspacesilent, 9"
           "${super} SHIFT, 0, movetoworkspacesilent, 10"
           "${super} CTRL, c, movetoworkspace, empty"
-          
+
           "${super} SHIFT, b, movetoworkspace, special:browser"
           "${super} SHIFT, p, movetoworkspace, special:onepass"
         ];

@@ -52,7 +52,7 @@ with config;
         ripgrep
 
         brightnessctl
-          go
+        go
 
         cue
         goss
