@@ -246,7 +246,7 @@
               ./nixos/profiles/role-workstation.nix
               ./nixos/profiles/role-dev.nix
               ./nixos/profiles/role-office.nix
-              { 
+              {
                 home-manager.users.mavy = ./nixos/home/mavy/workstation.nix;
                 home-manager.users.rkoens = ./nixos/home/rkoens/workstation.nix;
               }
