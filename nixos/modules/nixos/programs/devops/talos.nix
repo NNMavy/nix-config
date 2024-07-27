@@ -22,8 +22,8 @@ in
       krew
       kubectl
       kubectl-cnpg
-      kubelogin
       kubectx
+      kubelogin-oidc
       kubernetes-helm
       kustomize_4
       minio-client
