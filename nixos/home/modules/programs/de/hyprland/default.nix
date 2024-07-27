@@ -18,13 +18,6 @@ in
   ];
 
   config = lib.mkIf osConfig.mySystem.de.hyprland.enable {
-    programs = {
-      kitty.catppuccin = {
-        enable = true;
-        flavor = "${config.catppuccin.flavor}";
-      };
-    };
-
     wayland.windowManager.hyprland = {
       enable = true;
       xwayland = {

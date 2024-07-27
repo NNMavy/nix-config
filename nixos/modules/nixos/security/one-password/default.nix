@@ -78,23 +78,6 @@ in
           };
         };
       };
-      # Work Profile  
-      home-manager.users.rkoens.programs = {
-        ssh.extraConfig = ''
-          IdentityAgent "~/.1password/agent.sock"
-        '';
-        git.extraConfig = {
-          user.signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILNcxEQPS3HMkDgPwVUTuO5cP0Nv5Ua8jV3exudERtLK";
-          commit.gpgsign = true;
-          gpg = {
-            format = "ssh";
-            ssh = {
-              allowedSignersFile = "~/.ssh/allowed_signers";
-              program = "${pkgs._1password-gui}/bin/op-ssh-sign";
-            };
-          };
-        };
-      };
     })
 
     (mkIf (cfg.enable && cfg.wsl) {
@@ -112,9 +95,6 @@ in
 
     (mkIf cfg.enable {
       home-manager.users.mavy.home.sessionVariables = {
-        SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
-      };
-      home-manager.users.rkoens.home.sessionVariables = {
         SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
       };
     })

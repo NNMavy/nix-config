@@ -6,6 +6,7 @@ with config;
     inputs.catppuccin.homeManagerModules.catppuccin
   ];
 
+  # TODO: Make op stuff conditional and honestly cleanup this entire mess.
 
   # Set theme for home-manager
   catppuccin = {
@@ -14,6 +15,26 @@ with config;
     accent = "teal";
   };
 
+  programs = {
+    kitty.catppuccin = {
+      enable = true;
+      flavor = "Macchiato";
+    };
+    ssh.extraConfig = ''
+      IdentityAgent "~/.1password/agent.sock"
+    '';
+    git.extraConfig = {
+      user.signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILNcxEQPS3HMkDgPwVUTuO5cP0Nv5Ua8jV3exudERtLK";
+      commit.gpgsign = true;
+      gpg = {
+        format = "ssh";
+        ssh = {
+          allowedSignersFile = "~/.ssh/allowed_signers";
+          program = "${pkgs._1password-gui}/bin/op-ssh-sign";
+        };
+      };
+    };
+  };
   myHome = {
     programs = {
       firefox.enable = true;
@@ -57,6 +78,10 @@ with config;
     [[ssh-keys]]
     vault = "Jumbo"
   '';
+
+  home.sessionVariables = {
+    SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
+  };
 
   home = {
     # Install these packages for my user

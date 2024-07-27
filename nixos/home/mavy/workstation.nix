@@ -14,6 +14,13 @@ with config;
     accent = "teal";
   };
 
+  programs = {
+    kitty.catppuccin = {
+      enable = true;
+      flavor = "Macchiato";
+    };
+  };
+
   myHome = {
     programs = {
       firefox.enable = true;
