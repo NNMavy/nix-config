@@ -7,7 +7,7 @@ pkgs.stdenv.mkDerivation rec {
   pname = "ripe-atlas-software-probe";
   version = "5090";
 
-  hardeningDisable = ["all"];
+  hardeningDisable = [ "all" ];
 
   src = fetchFromGitHub {
     owner = "RIPE-NCC";
@@ -33,12 +33,12 @@ pkgs.stdenv.mkDerivation rec {
     "--localstatedir=/var"
     "--libdir=$(out)/lib"
     "--runstatedir=/run"
-  # --with-user=ripe-atlas
-  # --with-group=ripe-atlas
-  # --with-measurement-user=ripe-atlas-measurement
+    # --with-user=ripe-atlas
+    # --with-group=ripe-atlas
+    # --with-measurement-user=ripe-atlas-measurement
     "--enable-systemd=no"
     "--enable-chown=no"
-  # --enable-setcap-install
+    # --enable-setcap-install
   ];
 
   preInstall = ''
