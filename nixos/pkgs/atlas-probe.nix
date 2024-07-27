@@ -1,17 +1,20 @@
 { lib
 , pkgs
+, fetchFromGitHub
 , ...
 }:
 pkgs.stdenv.mkDerivation rec {
-  pname = "atlas-probe";
-  version = "2.6.3";
+  pname = "ripe-atlas-software-probe";
+  version = "5090";
 
-  hardeningDisable = [ "format" ];
+  hardeningDisable = ["all"];
 
-  src = pkgs.fetchzip {
-    url = "https://github.com/RIPE-NCC/ripe-atlas-probe-measurements/archive/refs/tags/2.6.3.tar.gz";
-    sha256 = "sha256-JPLwlnV8UYiiiPNLTT92nvxpB6l9kLGxy4iEUzdacH0=";
-    stripRoot = true;
+  src = fetchFromGitHub {
+    owner = "RIPE-NCC";
+    repo = pname;
+    rev = version;
+    hash = "sha256-s1aLjbaMbTVSy14w7uZAKU/kizLbl4fFFKUmpud0sNk=";
+    fetchSubmodules = true;
   };
 
   buildInputs = [
@@ -19,34 +22,35 @@ pkgs.stdenv.mkDerivation rec {
     pkgs.automake
     pkgs.libtool
     pkgs.ncurses
+    pkgs.openssl
   ];
 
-  makeFlags = [ "DESTDIR=$(out)" "PREFIX=$out/atlas" ];
+  preConfigure = "autoreconf --install";
 
-  configurePhase = ''
+  configureFlags = [
+    "--prefix=$(out)"
+    "--sysconfdir=$(out)/etc"
+    "--localstatedir=/var"
+    "--libdir=$(out)/lib"
+    "--runstatedir=/run"
+  # --with-user=ripe-atlas
+  # --with-group=ripe-atlas
+  # --with-measurement-user=ripe-atlas-measurement
+    "--enable-systemd=no"
+    "--enable-chown=no"
+  # --enable-setcap-install
+  ];
+
+  preInstall = ''
+    mkdir -p $out/sbin $out/share/man/man8 $out/etc
   '';
 
-  buildPhase = ''
-    cd libevent-2.1.11-stable  # first build libevent
-    autoreconf --install
-    ./configure --prefix=$out/atlas
-    make install
-    cd ../
-    make menuconfig     # This creates a file called ".config"
-    make                # This creates the "busybox" executable
-  '';
-
-  installPhase = ''
-    make install
-    # mkdir -p %{buildroot}%{installpath}/{bin,bin/arch/centos-sw-probe,bin/arch/linux,bb-13.3,etc,lib,state}
-    # cp -r ./_install/* %{buildroot}%{installpath}/bb-13.3
-    # cp ./libevent-2.1.11-stable/.libs/libevent-*so* %{buildroot}%{installpath}/lib
-    # cp ./libevent-2.1.11-stable/.libs/libevent_openssl-*so* %{buildroot}%{installpath}/lib
-    # cd ..
-    mkdir -p $out/{bin,bin/arch/linux,state,etc}
-    cp bin/{ATLAS,common-pre.sh,common.sh,reginit.sh,*.lib.sh} $out/bin
-    cp bin/arch/linux/* $out/bin/arch/linux
-    cp atlas-config/state/* $out/state
-    cp atlas-config/etc/* $out/etc
-  '';
+  meta = with lib; {
+    description = "Atlas Ripe Software Probe";
+    homepage = "https://atlas.ripe.net/docs/howtos/software-probes.html";
+    license = licenses.gpl3;
+    maintainers = with maintainers; [ mavy ];
+    mainProgram = "atlas-probe";
+    platforms = platforms.unix;
+  };
 }
