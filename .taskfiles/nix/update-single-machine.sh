@@ -2,7 +2,7 @@
 
 set -e
 
-cd /home/mavy/nnhome/nix-config
+cd /home/mavy/nix-config
 
 # rsa_key="~/.nixos/secrets/ssh_keys/ansible/ansible.key"
 # export NIX_SSHOPTS="-t -i $rsa_key"
