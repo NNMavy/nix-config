@@ -17,7 +17,7 @@
     '';
   };
   security.sudo.wheelNeedsPassword = false;
-  system.stateVersion = "22.05";
+  system.stateVersion = "23.11";
   nix.gc.automatic = false;
 
   mySystem.home-manager.enable = false;

@@ -2,39 +2,26 @@
   imports = [
     ./monitoring.nix
     ./reboot-required-check.nix
+    ./atlas-probe
     # ./cloudflare-dyndns
     # ./maddy
     # ./dnscrypt-proxy2
-    # ./cockpit
-    # ./podman
-    # ./traefik
+    ./cockpit
+    ./podman
     # ./nfs
     # ./nix-serve
     # ./glances
     # ./syncthing
     ./restic
-    # ./powerdns
     # ./adguardhome
-    # ./mosquitto
-    # ./zigbee2mqtt
     # ./postgresql
     # ./blocky
-    # ./openvscode-server
-    # ./grafana
-    # ./prometheus
     # ./radicale
-    # ./node-red
-    # ./nginx
-    # ./miniflux
-    # ./calibre-web
-    # ./rss-bridge
-    # ./paperless
+    ./nginx
     # ./redis
-    # ./recyclarr
-    # ./sonarr
-    # ./radarr
-    # ./sabnzbd
     # ./minio
-    # ./invidious
+    # ./tdarr
+    # ./phpipam
+
   ];
 }

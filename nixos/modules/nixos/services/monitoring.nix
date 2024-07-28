@@ -5,10 +5,10 @@
 }:
 with lib;
 let
-  cfg = config.mySystem.services.promMonitoring;
+  cfg = config.mySystem.services.monitoring;
 in
 {
-  options.mySystem.services.promMonitoring.enable = mkEnableOption "Prometheus Monitoring";
+  options.mySystem.services.monitoring.enable = mkEnableOption "Prometheus Monitoring";
 
   config = mkIf cfg.enable {
 
