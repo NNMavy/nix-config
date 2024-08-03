@@ -18,10 +18,6 @@ in
         name = "Colloid-teal-dark";
         package = pkgs.colloid-icon-theme;
       };
-      catppuccin = {
-        enable = true;
-        flavor = config.catppuccin.flavor;
-      };
       settings = {
         global = {
           width = 300;
