@@ -20,7 +20,7 @@ with config;
       enable = true;
       catppuccin = {
         enable = true;
-        flavor = config.catppuccin.flavor;
+        inherit (config.catppuccin) flavor;
       };
     };
 

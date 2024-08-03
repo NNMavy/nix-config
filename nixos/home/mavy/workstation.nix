@@ -15,13 +15,13 @@ with config;
   };
 
   programs = {
-    
+
     # TODO: Move to module
     kitty = {
       enable = true;
       catppuccin = {
         enable = true;
-        flavor = config.catppuccin.flavor;
+        inherit (config.catppuccin) flavor;
       };
     };
   };
