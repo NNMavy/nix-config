@@ -15,9 +15,14 @@ with config;
   };
 
   programs = {
-    kitty.catppuccin = {
+    
+    # TODO: Move to module
+    kitty = {
       enable = true;
-      flavor = "Macchiato";
+      catppuccin = {
+        enable = true;
+        flavor = config.catppuccin.flavor;
+      };
     };
   };
 

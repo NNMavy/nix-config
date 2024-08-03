@@ -16,10 +16,14 @@ with config;
   };
 
   programs = {
-    kitty.catppuccin = {
+    kitty = {
       enable = true;
-      flavor = "Macchiato";
+      catppuccin = {
+        enable = true;
+        flavor = config.catppuccin.flavor;
+      };
     };
+
     ssh.extraConfig = ''
       IdentityAgent "~/.1password/agent.sock"
     '';
@@ -35,6 +39,7 @@ with config;
       };
     };
   };
+
   myHome = {
     programs = {
       firefox.enable = true;
@@ -56,7 +61,6 @@ with config;
     };
 
     shell = {
-
       starship.enable = true;
       fish.enable = true;
       utilities.enable = true;
@@ -92,9 +96,9 @@ with config;
         spotify
         yubioath-flutter
         yubikey-manager-qt
-        flameshot
         vlc
         teams-for-linux
+        obsidian
 
         # cli
         bat

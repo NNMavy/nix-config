@@ -7,6 +7,7 @@
 
     mySystem = {
       services.openssh.enable = true;
+      services.podman.enable = true;
       security.wheelNeedsSudoPassword = true;
     };
 

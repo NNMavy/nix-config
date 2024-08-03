@@ -132,10 +132,13 @@ in
       hyprpicker
       hyprcursor
       hyprpaper
+      avizo
+      slurp
+      grim
 
       poweralertd
-      kitty
 
+      kitty
       fish
       starship
       helix
