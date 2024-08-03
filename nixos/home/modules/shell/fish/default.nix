@@ -132,6 +132,10 @@ in
             description = "Start SSH agent";
             body = builtins.readFile ./functions/agent.fish;
           };
+          screenshot_to_clipboard = {
+            description = "Make Screenshot";
+            body = builtins.readFile ./functions/screenshot_to_clipboard.fish;
+          };
         };
       };
     })

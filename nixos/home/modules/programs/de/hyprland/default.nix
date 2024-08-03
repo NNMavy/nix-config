@@ -15,6 +15,7 @@ in
     ./waybar
     ./hypridle
     ./hyprlock
+    ./dunst
   ];
 
   config = lib.mkIf osConfig.mySystem.de.hyprland.enable {
@@ -176,6 +177,7 @@ in
           "${super}, F, fullscreen"
           "${super}, R, exec, rofi -show drun"
           "${super}, L, exec, hyprlock; 1password --lock"
+          "${super}_SHIFT, S, exec, fish -c screenshot_to_clipboard"
           "CONTROL_SHIFT, space, exec, 1password --quick-access"
 
           # switch focus
