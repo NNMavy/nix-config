@@ -96,6 +96,7 @@ with config;
     nixpkgs-fmt
     statix
     nvd
+    nix-output-monitor
     gh
 
     bind # for dns utils like named-checkconf

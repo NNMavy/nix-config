@@ -98,7 +98,7 @@ tasks:
         - host
     cmds:
       - git add .
-      - nixos-rebuild build --flake "{{.ROOT_DIR}}/#{{.host}}" --impure --fast
+      - nixos-rebuild build --flake "{{.ROOT_DIR}}/#{{.host}}" --impure --fast |& nom
       - nvd diff /run/current-system result
     preconditions:
       - sh: which nix
@@ -107,6 +107,8 @@ tasks:
         msg: "nixos-rebuild not found"
       - sh: which nvd
         msg: "nvd not found"
+      - sh: which nom
+        msg: "nix-output-monitor not found"
 
   .prompt_to_continue:
     internal: true

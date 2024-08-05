@@ -23,6 +23,7 @@ with lib;
     enable = true;
     defaultUser = "mavy";
     interop.includePath = false;
+    interop.register = true;
   };
 
   programs = {

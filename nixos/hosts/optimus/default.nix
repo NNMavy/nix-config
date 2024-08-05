@@ -15,6 +15,7 @@
     boot.initrd.kernelModules = [ ];
     boot.kernelModules = [ "kvm-intel" ];
     boot.extraModulePackages = [ ];
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
 
     networking.hostName = "optimus";
 
