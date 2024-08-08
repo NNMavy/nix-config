@@ -37,6 +37,7 @@ in
             core = {
               autocrlf = "input";
             };
+            commit.gpgsign = true;
             init = {
               defaultBranch = "main";
             };
@@ -66,10 +67,10 @@ in
             # Python virtualenvs
             ".venv"
           ];
-          # signing = lib.mkIf (cfg.signingKey != "") {
-          #   signByDefault = true;
-          #   key = cfg.signingKey;
-          # };
+          signing = lib.mkIf (cfg.signingKey != "") {
+            signByDefault = true;
+            key = cfg.signingKey;
+          };
         };
       };
 
