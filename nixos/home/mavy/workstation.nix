@@ -42,11 +42,6 @@ with config;
             hostname = "mavy-wsl";
             port = 22;
           };
-
-          peppernuts = {
-            hostname = "peppernuts";
-            port = 22;
-          };
         };
       };
     };
