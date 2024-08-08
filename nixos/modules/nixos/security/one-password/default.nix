@@ -79,19 +79,6 @@ in
     })
 
     (mkIf (cfg.enable && cfg.wsl) {
-      home-manager.users.mavy.home.packages = [
-        op-wsl-proxy
-        wsl-ssh-agent
-      ];
-
-      programs.fish = {
-        shellInit = ''
-          replay "${wslAgentScript}"
-        '';
-      };
-    })
-
-    (mkIf cfg.enable {
       home-manager.users.mavy.programs = {
         ssh.extraConfig = ''
           IdentityAgent "~/.1password/agent.sock"
@@ -106,6 +93,20 @@ in
           };
         };
       };
+
+      home-manager.users.mavy.home.packages = [
+        op-wsl-proxy
+        wsl-ssh-agent
+      ];
+
+      programs.fish = {
+        shellInit = ''
+          replay "${wslAgentScript}"
+        '';
+      };
+    })
+
+    (mkIf cfg.enable {
       home-manager.users.mavy.home.sessionVariables = {
         SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
       };
