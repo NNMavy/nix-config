@@ -80,7 +80,7 @@ in
       isSystemUser = true;
     };
 
-    users.groups.${forgejo-user} = {};
+    users.groups.${forgejo-user} = { };
 
     # Folder perms - only for containers
     systemd.tmpfiles.rules = [
