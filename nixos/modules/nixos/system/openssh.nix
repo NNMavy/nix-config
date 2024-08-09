@@ -10,6 +10,12 @@ in
 {
   options.mySystem.services.openssh = {
     enable = mkEnableOption "openssh" // { default = true; };
+    port = mkOption
+      {
+        type = lib.types.int;
+        description = "Port that ssh will listen on";
+        default = 22;
+      };
     passwordAuthentication = mkOption
       {
         type = lib.types.bool;
@@ -30,6 +36,7 @@ in
     services.openssh = {
       enable = true;
       openFirewall = true;
+      ports = [ cfg.port ];
       # TODO: Enable this when option becomes available
       # Don't allow home-directory authorized_keys
       # authorizedKeysFiles = mkForce ["/etc/ssh/authorized_keys.d/%u"];

@@ -2,26 +2,10 @@
   imports = [
     ./monitoring.nix
     ./reboot-required-check.nix
-    ./atlas-probe
-    # ./cloudflare-dyndns
-    # ./maddy
-    # ./dnscrypt-proxy2
     ./cockpit
+    ./forgejo
     ./podman
-    # ./nfs
-    # ./nix-serve
-    # ./glances
-    # ./syncthing
     ./restic
-    # ./adguardhome
-    # ./postgresql
-    # ./blocky
-    # ./radicale
     ./nginx
-    # ./redis
-    # ./minio
-    # ./tdarr
-    # ./phpipam
-
   ];
 }

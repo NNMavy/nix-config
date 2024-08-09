@@ -16,6 +16,16 @@ with config;
       ssh = {
         #TODO make this dynamic
         enable = true;
+        matchBlocks = {
+          mavy-wsl = {
+            hostname = "mavy-wsl";
+            port = 22;
+          };
+          bumblebee = {
+            hostname = "bumblebee";
+            port = 22;
+          };
+        };
       };
     };
 

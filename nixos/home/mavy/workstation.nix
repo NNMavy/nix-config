@@ -42,6 +42,10 @@ with config;
             hostname = "mavy-wsl";
             port = 22;
           };
+          bumblebee = {
+            hostname = "bumblebee";
+            port = 22;
+          };
         };
       };
     };
