@@ -25,7 +25,7 @@
         # Enable hosted services
         backrest.enable = true;
         gatus.enable = true;
-        #atlas-probe.enable = true;
+        forgejo.enable = true;
       };
 
       security.acme.enable = true;

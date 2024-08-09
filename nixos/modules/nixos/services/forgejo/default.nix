@@ -9,19 +9,24 @@ let
   app = "forgejo";
   category = "services";
   description = "A gitea fork with some extra features";
-  image = "codeberg.org/forgejo/forgejo:7.0.3@sha256:7918c661718554aefb5901f2c6336b12a1bed427f2b080ee732ca6cd0324f8fd";
-  user = "568"; #string
-  group = "568"; #string
+  #image = "codeberg.org/forgejo/forgejo:8.0.0-rootless";
+  # Forgejo is a little different
+  forgejo-user = "git";
+  user = forgejo-user;
+  group = forgejo-user;
   port = 3000; #int
   appFolder = "/var/lib/${app}";
   #persistentFolder = "${config.mySystem.persistentFolder}/var/lib/${appFolder}";
   host = "${app}" + (if cfg.dev then "-dev" else "");
   url = "${app}.${config.networking.domain}";
+
 in
 {
   options.mySystem.${category}.${app} =
     {
       enable = mkEnableOption "${app}";
+      user = forgejo-user;
+      group = forgejo-user;
       addToHomepage = mkEnableOption "Add ${app} to homepage" // { default = true; };
       monitor = mkOption
         {
@@ -68,8 +73,14 @@ in
     #   restartUnits = [ "${app}.service" ];
     # };
 
-    users.users.mavy.extraGroups = [ group ];
+    users.users.${forgejo-user} = {
+      home = config.services.forgejo.stateDir;
+      useDefaultShell = true;
+      group = forgejo-user;
+      isSystemUser = true;
+    };
 
+    users.groups.${forgejo-user} = {};
 
     # Folder perms - only for containers
     systemd.tmpfiles.rules = [
@@ -80,14 +91,51 @@ in
       directories = [{ directory = appFolder; inherit user; inherit group; mode = "750"; }];
     };
 
+    services.forgejo = {
+      package = pkgs.unstable.forgejo; # TODO: Switch back to stable once v8 becomes stable
 
-    # virtualisation.oci-containers.containers = config.lib.mySystem.mkContainer {
-    #   inherit app image user group;
-    #   env = { };
-    #   ports = [ ];
-    #   environmentFiles = [ ];
-    # };
+      enable = true;
+      user = forgejo-user;
+      group = forgejo-user;
 
+      stateDir = "${appFolder}";
+      database.type = "sqlite3";
+      # Enable support for Git Large File Storage
+      lfs.enable = true;
+      settings = {
+        server = {
+          DOMAIN = "${url}";
+          ROOT_URL = "https://${url}/";
+          HTTP_PORT = port;
+          MINIMUM_KEY_SIZE_CHECK = false;
+          #SSH_PORT = head config.services.openssh.ports;
+        };
+        service = {
+          DISABLE_REGISTRATION = true;
+          DEFAULT_KEEP_EMAIL_PRIVATE = false;
+          DEFAULT_ALLOW_CREATE_ORGANIZATION = true;
+          DEFAULT_ENABLE_TIMETRACKING = true;
+          NO_REPLY_ADDRESS = "noreply.${app}.${config.networking.domain}";
+        };
+        # Add support for actions, based on act: https://github.com/nektos/act
+        actions = {
+          ENABLED = true;
+          DEFAULT_ACTIONS_URL = "github";
+        };
+        # Disable mailer
+        mailer = {
+          ENABLED = false;
+        };
+        # Allow OpenID signups
+        openid = {
+          ENABLE_OPENID_SIGNIN = true;
+          ENABLE_OPENID_SIGNUP = true;
+        };
+        webhook = {
+          ALLOWED_HOST_LIST = "private,*.${config.networking.domain}";
+        };
+      };
+    };
 
     # # homepage integration
     # mySystem.services.homepage.infrastructure = mkIf cfg.addToHomepage [
