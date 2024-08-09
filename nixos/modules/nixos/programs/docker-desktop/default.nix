@@ -6,7 +6,7 @@
 with lib; let
   cfg = config.mySystem.programs.docker-desktop;
   top = if builtins.hasAttr "wsl" config then config.wsl else null;
-  dockerRoot = if builtins.hasAttr "wslConf" top then top.wslConf.automount.root else "";
+  dockerRoot = if builtins.hasAttr "wslConf" top then "${top.wslConf.automount.root}/wsl/docker-desktop" else "";
   proxyPath = "${dockerRoot}/docker-desktop-user-distro";
 in
 {

@@ -21,6 +21,7 @@
       };
       kernelModules = [ "kvm-amd" ];
       extraModulePackages = [ ];
+      binfmt.emulatedSystems = [ "aarch64-linux" ];
     };
 
     networking.hostName = "mavy-wsl"; # Define your hostname.

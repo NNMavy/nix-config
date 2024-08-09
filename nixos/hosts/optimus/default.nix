@@ -11,10 +11,13 @@
       security.wheelNeedsSudoPassword = true;
     };
 
-    boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "uas" "usb_storage" "sd_mod" ];
-    boot.initrd.kernelModules = [ ];
-    boot.kernelModules = [ "kvm-intel" ];
-    boot.extraModulePackages = [ ];
+    boot = {
+      initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "uas" "usb_storage" "sd_mod" ];
+      initrd.kernelModules = [ ];
+      kernelModules = [ "kvm-intel" ];
+      extraModulePackages = [ ];
+      binfmt.emulatedSystems = [ "aarch64-linux" ];
+    };
 
     networking.hostName = "optimus";
 

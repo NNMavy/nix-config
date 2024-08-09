@@ -28,7 +28,6 @@ with config;
       IdentityAgent "~/.1password/agent.sock"
     '';
     git.extraConfig = {
-      user.signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILNcxEQPS3HMkDgPwVUTuO5cP0Nv5Ua8jV3exudERtLK";
       commit.gpgsign = true;
       gpg = {
         format = "ssh";
@@ -70,6 +69,7 @@ with config;
         enable = true;
         username = "Rene Koens";
         email = "rene.koens@jumbo.com";
+        signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILNcxEQPS3HMkDgPwVUTuO5cP0Nv5Ua8jV3exudERtLK";
       };
     };
   };

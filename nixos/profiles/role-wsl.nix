@@ -20,5 +20,6 @@ with config;
 
     system.resticBackup.local.enable = false;
     system.resticBackup.remote.enable = false;
+    system.systemd.telegram-alerts.enable = false;
   };
 }
