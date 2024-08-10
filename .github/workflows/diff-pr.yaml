@@ -19,13 +19,11 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            target: citadel
+            target: bumblebee
           - os: ubuntu-latest
-            target: rickenbacker
+            target: optimus
           - os: ubuntu-latest
-            target: dns01
-          - os: ubuntu-latest
-            target: dns02
+            target: mavy-wsl
     steps:
       - name: Create nix mount point
         if: contains(matrix.os, 'ubuntu')
