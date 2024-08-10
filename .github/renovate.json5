@@ -7,6 +7,13 @@
   "ignorePaths": [
     "result"
   ],
+  "ignoreTests": "true",
+
+  // TODO remove once out of beta?
+  // https://docs.renovatebot.com/modules/manager/nix/
+  "nix": {
+      "enabled": "true",
+  },
 
   "lockFileMaintenance": {
       "enabled": "true",
@@ -14,7 +21,13 @@
       "schedule": [ "before 4am on Sunday" ],
   },
 
-  "nix": {
-    "enabled": true
-  }
+  "regexManagers": [
+    {
+      fileMatch: ["(^|/)nixos/.*\\.nix$", "(^|/)flyio/.*\\.toml$"],
+      matchStrings: [
+        'image *= *"(?<depName>.*?):(?<currentValue>.*?)(@(?<currentDigest>sha256:[a-f0-9]+))?"',
+      ],
+      datasourceTemplate: "docker",
+    }
+  ],
 }
