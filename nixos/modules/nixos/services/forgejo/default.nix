@@ -19,6 +19,7 @@ let
   #persistentFolder = "${config.mySystem.persistentFolder}/var/lib/${appFolder}";
   host = "${app}" + (if cfg.dev then "-dev" else "");
   url = "${app}.${config.networking.domain}";
+  old_url = "gitea.${config.networking.domain}";
 
 in
 {
@@ -167,6 +168,12 @@ in
         proxyPass = "http://127.0.0.1:${builtins.toString port}";
         extraConfig = "resolver 10.88.0.1;";
       };
+    };
+    ### Redirect for old hostname
+    services.nginx.virtualHosts.${old_url} = {
+      forceSSL = true;
+      useACMEHost = config.networking.domain;
+      globalRedirect = "${url}";
     };
 
     ### firewall config
