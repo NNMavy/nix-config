@@ -43,9 +43,8 @@ jobs:
           remove-codeql: true
           overprovision-lvm: true
 
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - name: Checkout repository
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
 
       - name: Install nix
         uses: cachix/install-nix-action@v27
