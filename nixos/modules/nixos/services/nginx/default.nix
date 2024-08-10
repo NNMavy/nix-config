@@ -45,6 +45,8 @@ in
       commonHttpConfig = ''
         add_header X-Clacks-Overhead "GNU Terry Pratchett";
       '';
+
+      clientMaxBodySize = "512M";
       # provide default host with returning error
       # else nginx returns the first server
       # in the config file... >:S
