@@ -16,18 +16,28 @@ let
 
   extraEndpoints = [
     # TODO refactor these out into their own file or fake host?
+    # Servers
     {
-      name = "firewall";
-      group = "infrastructure";
-      url = "icmp://unifi.${config.mySystem.internalDomain}";
+      name = "pikvm";
+      group = "servers";
+      url = "icmp://pikvm.${config.mySystem.internalDomain}";
       interval = "1m";
       alerts = [{ type = "telegram"; }];
       conditions = [ "[CONNECTED] == true" ];
     }
     {
-      name = "pikvm";
+      name = "nas";
       group = "servers";
-      url = "icmp://pikvm.${config.mySystem.internalDomain}";
+      url = "icmp://nas.${config.mySystem.internalDomain}";
+      interval = "1m";
+      alerts = [{ type = "telegram"; }];
+      conditions = [ "[CONNECTED] == true" ];
+    }
+    # Infrastructure
+    {
+      name = "firewall";
+      group = "infrastructure";
+      url = "icmp://unifi.${config.mySystem.internalDomain}";
       interval = "1m";
       alerts = [{ type = "telegram"; }];
       conditions = [ "[CONNECTED] == true" ];

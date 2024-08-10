@@ -76,7 +76,7 @@ in
     mySystem.services.gatus.monitors = [{
 
       name = app;
-      group = "applications";
+      group = "containers";
       url = "https://${app}.${config.mySystem.domain}";
       interval = "1m";
       conditions = [ "[CONNECTED] == true" "[STATUS] == 200" "[RESPONSE_TIME] < 50" ];
