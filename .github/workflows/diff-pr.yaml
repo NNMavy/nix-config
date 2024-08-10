@@ -25,6 +25,11 @@ jobs:
           - os: ubuntu-latest
             target: mavy-wsl
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create nix mount point
         if: contains(matrix.os, 'ubuntu')
         run: sudo mkdir /nix
@@ -42,9 +47,6 @@ jobs:
           remove-docker-images: true
           remove-codeql: true
           overprovision-lvm: true
-
-      - name: Checkout repository
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
 
       - name: Install nix
         uses: cachix/install-nix-action@v27
