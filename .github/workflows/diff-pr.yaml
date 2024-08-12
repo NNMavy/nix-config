@@ -29,6 +29,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
 
+      - name: Install xz-utils
+        shell: bash
+        run: |
+          sudo apt-get update && sudo apt-get install -y xz-utils;
+
       - name: Create nix mount point
         if: contains(matrix.os, 'ubuntu')
         run: sudo mkdir /nix
