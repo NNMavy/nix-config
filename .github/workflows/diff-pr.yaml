@@ -21,10 +21,10 @@ jobs:
         include:
           - os: ubuntu-latest
             target: bumblebee
-          - os: ubuntu-latest
-            target: optimus
-          - os: ubuntu-latest
-            target: mavy-wsl
+          # - os: ubuntu-latest
+          #   target: optimus
+          # - os: ubuntu-latest
+          #   target: mavy-wsl
     steps:
       - name: Checkout repository
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
