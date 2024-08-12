@@ -35,5 +35,6 @@
     privacy-badger
     link-cleaner
     refined-github
+    multi-account-containers
   ];
 }
