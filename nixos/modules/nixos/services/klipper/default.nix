@@ -92,9 +92,8 @@ in
       enable = true;
       configFile = "${cfg.klipper-config}";
 
-
-      #package = pkgs.danger-klipper-full-plugins;
-      #firmware-package = pkgs.danger-klipper-firmware;
+      # package = pkgs.danger-klipper-full-plugins;
+      # firmware-package = pkgs.danger-klipper-firmware;
     };
 
     services.moonraker = {
