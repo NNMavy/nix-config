@@ -32,8 +32,8 @@ with lib; let
         mkdir "$WINPATH"
       fi
 
-      if ! cmp -s ${pkgs.flake.npiperelay}/bin/npiperelay.exe "$WINPATH/npiperelay.exe"; then
-        cp ${pkgs.flake.npiperelay}/bin/npiperelay.exe "$WINPATH/npiperelay.exe"
+      if ! cmp -s ${pkgs.npiperelay}/bin/npiperelay.exe "$WINPATH/npiperelay.exe"; then
+        cp ${pkgs.npiperelay}/bin/npiperelay.exe "$WINPATH/npiperelay.exe"
       fi
 
       (setsid ${pkgs.socat}/bin/socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"$WINPATH/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1

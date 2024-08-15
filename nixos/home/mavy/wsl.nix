@@ -25,6 +25,10 @@ with config;
             hostname = "bumblebee";
             port = 22;
           };
+          highjump = {
+            hostname = "highjump";
+            port = 22;
+          };
         };
       };
     };

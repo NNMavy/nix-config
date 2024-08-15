@@ -1,13 +1,12 @@
 { inputs
 , ...
 }:
+let
+  custom = import ../pkgs;
+in
 {
-  additions = final: prev: {
-    flake = import ../pkgs {
-      inherit inputs;
-      pkgs = prev;
-    };
-  };
+
+  additions = custom.overlay;
 
   nur = inputs.nur.overlay;
 

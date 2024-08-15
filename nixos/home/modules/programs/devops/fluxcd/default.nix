@@ -15,7 +15,7 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       fluxcd
-      pkgs.flake.flux-local
+      pkgs.flux-local
     ];
 
     programs.fish = {
