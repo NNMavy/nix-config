@@ -1,7 +1,8 @@
 { source, pkgs, lib, stdenv, python3Packages, fetchPypi }:
 let
   inherit (python3Packages) buildPythonApplication;
-in buildPythonApplication rec {
+in
+buildPythonApplication rec {
   inherit (source) pname version src;
 
   propagatedBuildInputs = [

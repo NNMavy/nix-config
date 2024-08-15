@@ -28,7 +28,7 @@
     boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "xen_blkfront" ];
     boot.initrd.kernelModules = [ "nvme" "virtio_gpu" ];
     boot.kernelModules = [ ];
-    boot.extraModulePackages =  [ ];
+    boot.extraModulePackages = [ ];
 
     networking.hostName = "highjump"; # Define your hostname.
     networking.hostId = "f63eac7f";
@@ -47,14 +47,14 @@
       interfaces = {
         eth0 = {
           ipv4.addresses = [
-            { address="65.108.48.212"; prefixLength=32; }
+            { address = "65.108.48.212"; prefixLength = 32; }
           ];
           ipv6.addresses = [
-            { address="2a01:4f9:c012:e7ee::1"; prefixLength=64; }
-            { address="fe80::9400:3ff:fea0:19b0"; prefixLength=64; }
+            { address = "2a01:4f9:c012:e7ee::1"; prefixLength = 64; }
+            { address = "fe80::9400:3ff:fea0:19b0"; prefixLength = 64; }
           ];
-          ipv4.routes = [ { address = "172.31.1.1"; prefixLength = 32; } ];
-          ipv6.routes = [ { address = "fe80::1"; prefixLength = 128; } ];
+          ipv4.routes = [{ address = "172.31.1.1"; prefixLength = 32; }];
+          ipv6.routes = [{ address = "fe80::1"; prefixLength = 128; }];
         };
       };
     };
@@ -85,7 +85,7 @@
         options = [ "fmask=0022" "dmask=0022" ];
       };
 
-    swapDevices = [];
+    swapDevices = [ ];
 
   };
 }

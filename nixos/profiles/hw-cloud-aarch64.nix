@@ -10,7 +10,7 @@ with lib;
 
     initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" ];
     kernelModules = [ "virtio_gpu" ];
-    kernelParams = [ "console=tty"  ];
+    kernelParams = [ "console=tty" ];
     extraModulePackages = [ ];
 
     loader = {

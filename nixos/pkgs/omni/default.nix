@@ -1,4 +1,4 @@
-{ lib, buildGoModule, fetchFromGitHub, installShellFiles}:
+{ lib, buildGoModule, fetchFromGitHub, installShellFiles }:
 buildGoModule rec {
   inherit (source) pname version src vendorSha256;
 

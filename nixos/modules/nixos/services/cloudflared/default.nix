@@ -37,8 +37,8 @@ in
 
     services.openssh.extraConfig =
       ''
-      PubkeyAuthentication yes
-      TrustedUserCAKeys ${config.sops.secrets."services/ssh/ca".path}
+        PubkeyAuthentication yes
+        TrustedUserCAKeys ${config.sops.secrets."services/ssh/ca".path}
       '';
 
     users.users.cloudflared = {
