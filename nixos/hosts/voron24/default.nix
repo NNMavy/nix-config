@@ -14,8 +14,10 @@
   mySystem.services = {
 
     openssh.enable = true;
-    klipper.enable = true;
-
+    klipper = {
+      enable = true;
+      klipper-config = ./configs/printer.cfg;
+    };
   };
 
   # no mutable state I care about

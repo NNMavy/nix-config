@@ -54,6 +54,12 @@ in
           default = true;
         };
 
+      klipper-config = mkOption
+        {
+          type = lib.types.nullOr lib.types.path;
+          description = "Printer config file";
+          default = null;
+        };
 
 
     };
@@ -84,6 +90,8 @@ in
     ## service
     services.klipper = {
       enable = true;
+      configFile = "${cfg.klipper-config}";
+
 
       #package = pkgs.danger-klipper-full-plugins;
       #firmware-package = pkgs.danger-klipper-firmware;
@@ -134,12 +142,12 @@ in
         "WARNING: Backups for ${app} are disabled!")
     ];
 
-    services.restic.backups = mkIf cfg.backup (config.lib.mySystem.mkRestic
-      {
-        inherit app user;
-        paths = [ appFolder ];
-        inherit appFolder;
-      });
+    # services.restic.backups = mkIf cfg.backup (config.lib.mySystem.mkRestic
+    #   {
+    #     inherit app user;
+    #     paths = [ appFolder ];
+    #     inherit appFolder;
+    #   });
 
 
     # services.postgresqlBackup = {
