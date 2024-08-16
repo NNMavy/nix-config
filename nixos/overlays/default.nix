@@ -6,8 +6,10 @@ let
 in
 {
 
+  # Custom packages
   additions = custom.overlay;
 
+  # nur overlay
   nur = inputs.nur.overlay;
 
   # The unstable nixpkgs set (declared in the flake inputs) will
