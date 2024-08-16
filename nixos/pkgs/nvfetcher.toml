@@ -12,8 +12,8 @@ src.git = "https://github.com/cockpit-project/cockpit-podman"
 fetch.github = "cockpit-project/cockpit-podman"
 
 [npiperelay]
-src.manual = "v1.6.3"
-fetch.github = "albertony/npiperelay"
+src.github = "jstarks/npiperelay"
+fetch.github = "jstarks/npiperelay"
 
 # klipper
 [moonraker]

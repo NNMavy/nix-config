@@ -11,35 +11,6 @@ with lib; let
       exec op.exe "$@"
     fi
   '';
-
-  # This approach is originally based on
-  # https://stuartleeks.com/posts/wsl-ssh-key-forward-to-windows/ but has been
-  # heavily simplified on the one side and extendet to automaticall install
-  # npiperelay on the other side. We'd really like to define a systemd user
-  # service, but that's not posisble on WSL2 by default. (since there is no
-  # systemd).
-  wsl-ssh-agent = pkgs.writeShellScriptBin "wsl-ssh-agent" ''
-    export SSH_AUTH_SOCK=$HOME/.1password/agent.sock
-    export PATH=$PATH:/mnt/c/windows/system32
-    mkdir -p $HOME/.1password
-
-    ALREADY_RUNNING=$(ps -auxww | grep -q "[n]piperelay.exe -ei -s //./pipe/openssh-ssh-agent"; echo $?)
-    if [[ $ALREADY_RUNNING != "0" ]]; then
-      rm -f "$SSH_AUTH_SOCK"
-
-      WINPATH="$(wslpath "$( (cd /mnt/c/; cmd.exe /c 'echo %LOCALAPPDATA%') | sed -e 's/\r//')")/nix-cache"
-      if ! [ -e "$WINPATH" ]; then
-        mkdir "$WINPATH"
-      fi
-
-      if ! cmp -s ${pkgs.npiperelay}/bin/npiperelay.exe "$WINPATH/npiperelay.exe"; then
-        cp ${pkgs.npiperelay}/bin/npiperelay.exe "$WINPATH/npiperelay.exe"
-      fi
-
-      (setsid ${pkgs.socat}/bin/socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"$WINPATH/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
-    fi
-  '';
-  wslAgentScript = "source ${lib.getExe wsl-ssh-agent}";
 in
 {
   options.mySystem.security.one-password = {
@@ -96,19 +67,38 @@ in
 
       home-manager.users.mavy.home.packages = [
         op-wsl-proxy
-        wsl-ssh-agent
       ];
 
-      programs.fish = {
-        shellInit = ''
-          replay "${wslAgentScript}"
-        '';
+      systemd.user.services.opagent-relay = {
+        description = "OPAgent SSH_AUTH_SOCK relay using npiperelay.exe";
+        after = [ "default.target" ];
+        wantedBy = [ "default.target" ];
+        environment.PATH = lib.mkForce "${pkgs.systemd}/bin:${pkgs.npiperelay}/bin";
+
+        serviceConfig = {
+          Restart = "always";
+          Type = "simple";
+          ExecStart = let
+            nprArgs = builtins.concatStringsSep " " [
+              "-ei" # Terminate on EOF from stdin
+              "-ep" # Terminate on EOF from pipe
+              "-p" # Poll until pipe available
+              "-s" # Send 0-byte message on EOF from stdin
+              "-v" # Verbose output on stderr
+            ];
+            nprCmdline = "npiperelay.exe ${nprArgs} //./pipe/openssh-ssh-agent";
+
+            wslSide = "UNIX-LISTEN:%h/.1password/agent.sock,fork,umask=007";
+            windowsSide = "EXEC:${nprCmdline},nofork"; # avoid escaping
+          in
+            "${pkgs.socat}/bin/socat '${wslSide}' '${windowsSide}'";
+        };
       };
     })
 
     (mkIf cfg.enable {
       home-manager.users.mavy.home.sessionVariables = {
-        SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
+        SSH_AUTH_SOCK = "~/.1password/agent.sock";
       };
     })
   ];
