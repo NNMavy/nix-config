@@ -73,11 +73,12 @@ in
         description = "OPAgent SSH_AUTH_SOCK relay using npiperelay.exe";
         after = [ "default.target" ];
         wantedBy = [ "default.target" ];
-        environment.PATH = lib.mkForce "${pkgs.systemd}/bin:${pkgs.npiperelay}/bin";
+        environment.PATH = lib.mkForce "/run/current-system/sw/bin:${pkgs.systemd}/bin:${pkgs.npiperelay}/bin";
 
         serviceConfig = {
           Restart = "always";
           Type = "simple";
+          ExecStartPre = "/run/current-system/sw/bin/rm -Rf %h/.1password/agent.sock";
           ExecStart = let
             nprArgs = builtins.concatStringsSep " " [
               "-ei" # Terminate on EOF from stdin
