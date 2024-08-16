@@ -79,19 +79,20 @@ in
           Restart = "always";
           Type = "simple";
           ExecStartPre = "/run/current-system/sw/bin/rm -Rf %h/.1password/agent.sock";
-          ExecStart = let
-            nprArgs = builtins.concatStringsSep " " [
-              "-ei" # Terminate on EOF from stdin
-              "-ep" # Terminate on EOF from pipe
-              "-p" # Poll until pipe available
-              "-s" # Send 0-byte message on EOF from stdin
-              "-v" # Verbose output on stderr
-            ];
-            nprCmdline = "npiperelay.exe ${nprArgs} //./pipe/openssh-ssh-agent";
+          ExecStart =
+            let
+              nprArgs = builtins.concatStringsSep " " [
+                "-ei" # Terminate on EOF from stdin
+                "-ep" # Terminate on EOF from pipe
+                "-p" # Poll until pipe available
+                "-s" # Send 0-byte message on EOF from stdin
+                "-v" # Verbose output on stderr
+              ];
+              nprCmdline = "npiperelay.exe ${nprArgs} //./pipe/openssh-ssh-agent";
 
-            wslSide = "UNIX-LISTEN:%h/.1password/agent.sock,fork,umask=007";
-            windowsSide = "EXEC:${nprCmdline},nofork"; # avoid escaping
-          in
+              wslSide = "UNIX-LISTEN:%h/.1password/agent.sock,fork,umask=007";
+              windowsSide = "EXEC:${nprCmdline},nofork"; # avoid escaping
+            in
             "${pkgs.socat}/bin/socat '${wslSide}' '${windowsSide}'";
         };
       };
