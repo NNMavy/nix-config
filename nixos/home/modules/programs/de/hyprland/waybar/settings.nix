@@ -92,6 +92,7 @@
         interval = 5;
         states = {
           warning = 20;
+          crit = 10;
         };
         format-time = "{H}h{M}m";
         tooltip = true;

@@ -31,6 +31,7 @@ with config;
     nil
     nixpkgs-fmt
     statix
+    nvfetcher
     nvd
     nix-output-monitor
     gh

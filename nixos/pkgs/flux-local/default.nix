@@ -1,15 +1,9 @@
-{ pkgs, lib, stdenv, buildPythonPackage, pythonOlder, fetchPypi }:
-
-buildPythonPackage rec {
-  pname = "flux_local";
-  version = "5.3.1";
-
-  src = fetchPypi {
-    inherit pname version;
-    sha256 = "2d45abf1eebe6d79756c73cb60a182c4928f4b3c14818e91bac3fb38047ba252";
-  };
-
-  disabled = pythonOlder "3.10";
+{ source, pkgs, lib, stdenv, python3Packages, fetchPypi }:
+let
+  inherit (python3Packages) buildPythonApplication;
+in
+buildPythonApplication rec {
+  inherit (source) pname version src;
 
   propagatedBuildInputs = [
     (with pkgs.python3Packages; [

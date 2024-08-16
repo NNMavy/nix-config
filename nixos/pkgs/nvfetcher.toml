@@ -1,0 +1,82 @@
+# apps
+[omni]
+src.github = "siderolabs/omni"
+fetch.github = "siderolabs/omni"
+
+[flux-local]
+src.pypi = "flux-local"
+fetch.pypi = "flux_local"
+
+[cockpit-podman]
+src.git = "https://github.com/cockpit-project/cockpit-podman"
+fetch.github = "cockpit-project/cockpit-podman"
+
+[npiperelay]
+src.github = "jstarks/npiperelay"
+fetch.github = "jstarks/npiperelay"
+
+# klipper
+[moonraker]
+src.git = "https://github.com/Arksine/moonraker"
+fetch.github = "Arksine/moonraker"
+
+[klipper]
+src.git = "https://github.com/Klipper3d/klipper"
+fetch.github = "Klipper3d/klipper"
+
+[danger-klipper]
+src.git = "https://github.com/DangerKlippers/danger-klipper"
+fetch.github = "DangerKlippers/danger-klipper"
+
+[experimental-danger-klipper]
+src.git = "https://github.com/DangerKlippers/danger-klipper"
+src.branch = "bleeding-edge-v2"
+fetch.github = "DangerKlippers/danger-klipper"
+
+[katapult]
+src.git = "https://github.com/Arksine/katapult"
+fetch.github = "Arksine/katapult"
+
+[mobileraker-companion]
+src.git = "https://github.com/Clon1998/mobileraker_companion"
+fetch.github = "Clon1998/mobileraker_companion"
+
+[klipper-screen]
+src.git = "https://github.com/jordanruthe/KlipperScreen"
+fetch.github = "jordanruthe/KlipperScreen"
+
+# klipper-screen dependency
+[python-networkmanager]
+src.pypi = "python-networkmanager"
+fetch.pypi = "python-networkmanager"
+
+# mainsail
+[mainsail]
+src.git = "https://github.com/mainsail-crew/mainsail"
+src.branch = "develop"
+fetch.github = "mainsail-crew/mainsail"
+
+# Klipper plugins
+[klipper-happy-hare]
+src.git = "https://github.com/moggieuk/Happy-Hare"
+fetch.github = "moggieuk/Happy-Hare"
+
+[klipper-gcode_shell_command]
+src.git = "https://github.com/dw-0/kiauh"
+fetch.github = "dw-0/kiauh"
+
+[klipper-klippain-shaketune]
+src.git = "https://github.com/Frix-x/klippain-shaketune"
+fetch.github = "Frix-x/klippain-shaketune"
+
+[klipper_tmc_autotune]
+src.git = "https://github.com/andrewmcgr/klipper_tmc_autotune"
+fetch.github = "andrewmcgr/klipper_tmc_autotune"
+
+[klipper-chopper-resonance-tuner]
+src.git = "https://github.com/MRX8024/chopper-resonance-tuner"
+fetch.github = "MRX8024/chopper-resonance-tuner"
+
+[klipper-beacon]
+src.git = "https://github.com/beacon3d/beacon_klipper"
+fetch.github = "beacon3d/beacon_klipper"

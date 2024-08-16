@@ -44,6 +44,7 @@ in
     services = {
       printing.enable = true;
       fprintd.enable = true;
+      upower.enable = true;
 
       # Sound stuff
       pipewire = {

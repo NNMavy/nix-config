@@ -5,8 +5,12 @@
     # Nixpkgs and unstable
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-
+    # Nixos WSL
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
+
+    # Disko
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
 
     # impermanence
     # https://github.com/nix-community/impermanence
@@ -110,7 +114,8 @@
     } @ inputs:
 
     let
-      inherit (self) outputs;
+      inherit (self) outputs pkgs;
+
       forAllSystems = nixpkgs.lib.genAttrs [
         "aarch64-linux"
         "x86_64-linux"
@@ -236,6 +241,34 @@
                 home-manager.users.mavy = ./nixos/home/mavy/workstation.nix;
                 home-manager.users.rkoens = ./nixos/home/rkoens/workstation.nix;
               }
+            ];
+          };
+
+          "highjump" = mkNixosConfig {
+            # NIXOS Jumphost
+            hostname = "highjump";
+            system = "aarch64-linux";
+            hardwareModules = [
+              ./nixos/profiles/hw-cloud-aarch64.nix
+              inputs.disko.nixosModules.disko
+            ];
+            profileModules = [
+              ./nixos/profiles/role-server.nix
+              { home-manager.users.mavy = ./nixos/home/mavy/server.nix; }
+            ];
+          };
+
+          "voron24" = mkNixosConfig {
+            # Rpi for Voron 2.4
+            hostname = "voron24";
+            system = "aarch64-linux";
+            hardwareModules = [
+              ./nixos/profiles/hw-rpi4.nix
+              inputs.nixos-hardware.nixosModules.raspberry-pi-4
+            ];
+            profileModules = [
+              ./nixos/profiles/role-klipper.nix
+              { home-manager.users.mavy = ./nixos/home/mavy/server.nix; }
             ];
           };
 

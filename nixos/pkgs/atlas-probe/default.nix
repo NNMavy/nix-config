@@ -1,21 +1,13 @@
-{ lib
+{ source
+, lib
 , pkgs
 , fetchFromGitHub
 , ...
 }:
 pkgs.stdenv.mkDerivation rec {
-  pname = "ripe-atlas-software-probe";
-  version = "5090";
+  inherit (source) pname version src vendorSha256;
 
   hardeningDisable = [ "all" ];
-
-  src = fetchFromGitHub {
-    owner = "RIPE-NCC";
-    repo = pname;
-    rev = version;
-    hash = "sha256-s1aLjbaMbTVSy14w7uZAKU/kizLbl4fFFKUmpud0sNk=";
-    fetchSubmodules = true;
-  };
 
   buildInputs = [
     pkgs.autoconf

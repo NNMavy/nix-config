@@ -80,7 +80,7 @@ with config;
         yubioath-flutter
         yubikey-manager-qt
         flameshot
-        flake.multiviewer-for-f1
+        multiviewer-for-f1
         vlc
 
         # cli

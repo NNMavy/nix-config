@@ -1,6 +1,7 @@
 ---
 keys:
   - &bumblebee age18s9qyam9udt3ryjqpyfxsh925a9eaxf4du60cpgkjv4g8l089efsj72pja
+  - &highjump age1p86zj78cpcxhvu3u0uxgxr3wzzlntt5s4hl5z4ag7jrlqz528ayqx7yd8f
   - &mavy age1g6p9753ng4g6d4qqjzttdzvrx2klhguj7wp9t0y84s9s88zs6pss4z33uq
   - &mavy-wsl age103waa2xysflght90yj6pzgf9gc6r8j2gtnnlzn7637t93wa0gp9s5cu4lm
   - &optimus age1wtvw075wkmpu7yae3frj2vtjerkw92eqmvhhv0xmk3ak9cpl5eysq9f0u4
@@ -10,6 +11,7 @@ creation_rules:
     key_groups:
       - age:
           - *bumblebee
+          - *highjump
           - *mavy
           - *mavy-wsl
           - *optimus

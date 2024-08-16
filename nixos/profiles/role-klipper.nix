@@ -1,28 +1,19 @@
 { config, lib, pkgs, imports, boot, self, ... }:
-# Role for headless servers
+# Role for 3d printers
 # covers raspi's, sbc, NUC etc, anything
 # that is headless and minimal for running services
 
 with lib;
 {
 
-
   config = {
-
-
     # Enable monitoring for remote scraping
     mySystem.services.monitoring.enable = true;
     mySystem.services.rebootRequiredCheck.enable = true;
     mySystem.security.wheelNeedsSudoPassword = false;
-    mySystem.services.cockpit.enable = false;
     mySystem.system.motd.enable = true;
-    mySystem.services.gatus.monitors = [{
-      name = config.networking.hostName;
-      group = "servers";
-      url = "icmp://${config.networking.hostName}.${config.mySystem.internalDomain}";
-      interval = "1m";
-      conditions = [ "[CONNECTED] == true" ];
-    }];
+    mySystem.system.resticBackup.local.enable = false;
+    mySystem.system.resticBackup.remote.enable = false;
 
     nix.settings = {
       # TODO factor out into mySystem
@@ -45,7 +36,6 @@ with lib;
 
     sound.enable = false;
     hardware.pulseaudio.enable = false;
-
 
     services.udisks2.enable = mkDefault false;
   };

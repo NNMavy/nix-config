@@ -1,14 +1,15 @@
 { inputs
 , ...
 }:
+let
+  custom = import ../pkgs;
+in
 {
-  additions = final: prev: {
-    flake = import ../pkgs {
-      inherit inputs;
-      pkgs = prev;
-    };
-  };
 
+  # Custom packages
+  additions = custom.overlay;
+
+  # nur overlay
   nur = inputs.nur.overlay;
 
   # The unstable nixpkgs set (declared in the flake inputs) will

@@ -1,0 +1,372 @@
+{
+    "cockpit-podman": {
+        "cargoLocks": null,
+        "date": "2024-08-16",
+        "extract": null,
+        "name": "cockpit-podman",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "cockpit-project",
+            "repo": "cockpit-podman",
+            "rev": "d9630a0ec59a939f58aad4979c048dea931961c4",
+            "sha256": "sha256-dtm9Uo4eHm7/HTqU7M7eJM53/NaXOZYcc77D54eqJBs=",
+            "type": "github"
+        },
+        "version": "d9630a0ec59a939f58aad4979c048dea931961c4"
+    },
+    "danger-klipper": {
+        "cargoLocks": null,
+        "date": "2024-08-14",
+        "extract": null,
+        "name": "danger-klipper",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "DangerKlippers",
+            "repo": "danger-klipper",
+            "rev": "9648ee15763cffa7fc0b9e4b2929d48608e322da",
+            "sha256": "sha256-wr5Yh6RciRT0q0y+Oh3VPuqtGcekbk3hzkm3vEL1bOc=",
+            "type": "github"
+        },
+        "version": "9648ee15763cffa7fc0b9e4b2929d48608e322da"
+    },
+    "experimental-danger-klipper": {
+        "cargoLocks": null,
+        "date": "2024-07-01",
+        "extract": null,
+        "name": "experimental-danger-klipper",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "DangerKlippers",
+            "repo": "danger-klipper",
+            "rev": "10002c97f87ed19dc80d05dd6dfd917c88ff535f",
+            "sha256": "sha256-zXtuodlHSjnxvKnP2gypMNmNPSay3DzQSS6s7rVssqs=",
+            "type": "github"
+        },
+        "version": "10002c97f87ed19dc80d05dd6dfd917c88ff535f"
+    },
+    "flux-local": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "flux-local",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-nIrxrQxU+0pjfWge7gH6f00KCkkOdtT0rS0j+dDGhwk=",
+            "type": "url",
+            "url": "https://pypi.org/packages/source/f/flux_local/flux_local-5.5.1.tar.gz"
+        },
+        "version": "5.5.1"
+    },
+    "katapult": {
+        "cargoLocks": null,
+        "date": "2024-08-08",
+        "extract": null,
+        "name": "katapult",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "Arksine",
+            "repo": "katapult",
+            "rev": "562fc2fafb1b24b614f196a9ad36d041fcaeafb1",
+            "sha256": "sha256-Q5KQZmqGoRKE1UW0e7jSEoKpp8+CXVZ9XE488gtMvpg=",
+            "type": "github"
+        },
+        "version": "562fc2fafb1b24b614f196a9ad36d041fcaeafb1"
+    },
+    "klipper": {
+        "cargoLocks": null,
+        "date": "2024-08-14",
+        "extract": null,
+        "name": "klipper",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "Klipper3d",
+            "repo": "klipper",
+            "rev": "d81eb557d7f2aad5e22e3633fbcd53a4d60ac5d1",
+            "sha256": "sha256-O6W2xiG5rZzD/40ytIFo4HovKq0ml0oCV6amcAQhoUs=",
+            "type": "github"
+        },
+        "version": "d81eb557d7f2aad5e22e3633fbcd53a4d60ac5d1"
+    },
+    "klipper-beacon": {
+        "cargoLocks": null,
+        "date": "2024-07-11",
+        "extract": null,
+        "name": "klipper-beacon",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "beacon3d",
+            "repo": "beacon_klipper",
+            "rev": "730836d40f1bf02b6f1bf08649dcaacca9aee900",
+            "sha256": "sha256-64oL+yA/bPIiLFFW1Xg0Rpgy+S78d0sVcsOwhX1++Xg=",
+            "type": "github"
+        },
+        "version": "730836d40f1bf02b6f1bf08649dcaacca9aee900"
+    },
+    "klipper-chopper-resonance-tuner": {
+        "cargoLocks": null,
+        "date": "2024-08-12",
+        "extract": null,
+        "name": "klipper-chopper-resonance-tuner",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "MRX8024",
+            "repo": "chopper-resonance-tuner",
+            "rev": "34a01a46130af8dbdb9270e1fdc7c0b92fb87721",
+            "sha256": "sha256-y/9955vbRXrQRikrITakhFKOOhQu1QDwQNiUPYjXaYk=",
+            "type": "github"
+        },
+        "version": "34a01a46130af8dbdb9270e1fdc7c0b92fb87721"
+    },
+    "klipper-gcode_shell_command": {
+        "cargoLocks": null,
+        "date": "2024-08-06",
+        "extract": null,
+        "name": "klipper-gcode_shell_command",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "dw-0",
+            "repo": "kiauh",
+            "rev": "854794298679cc6cb187465df7e3e38b5eb0e8c7",
+            "sha256": "sha256-47K9Hdx8c3gRwWdCt+vU16ciOWHHHLb83xsFpMIRACQ=",
+            "type": "github"
+        },
+        "version": "854794298679cc6cb187465df7e3e38b5eb0e8c7"
+    },
+    "klipper-happy-hare": {
+        "cargoLocks": null,
+        "date": "2024-08-16",
+        "extract": null,
+        "name": "klipper-happy-hare",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "moggieuk",
+            "repo": "Happy-Hare",
+            "rev": "62c6416d51a562a595dbe56dcab4f943411cfca6",
+            "sha256": "sha256-ea1zTiziyRXTgQ2rq2l+hMLg7/Eq7FOm8WjAzL4ECLE=",
+            "type": "github"
+        },
+        "version": "62c6416d51a562a595dbe56dcab4f943411cfca6"
+    },
+    "klipper-klippain-shaketune": {
+        "cargoLocks": null,
+        "date": "2024-07-01",
+        "extract": null,
+        "name": "klipper-klippain-shaketune",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "Frix-x",
+            "repo": "klippain-shaketune",
+            "rev": "66f5e32e4c8930afab278fcd898b47c227cc464c",
+            "sha256": "sha256-qFW1BUeysVisDK2iP75vuTJa0nh8JatvZPp74HKPr74=",
+            "type": "github"
+        },
+        "version": "66f5e32e4c8930afab278fcd898b47c227cc464c"
+    },
+    "klipper-screen": {
+        "cargoLocks": null,
+        "date": "2024-08-06",
+        "extract": null,
+        "name": "klipper-screen",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "jordanruthe",
+            "repo": "KlipperScreen",
+            "rev": "8e91576470e5905cfdfd14d1d641ad854643a414",
+            "sha256": "sha256-BCSfnUb7YZ9/U/aHZrnsOA3DVi2xCpEtKMk3AqUSGsQ=",
+            "type": "github"
+        },
+        "version": "8e91576470e5905cfdfd14d1d641ad854643a414"
+    },
+    "klipper_tmc_autotune": {
+        "cargoLocks": null,
+        "date": "2024-05-22",
+        "extract": null,
+        "name": "klipper_tmc_autotune",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "andrewmcgr",
+            "repo": "klipper_tmc_autotune",
+            "rev": "6224b7791b537c69ac6dd21e9363ebdb6c1348de",
+            "sha256": "sha256-9IheggyvEUO7N05RF/OuElwQzvzrvc2P9ETfeuNmA9k=",
+            "type": "github"
+        },
+        "version": "6224b7791b537c69ac6dd21e9363ebdb6c1348de"
+    },
+    "mainsail": {
+        "cargoLocks": null,
+        "date": "2024-08-07",
+        "extract": null,
+        "name": "mainsail",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "mainsail-crew",
+            "repo": "mainsail",
+            "rev": "85d898a01722f4c503b7552a4c76505d731131f1",
+            "sha256": "sha256-/yCBAto0ZLVy/O09CHkR+k/CMEJMxUp2r3SiI7paSfY=",
+            "type": "github"
+        },
+        "version": "85d898a01722f4c503b7552a4c76505d731131f1"
+    },
+    "mobileraker-companion": {
+        "cargoLocks": null,
+        "date": "2024-08-03",
+        "extract": null,
+        "name": "mobileraker-companion",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "Clon1998",
+            "repo": "mobileraker_companion",
+            "rev": "ff0d7d70145550796890b1240721d01b1cb561cf",
+            "sha256": "sha256-KooZyoWx9ShmEiPLCZcbGbujnxBlM8OFNjgm1cj2H78=",
+            "type": "github"
+        },
+        "version": "ff0d7d70145550796890b1240721d01b1cb561cf"
+    },
+    "moonraker": {
+        "cargoLocks": null,
+        "date": "2024-08-11",
+        "extract": null,
+        "name": "moonraker",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "Arksine",
+            "repo": "moonraker",
+            "rev": "f735c0419444848b59342a98ad3532eef123ea46",
+            "sha256": "sha256-ch3vkB7+E+lLE9uJtrsNoJZrW9WkcsJdYskgAmFyufY=",
+            "type": "github"
+        },
+        "version": "f735c0419444848b59342a98ad3532eef123ea46"
+    },
+    "npiperelay": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "npiperelay",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "jstarks",
+            "repo": "npiperelay",
+            "rev": "v0.1.0",
+            "sha256": "sha256-cg4aZmpTysc8m1euxIO2XPv8OMnBk1DwhFcuIFHF/1o=",
+            "type": "github"
+        },
+        "version": "v0.1.0"
+    },
+    "omni": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "omni",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "siderolabs",
+            "repo": "omni",
+            "rev": "v0.40.2",
+            "sha256": "sha256-gmQmTbDHXYTyH0Tyka0NUOBFsCvQ6GevUb7GVmmY8UU=",
+            "type": "github"
+        },
+        "version": "v0.40.2"
+    },
+    "python-networkmanager": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "python-networkmanager",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-3m65IdlKunVJ9CjtKzqkgqXVQ+y2lly6oPu1VasxudU=",
+            "type": "url",
+            "url": "https://pypi.org/packages/source/p/python-networkmanager/python-networkmanager-2.2.tar.gz"
+        },
+        "version": "2.2"
+    }
+}

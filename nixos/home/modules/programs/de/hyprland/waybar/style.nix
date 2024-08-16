@@ -90,6 +90,15 @@ in
           padding-left: 9px;
           padding-right: 9px;
       }
+      #battery.critical:not(.charging) {
+        background-color:           @peach;
+        color:                      @red;
+        animation-name:             blink;
+        animation-duration:         0.5s;
+        animation-timing-function:  linear;
+        animation-iteration-count:  infinite;
+        animation-direction:        alternate;
+      }
       #network {
           padding-left: 9px;
           padding-right: 15px;
