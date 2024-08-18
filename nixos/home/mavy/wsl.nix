@@ -38,7 +38,6 @@ with config;
       starship.enable = true;
       fish.enable = true;
       utilities.enable = true;
-      wezterm.enable = true;
 
       git = {
         enable = true;
