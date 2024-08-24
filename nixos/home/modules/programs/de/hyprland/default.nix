@@ -19,6 +19,20 @@ in
   ];
 
   config = lib.mkIf osConfig.mySystem.de.hyprland.enable {
+    xdg.portal = {
+      enable = true;
+      config = {
+        hyprland = {
+          default = [ "gtk" "hyprland" ];
+        };
+      };
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-hyprland
+      ];
+      xdgOpenUsePortal = true;
+    };
+
     wayland.windowManager.hyprland = {
       enable = true;
       xwayland = {
@@ -31,6 +45,7 @@ in
         env = [
           "BROWSER,firefox"
           "NIXOS_OZONE_WL, 1"
+          "NIXOS_XDG_OPEN_USE_PORTAL, 1"
           "NIXPKGS_ALLOW_UNFREE, 1"
           "XDG_CURRENT_DESKTOP, Hyprland"
           "XDG_SESSION_TYPE, wayland"
@@ -44,6 +59,7 @@ in
           "QT_AUTO_SCREEN_SCALE_FACTOR, 1"
           "SDL_VIDEODRIVER, wayland"
           "MOZ_ENABLE_WAYLAND, 1"
+          "GTK_USE_PORTAL, 1"
         ];
 
         exec-once = [
@@ -52,15 +68,17 @@ in
           "${pkgs.kwallet-pam}/libexec/pam_kwallet_init"
           "kwalletd5"
           "systemctl --user import-environment"
+          "hyprctl setcursor Catppuccin-Macchiato-Dark-Cursors 22 &"
           "hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd --all"
           "wl-clip-persist --clipboard both"
           "hypridle"
           "nm-applet &"
-          "hyprctl setcursor Catppuccin-Macchiato-Dark-Cursors 22 &"
           "poweralertd &"
           "waybar &"
           "wl-paste --watch cliphist store &"
           "iio-hyprland eDP-1"
+          "systemctl --user import-environment"
+          "systemctl --user restart xdg-desktop-portal.service"
         ];
 
         input = {
