@@ -33,6 +33,44 @@ in
       xdgOpenUsePortal = true;
     };
 
+    # Enable kanshi to manage monitor layout
+    services.kanshi = {
+      enable = true;
+      systemdTarget = "hyprland-session.target";
+
+      profiles = {
+        undocked = {
+          outputs = [
+            {
+              criteria = "eDP-1";
+              scale = 1.566667;
+              status = "enable";
+            }
+          ];
+        };
+
+        home_office = {
+          outputs = [
+            {
+              criteria = "Dell Inc. DELL U3425WE 7BJC3Z3";
+              position = "0,0";
+              mode = "3440x1440@60.00Hz";
+            }
+            {
+              criteria = "Dell Inc. DELL S2721DGF F7RBP83";
+              position = "3440,0";
+              mode = "2560x1440@60.00Hz";
+              transform = "90";
+            }
+            {
+              criteria = "eDP-1";
+              status = "disable";
+            }
+          ];
+        };
+      };
+    };
+
     wayland.windowManager.hyprland = {
       enable = true;
       xwayland = {
@@ -197,6 +235,7 @@ in
           "${super}, L, exec, hyprlock; 1password --lock"
           "${super}_SHIFT, S, exec, fish -c screenshot_to_clipboard"
           "CONTROL_SHIFT, space, exec, 1password --quick-access"
+          "CONTROL_SHIFT, MINUS, exec, ddcutil -n 7BJC3Z3 setvcp 60 0x0f" # KVM control home monitor
 
           # switch focus
           "${super}, left, movefocus, l"
