@@ -57,6 +57,7 @@ with config;
       drives = [ "/dev/disk/by-id/*" ];
     };
     pulseaudio.enable = false;
+    i2c.enable = true;
   };
 
   programs.gnupg.agent = {
@@ -98,6 +99,7 @@ with config;
     nvd
     nix-output-monitor
     gh
+    ddcutil
 
     bind # for dns utils like named-checkconf
     inputs.nix-inspect.packages.${pkgs.system}.default
