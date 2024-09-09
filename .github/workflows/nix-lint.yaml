@@ -39,7 +39,7 @@ jobs:
       - name: Nix Flake Checker
         # You may pin to the exact commit or the version.
         # uses: DeterminateSystems/flake-checker-action@4b90f9fc724969ff153fe1803460917c84fe00a3
-        uses: DeterminateSystems/flake-checker-action@ae43dea95bc73541287cfd10e2dee994d1877291 # v8
+        uses: DeterminateSystems/flake-checker-action@078f5f7f47ee188aa6cb472527ca5984e195222d # v9
 
       - name: Commit
         uses: stefanzweifel/git-auto-commit-action@8621497c8c39c72f3e2a999a26b4ca1b5058a842 # v5
