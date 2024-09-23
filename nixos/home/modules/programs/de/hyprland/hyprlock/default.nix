@@ -15,7 +15,7 @@ in
     programs.hyprlock = {
       enable = true;
       settings = {
-        source = "${config.catppuccin.sources.hyprland}/themes/${config.catppuccin.flavor}.conf";
+        #source = "${config.catppuccin.sources.hyprland}/themes/${config.catppuccin.flavor}.conf";
 
 
         # GENERAL
