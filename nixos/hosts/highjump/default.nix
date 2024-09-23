@@ -25,14 +25,18 @@
       security.wireguard.enable = true;
     };
 
-    boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "xen_blkfront" ];
-    boot.initrd.kernelModules = [ "nvme" "virtio_gpu" ];
-    boot.kernelModules = [ ];
-    boot.extraModulePackages = [ ];
+    boot = {
+      initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "xen_blkfront" ];
+      initrd.kernelModules = [ "nvme" "virtio_gpu" ];
+      kernelModules = [ ];
+      extraModulePackages = [ ];
+    };
 
-    networking.hostName = "highjump"; # Define your hostname.
-    networking.hostId = "f63eac7f";
-    networking.useDHCP = lib.mkForce false;
+    networking = {
+      hostName = "highjump"; # Define your hostname.
+      hostId = "f63eac7f";
+      useDHCP = lib.mkForce false;
+    };
 
 
     networking = {
@@ -59,31 +63,33 @@
       };
     };
 
-    fileSystems."/" =
-      {
-        device = "rpool/local/root";
-        fsType = "zfs";
-      };
+    fileSystems = {
+      "/" =
+        {
+          device = "rpool/local/root";
+          fsType = "zfs";
+        };
 
-    fileSystems."/nix" =
-      {
-        device = "rpool/local/nix";
-        fsType = "zfs";
-      };
+      "/nix" =
+        {
+          device = "rpool/local/nix";
+          fsType = "zfs";
+        };
 
-    fileSystems."/persist" =
-      {
-        device = "rpool/safe/persist";
-        fsType = "zfs";
-        neededForBoot = true; # for impermanence
-      };
+      "/persist" =
+        {
+          device = "rpool/safe/persist";
+          fsType = "zfs";
+          neededForBoot = true; # for impermanence
+        };
 
-    fileSystems."/boot" =
-      {
-        device = "/dev/disk/by-partlabel/disk-disk1-ESP";
-        fsType = "vfat";
-        options = [ "fmask=0022" "dmask=0022" ];
-      };
+      "/boot" =
+        {
+          device = "/dev/disk/by-partlabel/disk-disk1-ESP";
+          fsType = "vfat";
+          options = [ "fmask=0022" "dmask=0022" ];
+        };
+    };
 
     swapDevices = [ ];
 

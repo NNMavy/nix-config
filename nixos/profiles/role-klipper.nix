@@ -8,12 +8,16 @@ with lib;
 
   config = {
     # Enable monitoring for remote scraping
-    mySystem.services.monitoring.enable = true;
-    mySystem.services.rebootRequiredCheck.enable = true;
-    mySystem.security.wheelNeedsSudoPassword = false;
-    mySystem.system.motd.enable = true;
-    mySystem.system.resticBackup.local.enable = false;
-    mySystem.system.resticBackup.remote.enable = false;
+    mySystem = {
+      services.monitoring.enable = true;
+      services.rebootRequiredCheck.enable = true;
+      security.wheelNeedsSudoPassword = false;
+      system = {
+        motd.enable = true;
+        resticBackup.local.enable = false;
+        resticBackup.remote.enable = false;
+      };
+    };
 
     nix.settings = {
       # TODO factor out into mySystem

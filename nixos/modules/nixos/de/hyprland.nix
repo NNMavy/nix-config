@@ -67,9 +67,11 @@ in
       };
     };
 
-    security.pam.services.greetd.enableGnomeKeyring = true;
-    security.pam.services.greetd.enableKwallet = true;
-    security.pam.services.kwallet.enableKwallet = true;
+    security.pam.services = {
+      greetd.enableGnomeKeyring = true;
+      greetd.enableKwallet = true;
+      kwallet.enableKwallet = true;
+    };
 
     # Fonts
     fonts = {

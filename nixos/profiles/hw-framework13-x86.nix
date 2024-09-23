@@ -28,16 +28,18 @@ with lib;
     };
   };
 
-  # Mis-detected by nixos-generate-config
-  # https://github.com/NixOS/nixpkgs/issues/171093
-  # https://wiki.archlinux.org/title/Framework_Laptop#Changing_the_brightness_of_the_monitor_does_not_work
-  hardware.acpilight.enable = true;
+  hardware = {
+    # Mis-detected by nixos-generate-config
+    # https://github.com/NixOS/nixpkgs/issues/171093
+    # https://wiki.archlinux.org/title/Framework_Laptop#Changing_the_brightness_of_the_monitor_does_not_work
+    acpilight.enable = true;
 
-  # Needed for desktop environments to detect/manage display brightness
-  hardware.sensor.iio.enable = true;
+    # Needed for desktop environments to detect/manage display brightness
+    sensor.iio.enable = true;
 
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+    bluetooth.enable = true; # enables support for Bluetooth
+    bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 

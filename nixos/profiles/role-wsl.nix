@@ -18,8 +18,10 @@ with config;
 
     shell.fish.enable = true;
 
-    system.resticBackup.local.enable = false;
-    system.resticBackup.remote.enable = false;
-    system.systemd.telegram-alerts.enable = false;
+    system = {
+      resticBackup.local.enable = false;
+      resticBackup.remote.enable = false;
+      systemd.telegram-alerts.enable = false;
+    };
   };
 }
