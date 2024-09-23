@@ -38,19 +38,20 @@ in
       enable = true;
       systemdTarget = "hyprland-session.target";
 
-      profiles = {
-        undocked = {
-          outputs = [
+      settings = [
+        {
+          profile.name = "undocked";
+          profile.outputs = [
             {
               criteria = "eDP-1";
               scale = 1.566667;
               status = "enable";
             }
           ];
-        };
-
-        home_office = {
-          outputs = [
+        }
+        {
+          profile.name = "home_office";
+          profile.outputs = [
             {
               criteria = "Dell Inc. DELL U3425WE 7BJC3Z3";
               position = "0,0";
@@ -67,8 +68,8 @@ in
               status = "disable";
             }
           ];
-        };
-      };
+        }
+      ];
     };
 
     wayland.windowManager.hyprland = {

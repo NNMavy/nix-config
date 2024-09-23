@@ -11,25 +11,25 @@
 
   ];
 
-  mySystem.services = {
+  mySystem = {
+    services = {
+      openssh.enable = true;
+      klipper = {
+        enable = true;
+        klipper-config = ./configs/printer.cfg;
+      };
+    };
 
-    openssh.enable = true;
-    klipper = {
+    # no mutable state I care about
+    system.resticBackup =
+      {
+        local.enable = false;
+        remote.enable = false;
+      };
+    system.autoUpgrade = {
       enable = true;
-      klipper-config = ./configs/printer.cfg;
     };
   };
-
-  # no mutable state I care about
-  mySystem.system.resticBackup =
-    {
-      local.enable = false;
-      remote.enable = false;
-    };
-  mySystem.system.autoUpgrade = {
-    enable = true;
-  };
-
 
   networking.hostName = "voron24"; # Define your hostname.
   networking.useDHCP = lib.mkDefault true;

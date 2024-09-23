@@ -39,12 +39,14 @@ in
       networking.firewall.interfaces.podman0.allowedUDPPorts = [ 53 ];
 
       # extra user for containers
-      users.users.kah = {
-        uid = 568;
-        group = "kah";
+      users = {
+        users.kah = {
+          uid = 568;
+          group = "kah";
+        };
+        groups.kah = { };
+        users.mavy.extraGroups = [ "kah" ];
       };
-      users.groups.kah = { };
-      users.users.mavy.extraGroups = [ "kah" ];
     };
 
 }

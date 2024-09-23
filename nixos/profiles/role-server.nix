@@ -11,18 +11,22 @@ with lib;
 
 
     # Enable monitoring for remote scraping
-    mySystem.services.monitoring.enable = true;
-    mySystem.services.rebootRequiredCheck.enable = true;
-    mySystem.security.wheelNeedsSudoPassword = false;
-    mySystem.services.cockpit.enable = false;
-    mySystem.system.motd.enable = true;
-    mySystem.services.gatus.monitors = [{
-      name = config.networking.hostName;
-      group = "servers";
-      url = "icmp://${config.networking.hostName}.${config.mySystem.internalDomain}";
-      interval = "1m";
-      conditions = [ "[CONNECTED] == true" ];
-    }];
+    mySystem = {
+      system.motd.enable = true;
+      security.wheelNeedsSudoPassword = false;
+      services = {
+        monitoring.enable = true;
+        rebootRequiredCheck.enable = true;
+        cockpit.enable = false;
+        gatus.monitors = [{
+          name = config.networking.hostName;
+          group = "servers";
+          url = "icmp://${config.networking.hostName}.${config.mySystem.internalDomain}";
+          interval = "1m";
+          conditions = [ "[CONNECTED] == true" ];
+        }];
+      };
+    };
 
     nix.settings = {
       # TODO factor out into mySystem

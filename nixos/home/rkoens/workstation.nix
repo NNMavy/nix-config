@@ -73,20 +73,20 @@ with config;
     };
   };
 
-  home.file.".ssh/jumbo-key.pub".text = ''
-    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILNcxEQPS3HMkDgPwVUTuO5cP0Nv5Ua8jV3exudERtLK
-  '';
-
-  home.file.".config/1Password/ssh/agent.toml".text = ''
-    [[ssh-keys]]
-    vault = "Jumbo"
-  '';
-
-  home.sessionVariables = {
-    SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
-  };
-
   home = {
+    file.".ssh/jumbo-key.pub".text = ''
+      ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILNcxEQPS3HMkDgPwVUTuO5cP0Nv5Ua8jV3exudERtLK
+    '';
+
+    file.".config/1Password/ssh/agent.toml".text = ''
+      [[ssh-keys]]
+      vault = "Jumbo"
+    '';
+
+    sessionVariables = {
+      SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
+    };
+
     # Install these packages for my user
     packages = with pkgs;
       [
