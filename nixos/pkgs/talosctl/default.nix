@@ -1,8 +1,8 @@
-{
-  lib,
-  unstable,
-  fetchFromGitHub,
-  installShellFiles,
+{ lib
+, unstable
+, fetchFromGitHub
+, installShellFiles
+,
 }:
 unstable.buildGoModule rec {
   pname = "talosctl";
