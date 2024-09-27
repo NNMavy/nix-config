@@ -15,6 +15,10 @@ fetch.github = "cockpit-project/cockpit-podman"
 src.github = "jstarks/npiperelay"
 fetch.github = "jstarks/npiperelay"
 
+[talosctl]
+src.github = "siderolabs/talos"
+fetch.github = "siderolabs/talos"
+
 # klipper
 [moonraker]
 src.git = "https://github.com/Arksine/moonraker"

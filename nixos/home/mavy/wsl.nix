@@ -65,7 +65,7 @@ with config;
         ripgrep
 
         brightnessctl
-        go
+        pkgs.unstable.go
 
         cue
         goss
