@@ -226,6 +226,21 @@
             ];
           };
 
+
+          "allspark" = mkNixosConfig {
+            # Old Laptop
+            hostname = "allspark";
+            system = "x86_64-linux";
+            hardwareModules = [
+              ./nixos/profiles/hw-huawei-x86.nix
+            ];
+            profileModules = [
+              ./nixos/profiles/role-workstation.nix
+              ./nixos/profiles/role-dev.nix
+              { home-manager.users.mavy = ./nixos/home/mavy/workstation.nix; }
+            ];
+          };
+
           "optimus" = mkNixosConfig {
             # Framework
             hostname = "optimus";
