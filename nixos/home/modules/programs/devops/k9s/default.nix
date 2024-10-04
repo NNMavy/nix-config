@@ -49,7 +49,7 @@ in
           skipLatestRevCheck = false;
           disablePodCounting = false;
           shellPod = {
-            image = "busybox:1.36.1";
+            image = "busybox:1.37.0";
             namespace = "default";
             limits = {
               cpu = "100m";
