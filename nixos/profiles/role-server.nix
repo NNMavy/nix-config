@@ -22,6 +22,10 @@ with lib;
           name = config.networking.hostName;
           group = "servers";
           url = "icmp://${config.networking.hostName}.${config.mySystem.internalDomain}";
+          ui = {
+            hide-hostname = true;
+            hide-url = true;
+          };
           interval = "1m";
           conditions = [ "[CONNECTED] == true" ];
         }];

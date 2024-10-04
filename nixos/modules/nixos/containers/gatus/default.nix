@@ -22,6 +22,10 @@ let
       group = "servers";
       url = "icmp://pikvm.${config.mySystem.internalDomain}";
       interval = "1m";
+      ui = {
+        hide-hostname = true;
+        hide-url = true;
+      };
       alerts = [{ type = "telegram"; }];
       conditions = [ "[CONNECTED] == true" ];
     }
@@ -30,6 +34,10 @@ let
       group = "servers";
       url = "icmp://nas.${config.mySystem.internalDomain}";
       interval = "1m";
+      ui = {
+        hide-hostname = true;
+        hide-url = true;
+      };
       alerts = [{ type = "telegram"; }];
       conditions = [ "[CONNECTED] == true" ];
     }
@@ -39,6 +47,10 @@ let
       group = "infrastructure";
       url = "icmp://unifi.${config.mySystem.internalDomain}";
       interval = "1m";
+      ui = {
+        hide-hostname = true;
+        hide-url = true;
+      };
       alerts = [{ type = "telegram"; }];
       conditions = [ "[CONNECTED] == true" ];
     }
@@ -51,6 +63,10 @@ let
         query-type = "A";
       };
       interval = "1m";
+      ui = {
+        hide-hostname = true;
+        hide-url = true;
+      };
       alerts = [{ type = "telegram"; }];
       conditions = [ "[DNS_RCODE] == NOERROR" ];
     }
@@ -63,6 +79,10 @@ let
         query-type = "A";
       };
       interval = "1m";
+      ui = {
+        hide-hostname = true;
+        hide-url = true;
+      };
       alerts = [{ type = "telegram"; }];
       conditions = [ "[DNS_RCODE] == NOERROR" ];
     }
@@ -75,6 +95,10 @@ let
         query-type = "A";
       };
       interval = "1m";
+      ui = {
+        hide-hostname = true;
+        hide-url = true;
+      };
       alerts = [{ type = "telegram"; }];
       conditions = [ "[DNS_RCODE] == NOERROR" ];
     }
@@ -87,6 +111,10 @@ let
         query-type = "A";
       };
       interval = "1m";
+      ui = {
+        hide-hostname = true;
+        hide-url = true;
+      };
       alerts = [{ type = "telegram"; }];
       conditions = [ "[DNS_RCODE] == NOERROR" ];
     }
