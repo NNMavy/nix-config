@@ -46,9 +46,9 @@ with lib;
         RandomizedDelaySec = "3h";
       };
       pruneOpts = [
-        "--keep-daily 7"
-        "--keep-weekly 5"
-        "--keep-monthly 12"
+        "--keep-daily 2"
+        "--keep-weekly 1"
+        "--keep-monthly 1"
       ];
       initialize = true;
       backupPrepareCommand = ''
