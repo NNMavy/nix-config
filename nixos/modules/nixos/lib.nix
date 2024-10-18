@@ -60,7 +60,7 @@ with lib;
     in
     {
       # local backup
-      "${options.app}-local" = {
+      "${options.app}-local" = mkIf config.mySystem.system.resticBackup.local.enable {
         inherit pruneOpts timerConfig initialize backupPrepareCommand;
         # Move the path to the zfs snapshot path
         paths = map (x: "${config.mySystem.system.resticBackup.mountPath}/${x}") options.paths;
@@ -71,7 +71,7 @@ with lib;
       };
 
       # remote backup
-      "${options.app}-remote" = {
+      "${options.app}-remote" = mkIf config.mySystem.system.resticBackup.remote.enable {
         inherit pruneOpts timerConfig initialize backupPrepareCommand;
         # Move the path to the zfs snapshot path
         paths = map (x: "${config.mySystem.system.resticBackup.mountPath}/${x}") options.paths;
