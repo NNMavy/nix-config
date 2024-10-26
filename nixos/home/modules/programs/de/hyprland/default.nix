@@ -44,7 +44,7 @@ in
           profile.outputs = [
             {
               criteria = "eDP-1";
-              scale = 1.566667;
+              scale = 1.25;
               status = "enable";
             }
           ];
@@ -346,7 +346,7 @@ in
         ];
 
         monitor = [
-          "eDP-1,2256x1504@60.00,0x0,1.566667"
+          "eDP-1,1920x1080@60.00,0x0,1.25"
         ];
 
       };
