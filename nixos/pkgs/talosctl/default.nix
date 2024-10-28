@@ -7,7 +7,7 @@
 unstable.buildGoModule rec {
   pname = "talosctl";
   # renovate: datasource=github-releases depName=siderolabs/talos
-  version = "1.8.1";
+  version = "1.8.2";
 
   src = fetchFromGitHub {
     owner = "siderolabs";
