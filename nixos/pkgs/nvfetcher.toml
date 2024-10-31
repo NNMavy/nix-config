@@ -19,6 +19,11 @@ fetch.github = "jstarks/npiperelay"
 src.github = "siderolabs/talos"
 fetch.github = "siderolabs/talos"
 
+[mqtt-explorer]
+src.github = "thomasnordquist/MQTT-Explorer"
+fetch.github = "thomasnordquist/MQTT-Explorer"
+include_prereleases = "true"
+
 # klipper
 [moonraker]
 src.git = "https://github.com/Arksine/moonraker"

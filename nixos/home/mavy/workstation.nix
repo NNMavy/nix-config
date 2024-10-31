@@ -80,6 +80,7 @@ with config;
         yubikey-manager-qt
         flameshot
         multiviewer-for-f1
+        mqttui
         vlc
 
         # cli

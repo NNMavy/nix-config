@@ -7,6 +7,7 @@ with config;
 
   mySystem = {
 
+    de.cosmic.enable = true;
     de.hyprland.enable = true;
     devops.talos.enable = true;
     editor.vscodium.enable = true;
