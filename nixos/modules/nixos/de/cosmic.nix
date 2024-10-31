@@ -37,6 +37,7 @@ in
         COSMIC_DATA_CONTROL_ENABLED = 1;
       };
       systemPackages = with pkgs; [
+        cosmic-idle
         cosmic-ext-applet-clipboard-manager
         cosmic-ext-applet-emoji-selector
         cosmic-ext-calculator
