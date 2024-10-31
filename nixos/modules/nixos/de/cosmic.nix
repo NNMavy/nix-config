@@ -38,6 +38,7 @@ in
       };
       systemPackages = with pkgs; [
         cosmic-idle
+        xdg-desktop-portal-cosmic
         cosmic-ext-applet-clipboard-manager
         cosmic-ext-applet-emoji-selector
         cosmic-ext-calculator

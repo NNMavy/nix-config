@@ -105,6 +105,20 @@
         flake-compat.follows = "flake-compat";
       };
     };
+
+    # # Non-flakes
+    # catppuccin-cosmic = {
+    #   url = "github:catppuccin/cosmic-desktop";
+    #   flake = false;
+    # };
+    # catppuccin-gitui = {
+    #   url = "github:catppuccin/gitui";
+    #   flake = false;
+    # };
+    # catppuccin-refind = {
+    #   url = "github:catppuccin/refind";
+    #   flake = false;
+    # };
   };
   outputs =
     { self
