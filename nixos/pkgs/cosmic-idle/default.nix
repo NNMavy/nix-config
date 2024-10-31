@@ -1,17 +1,17 @@
-{
-  source,
-  lib,
-  stdenv,
-  fetchFromGitHub,
-  rustPlatform,
-  makeBinaryWrapper,
-  cosmic-icons,
-  just,
-  pkg-config,
-  glib,
-  libxkbcommon,
-  wayland,
-  xorg,
+{ source
+, lib
+, stdenv
+, fetchFromGitHub
+, rustPlatform
+, makeBinaryWrapper
+, cosmic-icons
+, just
+, pkg-config
+, glib
+, libxkbcommon
+, wayland
+, xorg
+,
 }:
 rustPlatform.buildRustPackage rec {
   inherit (source) pname version src;
@@ -27,8 +27,8 @@ rustPlatform.buildRustPackage rec {
     substituteInPlace justfile --replace '#!/usr/bin/env' "#!$(command -v env)"
   '';
 
-  nativeBuildInputs = [just pkg-config makeBinaryWrapper];
-  buildInputs = [glib libxkbcommon wayland];
+  nativeBuildInputs = [ just pkg-config makeBinaryWrapper ];
+  buildInputs = [ glib libxkbcommon wayland ];
 
   dontUseJustBuild = true;
 
@@ -52,7 +52,7 @@ rustPlatform.buildRustPackage rec {
     homepage = "https://github.com/pop-os/cosmic-idle";
     description = "File Manager for the COSMIC Desktop Environment";
     license = licenses.gpl3Only;
-    maintainers = with maintainers; [ahoneybun nyabinary];
+    maintainers = with maintainers; [ ahoneybun nyabinary ];
     platforms = platforms.linux;
   };
 }
