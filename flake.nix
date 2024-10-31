@@ -7,17 +7,23 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # Nixos WSL
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
-
-    # Disko
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
-
     # impermanence
     # https://github.com/nix-community/impermanence
     impermanence.url = "github:nix-community/impermanence";
-
     # nur
     nur.url = "github:nix-community/NUR";
+
+    # Disko
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Cosmic
+    nixos-cosmic = {
+      inputs.nixpkgs.follows = "nixpkgs"; # NOTE: change "nixpkgs" to "nixpkgs-stable" to use stable NixOS release
+      url = "github:lilyinstarlight/nixos-cosmic";
+    };
 
     # hyprland
     hyprland = {
@@ -99,11 +105,26 @@
         flake-compat.follows = "flake-compat";
       };
     };
+
+    # # Non-flakes
+    # catppuccin-cosmic = {
+    #   url = "github:catppuccin/cosmic-desktop";
+    #   flake = false;
+    # };
+    # catppuccin-gitui = {
+    #   url = "github:catppuccin/gitui";
+    #   flake = false;
+    # };
+    # catppuccin-refind = {
+    #   url = "github:catppuccin/refind";
+    #   flake = false;
+    # };
   };
   outputs =
     { self
     , nixpkgs
     , nixos-wsl
+    , nixos-cosmic
     , hyprland
     , catppuccin
     , sops-nix
@@ -157,6 +178,7 @@
               # here we import all the modules and setup home-manager
             , baseModules ? [
                 sops-nix.nixosModules.sops
+                nixos-cosmic.nixosModules.default
                 catppuccin.nixosModules.catppuccin
                 home-manager.nixosModules.home-manager
                 impermanence.nixosModules.impermanence
