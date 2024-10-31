@@ -21,10 +21,49 @@ in
       displayManager = {
         cosmic-greeter.enable = true;
       };
+      gnome.gnome-keyring.enable = true;
 
       # Conventient services
       printing.enable = true;
       fprintd.enable = true;
+    };
+
+    security.pam.services.login.enableGnomeKeyring = true;
+
+    # extra pkgs and extensions
+    environment = {
+      sessionVariables = {
+        NIXOS_OZONE_WL = "1";
+        COSMIC_DATA_CONTROL_ENABLED = 1;
+      };
+      systemPackages = with pkgs; [
+        cosmic-ext-applet-clipboard-manager
+        cosmic-ext-applet-emoji-selector
+        cosmic-ext-calculator
+        cosmic-ext-examine
+        cosmic-ext-forecast
+        cosmic-ext-tasks
+        cosmic-ext-tweaks
+        cosmic-player
+        cosmic-reader
+        chronos
+        quick-webapps
+        stellarshot
+      ];
+    };
+
+    # And dconf
+    programs.dconf.enable = true;
+
+    # Fonts
+    fonts = {
+      packages = with pkgs; [
+        noto-fonts
+        noto-fonts-cjk
+        noto-fonts-emoji
+        nerd-font-patcher
+        (nerdfonts.override { fonts = [ "FiraCode" ]; })
+      ];
     };
   };
 }
