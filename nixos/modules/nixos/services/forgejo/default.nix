@@ -156,6 +156,10 @@ in
         group = "${category}";
         url = "https://${url}";
         interval = "1m";
+        ui = {
+          hide-hostname = true;
+          hide-url = true;
+        };
         conditions = [ "[CONNECTED] == true" "[STATUS] == 200" "[RESPONSE_TIME] < 50" ];
       }
     ];
