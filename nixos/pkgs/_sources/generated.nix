@@ -38,10 +38,10 @@
   };
   flux-local = {
     pname = "flux-local";
-    version = "6.0.0";
+    version = "6.0.1";
     src = fetchurl {
-      url = "https://pypi.org/packages/source/f/flux_local/flux_local-6.0.0.tar.gz";
-      sha256 = "sha256-hQ30DRyoinrUtF1jkLBDEC2gYkAFDQEV73PB1Vihpy4=";
+      url = "https://pypi.org/packages/source/f/flux_local/flux_local-6.0.1.tar.gz";
+      sha256 = "sha256-rACAgO52U8u6R1Ufr7BGhQCrDEDfGshC9hIxwzEUYMI=";
     };
   };
   mqtt-explorer = {

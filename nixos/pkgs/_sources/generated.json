@@ -60,11 +60,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-hQ30DRyoinrUtF1jkLBDEC2gYkAFDQEV73PB1Vihpy4=",
+            "sha256": "sha256-rACAgO52U8u6R1Ufr7BGhQCrDEDfGshC9hIxwzEUYMI=",
             "type": "url",
-            "url": "https://pypi.org/packages/source/f/flux_local/flux_local-6.0.0.tar.gz"
+            "url": "https://pypi.org/packages/source/f/flux_local/flux_local-6.0.1.tar.gz"
         },
-        "version": "6.0.0"
+        "version": "6.0.1"
     },
     "mqtt-explorer": {
         "cargoLocks": null,
