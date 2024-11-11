@@ -2,9 +2,11 @@
 
 with lib;
 {
-  boot = {
+  imports = [
+    inputs.nixos-hardware.nixosModules.raspberry-pi-4
+  ];
 
-    initrd.availableKernelModules = [ "xhci_pci" "usb_storage" ];
+  boot = {
     initrd.kernelModules = [ ];
     kernelModules = [ ];
     extraModulePackages = [ ];
@@ -14,7 +16,6 @@ with lib;
       grub.enable = false;
       # Enables the generation of /boot/extlinux/extlinux.conf
       generic-extlinux-compatible.enable = true;
-      timeout = 2;
     };
   };
 
@@ -26,6 +27,4 @@ with lib;
     libraspberrypi
     raspberrypi-eeprom
   ];
-
-
 }
