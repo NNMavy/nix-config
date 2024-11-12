@@ -100,7 +100,7 @@ in
 
     (mkIf cfg.enable {
       home-manager.users.mavy.home.sessionVariables = {
-        SSH_AUTH_SOCK = "~/.1password/agent.sock";
+        SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
       };
     })
   ];

@@ -11,6 +11,7 @@
   config = {
     mySystem = {
       services.openssh.enable = true;
+      services.gps.enable = false;
       security.wheelNeedsSudoPassword = false;
     };
 
@@ -25,6 +26,7 @@
     };
 
     networking.hostName = "mavy-wsl"; # Define your hostname.
+    networking.timeServers = [ "172.16.20.12" ];
 
     fileSystems = {
       "/mnt/wsl" = {

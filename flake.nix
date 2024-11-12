@@ -248,7 +248,6 @@
             ];
           };
 
-
           "allspark" = mkNixosConfig {
             # Old Laptop
             hostname = "allspark";
@@ -273,10 +272,8 @@
             profileModules = [
               ./nixos/profiles/role-workstation.nix
               ./nixos/profiles/role-dev.nix
-              ./nixos/profiles/role-office.nix
               {
                 home-manager.users.mavy = ./nixos/home/mavy/workstation.nix;
-                home-manager.users.rkoens = ./nixos/home/rkoens/workstation.nix;
               }
             ];
           };
@@ -295,50 +292,72 @@
             ];
           };
 
-          "voron24" = mkNixosConfig {
-            # Rpi for Voron 2.4
-            hostname = "voron24";
+          "ntpns01" = mkNixosConfig {
+            # Rpi for DNS and GPSNTP
+
+            hostname = "ntpns01";
             system = "aarch64-linux";
             hardwareModules = [
               ./nixos/profiles/hw-rpi4.nix
               inputs.nixos-hardware.nixosModules.raspberry-pi-4
             ];
             profileModules = [
-              ./nixos/profiles/role-klipper.nix
+              ./nixos/profiles/role-server.nix
               { home-manager.users.mavy = ./nixos/home/mavy/server.nix; }
+
             ];
           };
 
+          "ntpns02" = mkNixosConfig {
+            # Rpi for DNS and GPSNTP
+
+            hostname = "ntpns02";
+            system = "aarch64-linux";
+            hardwareModules = [
+              ./nixos/profiles/hw-rpi4.nix
+              inputs.nixos-hardware.nixosModules.raspberry-pi-4
+            ];
+            profileModules = [
+              ./nixos/profiles/role-server.nix
+              { home-manager.users.mavy = ./nixos/home/mavy/server.nix; }
+
+            ];
+          };
+
+          # "voron24" = mkNixosConfig {
+          #   # Rpi for Voron 2.4
+          #   hostname = "voron24";
+          #   system = "aarch64-linux";
+          #   hardwareModules = [
+          #     ./nixos/profiles/hw-rpi4.nix
+          #     inputs.nixos-hardware.nixosModules.raspberry-pi-4
+          #   ];
+          #   profileModules = [
+          #     ./nixos/profiles/role-klipper.nix
+          #     { home-manager.users.mavy = ./nixos/home/mavy/server.nix; }
+          #   ];
+          # };
+
         };
 
+      # nix build .#images.rpi4
+      rpi4 = nixpkgs.lib.nixosSystem {
+        #inherit inputs nixpkgs;
 
+        modules = [
+          sops-nix.nixosModules.sops
+          home-manager.nixosModules.home-manager
+          impermanence.nixosModules.impermanence
 
-
-      # # nix build .#images.rpi4
-      # rpi4 = nixpkgs.lib.nixosSystem {
-      #   inherit specialArgs;
-
-      #   modules = defaultModules ++ [
-      #     "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-      #     ./nixos/hosts/images/sd-image
-      #   ];
-      # };
-      # # nix build .#images.iso
-      # iso = nixpkgs.lib.nixosSystem {
-      #   inherit specialArgs;
-
-      #   modules = defaultModules ++ [
-      #     "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-      #     "${nixpkgs}/nixos/modules/installer/cd-dvd/iso-image.nix"
-      #     ./nixos/hosts/images/cd-dvd
-      #   ];
-      # };
+          "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+          ./nixos/hosts/images/sd-image
+        ];
+      };
 
       # simple shortcut to allow for easier referencing of correct
       # key for building images
       # > nix build .#images.rpi4
-      # images.rpi4 = nixosConfigurations.rpi4.config.system.build.sdImage;
-      # images.iso = nixosConfigurations.iso.config.system.build.isoImage;
+      images.rpi4 = rpi4.config.system.build.sdImage;
 
       # Convenience output that aggregates the outputs for home, nixos.
       # Also used in ci to build targets generally.

@@ -6,6 +6,7 @@ keys:
   - &mavy-wsl age103waa2xysflght90yj6pzgf9gc6r8j2gtnnlzn7637t93wa0gp9s5cu4lm
   - &optimus age1wtvw075wkmpu7yae3frj2vtjerkw92eqmvhhv0xmk3ak9cpl5eysq9f0u4
   - &allspark age1sah6je06ds9mxkjvym2phm95etw2wdx4v7nrx223narsrx5dwvaskmkcls
+  - &ntpns01 age16jp5gqjctq67phsddl4m3g9g32kvjupyxkx5jgmcfazw7hw0w9kqwkzpnk
 
 creation_rules:
   - path_regex: .*\.sops\.yaml$
@@ -17,3 +18,4 @@ creation_rules:
           - *mavy-wsl
           - *optimus
           - *allspark
+          - *ntpns01

@@ -2,19 +2,25 @@
 
 with lib;
 {
-  boot = {
+  imports = [
+    inputs.nixos-hardware.nixosModules.raspberry-pi-4
+  ];
 
-    initrd.availableKernelModules = [ "xhci_pci" "usb_storage" ];
+  boot = {
     initrd.kernelModules = [ ];
     kernelModules = [ ];
     extraModulePackages = [ ];
+
+    kernelParams = [
+      "8250.nr_uarts=1"
+      "console=tty1"
+    ];
 
     loader = {
       # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
       grub.enable = false;
       # Enables the generation of /boot/extlinux/extlinux.conf
       generic-extlinux-compatible.enable = true;
-      timeout = 2;
     };
   };
 
@@ -26,6 +32,4 @@ with lib;
     libraspberrypi
     raspberrypi-eeprom
   ];
-
-
 }
