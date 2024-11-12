@@ -9,7 +9,7 @@ let
       CONFIG_SILENT_CONSOLE=y
       CONFIG_SYS_DEVICE_NULLDEV=y
     '';
-    extraPatches = [./u-boot-no-uart.patch];
+    extraPatches = [ ./u-boot-no-uart.patch ];
   };
 
   configTxt = pkgs.writeText "config.txt" ''
@@ -47,7 +47,8 @@ let
     # when attempting to show low-voltage or overtemperature warnings.
     avoid_warnings=1
   '';
-in {
+in
+{
   config = {
     systemd.services.ignore_boot_interrupts = {
       enable = true;
@@ -85,19 +86,21 @@ in {
     boot.loader.timeout = lib.mkForce 0;
 
 
-    system.activationScripts.updateFirmwarePartition.text = let
-      firmware = pkgs.runCommandLocal "firmware" {} ''
-        mkdir $out
-        ln -s ${configTxt} $out/config.txt
-        ln -s ${pkgs.raspberrypi-armstubs}/armstub8-gic.bin $out/
-        ln -s ${pkgs.raspberrypifw}/share/raspberrypi/boot/{bootcode.bin,fixup*.dat,start*.elf,bcm2711-*.dtb} $out/
-        ln -s ${pkgs.ubootRaspberryPi3_64bit.override ubootOverrides}/u-boot.bin $out/u-boot-rpi3.bin
-        ln -s ${pkgs.ubootRaspberryPi4_64bit.override ubootOverrides}/u-boot.bin $out/u-boot-rpi4.bin
+    system.activationScripts.updateFirmwarePartition.text =
+      let
+        firmware = pkgs.runCommandLocal "firmware" { } ''
+          mkdir $out
+          ln -s ${configTxt} $out/config.txt
+          ln -s ${pkgs.raspberrypi-armstubs}/armstub8-gic.bin $out/
+          ln -s ${pkgs.raspberrypifw}/share/raspberrypi/boot/{bootcode.bin,fixup*.dat,start*.elf,bcm2711-*.dtb} $out/
+          ln -s ${pkgs.ubootRaspberryPi3_64bit.override ubootOverrides}/u-boot.bin $out/u-boot-rpi3.bin
+          ln -s ${pkgs.ubootRaspberryPi4_64bit.override ubootOverrides}/u-boot.bin $out/u-boot-rpi4.bin
+        '';
+      in
+      ''
+        ${pkgs.rsync}/bin/rsync \
+          --recursive --copy-links --times --checksum --delete \
+          ${firmware}/ /boot/firmware/
       '';
-    in ''
-      ${pkgs.rsync}/bin/rsync \
-        --recursive --copy-links --times --checksum --delete \
-        ${firmware}/ /boot/firmware/
-    '';
   };
 }

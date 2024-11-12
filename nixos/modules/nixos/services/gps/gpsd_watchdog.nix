@@ -1,8 +1,9 @@
-{config, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 with lib;
 let
   cfg = config.mySystem.services.gps;
-in {
+in
+{
   config = mkIf cfg.gpsd_watchdog.enable {
     systemd.services.gpsd_watchdog = {
       enable = true;

@@ -6,7 +6,8 @@
 with lib;
 let
   cfg = config.mySystem.services.gps;
-in {
+in
+{
 
   config = mkIf cfg.enable {
     boot.kernelModules = [

@@ -6,7 +6,7 @@
 with lib;
 let
   cfg = config.mySystem.services.chrony;
-  gps = config.mySystem.services.gps;
+  inherit (config.mySystem.services) gps;
 
   app = "chrony";
   port = 123;

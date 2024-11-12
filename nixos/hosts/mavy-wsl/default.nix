@@ -26,7 +26,7 @@
     };
 
     networking.hostName = "mavy-wsl"; # Define your hostname.
-    networking.timeServers = ["172.16.20.12"];
+    networking.timeServers = [ "172.16.20.12" ];
 
     fileSystems = {
       "/mnt/wsl" = {

@@ -18,7 +18,7 @@
     gps = {
       enable = true;
     };
-    chrony =  {
+    chrony = {
       enable = true;
     };
   };
