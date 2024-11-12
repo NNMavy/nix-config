@@ -50,7 +50,28 @@
   };
 
   networking.hostName = "ntpns01"; # Define your hostname.
-  networking.useDHCP = lib.mkDefault true;
+  networking.useDHCP = false;
+
+  networking = {
+    interfaces = {
+      end0 = {
+        ipv4.addresses = [{
+          address = "172.16.20.11";
+          prefixLength = 24;
+        }];
+        ipv6.addresses = [{
+          address = "2a02:a472:e8b3:20::11";
+          prefixLength = 64;
+        }];
+      };
+    };
+    defaultGateway = "172.16.20.254";
+    defaultGateway6 = {
+      address = "fe80::1";
+      interface = "end0";
+    };
+    nameservers = [ "2a02:a472:e8b3:20::11" "2a02:a472:e8b3:20::12" "172.16.20.11" "172.16.20.12" ];
+  };
 
   fileSystems = {
     "/" = {
