@@ -13,8 +13,8 @@ let
   chronyPort = 323;
 
   gpsRefclockConfig = ''
-    refclock PPS ${gps.pps.path} refid ${gps.pps.refid} prefer lock ${gps.pps.lock}
-    refclock SHM 0 refid ${gps.serial.refid} ${if gps.serial.offset != null then "offset ${gps.serial.offset} " else ""} noselect
+    refclock PPS /dev/pps0 refid NMEA prefer lock NMEA
+    refclock SHM 0 refid NMEA offset 0.050 noselect
   '';
 in
 {
@@ -83,7 +83,7 @@ in
         lock_all
         rtcsync
 
-        ${if gps.enable then gpsRefclockConfig else ""}
+        ${gpsRefclockConfig}
 
         ${concatMapStrings
          (x: "server ${x} iburst\n")
@@ -96,7 +96,7 @@ in
     };
 
     networking.firewall = mkIf cfg.openFirewall {
-      allowedUDPPorts = [ 123 323 ];
+      allowedUDPPorts = [ port ];
     };
 
     # mySystem.services.gatus.monitors = [

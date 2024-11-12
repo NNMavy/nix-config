@@ -6,6 +6,9 @@
 , pkgs
 , ...
 }: {
+  imports = [
+    ../modules/nixos/hardware/u-boot/ignore_boot_interrupts.nix
+  ];
 
   mySystem.services = {
 

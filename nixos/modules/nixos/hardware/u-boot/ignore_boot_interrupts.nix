@@ -1,8 +1,6 @@
 { config, pkgs, lib, ... }:
 with lib;
 let
-  cfg = config.mySystem.services.gps;
-
   ubootOverrides = {
     extraConfig = ''
       CONFIG_BOARD_EARLY_INIT_F=y
@@ -49,17 +47,8 @@ let
     # when attempting to show low-voltage or overtemperature warnings.
     avoid_warnings=1
   '';
-
-  firmware = pkgs.runCommandLocal "firmware" {} ''
-    mkdir $out
-    ln -s ${configTxt} $out/config.txt
-    ln -s ${pkgs.raspberrypi-armstubs}/armstub8-gic.bin $out/
-    ln -s ${pkgs.raspberrypifw}/share/raspberrypi/boot/{bootcode.bin,fixup*.dat,start*.elf,bcm2711-*.dtb} $out/
-    ln -s ${pkgs.ubootRaspberryPi3_64bit.override ubootOverrides}/u-boot.bin $out/u-boot-rpi3.bin
-    ln -s ${pkgs.ubootRaspberryPi4_64bit.override ubootOverrides}/u-boot.bin $out/u-boot-rpi4.bin
-  '';
 in {
-  config = mkIf cfg.ignore_boot_interrupts {
+  config = {
     systemd.services.ignore_boot_interrupts = {
       enable = true;
       wantedBy = [ "multi-user.target" "sysinit-reactivation.target" "sysinit.target" "basic.target" ];
@@ -95,7 +84,17 @@ in {
 
     boot.loader.timeout = lib.mkForce 0;
 
-    system.activationScripts.updateFirmwarePartition.text = ''
+
+    system.activationScripts.updateFirmwarePartition.text = let
+      firmware = pkgs.runCommandLocal "firmware" {} ''
+        mkdir $out
+        ln -s ${configTxt} $out/config.txt
+        ln -s ${pkgs.raspberrypi-armstubs}/armstub8-gic.bin $out/
+        ln -s ${pkgs.raspberrypifw}/share/raspberrypi/boot/{bootcode.bin,fixup*.dat,start*.elf,bcm2711-*.dtb} $out/
+        ln -s ${pkgs.ubootRaspberryPi3_64bit.override ubootOverrides}/u-boot.bin $out/u-boot-rpi3.bin
+        ln -s ${pkgs.ubootRaspberryPi4_64bit.override ubootOverrides}/u-boot.bin $out/u-boot-rpi4.bin
+      '';
+    in ''
       ${pkgs.rsync}/bin/rsync \
         --recursive --copy-links --times --checksum --delete \
         ${firmware}/ /boot/firmware/
