@@ -10,10 +10,11 @@ let
 
   app = "chrony";
   port = 123;
+  chronyPort = 323;
 
   gpsRefclockConfig = ''
-    refclock PPS ${gps.pps.path} refid ${gps.pps.refid} trust lock ${gps.pps.lock}
-    refclock SHM 0 refid ${gps.serial.refid} ${if gps.serial.offset != null then "offset ${gps.serial.offset} " else ""}trust noselect
+    refclock PPS ${gps.pps.path} refid ${gps.pps.refid} prefer lock ${gps.pps.lock}
+    refclock SHM 0 refid ${gps.serial.refid} ${if gps.serial.offset != null then "offset ${gps.serial.offset} " else ""} noselect
   '';
 in
 {
@@ -69,26 +70,24 @@ in
 
   config = mkIf cfg.enable {
     services.chrony = {
+      package = pkgs.unstable.chrony;
       enable = true;
+      enableRTCTrimming = false;
       servers = [
       ];
       extraFlags = [
         "-d"
       ];
       extraConfig = ''
+        allow
+        lock_all
+        rtcsync
+
         ${if gps.enable then gpsRefclockConfig else ""}
 
         ${concatMapStrings
-         (x: "server ${x} iburst ${if gps.enable then "noselect" else ""}\n")
+         (x: "server ${x} iburst\n")
          cfg.servers}
-
-        ${concatMapStrings
-          (x: "allow ${x}\n")
-          (map
-            (addr: "${addr.address}/${toString addr.prefixLength}")
-            (cfg.allowedIPv6Ranges ++ cfg.allowedIPv4Ranges)
-          )
-        }
       '';
     };
 
@@ -97,8 +96,7 @@ in
     };
 
     networking.firewall = mkIf cfg.openFirewall {
-      allowedTCPPorts = [ port ];
-      allowedUDPPorts = [ port ];
+      allowedUDPPorts = [ 123 323 ];
     };
 
     # mySystem.services.gatus.monitors = [

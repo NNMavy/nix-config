@@ -11,6 +11,11 @@ with lib;
     kernelModules = [ ];
     extraModulePackages = [ ];
 
+    kernelParams = [
+      "8250.nr_uarts=1"
+      "console=tty1"
+    ];
+
     loader = {
       # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
       grub.enable = false;

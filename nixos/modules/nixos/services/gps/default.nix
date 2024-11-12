@@ -214,7 +214,7 @@ in {
       nowait = true;
       readonly = false;
       listenany = false;
-      debugLevel = 3;
+      debugLevel = 0;
       devices = [
         cfg.serial.path
         cfg.pps.path

@@ -9,9 +9,6 @@ let
 in {
 
   config = mkIf cfg.enable {
-    hardware.raspberry-pi."4".i2c1.enable = true;
-    hardware.raspberry-pi."4".apply-overlays-dtmerge.enable = true;
-
     boot.kernelModules = [
       "rtc-rv3028"
     ];

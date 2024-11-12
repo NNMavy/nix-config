@@ -15,13 +15,26 @@
     gps = {
       enable = true;
       serial = {
-        path = "/dev/ttyS1";
+        path = "/dev/ttyS0";
+        offset = "0.050";
       };
     };
     chrony =  {
-      enable = false;
+      enable = true;
+      allowedIPv4Ranges = [
+        { address = "127.0.0.1"; prefixLength = 8; }
+        { address = "172.16.20.0"; prefixLength = 24; }
+        { address = "172.16.30.0"; prefixLength = 24; }
+      ];
+      allowedIPv6Ranges = [
+        { address = "fe80::"; prefixLength = 10; }
+        { address = "2a02:a472:e8b3::"; prefixLength = 48; }
+      ];
     };
   };
+
+  hardware.raspberry-pi."4".i2c1.enable = true;
+  hardware.raspberry-pi."4".apply-overlays-dtmerge.enable = true;
 
   # no mutable state I care about
   mySystem.system.resticBackup =
@@ -52,7 +65,7 @@
     defaultGateway = "172.16.20.254";
     defaultGateway6 = {
       address = "fe80::1";
-      interface = "end3";
+      interface = "end0";
     };
     nameservers = [ "2a02:a472:e8b3:20::11" "2a02:a472:e8b3:20::12" "172.16.20.11" "172.16.20.12" ];
   };
