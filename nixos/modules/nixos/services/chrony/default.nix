@@ -24,32 +24,6 @@ in
       default = true;
     };
 
-    allowedIPv6Ranges = mkOption {
-      default = [ { address = "fe80::"; prefixLength = 10; } ];
-      example = [
-        { address = "fe80::"; prefixLength = 10; }
-        { address = "2a02:a472:e8b3::"; prefixLength = 48; }
-      ];
-      description = mdDoc ''
-        The IPv6 Ranges that will be allowed to query our NTP server.
-
-        This will open the firewall and configure the ACL's in chrony.
-      '';
-    };
-
-    allowedIPv4Ranges = mkOption {
-      default = [ { address = "127.0.0.1"; prefixLength = 8; } ];
-      example = [
-        { address = "127.0.0.1"; prefixLength = 8; }
-        { address = "172.16.20.0"; prefixLength = 24; }
-      ];
-      description = mdDoc ''
-        The IPv4 Ranges that will be allowed to query our NTP server.
-
-        This will open the firewall and configure the ACL's in chrony.
-      '';
-    };
-
     servers = mkOption {
       default = [
         "0.nixos.pool.ntp.org"

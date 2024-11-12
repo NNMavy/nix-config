@@ -7,7 +7,7 @@
 , ...
 }: {
   imports = [
-    ../modules/nixos/hardware/u-boot/ignore_boot_interrupts.nix
+    ../../modules/nixos/hardware/u-boot/ignore_boot_interrupts.nix
   ];
 
   mySystem.services = {
@@ -17,22 +17,9 @@
 
     gps = {
       enable = true;
-      serial = {
-        path = "/dev/ttyS0";
-        offset = "0.050";
-      };
     };
     chrony =  {
       enable = true;
-      allowedIPv4Ranges = [
-        { address = "127.0.0.1"; prefixLength = 8; }
-        { address = "172.16.20.0"; prefixLength = 24; }
-        { address = "172.16.30.0"; prefixLength = 24; }
-      ];
-      allowedIPv6Ranges = [
-        { address = "fe80::"; prefixLength = 10; }
-        { address = "2a02:a472:e8b3::"; prefixLength = 48; }
-      ];
     };
   };
 

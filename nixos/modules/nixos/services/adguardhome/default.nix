@@ -119,6 +119,7 @@ in
               { name = "phishing army"; url = "https://phishing.army/download/phishing_army_blocklist_extended.txt"; }
               { name = "notrack malware"; url = "https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-malware.txt"; }
               { name = "EasyPrivacy"; url = "https://v.firebog.net/hosts/Easyprivacy.txt"; }
+              { name = "NNHome Blacklist"; url = "https://forgejo.nnhome.eu/NNHome/dnslists/raw/branch/main/blocklist.txt"; }
             ];
 
             buildList = id: url: {
@@ -138,6 +139,7 @@ in
               { name = "Hagezi Whitelist-UrlShortener"; url = "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/whitelist-urlshortener.txt"; }
               { name = "additional-hosts duckduckgo"; url = "https://raw.githubusercontent.com/DRSDavidSoft/additional-hosts/master/domains/whitelist/duckduckgo.txt"; }
               { name = "AnudeepND Whitelist"; url = "https://raw.githubusercontent.com/anudeepND/whitelist/master/domains/whitelist.txt"; }
+              { name = "NNHome Whitelist"; url = "https://forgejo.nnhome.eu/NNHome/dnslists/raw/branch/main/allowlist.txt"; }
             ];
 
             buildList = id: url: {
