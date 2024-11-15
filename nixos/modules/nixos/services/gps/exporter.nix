@@ -5,14 +5,14 @@
 }:
 with lib;
 let
-  cfg = config.mySystem.services.chrony-exporter;
+  cfg = config.mySystem.services.gpsd-exporter;
 
-  app = "chrony-exporter";
-  port = 9701;
+  app = "gpsd-exporter";
+  port = 9015;
 in
 {
-  options.mySystem.services.chrony-exporter = {
-    enable = mkEnableOption "NTP Exporter";
+  options.mySystem.services.gpsd-exporter = {
+    enable = mkEnableOption "gpsd Exporter";
     openFirewall = mkEnableOption "Open firewall for ${app}" // {
       default = false;
     };
@@ -21,17 +21,17 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = [ pkgs.chrony-exporter ];
 
-    systemd.services.chrony-exporter = {
-      description = "chrony exporter of Prometheus metrics";
-      wants = [ "chronyd.service" ];
-      after = [ "chronyd.service" ];
-      path = [ pkgs.chrony ];
+    systemd.services.gpsd-exporter = {
+      description = "gpsd exporter of Prometheus metrics";
+      wants = [ "gpsd.service" ];
+      after = [ "gpsd.service" ];
+      path = [ pkgs.gpsd ];
 
       serviceConfig = {
         ExecStart = "${pkgs.chrony-exporter}/bin/chrony_exporter";
         Restart = "on-failure";
-        User = "chrony";
-        Group = "chrony";
+        User = "gpsd";
+        Group = "gpsd";
       };
 
     };
@@ -40,7 +40,7 @@ in
       prometheusConfig = {
         scrape_configs = [
           {
-            job_name = "chrony";
+            job_name = "gpsd";
             # scrape_timeout = "40s";
             static_configs = [
               {
