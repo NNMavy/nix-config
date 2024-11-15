@@ -54,70 +54,6 @@ let
       alerts = [{ type = "telegram"; }];
       conditions = [ "[CONNECTED] == true" ];
     }
-    {
-      name = "ntpns-pi-01 internal DNS";
-      group = "infrastructure";
-      url = "ntpns-pi-01.${config.mySystem.internalDomain}:53";
-      dns = {
-        query-name = "udm.nnhome.eu";
-        query-type = "A";
-      };
-      interval = "1m";
-      ui = {
-        hide-hostname = true;
-        hide-url = true;
-      };
-      alerts = [{ type = "telegram"; }];
-      conditions = [ "[DNS_RCODE] == NOERROR" ];
-    }
-    {
-      name = "ntpns-pi-02 internal DNS";
-      group = "infrastructure";
-      url = "ntpns-pi-02.${config.mySystem.internalDomain}:53";
-      dns = {
-        query-name = "udm.nnhome.eu";
-        query-type = "A";
-      };
-      interval = "1m";
-      ui = {
-        hide-hostname = true;
-        hide-url = true;
-      };
-      alerts = [{ type = "telegram"; }];
-      conditions = [ "[DNS_RCODE] == NOERROR" ];
-    }
-    {
-      name = "ntpns-pi-01 external DNS";
-      group = "infrastructure";
-      url = "ntpns-pi-01.${config.mySystem.internalDomain}:53";
-      dns = {
-        query-name = "google.nl";
-        query-type = "A";
-      };
-      interval = "1m";
-      ui = {
-        hide-hostname = true;
-        hide-url = true;
-      };
-      alerts = [{ type = "telegram"; }];
-      conditions = [ "[DNS_RCODE] == NOERROR" ];
-    }
-    {
-      name = "ntpns-pi-02 external DNS";
-      group = "infrastructure";
-      url = "ntpns-pi-02.${config.mySystem.internalDomain}:53";
-      dns = {
-        query-name = "google.nl";
-        query-type = "A";
-      };
-      interval = "1m";
-      ui = {
-        hide-hostname = true;
-        hide-url = true;
-      };
-      alerts = [{ type = "telegram"; }];
-      conditions = [ "[DNS_RCODE] == NOERROR" ];
-    }
 
   ] ++ builtins.concatMap (cfg: cfg.config.mySystem.services.gatus.monitors)
     (builtins.attrValues self.nixosConfigurations);
@@ -147,7 +83,6 @@ in
   options.mySystem.services.${app} =
     {
       enable = mkEnableOption "${app}";
-      addToHomepage = mkEnableOption "Add ${app} to homepage" // { default = true; };
       monitors = lib.mkOption {
         type = lib.types.listOf lib.types.attrs;
         description = "Services to add for montoring";
@@ -185,36 +120,21 @@ in
       };
     };
 
-    # services.vmagent = {
-    #   prometheusConfig = {
-    #     scrape_configs = [
-    #       {
-    #         job_name = "gatus";
-    #         # scrape_timeout = "40s";
-    #         static_configs = [
-    #           {
-    #             targets = [ "https://${app}.${config.mySystem.domain}" ];
-    #           }
-    #         ];
-    #       }
-    #     ];
-    #   };
-    # };
-
-
-    # mySystem.services.homepage.infrastructure = mkIf cfg.addToHomepage [
-    #   {
-    #     "Gatus Internal" = {
-    #       icon = "${app}.svg";
-    #       href = "https://${app}.${config.mySystem.domain}";
-    #       description = "Internal Infrastructure Monitoring";
-    #       container = "${app}";
-    #       widget = {
-    #         type = "${app}";
-    #         url = "https://${app}.${config.mySystem.domain}";
-    #       };
-    #     };
-    #   }
-    # ];
+    services.vmagent = {
+      prometheusConfig = {
+        scrape_configs = [
+          {
+            job_name = "gatus";
+            # scrape_timeout = "40s";
+            static_configs = [
+              {
+                targets = [ "https://${app}.${config.mySystem.domain}" ];
+                labels.instance = "${config.networking.hostName}";
+              }
+            ];
+          }
+        ];
+      };
+    };
   };
 }

@@ -110,6 +110,7 @@ in
         filters =
           let
             urls = [
+
               { name = "AdGuard DNS filter"; url = "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt"; }
               { name = "AdAway Default Blocklist"; url = "https://adaway.org/hosts.txt"; }
               { name = "Big OSID"; url = "https://big.oisd.nl"; }
@@ -142,9 +143,9 @@ in
               { name = "NNHome Whitelist"; url = "https://forgejo.nnhome.eu/NNHome/dnslists/raw/branch/main/allowlist.txt"; }
             ];
 
-            buildList = id: url: {
+            buildList = idx: url: {
               enabled = true;
-              inherit id;
+              id = builtins.add idx 1000000;
               inherit (url) name;
               inherit (url) url;
             };
