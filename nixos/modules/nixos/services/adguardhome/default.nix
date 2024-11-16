@@ -135,7 +135,7 @@ in
               inherit (url) url;
             };
           in
-            lib.imap1 buildList urls;
+          lib.imap1 buildList urls;
 
         # filters =
         #   let
