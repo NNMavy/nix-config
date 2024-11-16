@@ -11,6 +11,10 @@ let
   port = 53;
   port_webui = 3000;
   adguardUser = "adguardhome";
+
+  blockListUrl = "https://v.firebog.net/hosts/lists.php?type=tick";
+  blockListraw = builtins.readFile(builtins.fetchurl { url = blockListUrl; });
+  blockLists = lists.init (strings.splitString "\n" blockListraw);
 in
 {
   options.mySystem.services.adguardhome = {
@@ -109,29 +113,14 @@ in
 
         filters =
           let
-            urls = [
-
-              { name = "AdGuard DNS filter"; url = "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt"; }
-              { name = "AdAway Default Blocklist"; url = "https://adaway.org/hosts.txt"; }
-              { name = "Big OSID"; url = "https://big.oisd.nl"; }
-              { name = "1Hosts Lite"; url = "https://o0.pages.dev/Lite/adblock.txt"; }
-              { name = "hagezi multi pro"; url = "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adblock/pro.txt"; }
-              { name = "osint"; url = "https://osint.digitalside.it/Threat-Intel/lists/latestdomains.txt"; }
-              { name = "phishing army"; url = "https://phishing.army/download/phishing_army_blocklist_extended.txt"; }
-              { name = "notrack malware"; url = "https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-malware.txt"; }
-              { name = "EasyPrivacy"; url = "https://v.firebog.net/hosts/Easyprivacy.txt"; }
-              { name = "NNHome Blacklist"; url = "https://forgejo.nnhome.eu/NNHome/dnslists/raw/branch/main/blocklist.txt"; }
-            ];
-
             buildList = id: url: {
               enabled = true;
               inherit id;
-              inherit (url) name;
-              inherit (url) url;
+              name = "List ${builtins.toString id}";
+              inherit url;
             };
           in
-
-          lib.imap1 buildList urls;
+            lib.imap1 buildList blockLists;
 
         whitelist_filters =
           let

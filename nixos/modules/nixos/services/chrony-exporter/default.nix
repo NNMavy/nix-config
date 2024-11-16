@@ -44,7 +44,7 @@ in
             # scrape_timeout = "40s";
             static_configs = [
               {
-                targets = [ "http://127.0.0.1:${cfg.port}" ];
+                targets = [ "http://127.0.0.1:${builtins.toString(port)}" ];
                 labels.instance = "${config.networking.hostName}";
               }
             ];

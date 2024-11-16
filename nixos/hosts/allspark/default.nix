@@ -11,10 +11,15 @@
       security.wheelNeedsSudoPassword = false;
     };
 
-    boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
-    boot.initrd.kernelModules = [ ];
-    boot.kernelModules = [ "kvm-intel" ];
-    boot.extraModulePackages = [ ];
+    boot = {
+      initrd = {
+        availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
+        kernelModules = [ ];
+      };
+      kernelModules = [ "kvm-intel" ];
+      extraModulePackages = [ ];
+      binfmt.emulatedSystems = [ "aarch64-linux" ];
+    };
 
     networking.hostName = "allspark";
 
