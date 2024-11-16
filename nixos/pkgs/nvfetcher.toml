@@ -28,3 +28,8 @@ fetch.github = "siderolabs/talos"
 src.github = "thomasnordquist/MQTT-Explorer"
 fetch.github = "thomasnordquist/MQTT-Explorer"
 include_prereleases = "true"
+
+[chrony-exporter]
+src.git = "https://gitlab.com/richli/chrony_exporter.git"
+fetch.git = "https://gitlab.com/richli/chrony_exporter.git"
+cargo_locks = ["Cargo.lock"]

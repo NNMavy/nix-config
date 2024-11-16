@@ -1,7 +1,31 @@
 {
+    "chrony-exporter": {
+        "cargoLocks": {
+            "Cargo.lock": [
+                "./chrony-exporter-93f9ec5403b6f8bfffa53d72a89bb887c18b6cda/Cargo.lock",
+                {}
+            ]
+        },
+        "date": "2024-11-09",
+        "extract": null,
+        "name": "chrony-exporter",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "93f9ec5403b6f8bfffa53d72a89bb887c18b6cda",
+            "sha256": "sha256-DMImopy+iXWga4DIORKz16bEnp3LRi1Nzfq6RtlXP9o=",
+            "type": "git",
+            "url": "https://gitlab.com/richli/chrony_exporter.git"
+        },
+        "version": "93f9ec5403b6f8bfffa53d72a89bb887c18b6cda"
+    },
     "cockpit-podman": {
         "cargoLocks": null,
-        "date": "2024-10-31",
+        "date": "2024-11-11",
         "extract": null,
         "name": "cockpit-podman",
         "passthru": null,
@@ -13,11 +37,11 @@
             "name": null,
             "owner": "cockpit-project",
             "repo": "cockpit-podman",
-            "rev": "ff56dc3139435484e000838c55ebd50b18a87aa4",
-            "sha256": "sha256-de/5zorV2KFN/nunNXJTB99Hop+D0YMkGUVLQT3Uqw4=",
+            "rev": "fff8f855af1d24a5eced1735c7d4656422c44d08",
+            "sha256": "sha256-1ZlkKgWdHlOuNVP+mtKWCw2mKEeSx0XJGl+bpXFlqHQ=",
             "type": "github"
         },
-        "version": "ff56dc3139435484e000838c55ebd50b18a87aa4"
+        "version": "fff8f855af1d24a5eced1735c7d4656422c44d08"
     },
     "cosmic-idle": {
         "cargoLocks": {
@@ -60,11 +84,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-rACAgO52U8u6R1Ufr7BGhQCrDEDfGshC9hIxwzEUYMI=",
+            "sha256": "sha256-ziNCt83pMz84e0q+PcdR1JgGc8vI9fS2AWo8lHBavGE=",
             "type": "url",
-            "url": "https://pypi.org/packages/source/f/flux_local/flux_local-6.0.1.tar.gz"
+            "url": "https://pypi.org/packages/source/f/flux_local/flux_local-6.0.2.tar.gz"
         },
-        "version": "6.0.1"
+        "version": "6.0.2"
     },
     "mqtt-explorer": {
         "cargoLocks": null,
@@ -120,11 +144,11 @@
             "name": null,
             "owner": "siderolabs",
             "repo": "omni",
-            "rev": "v0.43.3",
-            "sha256": "sha256-meW9S1h74W+lZTYae41P/hQfLnYD+OOh/IPPOTxpJLk=",
+            "rev": "v0.44.0",
+            "sha256": "sha256-vD/Z54CxMGuIKjiyYTx2shXyu0QzJkNIL0U6UEceT5Y=",
             "type": "github"
         },
-        "version": "v0.43.3"
+        "version": "v0.44.0"
     },
     "talosctl": {
         "cargoLocks": null,

@@ -11,6 +11,11 @@ let
   port = 53;
   port_webui = 3000;
   adguardUser = "adguardhome";
+
+  # blockListUrl = "https://v.firebog.net/hosts/lists.php?type=tick";
+  # TODO: This wont work in pure mode due to a lack of sha256?
+  # blockListraw = builtins.readFile(builtins.fetchurl { url = blockListUrl; });
+  # blockLists = lists.init (strings.splitString "\n" blockListraw);
 in
 {
   options.mySystem.services.adguardhome = {
@@ -107,6 +112,7 @@ in
           theme = "auto";
         };
 
+
         filters =
           let
             urls = [
@@ -129,8 +135,18 @@ in
               inherit (url) url;
             };
           in
-
           lib.imap1 buildList urls;
+
+        # filters =
+        #   let
+        #     buildList = id: url: {
+        #       enabled = true;
+        #       inherit id;
+        #       name = "List ${builtins.toString id}";
+        #       inherit url;
+        #     };
+        #   in
+        #     lib.imap1 buildList blockLists;
 
         whitelist_filters =
           let
@@ -142,9 +158,9 @@ in
               { name = "NNHome Whitelist"; url = "https://forgejo.nnhome.eu/NNHome/dnslists/raw/branch/main/allowlist.txt"; }
             ];
 
-            buildList = id: url: {
+            buildList = idx: url: {
               enabled = true;
-              inherit id;
+              id = builtins.add idx 1000000;
               inherit (url) name;
               inherit (url) url;
             };

@@ -2,6 +2,7 @@
   imports = [
     ./adguardhome
     ./chrony
+    ./chrony-exporter
     ./cloudflared
     ./cockpit
     ./forgejo

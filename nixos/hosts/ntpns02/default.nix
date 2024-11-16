@@ -15,12 +15,9 @@
     openssh.enable = true;
     adguardhome.enable = true;
 
-    gps = {
-      enable = true;
-    };
-    chrony = {
-      enable = true;
-    };
+    gps .enable = true;
+    chrony.enable = true;
+    chrony-exporter.enable = true;
   };
 
   hardware.raspberry-pi."4".i2c1.enable = true;

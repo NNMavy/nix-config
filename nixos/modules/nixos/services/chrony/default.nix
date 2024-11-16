@@ -13,7 +13,7 @@ let
   chronyPort = 323;
 
   gpsRefclockConfig = ''
-    refclock PPS /dev/pps0 refid NMEA prefer lock NMEA
+    refclock PPS /dev/pps0 refid PPS prefer lock NMEA
     refclock SHM 0 refid NMEA offset 0.050 noselect
   '';
 in
@@ -73,32 +73,15 @@ in
       allowedUDPPorts = [ port ];
     };
 
-    # mySystem.services.gatus.monitors = [
-    #   {
-    #     name = "${config.networking.hostName} external dns";
-    #     group = "ntp";
-    #     url = "${config.networking.hostName}.${config.mySystem.internalDomain}:${builtins.toString port}";
-    #     dns = {
-    #       query-name = "cloudflare.com";
-    #       query-type = "A";
-    #     };
-    #     interval = "1m";
-    #     alerts = [{ type = "telegram"; }];
-    #     conditions = [ "[DNS_RCODE] == NOERROR" ];
-    #   }
-    #   {
-    #     name = "${config.networking.hostName} internal dns";
-    #     group = "dns";
-    #     url = "${config.networking.hostName}.${config.mySystem.internalDomain}:${builtins.toString port}";
-    #     dns = {
-    #       query-name = "unifi.${config.mySystem.internalDomain}";
-    #       query-type = "A";
-    #     };
-    #     interval = "1m";
-    #     alerts = [{ type = "telegram"; }];
-    #     conditions = [ "[DNS_RCODE] == NOERROR" ];
-    #   }
-    # ];
-
+    mySystem.services.gatus.monitors = [
+      {
+        name = "${config.networking.hostName} NTP ";
+        group = "ntp";
+        url = "udp://${config.networking.hostName}.${config.mySystem.internalDomain}:${builtins.toString port}";
+        interval = "1m";
+        alerts = [{ type = "telegram"; }];
+        conditions = [ "[CONNECTED] == true" ];
+      }
+    ];
   };
 }
