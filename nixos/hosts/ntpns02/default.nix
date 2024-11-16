@@ -32,9 +32,12 @@
       local.enable = false;
       remote.enable = false;
     };
-  mySystem.system.autoUpgrade = {
-    enable = false;
-  };
+
+  mySystem.system.autoUpgrade =
+    {
+      enable = true;
+      dates = "Sun 02:00";
+    };
 
   networking.hostName = "ntpns02"; # Define your hostname.
   networking.useDHCP = false;

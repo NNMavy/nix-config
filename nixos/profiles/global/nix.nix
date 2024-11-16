@@ -16,9 +16,7 @@
     settings.nix-path = lib.mkForce "nixpkgs=/etc/nix/inputs/nixpkgs";
 
     ###
-
     settings = {
-
       # Enable flakes
       experimental-features = [
         "nix-command"

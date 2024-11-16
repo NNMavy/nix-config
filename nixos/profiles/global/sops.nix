@@ -11,9 +11,9 @@ in
   sops.secrets."services/telegram/env" = {
     sopsFile = ./secrets.sops.yaml;
   };
-  # sops.secrets.pushover-user-key = {
-  #   sopsFile = ./secrets.sops.yaml;
-  # };
+  sops.secrets.github-token = {
+    sopsFile = ./secrets.sops.yaml;
+  };
   # sops.secrets.pushover-api-key = {
   #   sopsFile = ./secrets.sops.yaml;
   # };
