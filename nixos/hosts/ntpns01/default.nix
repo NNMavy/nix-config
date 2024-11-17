@@ -10,7 +10,7 @@
     ../../modules/nixos/hardware/u-boot/ignore_boot_interrupts.nix
   ];
 
- mySystem.services = {
+  mySystem.services = {
 
     openssh.enable = true;
     adguardhome.enable = true;
