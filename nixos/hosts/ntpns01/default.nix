@@ -10,17 +10,14 @@
     ../../modules/nixos/hardware/u-boot/ignore_boot_interrupts.nix
   ];
 
-  mySystem.services = {
+ mySystem.services = {
 
     openssh.enable = true;
     adguardhome.enable = true;
 
-    gps = {
-      enable = true;
-    };
-    chrony = {
-      enable = true;
-    };
+    gps .enable = true;
+    chrony.enable = true;
+    chrony-exporter.enable = true;
   };
 
   hardware.raspberry-pi."4".i2c1.enable = true;
@@ -32,9 +29,12 @@
       local.enable = false;
       remote.enable = false;
     };
-  mySystem.system.autoUpgrade = {
-    enable = false;
-  };
+
+  mySystem.system.autoUpgrade =
+    {
+      enable = true;
+      dates = "Wed 06:00";
+    };
 
   networking.hostName = "ntpns01"; # Define your hostname.
   networking.useDHCP = false;

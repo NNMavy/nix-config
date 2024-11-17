@@ -33,7 +33,7 @@
   mySystem.system.autoUpgrade =
     {
       enable = true;
-      dates = "Sun 02:00";
+      dates = "Mon 06:00";
     };
 
   networking.hostName = "ntpns02"; # Define your hostname.
