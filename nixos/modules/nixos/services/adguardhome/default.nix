@@ -100,6 +100,7 @@ in
           # resolving local addresses
           local_ptr_upstreams = [ "172.16.1.254" ]; # UDMP router
           use_private_ptr_resolvers = true;
+          hostsfile_enabled = false;
 
           # security
           enable_dnssec = true;
