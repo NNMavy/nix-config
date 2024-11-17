@@ -23,6 +23,7 @@ in
 
     systemd.services.chrony-exporter = {
       description = "chrony exporter of Prometheus metrics";
+      wantedBy = [ "multi-user.target" ];
       wants = [ "chronyd.service" ];
       after = [ "chronyd.service" ];
       path = [ pkgs.chrony ];
