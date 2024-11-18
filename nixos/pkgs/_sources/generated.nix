@@ -14,7 +14,9 @@
     };
     cargoLock."Cargo.lock" = {
       lockFile = ./chrony-exporter-93f9ec5403b6f8bfffa53d72a89bb887c18b6cda/Cargo.lock;
-      outputHashes = { };
+      outputHashes = {
+
+      };
     };
     date = "2024-11-09";
   };
@@ -104,6 +106,14 @@
       rev = "v0.44.0";
       fetchSubmodules = false;
       sha256 = "sha256-vD/Z54CxMGuIKjiyYTx2shXyu0QzJkNIL0U6UEceT5Y=";
+    };
+  };
+  python-gps = {
+    pname = "python-gps";
+    version = "3.19";
+    src = fetchurl {
+      url = "https://pypi.org/packages/source/g/gps/gps-3.19.tar.gz";
+      sha256 = "sha256-nh0igOSUTdtGzxl3KydohI25G/g2OtinK3mWscbdVgo=";
     };
   };
   talosctl = {

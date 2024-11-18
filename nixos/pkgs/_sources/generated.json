@@ -170,6 +170,21 @@
         },
         "version": "v0.44.0"
     },
+    "python-gps": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "python-gps",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-nh0igOSUTdtGzxl3KydohI25G/g2OtinK3mWscbdVgo=",
+            "type": "url",
+            "url": "https://pypi.org/packages/source/g/gps/gps-3.19.tar.gz"
+        },
+        "version": "3.19"
+    },
     "talosctl": {
         "cargoLocks": null,
         "date": null,

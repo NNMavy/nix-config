@@ -1,17 +1,42 @@
-{ source, pkgs, lib, stdenv, python3Packages, fetchFromGitHub }:
+{ source, pkgs, lib, stdenv, python39, fetchFromGitHub }:
+let
+  sources = (import ../_sources/generated.nix) { inherit (pkgs) fetchurl fetchgit fetchFromGitHub dockerTools; };
+  gpsSource = sources.python-gps;
 
+  packageOverrides = self: super: {
+    gps = super.buildPythonPackage rec {
+      inherit (gpsSource) pname version src;
+      doCheck = false;
+
+      meta = with lib; {
+        homepage = "https://gitlab.com/gpsd/gpsd";
+        description = "GPSD client";
+      };
+    };
+  };
+
+  python = python39.override { inherit packageOverrides; };
+
+  pyEnv = python.withPackages (ps: [
+    ps.gps
+    ps.prometheus-client
+    ps.setuptools
+  ]);
+in
 stdenv.mkDerivation rec {
   inherit (source) pname version src;
 
-  propagatedBuildInputs = [
-    (with pkgs.python3Packages; [
-      prometheus-client
-      gps3
-    ])
+  doCheck = false;
+
+  pyWrapped = (pyEnv).interpreter;
+
+  buildInputs = [
+    pyEnv
   ];
 
-  doCheck = false;
-  installPhase = "install -Dm755 ./gpsd_exporter.py $out/bin/gpsd_exporter.py";
+  installPhase = ''
+    install -Dm755 ./gpsd_exporter.py $out/bin/gpsd_exporter.py
+  '';
 
   meta = with lib; {
     homepage = "https://github.com/brendanbank/gpsd-prometheus-exporter";

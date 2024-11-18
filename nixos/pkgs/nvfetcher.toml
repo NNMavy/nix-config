@@ -37,3 +37,7 @@ cargo_locks = ["Cargo.lock"]
 [gpsd-prometheus-exporter]
 src.git = "https://github.com/brendanbank/gpsd-prometheus-exporter"
 fetch.github = "brendanbank/gpsd-prometheus-exporter"
+
+[python-gps]
+src.pypi = "gps"
+fetch.pypi = "gps"

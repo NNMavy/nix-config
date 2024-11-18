@@ -19,10 +19,13 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.gpsd-prometheus-exporter ];
+    environment.systemPackages = [
+      pkgs.gpsd-prometheus-exporter
+    ];
 
     systemd.services.gpsd-exporter = {
       description = "gpsd exporter of Prometheus metrics";
+      wantedBy = [ "multi-user.target" ];
       wants = [ "gpsd.service" ];
       after = [ "gpsd.service" ];
       path = [ pkgs.gpsd ];
@@ -31,12 +34,12 @@ in
         ExecStart =
           let
             cmdArgs = builtins.concatStringsSep " " [
-              "-v"
-              "--pps-histogram" # Observe the clock offset from the pps signal
-              "--offset-from-geopoint" # Measure an offset from a fixed geo point
-              "--geopoint-lon 4.740363"
-              "--geopoint-lat 51.621692"
-              "--pps-time1 0.0"
+              "-v" # Verbose
+              "--pps-histogram" # generate histogram data from pps devices
+              "--offset-from-geopoint" # track offset (x,y offset and distance) from a stationary location.
+              "--geopoint-lon 4.740363" # Longitude of a fixed stationary location.
+              "--geopoint-lat 51.621692" # Latitude of a fixed stationary location.
+              "--pps-time1 0.0" # Local pps clock (offset) time1
             ];
           in
           "${pkgs.gpsd-prometheus-exporter}/bin/gpsd_exporter.py ${cmdArgs}";
