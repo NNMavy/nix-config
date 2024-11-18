@@ -19,6 +19,11 @@ in
   };
 
   config = mkIf cfg.enable {
+    sops.secrets."services/${app}/env" = {
+      sopsFile = ./secrets.sops.yaml;
+      restartUnits = [ "gpsd-exporter.service" ];
+    };
+
     environment.systemPackages = [
       pkgs.gpsd-prometheus-exporter
     ];
@@ -37,8 +42,8 @@ in
               "-v" # Verbose
               "--pps-histogram" # generate histogram data from pps devices
               "--offset-from-geopoint" # track offset (x,y offset and distance) from a stationary location.
-              "--geopoint-lon 4.738000" # Longitude of a fixed stationary location.
-              "--geopoint-lat 51.621750" # Latitude of a fixed stationary location.
+              "--geopoint-lon $LON" # Longitude of a fixed stationary location.
+              "--geopoint-lat $LAT" # Latitude of a fixed stationary location.
               "--pps-time1 0.050" # Local pps clock (offset) time1
             ];
           in
@@ -46,6 +51,7 @@ in
         Restart = "on-failure";
         User = "gpsd";
         Group = "gpsd";
+        EnvironmentFile = config.sops.secrets."services/${app}/env".path;
         Environment = [
           "PYTHONPATH=${pkgs.gpsd}/lib/python3.11/site-packages"
           "PYTHONUNBUFFERED=1"
