@@ -37,9 +37,9 @@ in
               "-v" # Verbose
               "--pps-histogram" # generate histogram data from pps devices
               "--offset-from-geopoint" # track offset (x,y offset and distance) from a stationary location.
-              "--geopoint-lon 4.740363" # Longitude of a fixed stationary location.
-              "--geopoint-lat 51.621692" # Latitude of a fixed stationary location.
-              "--pps-time1 0.0" # Local pps clock (offset) time1
+              "--geopoint-lon 4.738000" # Longitude of a fixed stationary location.
+              "--geopoint-lat 51.621750" # Latitude of a fixed stationary location.
+              "--pps-time1 0.050" # Local pps clock (offset) time1
             ];
           in
           "${pkgs.gpsd-prometheus-exporter}/bin/gpsd_exporter.py ${cmdArgs}";
