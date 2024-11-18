@@ -33,3 +33,7 @@ include_prereleases = "true"
 src.git = "https://gitlab.com/richli/chrony_exporter.git"
 fetch.git = "https://gitlab.com/richli/chrony_exporter.git"
 cargo_locks = ["Cargo.lock"]
+
+[gpsd-prometheus-exporter]
+src.git = "https://github.com/brendanbank/gpsd-prometheus-exporter"
+fetch.github = "brendanbank/gpsd-prometheus-exporter"

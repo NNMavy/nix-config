@@ -19,7 +19,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.chrony-exporter ];
+    environment.systemPackages = [ pkgs.gpsd-prometheus-exporter ];
 
     systemd.services.gpsd-exporter = {
       description = "gpsd exporter of Prometheus metrics";
@@ -28,12 +28,25 @@ in
       path = [ pkgs.gpsd ];
 
       serviceConfig = {
-        ExecStart = "${pkgs.chrony-exporter}/bin/chrony_exporter";
+        ExecStart =
+          let
+            cmdArgs = builtins.concatStringsSep " " [
+              "-v"
+              "--pps-histogram" # Observe the clock offset from the pps signal
+              "--offset-from-geopoint" # Measure an offset from a fixed geo point
+              "--geopoint-lon 4.740363"
+              "--geopoint-lat 51.621692"
+              "--pps-time1 0.0"
+            ];
+          in
+            "${pkgs.gpsd-prometheus-exporter}/bin/gpsd_exporter.py ${cmdArgs}";
         Restart = "on-failure";
         User = "gpsd";
         Group = "gpsd";
+        Environment = ''
+          PYTHONUNBUFFERED=1
+        '';
       };
-
     };
 
     services.vmagent = {
@@ -44,7 +57,7 @@ in
             # scrape_timeout = "40s";
             static_configs = [
               {
-                targets = [ "http://127.0.0.1:${builtins.toStringport}" ];
+                targets = [ "http://127.0.0.1:${builtins.toString port}" ];
                 labels.instance = "${config.networking.hostName}";
               }
             ];

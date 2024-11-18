@@ -15,7 +15,8 @@
     openssh.enable = true;
     adguardhome.enable = true;
 
-    gps .enable = true;
+    gps.enable = true;
+    gpsd-exporter.enable = true;
     chrony.enable = true;
     chrony-exporter.enable = true;
   };

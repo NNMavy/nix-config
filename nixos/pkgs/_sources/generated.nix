@@ -14,34 +14,36 @@
     };
     cargoLock."Cargo.lock" = {
       lockFile = ./chrony-exporter-93f9ec5403b6f8bfffa53d72a89bb887c18b6cda/Cargo.lock;
-      outputHashes = { };
+      outputHashes = {
+
+      };
     };
     date = "2024-11-09";
   };
   cockpit-podman = {
     pname = "cockpit-podman";
-    version = "fff8f855af1d24a5eced1735c7d4656422c44d08";
+    version = "c43222bc0e2c98764f286d59447a9d152c85dc69";
     src = fetchFromGitHub {
       owner = "cockpit-project";
       repo = "cockpit-podman";
-      rev = "fff8f855af1d24a5eced1735c7d4656422c44d08";
+      rev = "c43222bc0e2c98764f286d59447a9d152c85dc69";
       fetchSubmodules = false;
-      sha256 = "sha256-1ZlkKgWdHlOuNVP+mtKWCw2mKEeSx0XJGl+bpXFlqHQ=";
+      sha256 = "sha256-tkgv+DYidFnEoZZIRVuk0mo4VMhHeqh/aAU6voDDhY8=";
     };
-    date = "2024-11-11";
+    date = "2024-11-14";
   };
   cosmic-idle = {
     pname = "cosmic-idle";
-    version = "08c1cf318e91831b6cbfd2c94d2fafbedb90919f";
+    version = "eaa09a6fef304ddc236709c111bb7b0c16883f7d";
     src = fetchFromGitHub {
       owner = "pop-os";
       repo = "cosmic-idle";
-      rev = "08c1cf318e91831b6cbfd2c94d2fafbedb90919f";
+      rev = "eaa09a6fef304ddc236709c111bb7b0c16883f7d";
       fetchSubmodules = false;
-      sha256 = "sha256-ah2L8yq36U6ez+kU6C3ot0V8Imj4fw4QOW1NpjYOSYk=";
+      sha256 = "sha256-+BOzbFDEoIaYkXs48RJtfomv8qdzIFiEpDpN/zDDgFM=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./cosmic-idle-08c1cf318e91831b6cbfd2c94d2fafbedb90919f/Cargo.lock;
+      lockFile = ./cosmic-idle-eaa09a6fef304ddc236709c111bb7b0c16883f7d/Cargo.lock;
       outputHashes = {
         "clipboard_macos-0.1.0" = "sha256-cG5vnkiyDlQnbEfV2sPbmBYKv1hd3pjJrymfZb8ziKk=";
         "upower_dbus-0.3.2" = "sha256-mklNPKVMO6iFrxki2DwiL5K78KiWpGxksisYldaASIE=";
@@ -51,7 +53,7 @@
         "atomicwrites-0.4.2" = "sha256-QZSuGPrJXh+svMeFWqAXoqZQxLq/WfIiamqvjJNVhxA=";
       };
     };
-    date = "2024-10-30";
+    date = "2024-11-15";
   };
   flux-local = {
     pname = "flux-local";
@@ -60,6 +62,18 @@
       url = "https://pypi.org/packages/source/f/flux_local/flux_local-6.0.2.tar.gz";
       sha256 = "sha256-ziNCt83pMz84e0q+PcdR1JgGc8vI9fS2AWo8lHBavGE=";
     };
+  };
+  gpsd-prometheus-exporter = {
+    pname = "gpsd-prometheus-exporter";
+    version = "f4dd7340aa6f8760acf8fef487f63e26f7f432fe";
+    src = fetchFromGitHub {
+      owner = "brendanbank";
+      repo = "gpsd-prometheus-exporter";
+      rev = "f4dd7340aa6f8760acf8fef487f63e26f7f432fe";
+      fetchSubmodules = false;
+      sha256 = "sha256-kWnDdYHIMj2MSwY+wlb0XpqEKi+wa+OOp/SM77S0OzY=";
+    };
+    date = "2023-12-26";
   };
   mqtt-explorer = {
     pname = "mqtt-explorer";
@@ -96,13 +110,13 @@
   };
   talosctl = {
     pname = "talosctl";
-    version = "v1.8.2";
+    version = "v1.8.3";
     src = fetchFromGitHub {
       owner = "siderolabs";
       repo = "talos";
-      rev = "v1.8.2";
+      rev = "v1.8.3";
       fetchSubmodules = false;
-      sha256 = "sha256-sD/Nn1ZLM6JIZdWQsBioKyhrAvhz749LL4xWleQ80xY=";
+      sha256 = "sha256-KC5FxNrKRcAvM9IVuj9jh2AdQ6qqqdo3GwWRHH8t9As=";
     };
   };
 }
