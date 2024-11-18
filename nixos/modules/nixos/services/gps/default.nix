@@ -127,6 +127,7 @@ in
   };
 
   imports = [
+    ./exporter.nix
     ./i2c-rtc.nix
     ./gpsd_watchdog.nix
   ];

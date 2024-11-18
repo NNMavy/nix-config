@@ -56,6 +56,7 @@ in
         allow
         lock_all
         rtcsync
+        makestep 1 3
 
         ${gpsRefclockConfig}
 
