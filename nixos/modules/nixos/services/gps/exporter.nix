@@ -46,9 +46,10 @@ in
         Restart = "on-failure";
         User = "gpsd";
         Group = "gpsd";
-        Environment = ''
-          PYTHONUNBUFFERED=1
-        '';
+        Environment = [
+          "PYTHONPATH=${pkgs.gpsd}/lib/python3.11/site-packages"
+          "PYTHONUNBUFFERED=1"
+        ];
       };
     };
 

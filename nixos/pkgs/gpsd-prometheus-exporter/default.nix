@@ -1,24 +1,6 @@
-{ source, pkgs, lib, stdenv, python39, fetchFromGitHub }:
+{ source, pkgs, lib, stdenv, python3, fetchFromGitHub }:
 let
-  sources = (import ../_sources/generated.nix) { inherit (pkgs) fetchurl fetchgit fetchFromGitHub dockerTools; };
-  gpsSource = sources.python-gps;
-
-  packageOverrides = self: super: {
-    gps = super.buildPythonPackage rec {
-      inherit (gpsSource) pname version src;
-      doCheck = false;
-
-      meta = with lib; {
-        homepage = "https://gitlab.com/gpsd/gpsd";
-        description = "GPSD client";
-      };
-    };
-  };
-
-  python = python39.override { inherit packageOverrides; };
-
-  pyEnv = python.withPackages (ps: [
-    ps.gps
+  pyEnv = python3.withPackages (ps: [
     ps.prometheus-client
     ps.setuptools
   ]);
