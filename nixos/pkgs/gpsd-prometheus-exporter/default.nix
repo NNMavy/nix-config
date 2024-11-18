@@ -28,7 +28,7 @@ stdenv.mkDerivation rec {
 
   doCheck = false;
 
-  pyWrapped = (pyEnv).interpreter;
+  pyWrapped = pyEnv.interpreter;
 
   buildInputs = [
     pyEnv
