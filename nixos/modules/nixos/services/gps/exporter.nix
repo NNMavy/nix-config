@@ -39,7 +39,7 @@ in
               "--pps-time1 0.0"
             ];
           in
-            "${pkgs.gpsd-prometheus-exporter}/bin/gpsd_exporter.py ${cmdArgs}";
+          "${pkgs.gpsd-prometheus-exporter}/bin/gpsd_exporter.py ${cmdArgs}";
         Restart = "on-failure";
         User = "gpsd";
         Group = "gpsd";
