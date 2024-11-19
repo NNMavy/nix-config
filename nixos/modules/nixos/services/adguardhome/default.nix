@@ -85,15 +85,15 @@ in
             "[/in-addr.arpa/]172.16.1.254" # reverse dns lookup to UDMP
             "[/ip6.arpa/]172.16.1.254" # reverse dns lookup to UDMP
 
-            # primary dns - quad9
-            "https://dns10.quad9.net/dns-query"
+            # primary dns - cloudflare
+            "https://dns.cloudflare.com/dns-query"
 
           ];
           upstream_mode = "load_balance";
 
-          # fallback dns - cloudflare and mullvad
+          # fallback dns - quad9 and mullvad
           fallback_dns = [
-            "https://dns.cloudflare.com/dns-query"
+            "https://dns10.quad9.net/dns-query"
             "https://doh.mullvad.net/dns-query"
           ];
 
