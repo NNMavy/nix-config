@@ -1,4 +1,24 @@
 {
+    "adguard-exporter": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "adguard-exporter",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "henrywhitaker3",
+            "repo": "adguard-exporter",
+            "rev": "v1.1.16",
+            "sha256": "sha256-zJnmEj8kcaUCxxuxMR6l0xaUtqnZh68VPcFZVrEafnM=",
+            "type": "github"
+        },
+        "version": "v1.1.16"
+    },
     "chrony-exporter": {
         "cargoLocks": {
             "Cargo.lock": [
@@ -25,7 +45,7 @@
     },
     "cockpit-podman": {
         "cargoLocks": null,
-        "date": "2024-11-14",
+        "date": "2024-11-19",
         "extract": null,
         "name": "cockpit-podman",
         "passthru": null,
@@ -37,11 +57,11 @@
             "name": null,
             "owner": "cockpit-project",
             "repo": "cockpit-podman",
-            "rev": "c43222bc0e2c98764f286d59447a9d152c85dc69",
-            "sha256": "sha256-tkgv+DYidFnEoZZIRVuk0mo4VMhHeqh/aAU6voDDhY8=",
+            "rev": "04f7d472374fe8695415961421c6428f5e0c3641",
+            "sha256": "sha256-LDLC8yb1oAADfdglMDDJphwdwkaSaxXxOKJjZANyFW4=",
             "type": "github"
         },
-        "version": "c43222bc0e2c98764f286d59447a9d152c85dc69"
+        "version": "04f7d472374fe8695415961421c6428f5e0c3641"
     },
     "cosmic-idle": {
         "cargoLocks": {
@@ -169,21 +189,6 @@
             "type": "github"
         },
         "version": "v0.44.0"
-    },
-    "python-gps": {
-        "cargoLocks": null,
-        "date": null,
-        "extract": null,
-        "name": "python-gps",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "name": null,
-            "sha256": "sha256-nh0igOSUTdtGzxl3KydohI25G/g2OtinK3mWscbdVgo=",
-            "type": "url",
-            "url": "https://pypi.org/packages/source/g/gps/gps-3.19.tar.gz"
-        },
-        "version": "3.19"
     },
     "talosctl": {
         "cargoLocks": null,

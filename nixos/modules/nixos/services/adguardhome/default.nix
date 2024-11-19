@@ -27,8 +27,6 @@ in
   };
 
   config = mkIf cfg.enable {
-
-
     # Warn if backups are disable and machine isnt a dev box
     warnings = mkIf (yaml_schema_version != pkgs.adguardhome.schema_version) [ "WARNING: Adguard upstream YAML schema is version ${builtins.toString pkgs.adguardhome.schema_version}, this config is set to ${builtins.toString config.services.adguardhome.settings.schema_version}" ];
 
@@ -224,7 +222,9 @@ in
         conditions = [ "[DNS_RCODE] == NOERROR" ];
       }
     ];
-
   };
 
+  imports = [
+    ./exporter.nix
+  ];
 }
