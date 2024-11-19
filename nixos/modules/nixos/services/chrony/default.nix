@@ -13,8 +13,8 @@ let
   chronyPort = 323;
 
   gpsRefclockConfig = ''
-    refclock PPS /dev/pps0 refid PPS prefer lock NMEA
-    refclock SHM 0 refid NMEA offset 0.050 noselect
+    refclock PPS /dev/pps0 refid PPS lock NMEA precision 1e-7 poll 3 prefer
+    refclock SHM 0 refid NMEA offset 0.050 precision 1e-3 poll 3 noselect
   '';
 in
 {
