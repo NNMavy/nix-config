@@ -14,6 +14,7 @@
 
     openssh.enable = true;
     adguardhome.enable = true;
+    adguard-exporter.enable = true;
 
     gps.enable = true;
     gpsd-exporter.enable = true;
