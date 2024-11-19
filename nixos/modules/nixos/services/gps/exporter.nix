@@ -44,7 +44,7 @@ in
               "--offset-from-geopoint" # track offset (x,y offset and distance) from a stationary location.
               "--geopoint-lon $LON" # Longitude of a fixed stationary location.
               "--geopoint-lat $LAT" # Latitude of a fixed stationary location.
-              "--pps-time1 0.050" # Local pps clock (offset) time1
+              "--pps-time1 0.0" # Local pps clock (offset) time1
             ];
           in
           "${pkgs.gpsd-prometheus-exporter}/bin/gpsd_exporter.py ${cmdArgs}";
