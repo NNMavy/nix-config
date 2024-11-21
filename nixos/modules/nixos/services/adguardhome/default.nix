@@ -102,6 +102,7 @@ in
 
           # security
           enable_dnssec = true;
+          ratelimit = 0;
 
           # local cache settings
           cache_size = 100000000; # 100MB - unnessecary but hey
