@@ -25,9 +25,7 @@
     };
     cargoLock."Cargo.lock" = {
       lockFile = ./chrony-exporter-93f9ec5403b6f8bfffa53d72a89bb887c18b6cda/Cargo.lock;
-      outputHashes = {
-
-      };
+      outputHashes = { };
     };
     date = "2024-11-09";
   };
