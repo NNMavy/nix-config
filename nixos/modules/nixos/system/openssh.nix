@@ -43,7 +43,7 @@ in
       settings = {
         # Harden
         PasswordAuthentication = cfg.passwordAuthentication;
-        PermitRootLogin = cfg.permitRootLogin;
+        PermitRootLogin = lib.mkDefault cfg.permitRootLogin;
         # Automatically remove stale sockets
         StreamLocalBindUnlink = "yes";
         # Allow forwarding ports to everywhere
