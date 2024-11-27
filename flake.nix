@@ -342,8 +342,6 @@
 
       # nix build .#images.rpi4
       rpi4 = nixpkgs.lib.nixosSystem {
-        #inherit inputs nixpkgs;
-
         modules = [
           sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
@@ -354,10 +352,26 @@
         ];
       };
 
+      # nix build .#images.iso
+      iso = nixpkgs.lib.nixosSystem {
+        modules = [
+          sops-nix.nixosModules.sops
+          home-manager.nixosModules.home-manager
+          impermanence.nixosModules.impermanence
+
+          "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+          "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+          "${nixpkgs}/nixos/modules/installer/cd-dvd/iso-image.nix"
+          ./nixos/hosts/images/cd-dvd
+        ];
+      };
+
+
       # simple shortcut to allow for easier referencing of correct
       # key for building images
       # > nix build .#images.rpi4
-      images.rpi4 = rpi4.config.system.build.sdImage;
+      # images.rpi4 = rpi4.config.system.build.sdImage;
+      # images.iso = iso.config.system.build.isoImage;
 
       # Convenience output that aggregates the outputs for home, nixos.
       # Also used in ci to build targets generally.
