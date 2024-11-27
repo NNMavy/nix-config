@@ -14,32 +14,26 @@
   };
   chrony-exporter = {
     pname = "chrony-exporter";
-    version = "93f9ec5403b6f8bfffa53d72a89bb887c18b6cda";
-    src = fetchgit {
-      url = "https://gitlab.com/richli/chrony_exporter.git";
-      rev = "93f9ec5403b6f8bfffa53d72a89bb887c18b6cda";
+    version = "v0.11.0";
+    src = fetchFromGitHub {
+      owner = "SuperQ";
+      repo = "chrony_exporter";
+      rev = "v0.11.0";
       fetchSubmodules = false;
-      deepClone = false;
-      leaveDotGit = false;
-      sha256 = "sha256-DMImopy+iXWga4DIORKz16bEnp3LRi1Nzfq6RtlXP9o=";
+      sha256 = "sha256-xHI0BYli82cCGFtv58jJ+PpjR/q1ReWjUqRDtp89w+Y=";
     };
-    cargoLock."Cargo.lock" = {
-      lockFile = ./chrony-exporter-93f9ec5403b6f8bfffa53d72a89bb887c18b6cda/Cargo.lock;
-      outputHashes = { };
-    };
-    date = "2024-11-09";
   };
   cockpit-podman = {
     pname = "cockpit-podman";
-    version = "04f7d472374fe8695415961421c6428f5e0c3641";
+    version = "b11c235ca714ff7f48f60872c4062846ec45159f";
     src = fetchFromGitHub {
       owner = "cockpit-project";
       repo = "cockpit-podman";
-      rev = "04f7d472374fe8695415961421c6428f5e0c3641";
+      rev = "b11c235ca714ff7f48f60872c4062846ec45159f";
       fetchSubmodules = false;
-      sha256 = "sha256-LDLC8yb1oAADfdglMDDJphwdwkaSaxXxOKJjZANyFW4=";
+      sha256 = "sha256-OLsK6pnXIWvjtdSSu3atlUM6QMoeYq+UqQdQ/X/Jvu4=";
     };
-    date = "2024-11-19";
+    date = "2024-11-26";
   };
   cosmic-idle = {
     pname = "cosmic-idle";

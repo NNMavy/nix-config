@@ -30,9 +30,8 @@ fetch.github = "thomasnordquist/MQTT-Explorer"
 include_prereleases = "true"
 
 [chrony-exporter]
-src.git = "https://gitlab.com/richli/chrony_exporter.git"
-fetch.git = "https://gitlab.com/richli/chrony_exporter.git"
-cargo_locks = ["Cargo.lock"]
+src.github = "SuperQ/chrony_exporter"
+fetch.github = "SuperQ/chrony_exporter"
 
 [gpsd-prometheus-exporter]
 src.git = "https://github.com/brendanbank/gpsd-prometheus-exporter"
