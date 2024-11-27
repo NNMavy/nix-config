@@ -29,7 +29,16 @@ in
       path = [ pkgs.chrony ];
 
       serviceConfig = {
-        ExecStart = "${pkgs.chrony-exporter}/bin/chrony_exporter";
+        ExecStart =
+          let
+            cmdArgs = builtins.concatStringsSep " " [
+              "--collector.tracking"
+              "--collector.sources"
+              "--collector.serverstats"
+              "--collector.dns-lookups"
+            ];
+          in
+          "${pkgs.chrony-exporter}/bin/chrony_exporter ${cmdArgs}";
         Restart = "on-failure";
         User = "chrony";
         Group = "chrony";
