@@ -8,7 +8,7 @@ let
   cfg = config.mySystem.services.chrony-exporter;
 
   app = "chrony-exporter";
-  port = 9701;
+  port = 9123;
 in
 {
   options.mySystem.services.chrony-exporter = {

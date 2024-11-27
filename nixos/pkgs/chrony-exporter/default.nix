@@ -1,18 +1,28 @@
-{ source, pkgs, stdenv, lib, rustPlatform, makeBinaryWrapper }:
-
-rustPlatform.buildRustPackage rec {
+{ source
+, lib
+, pkgs
+, buildGoModule
+, ...
+}:
+buildGoModule rec {
   inherit (source) pname version src;
 
-  cargoLock = source.cargoLock."Cargo.lock";
-  enableParallelBuilding = true;
-
+  ldflags = [ "-s" "-w" ];
+  vendorHash = "sha256-czAkqEeGRSdMJmSZNwzAMAk045p4aog4XOQUU48jeOo=";
   outputs = [ "out" ];
 
-  installPhase = ''
-    mkdir $out
-    mkdir -p $out/bin/
-    mkdir -p $out/etc/systemd/system/
+  # # This is needed to deal with workspace issues during the build
+  # overrideModAttrs = _: { GOWORK = "off"; };
+  # GOWORK = "off";
 
-    install -D -m 0755 "target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/chrony_exporter" "$out/bin/chrony_exporter"
+  preBuild = ''
+    export CGO_ENABLED=0
   '';
+
+  doCheck = false; # no tests
+
+  # postInstall = ''
+  #   mkdir -p $out/bin
+  #   mv $out/adguard-exporter $out/bin
+  # '';
 }

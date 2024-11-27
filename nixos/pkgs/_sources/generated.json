@@ -20,13 +20,8 @@
         "version": "v1.1.16"
     },
     "chrony-exporter": {
-        "cargoLocks": {
-            "Cargo.lock": [
-                "./chrony-exporter-93f9ec5403b6f8bfffa53d72a89bb887c18b6cda/Cargo.lock",
-                {}
-            ]
-        },
-        "date": "2024-11-09",
+        "cargoLocks": null,
+        "date": null,
         "extract": null,
         "name": "chrony-exporter",
         "passthru": null,
@@ -36,16 +31,17 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "93f9ec5403b6f8bfffa53d72a89bb887c18b6cda",
-            "sha256": "sha256-DMImopy+iXWga4DIORKz16bEnp3LRi1Nzfq6RtlXP9o=",
-            "type": "git",
-            "url": "https://gitlab.com/richli/chrony_exporter.git"
+            "owner": "SuperQ",
+            "repo": "chrony_exporter",
+            "rev": "v0.11.0",
+            "sha256": "sha256-xHI0BYli82cCGFtv58jJ+PpjR/q1ReWjUqRDtp89w+Y=",
+            "type": "github"
         },
-        "version": "93f9ec5403b6f8bfffa53d72a89bb887c18b6cda"
+        "version": "v0.11.0"
     },
     "cockpit-podman": {
         "cargoLocks": null,
-        "date": "2024-11-19",
+        "date": "2024-11-26",
         "extract": null,
         "name": "cockpit-podman",
         "passthru": null,
@@ -57,11 +53,11 @@
             "name": null,
             "owner": "cockpit-project",
             "repo": "cockpit-podman",
-            "rev": "04f7d472374fe8695415961421c6428f5e0c3641",
-            "sha256": "sha256-LDLC8yb1oAADfdglMDDJphwdwkaSaxXxOKJjZANyFW4=",
+            "rev": "b11c235ca714ff7f48f60872c4062846ec45159f",
+            "sha256": "sha256-OLsK6pnXIWvjtdSSu3atlUM6QMoeYq+UqQdQ/X/Jvu4=",
             "type": "github"
         },
-        "version": "04f7d472374fe8695415961421c6428f5e0c3641"
+        "version": "b11c235ca714ff7f48f60872c4062846ec45159f"
     },
     "cosmic-idle": {
         "cargoLocks": {
