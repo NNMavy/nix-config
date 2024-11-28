@@ -9,7 +9,7 @@ let
   app = "omni";
   category = "services";
   description = "The Sidero Omni Kubernetes management platform";
-  # image = "";
+  image = "ghcr.io/siderolabs/omni:v0.44.0";
   user = app;
   group = app;
   port = 8080; #int
@@ -72,46 +72,53 @@ in
       "services/omni/pgp_key".sopsFile = ./secrets.sops.yaml;
     };
 
+    users.users.${user} = {
+      home = appFolder;
+      useDefaultShell = true;
+      group = user;
+      isSystemUser = true;
+    };
+
+    users.groups.${group} = { };
+
     users.users.mavy.extraGroups = [ group ];
+
+    # ensure folder exist and has correct owner/group
+    systemd.tmpfiles.rules = [
+      "d ${appFolder}/etcd 0750 ${user} ${group} -"
+    ];
 
     environment.persistence."${config.mySystem.system.impermanence.persistPath}" = lib.mkIf config.mySystem.system.impermanence.enable {
       directories = [{ directory = appFolder; inherit user; inherit group; mode = "750"; }];
     };
 
-    environment.systemPackages = [ pkgs.omni pkgs.omnictl ];
-
-    systemd.services.omni = {
-      description = "${description}";
-      wantedBy = [ "multi-user.target" ];
-
-      serviceConfig = {
-        EnvironmentFile = config.sops.secrets."services/omni/env".path;
-        ExecStart =
-          let
-            cmdArgs = builtins.concatStringsSep " " [
-              "--account-id=20e42ade-d500-4494-9419-6d47bd042512"
-              "--name=nnhome-omni"
-              "--private-key-source=file://${config.sops.secrets."services/omni/pgp_key".path}"
-              # "--event-sink-port=8091"
-              "--bind-addr=127.0.0.1:${builtins.toString port}"
-              "--machine-api-bind-addr=127.0.0.1:${builtins.toString apiPort}"
-              "--siderolink-api-advertised-url=https://${apiUrl}:443"
-              "--advertised-api-url=https://${url}"
-              # "--siderolink-wireguard-advertised-addr=0.0.0.0:50180"
-              "--siderolink-use-grpc-tunnel=true"
-              "--k8s-proxy-bind-addr=127.0.0.1:${builtins.toString kubePort}"
-              "--advertised-kubernetes-proxy-url=https://${kubeUrl}/"
-              "--auth-saml-enabled=true"
-              "--auth-saml-url=$AUTH_SAML_URL"
-            ];
-          in
-          "${pkgs.omni}/bin/omni ${cmdArgs}";
-        Restart = "on-failure";
-        User = user;
-        Group = group;
-        # EnvironmentFile = config.sops.templates."adguard-exporter.env".path;
-      };
-
+    virtualisation.oci-containers.containers.${app} = {
+      image = "${image}";
+      user = "${user}:${group}";
+      environmentFiles = [
+        config.sops.secrets."services/omni/env".path
+      ];
+      extraOptions = [ "--network=host" "--cap-add=NET_ADMIN" ]; # Required for omni
+      cmd = [
+        "--account-id=20e42ade-d500-4494-9419-6d47bd042512"
+        "--name=nnhome-omni"
+        "--private-key-source=file:///omni.asc"
+        "--bind-addr=127.0.0.1:${builtins.toString port}"
+        "--siderolink-api-bind-addr=127.0.0.1:${builtins.toString apiPort}"
+        "--siderolink-api-advertised-url=https://${apiUrl}:443"
+        "--advertised-api-url=https://${url}"
+        "--siderolink-use-grpc-tunnel=true"
+        "--k8s-proxy-bind-addr=127.0.0.1:${builtins.toString kubePort}"
+        "--advertised-kubernetes-proxy-url=https://${kubeUrl}/"
+        "--auth-auth0-enabled=true"
+        "--auth-auth0-domain=$AUTH0_DOMAIN"
+        "--auth-auth0-client-id=$AUTH0_CLIENT_ID"
+      ];
+      volumes = [
+        "${appFolder}/etcd:/_out/etcd:rw"
+        "${config.sops.secrets."services/omni/pgp_key".path}:/omni.asc:ro"
+        "/etc/localtime:/etc/localtime:ro"
+      ];
     };
 
     ### gatus integration
@@ -134,8 +141,8 @@ in
         extraConfig = ''
           resolver 10.88.0.1;
           proxy_http_version 1.1;
-                proxy_set_header Upgrade $http_upgrade;
-                proxy_set_header Connection $connection_upgrade;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection $connection_upgrade;
           grpc_pass grpc://127.0.0.1:${builtins.toString port};
         '';
       };
