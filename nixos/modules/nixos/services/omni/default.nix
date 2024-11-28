@@ -10,8 +10,8 @@ let
   category = "services";
   description = "The Sidero Omni Kubernetes management platform";
   image = "ghcr.io/siderolabs/omni:v0.44.0";
-  user = app;
-  group = app;
+  user = "root";
+  group = "root";
   port = 8080; #int
   apiPort = 8090;
   kubePort = 8100;
@@ -67,21 +67,10 @@ in
 
     ## Secrets
     sops.secrets = {
-      "services/omni/env".sopsFile = ./secrets.sops.yaml;
-      "services/omni/env".restartUnits = [ "${app}.service" ];
+      "services/omni/auth0_domain".sopsFile = ./secrets.sops.yaml;
+      "services/omni/auth0_client_id".sopsFile = ./secrets.sops.yaml;
       "services/omni/pgp_key".sopsFile = ./secrets.sops.yaml;
     };
-
-    users.users.${user} = {
-      home = appFolder;
-      useDefaultShell = true;
-      group = user;
-      isSystemUser = true;
-    };
-
-    users.groups.${group} = { };
-
-    users.users.mavy.extraGroups = [ group ];
 
     # ensure folder exist and has correct owner/group
     systemd.tmpfiles.rules = [
@@ -94,25 +83,22 @@ in
 
     virtualisation.oci-containers.containers.${app} = {
       image = "${image}";
-      user = "${user}:${group}";
-      environmentFiles = [
-        config.sops.secrets."services/omni/env".path
-      ];
-      extraOptions = [ "--network=host" "--cap-add=NET_ADMIN" ]; # Required for omni
+      #user = "${user}:${group}";
+      extraOptions = [ "--network=host" "--cap-add=NET_ADMIN" "--device=/dev/net/tun" ]; # Required for omni
       cmd = [
         "--account-id=20e42ade-d500-4494-9419-6d47bd042512"
         "--name=nnhome-omni"
         "--private-key-source=file:///omni.asc"
+        "--advertised-api-url=https://${url}"
         "--bind-addr=127.0.0.1:${builtins.toString port}"
         "--siderolink-api-bind-addr=127.0.0.1:${builtins.toString apiPort}"
         "--siderolink-api-advertised-url=https://${apiUrl}:443"
-        "--advertised-api-url=https://${url}"
-        "--siderolink-use-grpc-tunnel=true"
         "--k8s-proxy-bind-addr=127.0.0.1:${builtins.toString kubePort}"
         "--advertised-kubernetes-proxy-url=https://${kubeUrl}/"
+        "--siderolink-use-grpc-tunnel=true"
         "--auth-auth0-enabled=true"
-        "--auth-auth0-domain=$AUTH0_DOMAIN"
-        "--auth-auth0-client-id=$AUTH0_CLIENT_ID"
+        "--auth-auth0-domain=$(cat ${config.sops.secrets."services/omni/auth0_domain".path})"
+        "--auth-auth0-client-id=$(cat ${config.sops.secrets."services/omni/auth0_client_id".path})"
       ];
       volumes = [
         "${appFolder}/etcd:/_out/etcd:rw"
