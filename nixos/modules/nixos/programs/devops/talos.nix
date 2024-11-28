@@ -31,6 +31,7 @@ in
       talosctl
       inputs.talhelper.packages.${pkgs.system}.default
       terraform
+      pkgs.omnictl
     ];
     programs.fish = {
       shellAliases = {

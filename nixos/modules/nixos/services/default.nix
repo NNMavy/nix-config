@@ -8,6 +8,7 @@
     ./forgejo
     ./gps
     ./klipper
+    ./omni
     ./podman
     ./restic
     ./nginx
