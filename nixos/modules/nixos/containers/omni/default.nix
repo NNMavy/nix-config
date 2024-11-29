@@ -85,18 +85,18 @@ in
       #user = "${user}:${group}";
       extraOptions = [ "--network=host" "--cap-add=NET_ADMIN" "--device=/dev/net/tun" ]; # Required for omni
       cmd = [
-          "--account-id=20e42ade-d500-4494-9419-6d47bd042512"
-          "--name=nnhome-omni"
-          "--private-key-source=file:///omni.asc"
-          "--advertised-api-url=https://${url}"
-          "--bind-addr=127.0.0.1:${builtins.toString port}"
-          "--siderolink-api-bind-addr=127.0.0.1:${builtins.toString apiPort}"
-          "--siderolink-api-advertised-url=https://${apiUrl}:443"
-          "--k8s-proxy-bind-addr=127.0.0.1:${builtins.toString kubePort}"
-          "--advertised-kubernetes-proxy-url=https://${kubeUrl}/"
-          "--siderolink-use-grpc-tunnel=true"
-          "--auth-saml-enabled=true"
-          "--auth-saml-metadata=/secrets/metadata.xml"
+        "--account-id=20e42ade-d500-4494-9419-6d47bd042512"
+        "--name=nnhome-omni"
+        "--private-key-source=file:///omni.asc"
+        "--advertised-api-url=https://${url}"
+        "--bind-addr=127.0.0.1:${builtins.toString port}"
+        "--siderolink-api-bind-addr=127.0.0.1:${builtins.toString apiPort}"
+        "--siderolink-api-advertised-url=https://${apiUrl}:443"
+        "--k8s-proxy-bind-addr=127.0.0.1:${builtins.toString kubePort}"
+        "--advertised-kubernetes-proxy-url=https://${kubeUrl}/"
+        "--siderolink-use-grpc-tunnel=true"
+        "--auth-saml-enabled=true"
+        "--auth-saml-metadata=/secrets/metadata.xml"
       ];
       volumes = [
         "${appFolder}/etcd:/_out/etcd:rw"
