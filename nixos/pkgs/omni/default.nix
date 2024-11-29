@@ -4,7 +4,7 @@
 , installShellFiles
 }:
 let
-  buildGoModule = pkgs.buildGoModule.override { go = pkgs.unstable.go; };
+  buildGoModule = pkgs.buildGoModule.override { inherit (pkgs.unstable) go; };
 in
 buildGoModule rec {
   inherit (source) pname version src;
