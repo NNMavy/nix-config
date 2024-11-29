@@ -29,6 +29,7 @@
         backrest.enable = true;
         gatus.enable = true;
         forgejo.enable = true;
+        omni.enable = true;
       };
 
       security.acme.enable = true;

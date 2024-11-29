@@ -112,7 +112,7 @@ in
 
       serviceConfig = {
         ExecStart = "${pkgs.linuxptp}/bin/ptp4l -f ${ptp4lConfig}";
-        Nice=-10;
+        Nice = -10;
         Restart = "on-failure";
       };
     };
@@ -125,7 +125,7 @@ in
 
       serviceConfig = {
         ExecStart = "${pkgs.linuxptp}/bin/phc2sys -s CLOCK_REALTIME -c end0 -w -u 1024";
-        Nice=-10;
+        Nice = -10;
         Restart = "on-failure";
       };
     };

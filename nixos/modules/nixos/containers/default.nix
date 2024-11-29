@@ -2,5 +2,6 @@
   imports = [
     ./backrest
     ./gatus
+    ./omni
   ];
 }
