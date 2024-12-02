@@ -41,7 +41,7 @@ with lib;
 
     services.logrotate.enable = mkDefault true;
 
-    environment.noXlibs = mkDefault true;
+    # environment.noXlibs = mkDefault true;
     documentation = {
       enable = mkDefault false;
       doc.enable = mkDefault false;
@@ -51,7 +51,6 @@ with lib;
     };
     programs.command-not-found.enable = mkDefault false;
 
-    sound.enable = false;
     hardware.pulseaudio.enable = false;
 
 
