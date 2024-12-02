@@ -75,7 +75,7 @@ with config;
         discord
         slack
         spotify
-        unstable.orca-slicer
+        # orca-slicer
         yubioath-flutter
         yubikey-manager-qt
         flameshot
