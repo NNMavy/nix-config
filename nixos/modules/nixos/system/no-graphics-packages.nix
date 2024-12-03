@@ -71,7 +71,7 @@ with lib;
       limesuite = prev.limesuite.override { withGui = false; };
       mc = prev.mc.override { x11Support = false; };
       # TODO: remove when https://github.com/NixOS/nixpkgs/pull/344318 is merged
-      mesa = (prev.mesa.override { eglPlatforms = [ ]; }).overrideAttrs ({ mesonFlags, ... }:{
+      mesa = (prev.mesa.override { eglPlatforms = [ ]; }).overrideAttrs ({ mesonFlags, ... }: {
         mesonFlags = mesonFlags ++ [
           (lib.mesonEnable "gallium-vdpau" false)
           (lib.mesonEnable "glx" false)
