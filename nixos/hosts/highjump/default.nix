@@ -9,7 +9,6 @@
     mySystem = {
       purpose = "Jumphost";
       system = {
-        noGraphicsPackages = true;
         impermanence = {
           enable = true;
         };

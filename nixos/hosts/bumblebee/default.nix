@@ -9,7 +9,6 @@
       purpose = "Homelab";
       persistentFolder = "/persist";
       system = {
-        noGraphicsPackages = true;
         impermanence.enable = true;
         motd.networkInterfaces = [ "enp1s0" ];
         resticBackup = {

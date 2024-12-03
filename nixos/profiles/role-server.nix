@@ -12,6 +12,7 @@ with lib;
 
     # Enable monitoring for remote scraping
     mySystem = {
+      system.noGraphicsPackages = true;
       system.motd.enable = true;
       security.wheelNeedsSudoPassword = false;
       services = {
