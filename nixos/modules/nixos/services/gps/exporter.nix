@@ -53,7 +53,7 @@ in
         Group = "gpsd";
         EnvironmentFile = config.sops.secrets."services/${app}/env".path;
         Environment = [
-          "PYTHONPATH=${pkgs.gpsd}/lib/python3.11/site-packages"
+          "PYTHONPATH=${pkgs.gpsd}/lib/python3.12/site-packages"
           "PYTHONUNBUFFERED=1"
         ];
       };
