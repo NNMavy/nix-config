@@ -5,6 +5,7 @@
     ./security.nix
     ./systempackages.nix
     ./nix.nix
+    ./no-graphics-packages.nix
     ./zfs.nix
     ./impermanence.nix
     ./autoupgrades
