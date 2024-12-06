@@ -12,6 +12,18 @@
       sha256 = "sha256-zJnmEj8kcaUCxxuxMR6l0xaUtqnZh68VPcFZVrEafnM=";
     };
   };
+  atlas-probe = {
+    pname = "atlas-probe";
+    version = "17566dd0129a47552556e1f355d33d0114124c60";
+    src = fetchFromGitHub {
+      owner = "RIPE-NCC";
+      repo = "ripe-atlas-software-probe";
+      rev = "17566dd0129a47552556e1f355d33d0114124c60";
+      fetchSubmodules = false;
+      sha256 = "sha256-n+SbjQoAf4Tnc52DNt5JFG9iyRBpeEuVtsewHnamgA8=";
+    };
+    date = "2024-09-24";
+  };
   chrony-exporter = {
     pname = "chrony-exporter";
     version = "v0.11.0";
@@ -25,15 +37,15 @@
   };
   cockpit-podman = {
     pname = "cockpit-podman";
-    version = "ddaff2e97a2216b131d6c17365c14318aa9f256e";
+    version = "6365b1830eaac3d948efe5384ad0588ecc3d8dd4";
     src = fetchFromGitHub {
       owner = "cockpit-project";
       repo = "cockpit-podman";
-      rev = "ddaff2e97a2216b131d6c17365c14318aa9f256e";
+      rev = "6365b1830eaac3d948efe5384ad0588ecc3d8dd4";
       fetchSubmodules = false;
-      sha256 = "sha256-+K/NiAltosCDg1nWLLGMkMICxZr3Y4F/I7E7ZehfgDA=";
+      sha256 = "sha256-o3hm5APOKUbB5d2fc2NIQ7XoCfny4txIlQal54vWIwM=";
     };
-    date = "2024-11-29";
+    date = "2024-12-05";
   };
   cosmic-idle = {
     pname = "cosmic-idle";
@@ -98,17 +110,6 @@
       rev = "v0.1.0";
       fetchSubmodules = false;
       sha256 = "sha256-cg4aZmpTysc8m1euxIO2XPv8OMnBk1DwhFcuIFHF/1o=";
-    };
-  };
-  omni = {
-    pname = "omni";
-    version = "v0.44.0";
-    src = fetchFromGitHub {
-      owner = "siderolabs";
-      repo = "omni";
-      rev = "v0.44.0";
-      fetchSubmodules = false;
-      sha256 = "sha256-vD/Z54CxMGuIKjiyYTx2shXyu0QzJkNIL0U6UEceT5Y=";
     };
   };
   talosctl = {

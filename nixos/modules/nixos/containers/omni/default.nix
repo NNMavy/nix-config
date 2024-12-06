@@ -82,7 +82,6 @@ in
 
     virtualisation.oci-containers.containers.${app} = {
       image = "${image}";
-      #user = "${user}:${group}";
       extraOptions = [ "--network=host" "--cap-add=NET_ADMIN" "--device=/dev/net/tun" ]; # Required for omni
       cmd = [
         "--account-id=20e42ade-d500-4494-9419-6d47bd042512"

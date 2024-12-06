@@ -1,40 +1,52 @@
 { source
 , lib
 , pkgs
-, fetchFromGitHub
+, fetchurl
+, stdenvNoCC
+, makeWrapper
+, dpkg
+, autoPatchelfHook
 , ...
 }:
-pkgs.stdenv.mkDerivation rec {
-  inherit (source) pname version src vendorSha256;
+stdenvNoCC.mkDerivation rec {
+  pname = "atlas-probe";
+  version = "5100";
 
-  hardeningDisable = [ "all" ];
-
-  buildInputs = [
-    pkgs.autoconf
-    pkgs.automake
-    pkgs.libtool
-    pkgs.ncurses
-    pkgs.openssl
+  srcs = [
+    (fetchurl {
+      url = "https://ftp.ripe.net/ripe/atlas/software-probe/debian/dists/bookworm/main/binary-amd64/ripe-atlas-probe_${version}_all.deb";
+      sha256 = "sha256-/klHcgKrn7kvhvZl/cquaqFIQKs0H4tjPDFTHrZOpgM=";
+    })
+    (fetchurl {
+      url = "https://ftp.ripe.net/ripe/atlas/software-probe/debian/dists/bookworm/main/binary-amd64/ripe-atlas-common_${version}_amd64.deb";
+      sha256 = "sha256-CjWeGwb5FFmX24XDoe10y/dBZoW783MDab9/P7GIOHc=";
+    })
   ];
 
-  preConfigure = "autoreconf --install";
-
-  configureFlags = [
-    "--prefix=$(out)"
-    "--sysconfdir=$(out)/etc"
-    "--localstatedir=/var"
-    "--libdir=$(out)/lib"
-    "--runstatedir=/run"
-    # --with-user=ripe-atlas
-    # --with-group=ripe-atlas
-    # --with-measurement-user=ripe-atlas-measurement
-    "--enable-systemd=no"
-    "--enable-chown=no"
-    # --enable-setcap-install
+  nativeBuildInputs = [
+    dpkg
+    makeWrapper
+    autoPatchelfHook
   ];
 
-  preInstall = ''
-    mkdir -p $out/sbin $out/share/man/man8 $out/etc
+  buildInputs = with pkgs; [
+    glib
+    openssl
+  ];
+
+  dontBuild = true;
+  dontConfigure = true;
+
+  # sourceRoot = "./";
+  unpackCmd = "dpkg --fsys-tarfile $curSrc | tar --extract -C atlas-probe";
+
+
+  installPhase = ''
+    runHook preInstall
+    mkdir -p $out/bin $out/share
+    mv -t $out/ usr/*
+
+    runHook postInstall
   '';
 
   meta = with lib; {

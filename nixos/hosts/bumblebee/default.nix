@@ -30,6 +30,7 @@
         gatus.enable = true;
         forgejo.enable = true;
         omni.enable = true;
+        atlas-probe.enable = true;
       };
 
       security.acme.enable = true;

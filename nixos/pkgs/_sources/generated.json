@@ -19,6 +19,26 @@
         },
         "version": "v1.1.16"
     },
+    "atlas-probe": {
+        "cargoLocks": null,
+        "date": "2024-09-24",
+        "extract": null,
+        "name": "atlas-probe",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "RIPE-NCC",
+            "repo": "ripe-atlas-software-probe",
+            "rev": "17566dd0129a47552556e1f355d33d0114124c60",
+            "sha256": "sha256-n+SbjQoAf4Tnc52DNt5JFG9iyRBpeEuVtsewHnamgA8=",
+            "type": "github"
+        },
+        "version": "17566dd0129a47552556e1f355d33d0114124c60"
+    },
     "chrony-exporter": {
         "cargoLocks": null,
         "date": null,
@@ -41,7 +61,7 @@
     },
     "cockpit-podman": {
         "cargoLocks": null,
-        "date": "2024-11-29",
+        "date": "2024-12-05",
         "extract": null,
         "name": "cockpit-podman",
         "passthru": null,
@@ -53,11 +73,11 @@
             "name": null,
             "owner": "cockpit-project",
             "repo": "cockpit-podman",
-            "rev": "ddaff2e97a2216b131d6c17365c14318aa9f256e",
-            "sha256": "sha256-+K/NiAltosCDg1nWLLGMkMICxZr3Y4F/I7E7ZehfgDA=",
+            "rev": "6365b1830eaac3d948efe5384ad0588ecc3d8dd4",
+            "sha256": "sha256-o3hm5APOKUbB5d2fc2NIQ7XoCfny4txIlQal54vWIwM=",
             "type": "github"
         },
-        "version": "ddaff2e97a2216b131d6c17365c14318aa9f256e"
+        "version": "6365b1830eaac3d948efe5384ad0588ecc3d8dd4"
     },
     "cosmic-idle": {
         "cargoLocks": {
@@ -165,26 +185,6 @@
             "type": "github"
         },
         "version": "v0.1.0"
-    },
-    "omni": {
-        "cargoLocks": null,
-        "date": null,
-        "extract": null,
-        "name": "omni",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "siderolabs",
-            "repo": "omni",
-            "rev": "v0.44.0",
-            "sha256": "sha256-vD/Z54CxMGuIKjiyYTx2shXyu0QzJkNIL0U6UEceT5Y=",
-            "type": "github"
-        },
-        "version": "v0.44.0"
     },
     "talosctl": {
         "cargoLocks": null,
