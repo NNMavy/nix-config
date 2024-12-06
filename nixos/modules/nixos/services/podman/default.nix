@@ -23,9 +23,15 @@ in
         autoPrune.enable = true;
         autoPrune.dates = "weekly";
 
+
         # and add dns
         defaultNetwork.settings = {
           dns_enabled = true;
+          ipv6_enabled = true;
+          subnets = [
+            { gateway = "10.88.0.1"; subnet = "10.88.0.0/16"; }
+            { gateway = "fd00::1:8:1"; subnet = "fd00::1:8:0/112"; }
+          ];
         };
       };
       virtualisation.oci-containers = {

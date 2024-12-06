@@ -1,20 +1,39 @@
 # apps
+[adguard-exporter]
+src.github = "henrywhitaker3/adguard-exporter"
+fetch.github = "henrywhitaker3/adguard-exporter"
+
+[atlas-probe]
+src.git = "https://github.com/RIPE-NCC/ripe-atlas-software-probe"
+fetch.github = "RIPE-NCC/ripe-atlas-software-probe"
+
+[chrony-exporter]
+src.github = "SuperQ/chrony_exporter"
+fetch.github = "SuperQ/chrony_exporter"
+
+[cockpit-podman]
+src.git = "https://github.com/cockpit-project/cockpit-podman"
+fetch.github = "cockpit-project/cockpit-podman"
+
 [cosmic-idle]
 src.git = "https://github.com/pop-os/cosmic-idle"
 fetch.github = "pop-os/cosmic-idle"
 cargo_locks = ["Cargo.lock"]
 
-[omni]
-src.github = "siderolabs/omni"
-fetch.github = "siderolabs/omni"
-
 [flux-local]
 src.pypi = "flux-local"
 fetch.pypi = "flux_local"
 
-[cockpit-podman]
-src.git = "https://github.com/cockpit-project/cockpit-podman"
-fetch.github = "cockpit-project/cockpit-podman"
+[gpsd-prometheus-exporter]
+src.git = "https://github.com/brendanbank/gpsd-prometheus-exporter"
+fetch.github = "brendanbank/gpsd-prometheus-exporter"
+
+[mqtt-explorer]
+src.github = "thomasnordquist/MQTT-Explorer"
+fetch.github = "thomasnordquist/MQTT-Explorer"
+include_prereleases = "true"
+
+# TODO: multiviewer-f1
 
 [npiperelay]
 src.github = "jstarks/npiperelay"
@@ -23,20 +42,3 @@ fetch.github = "jstarks/npiperelay"
 [talosctl]
 src.github = "siderolabs/talos"
 fetch.github = "siderolabs/talos"
-
-[mqtt-explorer]
-src.github = "thomasnordquist/MQTT-Explorer"
-fetch.github = "thomasnordquist/MQTT-Explorer"
-include_prereleases = "true"
-
-[chrony-exporter]
-src.github = "SuperQ/chrony_exporter"
-fetch.github = "SuperQ/chrony_exporter"
-
-[gpsd-prometheus-exporter]
-src.git = "https://github.com/brendanbank/gpsd-prometheus-exporter"
-fetch.github = "brendanbank/gpsd-prometheus-exporter"
-
-[adguard-exporter]
-src.github = "henrywhitaker3/adguard-exporter"
-fetch.github = "henrywhitaker3/adguard-exporter"
