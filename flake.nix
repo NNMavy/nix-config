@@ -106,11 +106,11 @@
       };
     };
 
-    # # Non-flakes
-    # catppuccin-cosmic = {
-    #   url = "github:catppuccin/cosmic-desktop";
-    #   flake = false;
-    # };
+    # Non-flakes
+    catppuccin-cosmic = {
+      url = "github:catppuccin/cosmic-desktop";
+      flake = false;
+    };
     # catppuccin-gitui = {
     #   url = "github:catppuccin/gitui";
     #   flake = false;

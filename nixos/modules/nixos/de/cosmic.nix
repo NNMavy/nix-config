@@ -28,6 +28,10 @@ in
       fprintd.enable = true;
     };
 
+    # required for authentication
+    services.accounts-daemon.enable = true;
+    security.pam.services.cosmic-greeter = {};
+    services.dbus.packages = with pkgs; [cosmic-greeter];
     security.pam.services.login.enableGnomeKeyring = true;
 
     # extra pkgs and extensions
@@ -35,6 +39,8 @@ in
       sessionVariables = {
         NIXOS_OZONE_WL = "1";
         COSMIC_DATA_CONTROL_ENABLED = 1;
+        QT_QPA_PLATFORM = "wayland";
+        GTH_THEME = "adw-gtk3-dark";
       };
       systemPackages = with pkgs; [
         cosmic-idle
@@ -51,6 +57,8 @@ in
         chronos
         quick-webapps
         stellarshot
+        seahorse
+        adw-gtk3
       ];
     };
 
