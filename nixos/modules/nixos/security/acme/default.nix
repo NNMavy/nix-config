@@ -35,6 +35,8 @@ in
         extraDomainNames = [
           "${config.networking.domain}"
           "*.${config.networking.domain}"
+          "api.omni.${config.networking.domain}"
+          "kube.omni.${config.networking.domain}"
         ];
         dnsProvider = "cloudflare";
         dnsResolver = "1.1.1.1:53";

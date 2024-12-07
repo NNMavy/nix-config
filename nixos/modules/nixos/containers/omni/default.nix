@@ -136,9 +136,8 @@ in
       forceSSL = true;
       useACMEHost = config.networking.domain;
       locations."^~ /" = {
-        proxyPass = "http://127.0.0.1:${builtins.toString apiPort}";
+        #proxyPass = "http://127.0.0.1:${builtins.toString apiPort}";
         extraConfig = ''
-          resolver 10.88.0.1;
           grpc_pass grpc://127.0.0.1:${builtins.toString apiPort};
         '';
       };
@@ -150,7 +149,6 @@ in
       locations."^~ /" = {
         proxyPass = "http://127.0.0.1:${builtins.toString kubePort}";
         extraConfig = ''
-          resolver 10.88.0.1;
           proxy_http_version 1.1;
           proxy_set_header Upgrade $http_upgrade;
           proxy_set_header Connection $connection_upgrade;
