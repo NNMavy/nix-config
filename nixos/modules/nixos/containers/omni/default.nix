@@ -157,10 +157,9 @@ in
     };
 
     ### firewall config
-    # networking.firewall = mkIf cfg.openFirewall {
-    #   allowedTCPPorts = [ port ];
-    #   allowedUDPPorts = [ port ];
-    # };
+    networking.firewall.interfaces."siderolink" = mkIf cfg.openFirewall {
+      allowedTCPPorts = [ 8090 8092 8093 10000 ];
+    };
 
     ### backups
     warnings = [
