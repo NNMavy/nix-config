@@ -30,8 +30,8 @@ in
 
     # required for authentication
     services.accounts-daemon.enable = true;
-    security.pam.services.cosmic-greeter = {};
-    services.dbus.packages = with pkgs; [cosmic-greeter];
+    security.pam.services.cosmic-greeter = { };
+    services.dbus.packages = with pkgs; [ cosmic-greeter ];
     security.pam.services.login.enableGnomeKeyring = true;
 
     # extra pkgs and extensions
