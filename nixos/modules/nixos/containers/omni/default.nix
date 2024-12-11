@@ -156,7 +156,8 @@ in
 
     ### firewall config
     networking.firewall = mkIf cfg.openFirewall {
-      allowedTCPPorts = [ apiPort kubePort 50180 ];
+      allowedTCPPorts = [ apiPort kubePort ];
+      allowedUDPPorts = [ 50180 ];
 
       interfaces."siderolink" = mkIf cfg.openFirewall {
         allowedTCPPorts = [ apiPort kubePort 8091 8092 8093 10000 10001 ];
