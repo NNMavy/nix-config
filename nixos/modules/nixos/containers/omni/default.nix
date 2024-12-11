@@ -144,16 +144,6 @@ in
       };
     };
 
-    services.nginx.virtualHosts.${apiUrl} = {
-      forceSSL = true;
-      useACMEHost = config.networking.domain;
-      locations."/" = {
-        extraConfig = ''
-          grpc_pass grpcs://127.0.0.1:${builtins.toString apiPort};
-        '';
-      };
-    };
-
     ### firewall config
     networking.firewall = mkIf cfg.openFirewall {
       allowedTCPPorts = [ apiPort kubePort ];
