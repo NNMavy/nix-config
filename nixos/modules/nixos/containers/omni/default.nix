@@ -96,6 +96,7 @@ in
         "--siderolink-use-grpc-tunnel=true"
         "--auth-saml-enabled=true"
         "--auth-saml-metadata=/secrets/metadata.xml"
+        "--enable-break-glass-configs=true"
       ];
       volumes = [
         "${appFolder}/etcd:/_out/etcd:rw"
@@ -158,7 +159,7 @@ in
 
     ### firewall config
     networking.firewall.interfaces."siderolink" = mkIf cfg.openFirewall {
-      allowedTCPPorts = [ 8090 8092 8093 10000 ];
+      allowedTCPPorts = [ 8090 8092 8093 10000 10001 ];
     };
 
     ### backups
