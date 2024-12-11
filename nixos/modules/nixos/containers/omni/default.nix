@@ -74,6 +74,7 @@ in
     # ensure folder exist and has correct owner/group
     systemd.tmpfiles.rules = [
       "d ${appFolder}/etcd 0750 ${user} ${group} -"
+      "d ${appFolder}/logs 0750 ${user} ${group} -"
     ];
 
     environment.persistence."${config.mySystem.system.impermanence.persistPath}" = lib.mkIf config.mySystem.system.impermanence.enable {
@@ -100,6 +101,7 @@ in
       ];
       volumes = [
         "${appFolder}/etcd:/_out/etcd:rw"
+        "${appFolder}/logs:/_out/logs:rw"
         "${config.sops.secrets."services/omni/pgp_key".path}:/omni.asc:ro"
         "${config.sops.secrets."services/omni/saml_metadata".path}:/secrets/metadata.xml:ro"
         "/etc/localtime:/etc/localtime:ro"
@@ -121,7 +123,7 @@ in
     services.nginx.virtualHosts.${url} = {
       forceSSL = true;
       useACMEHost = config.networking.domain;
-      locations."^~ /" = {
+      locations."/" = {
         proxyPass = "http://127.0.0.1:${builtins.toString port}";
         extraConfig = ''
           resolver 10.88.0.1;
@@ -134,10 +136,9 @@ in
     };
 
     services.nginx.virtualHosts.${apiUrl} = {
-      forceSSL = true;
+      forceSSL = false;
       useACMEHost = config.networking.domain;
-      locations."^~ /" = {
-        #proxyPass = "http://127.0.0.1:${builtins.toString apiPort}";
+      locations."/" = {
         extraConfig = ''
           grpc_pass grpc://127.0.0.1:${builtins.toString apiPort};
         '';
@@ -145,14 +146,14 @@ in
     };
 
     services.nginx.virtualHosts.${kubeUrl} = {
-      forceSSL = true;
+      forceSSL = false;
       useACMEHost = config.networking.domain;
-      locations."^~ /" = {
-        proxyPass = "http://127.0.0.1:${builtins.toString kubePort}";
+      locations."/" = {
+        proxyPass = "127.0.0.1:${builtins.toString kubePort}";
         extraConfig = ''
-          proxy_http_version 1.1;
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_set_header Connection $connection_upgrade;
+          # proxy_http_version 1.1;
+          # proxy_set_header Upgrade $http_upgrade;
+          # proxy_set_header Connection $connection_upgrade;
         '';
       };
     };
