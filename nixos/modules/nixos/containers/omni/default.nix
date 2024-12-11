@@ -21,6 +21,8 @@ let
   url = "${host}.${config.networking.domain}";
   apiUrl = "api.${url}";
   kubeUrl = "kube.${url}";
+
+  sslCertDir = config.security.acme.certs.${config.networking.domain}.directory;
 in
 {
   options.mySystem.${category}.${app} =
@@ -87,14 +89,19 @@ in
       cmd = [
         "--account-id=20e42ade-d500-4494-9419-6d47bd042512"
         "--name=nnhome-omni"
+        "--cert=/cert.pem"
+        "--key=/key.pem"
+        "--siderolink-api-cert=/cert.pem"
+        "--siderolink-api-key=/key.pem"
         "--private-key-source=file:///omni.asc"
         "--advertised-api-url=https://${url}"
+        "--event-sink-port=8091"
         "--bind-addr=127.0.0.1:${builtins.toString port}"
-        "--siderolink-api-bind-addr=127.0.0.1:${builtins.toString apiPort}"
-        "--siderolink-api-advertised-url=https://${apiUrl}:443"
-        "--k8s-proxy-bind-addr=127.0.0.1:${builtins.toString kubePort}"
-        "--advertised-kubernetes-proxy-url=https://${kubeUrl}/"
-        "--siderolink-use-grpc-tunnel=true"
+        "--siderolink-api-bind-addr=0.0.0.0:${builtins.toString apiPort}"
+        "--siderolink-api-advertised-url=https://${apiUrl}:${builtins.toString apiPort}"
+        "--k8s-proxy-bind-addr=0.0.0.0:${builtins.toString kubePort}"
+        "--advertised-kubernetes-proxy-url=https://${kubeUrl}:${builtins.toString kubePort}/"
+        "--siderolink-wireguard-advertised-addr=172.16.20.9:50180"
         "--auth-saml-enabled=true"
         "--auth-saml-metadata=/secrets/metadata.xml"
         "--enable-break-glass-configs=true"
@@ -105,6 +112,8 @@ in
         "${config.sops.secrets."services/omni/pgp_key".path}:/omni.asc:ro"
         "${config.sops.secrets."services/omni/saml_metadata".path}:/secrets/metadata.xml:ro"
         "/etc/localtime:/etc/localtime:ro"
+        "${sslCertDir}/cert.pem:/cert.pem:ro"
+        "${sslCertDir}/key.pem:/key.pem:ro"
       ];
     };
 
@@ -124,43 +133,34 @@ in
       forceSSL = true;
       useACMEHost = config.networking.domain;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:${builtins.toString port}";
+        proxyPass = "https://127.0.0.1:${builtins.toString port}";
         extraConfig = ''
           resolver 10.88.0.1;
           proxy_http_version 1.1;
           proxy_set_header Upgrade $http_upgrade;
           proxy_set_header Connection $connection_upgrade;
-          grpc_pass grpc://127.0.0.1:${builtins.toString port};
+          grpc_pass grpcs://127.0.0.1:${builtins.toString port};
         '';
       };
     };
 
     services.nginx.virtualHosts.${apiUrl} = {
-      forceSSL = false;
+      forceSSL = true;
       useACMEHost = config.networking.domain;
       locations."/" = {
         extraConfig = ''
-          grpc_pass grpc://127.0.0.1:${builtins.toString apiPort};
-        '';
-      };
-    };
-
-    services.nginx.virtualHosts.${kubeUrl} = {
-      forceSSL = false;
-      useACMEHost = config.networking.domain;
-      locations."/" = {
-        proxyPass = "127.0.0.1:${builtins.toString kubePort}";
-        extraConfig = ''
-          # proxy_http_version 1.1;
-          # proxy_set_header Upgrade $http_upgrade;
-          # proxy_set_header Connection $connection_upgrade;
+          grpc_pass grpcs://127.0.0.1:${builtins.toString apiPort};
         '';
       };
     };
 
     ### firewall config
-    networking.firewall.interfaces."siderolink" = mkIf cfg.openFirewall {
-      allowedTCPPorts = [ 8090 8092 8093 10000 10001 ];
+    networking.firewall = mkIf cfg.openFirewall {
+      allowedTCPPorts = [ apiPort kubePort ];
+
+      interfaces."siderolink" = mkIf cfg.openFirewall {
+        allowedTCPPorts = [ apiPort kubePort 8091 8092 8093 10000 10001 ];
+      };
     };
 
     ### backups
