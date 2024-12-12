@@ -111,6 +111,7 @@ in
           update_path ${homeDirectory}/go/bin
           update_path ${homeDirectory}/.cargo/bin
           update_path ${homeDirectory}/.local/bin
+          update_path ${homeDirectory}/bin
 
           set -gx EDITOR "vim"
 
