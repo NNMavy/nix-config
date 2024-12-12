@@ -9,7 +9,7 @@ let
   app = "forgejo";
   category = "services";
   description = "A gitea fork with some extra features";
-  #image = "codeberg.org/forgejo/forgejo:9.0.2-rootless";
+  #image = "codeberg.org/forgejo/forgejo:9.0.3-rootless";
   # Forgejo is a little different
   forgejo-user = "git";
   user = forgejo-user;
