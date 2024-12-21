@@ -5,6 +5,7 @@
     ./chrony-exporter
     ./cloudflared
     ./cockpit
+    ./docker
     ./forgejo
     ./gps
     ./klipper
