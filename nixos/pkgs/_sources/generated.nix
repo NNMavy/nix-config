@@ -3,13 +3,13 @@
 {
   adguard-exporter = {
     pname = "adguard-exporter";
-    version = "v1.1.16";
+    version = "v1.2.0";
     src = fetchFromGitHub {
       owner = "henrywhitaker3";
       repo = "adguard-exporter";
-      rev = "v1.1.16";
+      rev = "v1.2.0";
       fetchSubmodules = false;
-      sha256 = "sha256-zJnmEj8kcaUCxxuxMR6l0xaUtqnZh68VPcFZVrEafnM=";
+      sha256 = "sha256-HQ72eTBV6ZZMawACZ/iwABVm8On/yqFKotfXxbGZqUc=";
     };
   };
   atlas-probe = {
@@ -37,15 +37,15 @@
   };
   cockpit-podman = {
     pname = "cockpit-podman";
-    version = "2007ac6c88af3fb3eb8c6dc063c329251b44d43f";
+    version = "57d3c3c404654c9358a6f8bf8872a8ca7be2cd1f";
     src = fetchFromGitHub {
       owner = "cockpit-project";
       repo = "cockpit-podman";
-      rev = "2007ac6c88af3fb3eb8c6dc063c329251b44d43f";
+      rev = "57d3c3c404654c9358a6f8bf8872a8ca7be2cd1f";
       fetchSubmodules = false;
-      sha256 = "sha256-nkBazneojtHKHyEHxVXN5xyQMTn876i2n++mpm9lP8g=";
+      sha256 = "sha256-KTWIHaUT7CjnKWLIvOSQI40tfknGN4pbCiavBPl2maU=";
     };
-    date = "2024-12-09";
+    date = "2024-12-22";
   };
   cosmic-idle = {
     pname = "cosmic-idle";
@@ -114,13 +114,13 @@
   };
   talosctl = {
     pname = "talosctl";
-    version = "v1.8.3";
+    version = "v1.9.0";
     src = fetchFromGitHub {
       owner = "siderolabs";
       repo = "talos";
-      rev = "v1.8.3";
+      rev = "v1.9.0";
       fetchSubmodules = false;
-      sha256 = "sha256-KC5FxNrKRcAvM9IVuj9jh2AdQ6qqqdo3GwWRHH8t9As=";
+      sha256 = "sha256-j/GqAUP3514ROf64+ouvCg//9QuGoVDgxkNFqi4r+WE=";
     };
   };
 }
