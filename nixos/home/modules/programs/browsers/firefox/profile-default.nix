@@ -4,9 +4,9 @@
   name = "default";
   isDefault = true;
   settings = {
-    "browser.startup.homepage" = "https://homepage.nnhome.eu";
-    "browser.search.defaultenginename" = "whoogle";
-    "browser.search.order.1" = "whoogle";
+    "browser.startup.homepage" = "https://search.nnhome.eu";
+    "browser.search.defaultenginename" = "nnhome";
+    "browser.search.order.1" = "nnhome";
     "browser.search.suggest.enabled.private" = false;
     # 0 => blank page
     # 1 => your home page(s) {default}
