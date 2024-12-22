@@ -1,8 +1,8 @@
 { pkgs }:
 {
   force = true;
-  default = "whoogle";
-  order = [ "whoogle" "Searx" "Google" ];
+  default = "nnhome";
+  order = [ "nnhome" "whoogle" "Google" ];
   engines = {
     "Nix Packages" = {
       urls = [{
@@ -59,11 +59,11 @@
       updateInterval = 24 * 60 * 60 * 1000; # every day
       definedAliases = [ "@whoogle" ];
     };
-    "Searx" = {
-      urls = [{ template = "https://searx.trux.dev/?q={searchTerms}"; }];
+    "nnhome" = {
+      urls = [{ template = "https://search.nnhome.eu/search?q={searchTerms}"; }];
       iconUpdateURL = "https://nixos.wiki/favicon.png";
       updateInterval = 24 * 60 * 60 * 1000; # every day
-      definedAliases = [ "@searx" ];
+      definedAliases = [ "@n" ];
     };
     "Bing".metaData.hidden = true;
     "Google".metaData.alias = "@g"; # builtin engines only support specifying one additional alias
