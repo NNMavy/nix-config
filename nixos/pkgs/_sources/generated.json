@@ -13,11 +13,11 @@
             "name": null,
             "owner": "henrywhitaker3",
             "repo": "adguard-exporter",
-            "rev": "v1.1.16",
-            "sha256": "sha256-zJnmEj8kcaUCxxuxMR6l0xaUtqnZh68VPcFZVrEafnM=",
+            "rev": "v1.2.0",
+            "sha256": "sha256-HQ72eTBV6ZZMawACZ/iwABVm8On/yqFKotfXxbGZqUc=",
             "type": "github"
         },
-        "version": "v1.1.16"
+        "version": "v1.2.0"
     },
     "atlas-probe": {
         "cargoLocks": null,
@@ -61,7 +61,7 @@
     },
     "cockpit-podman": {
         "cargoLocks": null,
-        "date": "2024-12-09",
+        "date": "2024-12-22",
         "extract": null,
         "name": "cockpit-podman",
         "passthru": null,
@@ -73,11 +73,11 @@
             "name": null,
             "owner": "cockpit-project",
             "repo": "cockpit-podman",
-            "rev": "2007ac6c88af3fb3eb8c6dc063c329251b44d43f",
-            "sha256": "sha256-nkBazneojtHKHyEHxVXN5xyQMTn876i2n++mpm9lP8g=",
+            "rev": "57d3c3c404654c9358a6f8bf8872a8ca7be2cd1f",
+            "sha256": "sha256-KTWIHaUT7CjnKWLIvOSQI40tfknGN4pbCiavBPl2maU=",
             "type": "github"
         },
-        "version": "2007ac6c88af3fb3eb8c6dc063c329251b44d43f"
+        "version": "57d3c3c404654c9358a6f8bf8872a8ca7be2cd1f"
     },
     "cosmic-idle": {
         "cargoLocks": {
@@ -200,10 +200,10 @@
             "name": null,
             "owner": "siderolabs",
             "repo": "talos",
-            "rev": "v1.8.3",
-            "sha256": "sha256-KC5FxNrKRcAvM9IVuj9jh2AdQ6qqqdo3GwWRHH8t9As=",
+            "rev": "v1.9.0",
+            "sha256": "sha256-j/GqAUP3514ROf64+ouvCg//9QuGoVDgxkNFqi4r+WE=",
             "type": "github"
         },
-        "version": "v1.8.3"
+        "version": "v1.9.0"
     }
 }
