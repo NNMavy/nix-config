@@ -9,7 +9,7 @@ let
   app = "omni";
   category = "services";
   description = "The Sidero Omni Kubernetes management platform";
-  image = "ghcr.io/siderolabs/omni:v0.45.0";
+  image = "ghcr.io/siderolabs/omni:v0.45.1";
   user = "root";
   group = "root";
   port = 8080; #int
