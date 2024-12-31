@@ -10,6 +10,7 @@ on:
       - workflows
     paths:
       - nixos/pkgs/nvfetcher.toml
+      - .github/workflows/update-nvfetcher.yaml
 
 jobs:
   update-nvfetcher:
