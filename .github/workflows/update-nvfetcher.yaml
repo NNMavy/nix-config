@@ -29,7 +29,7 @@ jobs:
       - name: Run nvfetcher
         id: run-nvfetcher
         run: |
-          cd pkgs
+          cd nixos/pkgs
           nix-shell -p nvfetcher --command 'nvfetcher -l /tmp/nvfetcher-changes'
           {
             echo 'changes<<EOF'
