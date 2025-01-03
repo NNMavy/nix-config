@@ -1,0 +1,94 @@
+[vscode-extensions-copilot]
+src.vsmarketplace = "GitHub.copilot"
+fetch.vsmarketplace = "GitHub.copilot"
+passthru = { license = "mit", homepage = "none", description = "none" }
+
+[vscode-extensions-copilot-chat]
+src.vsmarketplace = "GitHub.copilot-chat"
+fetch.vsmarketplace = "GitHub.copilot-chat"
+passthru = { license = "mit", homepage = "none", description = "none" }
+
+[vscode-extensions-prettier-vscode]
+src.vsmarketplace = "esbenp.prettier-vscode"
+fetch.vsmarketplace = "esbenp.prettier-vscode"
+passthru = { license = "mit", homepage = "none", description = "none" }
+
+[vscode-extensions-vscode-docker]
+src.vsmarketplace = "ms-azuretools.vscode-docker"
+fetch.vsmarketplace = "ms-azuretools.vscode-docker"
+passthru = { license = "mit", homepage = "none", description = "none" }
+
+[vscode-extensions-gitlens]
+src.vsmarketplace = "eamodio.gitlens"
+fetch.vsmarketplace = "eamodio.gitlens"
+passthru = { license = "mit", homepage = "none", description = "none" }
+
+[vscode-extensions-remote-containers]
+src.vsmarketplace = "ms-vscode-remote.remote-containers"
+fetch.vsmarketplace = "ms-vscode-remote.remote-containers"
+passthru = { license = "mit", homepage = "none", description = "none" }
+
+[vscode-extensions-remote-ssh]
+src.vsmarketplace = "ms-vscode-remote.remote-ssh"
+fetch.vsmarketplace = "ms-vscode-remote.remote-ssh"
+passthru = { license = "mit", homepage = "none", description = "none" }
+
+[vscode-extensions-vscode-yaml]
+src.vsmarketplace = "redhat.vscode-yaml"
+fetch.vsmarketplace = "redhat.vscode-yaml"
+passthru = { license = "mit", homepage = "none", description = "none" }
+
+[vscode-extensions-todo-tree]
+src.vsmarketplace = "gruntfuggly.todo-tree"
+fetch.vsmarketplace = "gruntfuggly.todo-tree"
+passthru = { license = "mit", homepage = "none", description = "none" }
+
+[vscode-extensions-path-autocomplete]
+src.vsmarketplace = "ionutvmi.path-autocomplete"
+fetch.vsmarketplace = "ionutvmi.path-autocomplete"
+passthru = { license = "mit", homepage = "none", description = "none" }
+
+[vscode-extensions-even-better-toml]
+src.vsmarketplace = "tamasfe.even-better-toml"
+fetch.vsmarketplace = "tamasfe.even-better-toml"
+passthru = { license = "mit", homepage = "none", description = "none" }
+
+[vscode-extensions-linter]
+src.vsmarketplace = "fnando.linter"
+fetch.vsmarketplace = "fnando.linter"
+passthru = { license = "mit", homepage = "none", description = "none" }
+
+[vscode-extensions-catppuccin-vsc]
+src.vsmarketplace = "catppuccin.catppuccin-vsc"
+fetch.vsmarketplace = "catppuccin.catppuccin-vsc"
+passthru = { license = "mit", homepage = "none", description = "none" }
+
+[vscode-extensions-catppuccin-vsc-icons]
+src.vsmarketplace = "catppuccin.catppuccin-vsc-icons"
+fetch.vsmarketplace = "catppuccin.catppuccin-vsc-icons"
+passthru = { license = "mit", homepage = "none", description = "none" }
+
+[vscode-extensions-nix-ide]
+src.vsmarketplace = "jnoortheen.nix-ide"
+fetch.vsmarketplace = "jnoortheen.nix-ide"
+passthru = { license = "mit", homepage = "none", description = "none" }
+
+[vscode-extensions-vscode-swissknife]
+src.vsmarketplace = "luisfontes19.vscode-swissknife"
+fetch.vsmarketplace = "luisfontes19.vscode-swissknife"
+passthru = { license = "mit", homepage = "none", description = "none" }
+
+[vscode-extensions-pre-commit-helper]
+src.vsmarketplace = "elagil.pre-commit-helper"
+fetch.vsmarketplace = "elagil.pre-commit-helper"
+passthru = { license = "mit", homepage = "none", description = "none" }
+
+[vscode-extensions-sops-edit]
+src.vsmarketplace = "shipitsmarter.sops-edit"
+fetch.vsmarketplace = "shipitsmarter.sops-edit"
+passthru = { license = "mit", homepage = "none", description = "none" }
+
+[vscode-extensions-json5-for-vscode]
+src.vsmarketplace = "tudoudou.json5-for-vscode"
+fetch.vsmarketplace = "tudoudou.json5-for-vscode"
+passthru = { license = "mit", homepage = "none", description = "none" }

@@ -25,6 +25,8 @@ in
             mkhl.direnv
             streetsidesoftware.code-spell-checker
             oderwat.indent-rainbow
+            github.copilot
+            github.copilot-chat
 
           ]
           ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [

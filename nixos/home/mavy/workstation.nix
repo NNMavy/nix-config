@@ -12,17 +12,15 @@ with config;
     enable = true;
     flavor = "macchiato";
     accent = "teal";
+    kitty = {
+      enable = true;
+      inherit (config.catppuccin) flavor;
+    };
   };
 
   programs = {
-
-    # TODO: Move to module
     kitty = {
       enable = true;
-      catppuccin = {
-        enable = true;
-        inherit (config.catppuccin) flavor;
-      };
     };
   };
 

@@ -10,7 +10,7 @@ in
   additions = custom.overlay;
 
   # nur overlay
-  nur = inputs.nur.overlay;
+  nur = inputs.nur.overlays.default;
 
   # The unstable nixpkgs set (declared in the flake inputs) will
   # be accessible through 'pkgs.unstable'
