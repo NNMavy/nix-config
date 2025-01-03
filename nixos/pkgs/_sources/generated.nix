@@ -37,45 +37,45 @@
   };
   cockpit-podman = {
     pname = "cockpit-podman";
-    version = "57d3c3c404654c9358a6f8bf8872a8ca7be2cd1f";
+    version = "28d0e9a777c2b37dba58759c69e9dc501baeb673";
     src = fetchFromGitHub {
       owner = "cockpit-project";
       repo = "cockpit-podman";
-      rev = "57d3c3c404654c9358a6f8bf8872a8ca7be2cd1f";
+      rev = "28d0e9a777c2b37dba58759c69e9dc501baeb673";
       fetchSubmodules = false;
-      sha256 = "sha256-KTWIHaUT7CjnKWLIvOSQI40tfknGN4pbCiavBPl2maU=";
+      sha256 = "sha256-4ZgrHUQqh0UT2UjY9o6y1BJd1NxYS6yO7BBAgOU8pMM=";
     };
-    date = "2024-12-22";
+    date = "2025-01-02";
   };
   cosmic-idle = {
     pname = "cosmic-idle";
-    version = "eaa09a6fef304ddc236709c111bb7b0c16883f7d";
+    version = "7899fccbbe3d6746982178d3eff48ce8943b0f71";
     src = fetchFromGitHub {
       owner = "pop-os";
       repo = "cosmic-idle";
-      rev = "eaa09a6fef304ddc236709c111bb7b0c16883f7d";
+      rev = "7899fccbbe3d6746982178d3eff48ce8943b0f71";
       fetchSubmodules = false;
-      sha256 = "sha256-+BOzbFDEoIaYkXs48RJtfomv8qdzIFiEpDpN/zDDgFM=";
+      sha256 = "sha256-hORU+iMvWA4XMSWmzir9EwjpLK5vOLR8BgMZz+aIZ4U=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./cosmic-idle-eaa09a6fef304ddc236709c111bb7b0c16883f7d/Cargo.lock;
+      lockFile = ./cosmic-idle-7899fccbbe3d6746982178d3eff48ce8943b0f71/Cargo.lock;
       outputHashes = {
-        "clipboard_macos-0.1.0" = "sha256-cG5vnkiyDlQnbEfV2sPbmBYKv1hd3pjJrymfZb8ziKk=";
-        "upower_dbus-0.3.2" = "sha256-mklNPKVMO6iFrxki2DwiL5K78KiWpGxksisYldaASIE=";
-        "cosmic-settings-config-0.1.0" = "sha256-QnRicNbKKAjq12hPE6QbtyH0rV33H3RPHdISYjHX7yw=";
+        "clipboard_macos-0.1.0" = "sha256-tovB4fjPVVRY8LKn5albMzskFQ+1W5ul4jT5RXx9gKE=";
+        "upower_dbus-0.3.2" = "sha256-9Pq5WFBeIRvP2VZaa3BzoqiQmzN6taa20u7k+2aF3v0=";
+        "cosmic-settings-config-0.1.0" = "sha256-BCOVyJ1IIik/R4qC/16csJH8yII4WxdxO116hdvUl3I=";
         "smithay-clipboard-0.8.0" = "sha256-4InFXm0ahrqFrtNLeqIuE3yeOpxKZJZx+Bc0yQDtv34=";
-        "cosmic-config-0.1.0" = "sha256-FRpZRiT8RJuvD0OBnkDLYdd72WDZEktnAp4YgvKQ0AA=";
+        "cosmic-config-0.1.0" = "sha256-O7QVpdKVUw32TOxns+ozP6b/E8eh/jE007Ki63seBiY=";
         "atomicwrites-0.4.2" = "sha256-QZSuGPrJXh+svMeFWqAXoqZQxLq/WfIiamqvjJNVhxA=";
       };
     };
-    date = "2024-11-15";
+    date = "2024-12-24";
   };
   flux-local = {
     pname = "flux-local";
-    version = "6.0.2";
+    version = "7.0.0";
     src = fetchurl {
-      url = "https://pypi.org/packages/source/f/flux_local/flux_local-6.0.2.tar.gz";
-      sha256 = "sha256-ziNCt83pMz84e0q+PcdR1JgGc8vI9fS2AWo8lHBavGE=";
+      url = "https://pypi.org/packages/source/f/flux_local/flux_local-7.0.0.tar.gz";
+      sha256 = "sha256-+TeuzNYG1cUpf0h/rrLGGio4IkNxArIX1/Isu2gSgIU=";
     };
   };
   gpsd-prometheus-exporter = {
@@ -114,13 +114,13 @@
   };
   talosctl = {
     pname = "talosctl";
-    version = "v1.9.0";
+    version = "v1.9.1";
     src = fetchFromGitHub {
       owner = "siderolabs";
       repo = "talos";
-      rev = "v1.9.0";
+      rev = "v1.9.1";
       fetchSubmodules = false;
-      sha256 = "sha256-j/GqAUP3514ROf64+ouvCg//9QuGoVDgxkNFqi4r+WE=";
+      sha256 = "sha256-Qvt9/okT37J3ge/lb17OX4aaiXbSFU1j7drdiJDqFnA=";
     };
   };
 }
