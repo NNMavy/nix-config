@@ -18,7 +18,7 @@ in
     # Enable vscode & addons
     environment.systemPackages = with pkgs; [
       (vscode-with-extensions.override {
-        vscode = vscodium;
+        vscode = unstable.vscodium;
         vscodeExtensions = with vscode-extensions;
           [
             bbenoist.nix
