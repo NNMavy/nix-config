@@ -366,6 +366,9 @@
         ];
       };
 
+      # # nix build .#packagename
+      # overlays = import ./nixos/overlays { inherit inputs; };
+      # packages = nixpkgs.legacyPackages."x86_64-linux".extend overlays.additions;
 
       # simple shortcut to allow for easier referencing of correct
       # key for building images
