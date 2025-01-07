@@ -17,6 +17,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: true
 
+env:
+  EXCLUDED_HOSTS: '["iso","rpi4"]'
+  TMPDIR: /tmp
+
 jobs:
   nix-matrix:
     runs-on: ubuntu-latest
