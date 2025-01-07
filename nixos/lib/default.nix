@@ -121,6 +121,8 @@ rec {
     system:
     if system == "x86_64-linux" then
       "ubuntu-latest"
+    if system == "aarch64-linux" then
+      "ubuntu-latest"
     else if system == "x86_64-darwin" then
       "ubuntu-latest"
     else
