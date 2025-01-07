@@ -369,11 +369,13 @@
 
       # Lists hosts with their system kind for use in github actions
       evalHosts = {
-        include = builtins.map (host: {
-          inherit host;
-          system = self.nixosConfigurations.${host}.pkgs.system;
-          runner = lib.myLib.mapToGha self.nixosConfigurations.${host}.pkgs.system;
-        }) (builtins.attrNames self.nixosConfigurations);
+        include = builtins.map
+          (host: {
+            inherit host;
+            inherit (self.nixosConfigurations.${host}.pkgs) system;
+            runner = lib.myLib.mapToGha self.nixosConfigurations.${host}.pkgs.system;
+          })
+          (builtins.attrNames self.nixosConfigurations);
       };
     };
 
