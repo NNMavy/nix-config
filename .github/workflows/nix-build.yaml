@@ -90,7 +90,7 @@ jobs:
             accept-flake-config = true
             always-allow-substitutes = true
             builders-use-substitutes = true
-            system = aarch64-linux
+            extra-platforms = aarch64-linux
 
       - name: Set up Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@v8
