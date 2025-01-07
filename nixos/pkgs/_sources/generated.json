@@ -41,7 +41,7 @@
     },
     "cockpit-podman": {
         "cargoLocks": null,
-        "date": "2024-12-30",
+        "date": "2025-01-02",
         "extract": null,
         "name": "cockpit-podman",
         "passthru": null,
@@ -53,11 +53,11 @@
             "name": null,
             "owner": "cockpit-project",
             "repo": "cockpit-podman",
-            "rev": "265c64c7192aa30de4a68d0797cc1fd47d49ea41",
-            "sha256": "sha256-S9GwjQzmDeBGHaN+INPK73RzyUA8zPLQ1HkT83MOJEc=",
+            "rev": "28d0e9a777c2b37dba58759c69e9dc501baeb673",
+            "sha256": "sha256-4ZgrHUQqh0UT2UjY9o6y1BJd1NxYS6yO7BBAgOU8pMM=",
             "type": "github"
         },
-        "version": "265c64c7192aa30de4a68d0797cc1fd47d49ea41"
+        "version": "28d0e9a777c2b37dba58759c69e9dc501baeb673"
     },
     "cosmic-idle": {
         "cargoLocks": {
@@ -100,11 +100,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-Adir3oN5AiiOAJ/RejzxQFWUejKGBOoqYtaoIxxXj/E=",
+            "sha256": "sha256-+TeuzNYG1cUpf0h/rrLGGio4IkNxArIX1/Isu2gSgIU=",
             "type": "url",
-            "url": "https://pypi.org/packages/source/f/flux_local/flux_local-6.1.1.tar.gz"
+            "url": "https://pypi.org/packages/source/f/flux_local/flux_local-7.0.0.tar.gz"
         },
-        "version": "6.1.1"
+        "version": "7.0.0"
     },
     "gpsd-prometheus-exporter": {
         "cargoLocks": null,
