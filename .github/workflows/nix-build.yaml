@@ -41,29 +41,27 @@ jobs:
           pre_runner_script: |
             apt install -y xz-utils
 
-  nix-matrix:
+  runner-setup:
     runs-on: ${{ needs.create-runner.outputs.label }}
-    needs: create-runner
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    needs: create-runner  
     env:
       HOME: /root
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-
-      - name: debug shell
-        shell: bash
-        run: |
-          id
-          env
-
       - name: Install Nix
         uses: cachix/install-nix-action@v30
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
           extra_nix_config: |
             accept-flake-config = true
+
+  nix-matrix:
+    runs-on: ${{ needs.create-runner.outputs.label }}
+    needs: runner-setup
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
       - id: set-matrix
         name: Generate Nix Matrix
@@ -78,9 +76,7 @@ jobs:
 
   nix-build:
     if: github.event.pull_request.draft == false
-    needs: 
-      - nix-matrix
-      - create-runner
+    needs: nix-matrix
     permissions:
       contents: read
       pull-requests: write
@@ -107,7 +103,7 @@ jobs:
           else
             curl -sS https://webi.sh/node | sh
             echo ~/.local/opt/node/bin >> $GITHUB_PATH
-          fi
+          fi123
 
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
