@@ -38,6 +38,8 @@ jobs:
           hcloud_token: ${{ secrets.HETZNER_TOKEN }}
           server_type: cx32
           image: ubuntu-24.04
+          pre_runner_script: |
+            apt install -y qemu qemu-kvm xz-utils
 
   nix-matrix:
     runs-on: ${{ needs.create-runner.outputs.label }}
@@ -51,6 +53,8 @@ jobs:
       - name: Install xz-utils
         shell: bash
         run: |
+          id
+          env
           sudo apt-get update && sudo apt-get install -y xz-utils;
 
       - name: Install Nix
