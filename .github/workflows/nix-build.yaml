@@ -38,7 +38,7 @@ jobs:
           github_token: ${{ secrets.GH_PAT }}
           hcloud_token: ${{ secrets.HETZNER_TOKEN }}
           server_type: cx32
-          image: github-runner-image
+          image: 210880754
           pre_runner_script: |
             echo "accept-flake-config = true" >> /etc/nix/nix.conf
             echo "always-allow-substitutes = true" >> /etc/nix/nix.conf
