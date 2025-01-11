@@ -60,10 +60,16 @@ jobs:
       contents: read
       pull-requests: write
     strategy:
-      fail-fast: false
+      fail-fast: true
+      max-parallel: 1
       matrix: ${{ fromJSON(needs.nix-matrix.outputs.matrix) }}
     runs-on: ${{ matrix.runner }}
     steps:
+      - name: Install requirements
+        shell: bash
+        run: |
+          sudo apt-get update && sudo apt-get install -y xz-utils lvm2;
+
       - name: maximize build space
         uses: easimon/maximize-build-space@v10
         with:
@@ -86,11 +92,6 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           fetch-depth: 0
-
-      - name: Install xz-utils
-        shell: bash
-        run: |
-          sudo apt-get update && sudo apt-get install -y xz-utils;
 
       - name: Install Nix
         uses: cachix/install-nix-action@v30
