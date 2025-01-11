@@ -38,28 +38,18 @@ jobs:
           github_token: ${{ secrets.GH_PAT }}
           hcloud_token: ${{ secrets.HETZNER_TOKEN }}
           server_type: cx32
-          image: ubuntu-24.04
+          image: github-runner-image
           pre_runner_script: |
-            apt install -y xz-utils
-
-  runner-setup:
-    runs-on: ${{ needs.create-runner.outputs.label }}
-    needs: create-runner
-    env:
-      HOME: /root
-    steps:
-      - name: Install Nix
-        uses: cachix/install-nix-action@v30
-        with:
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
-          extra_nix_config: |
-            accept-flake-config = true
+            echo "accept-flake-config = true" >> /etc/nix/nix.conf
+            echo "always-allow-substitutes = true" >> /etc/nix/nix.conf
+            echo "builders-use-substitutes = true" >> /etc/nix/nix.conf
+            echo "extra-platforms = aarch64-linux" >> /etc/nix/nix.conf
+            systemctl restart nix-daemon
 
   nix-matrix:
     runs-on: ${{ needs.create-runner.outputs.label }}
     needs:
       - create-runner
-      - runner-setup
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
@@ -80,7 +70,6 @@ jobs:
   nix-build:
     needs: 
       - create-runner
-      - runner-setup
       - nix-matrix
     permissions:
       contents: read
@@ -94,11 +83,6 @@ jobs:
       USER: root
     runs-on: ${{ needs.create-runner.outputs.label }}
     steps:
-      - name: Install requirements
-        shell: bash
-        run: |
-          sudo apt-get update && sudo apt-get install -y xz-utils;
-
       - name: Install node
         run: |
           if [ "${RUNNER_OS,,}" = "windows" ]
@@ -114,16 +98,6 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           fetch-depth: 0
-
-      - name: Install Nix
-        uses: cachix/install-nix-action@v30
-        with:
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
-          extra_nix_config: |
-            accept-flake-config = true
-            always-allow-substitutes = true
-            builders-use-substitutes = true
-            extra-platforms = aarch64-linux
 
       - name: Set up Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@v8
