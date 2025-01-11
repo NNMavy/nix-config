@@ -23,17 +23,24 @@ env:
 
 jobs:
   create-runner:
+    name: Create Hetzner Cloud runner
     runs-on: ubuntu-latest
-    name: Create new Hetzner Cloud instance for build
+    outputs:
+      label: ${{ steps.create-hcloud-runner.outputs.label }}
+      server_id: ${{ steps.create-hcloud-runner.outputs.server_id }}
     steps:
-      - uses: stonemaster/hetzner-github-runner@HEAD
+      - name: Create runner
+        id: create-hcloud-runner
+        uses: Cyclenerd/hcloud-github-runner@v1
         with:
-          github-api-key: ${{ secrets.GH_PAT }}
-          hetzner-api-key: ${{ secrets.HETZNER_TOKEN }}
-          hetzner-instance-type: cx32
+          mode: create
+          github_token: ${{ secrets.GH_PAT }}
+          hcloud_token: ${{ secrets.HETZNER_TOKEN }}
+          server_type: cx32
+          image: ubuntu-24.04
 
   nix-matrix:
-    runs-on: self-hosted
+    runs-on: ${{ needs.create-runner.outputs.label }}
     needs: create-runner
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
@@ -78,7 +85,7 @@ jobs:
       matrix: ${{ fromJSON(needs.nix-matrix.outputs.matrix) }}
     env:
       USER: 1001
-    runs-on: self-hosted
+    runs-on: ${{ needs.create-runner.outputs.label }}
     steps:
       - name: Install requirements
         shell: bash
@@ -181,6 +188,24 @@ jobs:
 
             <summary> Version changes </summary> <br>
             <pre> ${{ steps.diff.outputs.diff }} </pre>
+
+  delete-runner:
+    name: Delete Hetzner Cloud runner
+    needs:
+      - create-runner
+      - nix-matrix
+      - nix-build
+    runs-on: ubuntu-latest
+    if: ${{ always() }} # required to stop the runner even if the error happened in the previous jobs
+    steps:
+      - name: Delete runner
+        uses: Cyclenerd/hcloud-github-runner@v1
+        with:
+          mode: delete
+          github_token: ${{ secrets.GH_PAT }}
+          hcloud_token: ${{ secrets.HETZNER_TOKEN }}
+          name: ${{ needs.create-runner.outputs.label }}
+          server_id: ${{ needs.create-runner.outputs.server_id }}
 
   nix-build-success:
     if: ${{ always() }}
