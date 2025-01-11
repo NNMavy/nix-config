@@ -89,7 +89,8 @@ jobs:
       max-parallel: 1
       matrix: ${{ fromJSON(needs.nix-matrix.outputs.matrix) }}
     env:
-      USER: 1001
+      HOME: /root
+      USER: root
     runs-on: ${{ needs.create-runner.outputs.label }}
     steps:
       - name: Install requirements
