@@ -40,13 +40,14 @@ jobs:
           image: ubuntu-24.04
           pre_runner_script: |
             apt install -y xz-utils
-            export HOME=/root
 
   nix-matrix:
     runs-on: ${{ needs.create-runner.outputs.label }}
     needs: create-runner
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
+    env:
+      HOME: /root
     steps:
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
