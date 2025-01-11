@@ -38,8 +38,9 @@ jobs:
           github_token: ${{ secrets.GH_PAT }}
           hcloud_token: ${{ secrets.HETZNER_TOKEN }}
           server_type: cx32
-          image: 210880754
+          image: ubuntu-24.04
           pre_runner_script: |
+            apt install https://nix-community.github.io/nix-installers/nix/x86_64/nix-multi-user-2.24.10.deb
             echo "accept-flake-config = true" >> /etc/nix/nix.conf
             echo "always-allow-substitutes = true" >> /etc/nix/nix.conf
             echo "builders-use-substitutes = true" >> /etc/nix/nix.conf
