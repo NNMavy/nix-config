@@ -22,8 +22,19 @@ env:
   TMPDIR: /tmp
 
 jobs:
+  create-runner:
+    runs-on: ubuntu-latest
+    name: Create new Hetzner Cloud instance for build
+    steps:
+      - uses: stonemaster/hetzner-github-runner@HEAD
+        with:
+          github-api-key: ${{ secrets.GH_PAT }}
+          hetzner-api-key: ${{ secrets.HETZNER_TOKEN }}
+          hetzner-instance-type: cx32
+
   nix-matrix:
-    runs-on: arc-runner-set-nix-config
+    runs-on: self-hosted
+    needs: create-runner
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
@@ -55,7 +66,9 @@ jobs:
 
   nix-build:
     if: github.event.pull_request.draft == false
-    needs: nix-matrix
+    needs: 
+      - nix-matrix
+      - create-runner
     permissions:
       contents: read
       pull-requests: write
@@ -65,7 +78,7 @@ jobs:
       matrix: ${{ fromJSON(needs.nix-matrix.outputs.matrix) }}
     env:
       USER: 1001
-    runs-on: ${{ matrix.runner }}
+    runs-on: self-hosted
     steps:
       - name: Install requirements
         shell: bash
