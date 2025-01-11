@@ -120,11 +120,11 @@ rec {
   mapToGha =
     system:
     if system == "x86_64-linux" then
-      "ubuntu-latest"
+      "arc-runner-set-nix-config"
     else if system == "aarch64-linux" then
-      "ubuntu-latest"
+      "arc-runner-set-nix-config"
     else if system == "x86_64-darwin" then
-      "ubuntu-latest"
+      "arc-runner-set-nix-config"
     else
       system;
 }
