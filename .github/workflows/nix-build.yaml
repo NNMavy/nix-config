@@ -39,7 +39,8 @@ jobs:
           server_type: cx32
           image: ubuntu-24.04
           pre_runner_script: |
-            apt install -y qemu qemu-kvm xz-utils
+            apt install -y xz-utils
+            export HOME=/root
 
   nix-matrix:
     runs-on: ${{ needs.create-runner.outputs.label }}
@@ -50,12 +51,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
-      - name: Install xz-utils
+      - name: debug shell
         shell: bash
         run: |
           id
           env
-          sudo apt-get update && sudo apt-get install -y xz-utils;
 
       - name: Install Nix
         uses: cachix/install-nix-action@v30
