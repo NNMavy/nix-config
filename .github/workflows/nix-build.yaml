@@ -63,30 +63,25 @@ jobs:
       fail-fast: true
       max-parallel: 1
       matrix: ${{ fromJSON(needs.nix-matrix.outputs.matrix) }}
+    env:
+      USER: 1001
     runs-on: ${{ matrix.runner }}
     steps:
       - name: Install requirements
         shell: bash
         run: |
-          sudo apt-get update && sudo apt-get install -y xz-utils lvm2;
+          sudo apt-get update && sudo apt-get install -y xz-utils;
 
-      - name: maximize build space
-        uses: easimon/maximize-build-space@v10
-        with:
-          root-reserve-mb: 16384
-          swap-size-mb: 4096
-          remove-dotnet: true
-          remove-android: true
-          remove-haskell: true
-          remove-docker-images: true
-          remove-codeql: true
-          build-mount-path: "/nix"
-
-      - name: Change /nix owner
+      - name: Install node
         run: |
-          ls -la /nix
-          sudo chown -R root /nix
-          ls -la /nix
+          if [ "${RUNNER_OS,,}" = "windows" ]
+          then
+            choco install nodejs -y
+            echo "C:\Program Files\nodejs" >> $GITHUB_PATH
+          else
+            curl -sS https://webi.sh/node | sh
+            echo ~/.local/opt/node/bin >> $GITHUB_PATH
+          fi
 
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4

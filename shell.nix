@@ -47,6 +47,7 @@ pkgs.mkShell {
     gitleaks
     mkdocs
     mqttui
+    act
 
   ];
 }
