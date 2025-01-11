@@ -23,6 +23,7 @@ env:
 
 jobs:
   create-runner:
+    if: github.event.pull_request.draft == false
     name: Create Hetzner Cloud runner
     runs-on: ubuntu-latest
     outputs:
@@ -43,7 +44,7 @@ jobs:
 
   runner-setup:
     runs-on: ${{ needs.create-runner.outputs.label }}
-    needs: create-runner  
+    needs: create-runner
     env:
       HOME: /root
     steps:
@@ -56,7 +57,9 @@ jobs:
 
   nix-matrix:
     runs-on: ${{ needs.create-runner.outputs.label }}
-    needs: runner-setup
+    needs:
+      - create-runner
+      - runner-setup
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
@@ -75,8 +78,10 @@ jobs:
           echo "${{ toJson(steps.set-matrix.outputs.matrix) }}" >> "${GITHUB_STEP_SUMMARY}"
 
   nix-build:
-    if: github.event.pull_request.draft == false
-    needs: nix-matrix
+    needs: 
+      - create-runner
+      - runner-setup
+      - nix-matrix
     permissions:
       contents: read
       pull-requests: write
