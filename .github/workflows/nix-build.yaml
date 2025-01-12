@@ -43,6 +43,7 @@ jobs:
           hcloud_token: ${{ secrets.HETZNER_TOKEN }}
           server_type: cx32
           image: 210986346
+          location: hel1
           pre_runner_script: |
             echo "access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}" >> /etc/nix/nix.conf
             systemctl restart nix-daemon
