@@ -46,8 +46,6 @@ jobs:
           location: hel1
           pre_runner_script: |
             mkdir -p ~/.config/nix
-            echo "access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}" >> ~/.config/nix/nix.conf
-            nix config show | grep access
 
   nix-matrix:
     runs-on: ${{ needs.create-runner.outputs.label }}
@@ -59,12 +57,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
+      - name: Set access-tokens
+        run: |
+          echo "access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}" >> ~/.config/nix/nix.conf
+          nix config show | grep access-tokens
+
       - id: set-matrix
         name: Generate Nix Matrix
         run: |
           set -Eeu
-          cat ~/.config/nix/nix.conf
-          nix show-config | grep tokens
           matrix="$(nix eval --json '.#evalHosts' | jq -cM --argjson exclude_hosts '${{ env.EXCLUDED_HOSTS }}' 'del(.include[] | select(.host as $host | $exclude_hosts | index($host)))')"
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
 
@@ -88,6 +89,11 @@ jobs:
       USER: root
     runs-on: ${{ needs.create-runner.outputs.label }}
     steps:
+      - name: Set access-tokens
+        run: |
+          echo "access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}" >> ~/.config/nix/nix.conf
+          nix config show | grep access-tokens
+          
       - name: Install node
         run: |
           if [ "${RUNNER_OS,,}" = "windows" ]
