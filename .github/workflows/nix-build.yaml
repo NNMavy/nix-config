@@ -42,7 +42,7 @@ jobs:
           github_token: ${{ secrets.GH_PAT }}
           hcloud_token: ${{ secrets.HETZNER_TOKEN }}
           server_type: cx32
-          image: 210986346
+          image: 210989336
           location: hel1
           pre_runner_script: |
             mkdir -p ~/.config/nix
@@ -84,20 +84,12 @@ jobs:
       fail-fast: true
       max-parallel: 1
       matrix: ${{ fromJSON(needs.nix-matrix.outputs.matrix) }}
-    env:
-      HOME: /root
-      USER: root
     runs-on: ${{ needs.create-runner.outputs.label }}
     steps:
       - name: Set access-tokens
         run: |
           echo "access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}" >> ~/.config/nix/nix.conf
           nix config show | grep access-tokens
-
-      - name: Install node
-        run: |
-          curl -sS https://webi.sh/node | sh
-          echo ~/.local/opt/node/bin >> $GITHUB_PATH
 
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
