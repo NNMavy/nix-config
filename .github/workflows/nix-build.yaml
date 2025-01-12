@@ -38,13 +38,8 @@ jobs:
           github_token: ${{ secrets.GH_PAT }}
           hcloud_token: ${{ secrets.HETZNER_TOKEN }}
           server_type: cx32
-          image: 210882948
+          image: 210986346
           pre_runner_script: |
-            apt install https://nix-community.github.io/nix-installers/nix/x86_64/nix-multi-user-2.24.10.deb
-            echo "accept-flake-config = true" >> /etc/nix/nix.conf
-            echo "always-allow-substitutes = true" >> /etc/nix/nix.conf
-            echo "builders-use-substitutes = true" >> /etc/nix/nix.conf
-            echo "extra-platforms = aarch64-linux" >> /etc/nix/nix.conf
             echo "access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}" >> /etc/nix/nix.conf
             systemctl restart nix-daemon
 
@@ -62,6 +57,8 @@ jobs:
         name: Generate Nix Matrix
         run: |
           set -Eeu
+          id
+          env
           matrix="$(nix eval --json '.#evalHosts' | jq -cM --argjson exclude_hosts '${{ env.EXCLUDED_HOSTS }}' 'del(.include[] | select(.host as $host | $exclude_hosts | index($host)))')"
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
 
