@@ -45,8 +45,7 @@ jobs:
           image: 210986346
           location: hel1
           pre_runner_script: |
-            echo "access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}" >> /etc/nix/nix.conf
-            systemctl restart nix-daemon
+            echo "access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}" >> ~/.config/nix/nix.conf
 
   nix-matrix:
     runs-on: ${{ needs.create-runner.outputs.label }}
@@ -62,7 +61,8 @@ jobs:
         name: Generate Nix Matrix
         run: |
           set -Eeu
-          env
+          cat ~/.config/nix/nix.conf
+          nix show-config | grep tokens
           matrix="$(nix eval --json '.#evalHosts' | jq -cM --argjson exclude_hosts '${{ env.EXCLUDED_HOSTS }}' 'del(.include[] | select(.host as $host | $exclude_hosts | index($host)))')"
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
 
