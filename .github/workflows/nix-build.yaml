@@ -45,7 +45,9 @@ jobs:
           image: 210986346
           location: hel1
           pre_runner_script: |
+            mkdir -p ~/.config/nix
             echo "access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}" >> ~/.config/nix/nix.conf
+            nix config show | grep access
 
   nix-matrix:
     runs-on: ${{ needs.create-runner.outputs.label }}
