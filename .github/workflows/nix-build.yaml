@@ -17,6 +17,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: true
 
+defaults:
+  run:
+    shell: bash -leo pipefail {0}
+
 env:
   EXCLUDED_HOSTS: '["iso","rpi4"]'
   TMPDIR: /tmp
@@ -57,7 +61,6 @@ jobs:
         name: Generate Nix Matrix
         run: |
           set -Eeu
-          id
           env
           matrix="$(nix eval --json '.#evalHosts' | jq -cM --argjson exclude_hosts '${{ env.EXCLUDED_HOSTS }}' 'del(.include[] | select(.host as $host | $exclude_hosts | index($host)))')"
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
