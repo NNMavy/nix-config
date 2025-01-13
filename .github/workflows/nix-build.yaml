@@ -46,7 +46,6 @@ jobs:
           location: hel1
           pre_runner_script: |
             mkdir -p ~/.config/nix
-            systemctl 
 
   nix-matrix:
     runs-on: ${{ needs.create-runner.outputs.label }}
@@ -57,10 +56,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-
-      - name: Debug profile
-        run: |
-          env
 
       - name: Set access-tokens
         run: |
@@ -96,16 +91,9 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Load profile
-        run: |
-          env
-          echo "Reloading bashrc"
-          source ~/.bashrc
-          echo "New profile"
-          env
-
       - name: Set access-tokens
         run: |
+          set -Eeu
           echo "access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}" >> ~/.config/nix/nix.conf
           nix config show | grep access-tokens
 
@@ -147,6 +135,7 @@ jobs:
       - name: Output build failure
         if: failure()
         run: |
+          env
           drv=$(grep "For full logs, run" /tmp/nix-build-err.log | grep -oE "/nix/store/.*.drv")
           if [ -n $drv ]; then
             nix log $drv
@@ -180,23 +169,23 @@ jobs:
             <summary> Version changes </summary> <br>
             <pre> ${{ steps.diff.outputs.diff }} </pre>
 
-  delete-runner:
-    name: Delete Hetzner Cloud runner
-    needs:
-      - create-runner
-      - nix-matrix
-      - nix-build
-    runs-on: ubuntu-latest
-    if: ${{ always() }} # required to stop the runner even if the error happened in the previous jobs
-    steps:
-      - name: Delete runner
-        uses: Cyclenerd/hcloud-github-runner@v1
-        with:
-          mode: delete
-          github_token: ${{ secrets.GH_PAT }}
-          hcloud_token: ${{ secrets.HETZNER_TOKEN }}
-          name: ${{ needs.create-runner.outputs.label }}
-          server_id: ${{ needs.create-runner.outputs.server_id }}
+  # delete-runner:
+  #   name: Delete Hetzner Cloud runner
+  #   needs:
+  #     - create-runner
+  #     - nix-matrix
+  #     - nix-build
+  #   runs-on: ubuntu-latest
+  #   if: ${{ always() }} # required to stop the runner even if the error happened in the previous jobs
+  #   steps:
+  #     - name: Delete runner
+  #       uses: Cyclenerd/hcloud-github-runner@v1
+  #       with:
+  #         mode: delete
+  #         github_token: ${{ secrets.GH_PAT }}
+  #         hcloud_token: ${{ secrets.HETZNER_TOKEN }}
+  #         name: ${{ needs.create-runner.outputs.label }}
+  #         server_id: ${{ needs.create-runner.outputs.server_id }}
 
   nix-build-success:
     if: ${{ always() }}
