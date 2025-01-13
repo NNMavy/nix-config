@@ -58,10 +58,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
+      - name: Debug profile
+        run: |
+          env
+
       - name: Set access-tokens
         run: |
           echo "access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}" >> ~/.config/nix/nix.conf
-          systemctl restart nix-daemon
           nix config show | grep access-tokens
 
       - id: set-matrix
@@ -88,15 +91,23 @@ jobs:
       max-parallel: 1
       matrix: ${{ fromJSON(needs.nix-matrix.outputs.matrix) }}
     steps:
-      - name: Set access-tokens
-        run: |
-          echo "access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}" >> ~/.config/nix/nix.conf
-          nix config show | grep access-tokens
-
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           fetch-depth: 0
+
+      - name: Load profile
+        run: |
+          env
+          echo "Reloading bashrc"
+          source ~/.bashrc
+          echo "New profile"
+          env
+
+      - name: Set access-tokens
+        run: |
+          echo "access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}" >> ~/.config/nix/nix.conf
+          nix config show | grep access-tokens
 
       - name: Set up Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@v8
