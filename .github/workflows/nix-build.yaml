@@ -42,7 +42,7 @@ jobs:
           github_token: ${{ secrets.GH_PAT }}
           hcloud_token: ${{ secrets.HETZNER_TOKEN }}
           server_type: cx32
-          image: ubuntu24.04
+          image: ubuntu-24.04
           runner_dir: /actions-runner
           location: hel1
           pre_runner_script: |
