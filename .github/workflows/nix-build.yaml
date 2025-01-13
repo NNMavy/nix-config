@@ -43,6 +43,7 @@ jobs:
           hcloud_token: ${{ secrets.HETZNER_TOKEN }}
           server_type: cx32
           image: 210989336
+          runner_dir: /root/actions-runner
           location: hel1
           pre_runner_script: |
             mkdir -p ~/.config/nix
