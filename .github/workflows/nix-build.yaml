@@ -48,7 +48,7 @@ jobs:
             mkdir -p ~/.config/nix
 
   nix-matrix:
-    runs-on: self-hosted
+    runs-on: hetzner
     needs:
       - create-runner
     outputs:
@@ -74,7 +74,7 @@ jobs:
           echo "${{ toJson(steps.set-matrix.outputs.matrix) }}" >> "${GITHUB_STEP_SUMMARY}"
 
   nix-build:
-    runs-on: self-hosted
+    runs-on: hetzner
     needs: 
       - create-runner
       - nix-matrix
