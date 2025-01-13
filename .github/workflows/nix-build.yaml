@@ -62,14 +62,7 @@ jobs:
         with:
           extra_nix_config: |
             experimental-features = nix-command flakes
-            extra-platforms = aarch64-linux
-      - uses: DeterminateSystems/magic-nix-cache-action@main
-      - name: Set up Cachix
-        uses: cachix/cachix-action@v15
-        if: ${{ !github.event.pull_request.head.repo.fork }}
-        with:
-          name: mavy
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"      
+            extra-platforms = aarch64-linux   
 
   nix-matrix:
     runs-on: hetzner
@@ -82,10 +75,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
-      - name: Set access-tokens
-        run: |
-          echo "access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}" > ~/.config/nix/nix.conf
-          nix config show | grep access-tokens
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: Set up Cachix
+        uses: cachix/cachix-action@v15
+        if: ${{ !github.event.pull_request.head.repo.fork }}
+        with:
+          name: mavy
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - id: set-matrix
         name: Generate Nix Matrix
