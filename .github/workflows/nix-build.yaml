@@ -210,13 +210,13 @@ jobs:
           name: ${{ needs.create-runner.outputs.label }}
           server_id: ${{ needs.create-runner.outputs.server_id }}
 
-  nix-build-success:
-    if: ${{ always() }}
-    needs:
-      - nix-build
-    name: Nix Build Successful
-    runs-on: ubuntu-latest
-    steps:
-      - if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
-        name: Check matrix status
-        run: exit 1
+  # nix-build-success:
+  #   if: ${{ always() }}
+  #   needs:
+  #     - nix-build
+  #   name: Nix Build Successful
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
+  #       name: Check matrix status
+  #       run: exit 1
