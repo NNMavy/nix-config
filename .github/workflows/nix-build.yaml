@@ -24,6 +24,7 @@ defaults:
 env:
   EXCLUDED_HOSTS: '["iso","rpi4"]'
   TMPDIR: /tmp
+  HOME: /root
 
 jobs:
   create-runner:
@@ -53,6 +54,9 @@ jobs:
     needs:
       - create-runner
     steps:
+      - name: debuging
+        run: |
+          env
       - name: Install nix
         uses: cachix/install-nix-action@v30
         with:
