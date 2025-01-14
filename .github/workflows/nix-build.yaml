@@ -42,12 +42,10 @@ jobs:
           mode: create
           github_token: ${{ secrets.GH_PAT }}
           hcloud_token: ${{ secrets.HETZNER_TOKEN }}
-          server_type: cx32
+          server_type: ccx23
           image: ubuntu-24.04
           runner_dir: /actions-runner
           location: hel1
-          pre_runner_script: |
-            mkdir -p ~/.config/nix
 
   nix-matrix:
     runs-on: hetzner
