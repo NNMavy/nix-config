@@ -122,7 +122,7 @@ rec {
     if system == "x86_64-linux" then
       "type-ccx23"
     else if system == "aarch64-linux" then
-      "type-cax31"
+      "type-ccx23"
     else
       "type-cpx21";
 }
