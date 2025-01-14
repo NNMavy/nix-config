@@ -120,11 +120,9 @@ rec {
   mapToGha =
     system:
     if system == "x86_64-linux" then
-      "arc-runner-set-nix-config"
+      "type-ccx23"
     else if system == "aarch64-linux" then
-      "arc-runner-set-nix-config"
-    else if system == "x86_64-darwin" then
-      "arc-runner-set-nix-config"
+      "type-cax31"
     else
-      system;
+      "type-cpx21";
 }
