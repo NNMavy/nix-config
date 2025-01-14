@@ -120,9 +120,9 @@ rec {
   mapToGha =
     system:
     if system == "x86_64-linux" then
-      "type-ccx23"
+      "[ hetzner, type-ccx23 ]"
     else if system == "aarch64-linux" then
-      "type-cax31"
+      "[ hetzner, type-cax31 ]"
     else
-      "type-cpx21";
+      "[ hetzner, type-cpx21 ]";
 }
