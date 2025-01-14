@@ -24,7 +24,6 @@ defaults:
 env:
   EXCLUDED_HOSTS: '["iso","rpi4"]'
   TMPDIR: /tmp
-  HOME: /root
 
 jobs:
   nix-matrix:
