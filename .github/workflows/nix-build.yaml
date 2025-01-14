@@ -44,6 +44,11 @@ jobs:
 
       - uses: DeterminateSystems/magic-nix-cache-action@main
 
+      - name: Install packages
+        shell: bash
+        run: |
+          sudo apt-get update && sudo apt-get install -y jq git curl gzip tar;
+
       - id: set-matrix
         name: Generate Nix Matrix
         run: |
