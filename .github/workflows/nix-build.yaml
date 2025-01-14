@@ -68,8 +68,8 @@ jobs:
       contents: read
       pull-requests: write
     strategy:
-      fail-fast: true
-      max-parallel: 1
+      fail-fast: false
+      max-parallel: 2
       matrix: ${{ fromJSON(needs.nix-matrix.outputs.matrix) }}
     steps:
       - name: Checkout repository
@@ -84,12 +84,7 @@ jobs:
           extra-conf: |
             experimental-features = nix-command flakes
             extra-platforms = aarch64-linux
-
-      - name: Install packages
-        shell: bash
-        run: |
-          sudo apt-get update && sudo apt-get install -y jq git curl gzip tar;
-          echo "trusted-users = root ubuntu" | sudo tee -a /etc/nix/nix.conf && sudo pkill nix-daemon
+            trusted-users = root ubuntu
 
       - name: Set up Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@v8
