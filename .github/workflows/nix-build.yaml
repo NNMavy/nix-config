@@ -77,7 +77,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install QEMU
+      - name: Install QEMU packages
         # Copy-paste from https://github.com/orgs/community/discussions/8305#discussioncomment-5888654
         run: |
           sudo apt-get update
