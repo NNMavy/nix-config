@@ -27,7 +27,7 @@ env:
 
 jobs:
   nix-matrix:
-    runs-on: [ hetzner, type-cpx31 ]
+    runs-on: [ hetzner, type-ccx23 ]
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
@@ -41,7 +41,6 @@ jobs:
           extra-conf: |
             experimental-features = nix-command flakes
             extra-platforms = aarch64-linux
-            trusted-users = root ubuntu
 
       - uses: DeterminateSystems/magic-nix-cache-action@main
 
@@ -62,7 +61,7 @@ jobs:
           echo "${{ toJson(steps.set-matrix.outputs.matrix) }}" >> "${GITHUB_STEP_SUMMARY}"
 
   nix-build:
-    runs-on: [ hetzner, type-cpx31 ]
+    runs-on: [ hetzner, type-ccx23 ]
     needs: 
       - nix-matrix
     permissions:
@@ -85,7 +84,12 @@ jobs:
           extra-conf: |
             experimental-features = nix-command flakes
             extra-platforms = aarch64-linux
-            trusted-users = root ubuntu
+
+      - name: Install packages
+        shell: bash
+        run: |
+          sudo apt-get update && sudo apt-get install -y jq git curl gzip tar;
+          echo "trusted-users = root ubuntu" | sudo tee -a /etc/nix/nix.conf && sudo pkill nix-daemon
 
       - name: Set up Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@v8
