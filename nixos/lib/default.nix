@@ -117,12 +117,21 @@ rec {
     }
   );
 
-  mapToGha =
+  mapToGhaRunner =
     system:
     if system == "x86_64-linux" then
-      "hetzner, type-ccx33, image-x86-system-ubuntu-22.04"
+      "type-ccx33"
     else if system == "aarch64-linux" then
-      "hetzner, type-cax31, image-arm-system-ubuntu-22.04"
+      "type-cax31"
     else
-      "hetzner, type-cpx21, image-x86-system-ubuntu-22.04";
+      "type-cpx21";
+
+  mapToGhaImage =
+    system:
+    if system == "x86_64-linux" then
+      "image-x86-system-ubuntu-22.04"
+    else if system == "aarch64-linux" then
+      "image-arm-system-ubuntu-22.04"
+    else
+      "image-x86-system-ubuntu-22.04" ;
 }

@@ -51,9 +51,6 @@ in
           description = "Enable backups";
           default = true;
         };
-
-
-
     };
 
   config = mkIf cfg.enable {
@@ -62,23 +59,7 @@ in
     sops.secrets = {
       "services/github-hetzner-runners/env".sopsFile = ./secrets.sops.yaml;
       "services/github-hetzner-runners/env".restartUnits = [ "${app}.service" ];
-      "services/github-hetzner-runners/privkey" = {
-        sopsFile = ./secrets.sops.yaml;
-        path = "${appFolder}/.ssh/id_rsa";
-        owner = user;
-        inherit group;
-        mode = "0644";
-      };
-      "services/github-hetzner-runners/pubkey" = {
-        sopsFile = ./secrets.sops.yaml;
-        path = "${appFolder}/.ssh/id_rsa.pub";
-        owner = user;
-        inherit group;
-        mode = "0600";
-      };
     };
-
-    users.users.mavy.extraGroups = [ group ];
 
     environment.persistence."${config.mySystem.system.impermanence.persistPath}" = lib.mkIf config.mySystem.system.impermanence.enable {
       directories = [{ directory = appFolder; inherit user; inherit group; mode = "750"; }];
@@ -88,6 +69,7 @@ in
       group = "${group}";
       isSystemUser = true;
       home = appFolder;
+      shell = pkgs.bash;
     };
     users.groups."${group}" = { };
 
@@ -98,7 +80,10 @@ in
     systemd.services.github-hetzner-runners = {
       description = "github-hetzner-runners agent";
       wantedBy = [ "multi-user.target" ];
-      path = [ pkgs.github-hetzner-runners ];
+      path = [ 
+        pkgs.github-hetzner-runners
+        pkgs.openssh
+      ];
 
       serviceConfig = {
         EnvironmentFile = config.sops.secrets."services/github-hetzner-runners/env".path;
@@ -107,7 +92,7 @@ in
             cmdArgs = builtins.concatStringsSep " " [
               "--service-mode"
               "--with-label hetzner"
-              "--ssh-key ${appFolder}/.ssh/id_rsa.pub"
+              "--ssh-key ${appFolder}/.ssh/id_ed25519.pub"
               "--workers 10"
               "--max-runners 10"
               "--max-powered-off-time 20"
@@ -142,13 +127,6 @@ in
         paths = [ appFolder ];
         inherit appFolder;
       });
-
-
-    # services.postgresqlBackup = {
-    #   databases = [ app ];
-    # };
-
-
 
   };
 }
