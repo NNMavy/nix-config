@@ -46,7 +46,10 @@ jobs:
           extra_nix_config: |
             accept-flake-config = true
             experimental-features = nix-command flakes
-            extra-platforms = aarch64-linux
+            always-allow-substitutes = true
+            builders-use-substitutes = true
+            substituters = "https://cache.garnix.io" "https://cosmic.cachix.org/" "https://nix-community.cachix.org" "https://numtide.cachix.org"
+            trusted-public-keys = "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE=" "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=" "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
 
       - uses: DeterminateSystems/magic-nix-cache-action@main
 
@@ -83,14 +86,6 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get install -y jq git curl gzip tar xz-utils;
 
-
-      - name: Install QEMU packages
-        # Copy-paste from https://github.com/orgs/community/discussions/8305#discussioncomment-5888654
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y qemu-user-static qemu-system-aarch64
-          sudo usermod -a -G kvm $USER
-
       - name: Install Nix
         uses: cachix/install-nix-action@v30
         with:
@@ -98,10 +93,10 @@ jobs:
           extra_nix_config: |
             accept-flake-config = true
             experimental-features = nix-command flakes
-            extra-system-features = nixos-test kvm
             always-allow-substitutes = true
             builders-use-substitutes = true
-            extra-platforms = aarch64-linux
+            substituters = "https://cache.garnix.io" "https://cosmic.cachix.org/" "https://nix-community.cachix.org" "https://numtide.cachix.org"
+            trusted-public-keys = "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE=" "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=" "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
 
       - name: Set up Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@v8
