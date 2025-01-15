@@ -133,5 +133,5 @@ rec {
     else if system == "aarch64-linux" then
       "image-arm-system-ubuntu-22.04"
     else
-      "image-x86-system-ubuntu-22.04" ;
+      "image-x86-system-ubuntu-22.04";
 }

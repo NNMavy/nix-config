@@ -80,7 +80,7 @@ in
     systemd.services.github-hetzner-runners = {
       description = "github-hetzner-runners agent";
       wantedBy = [ "multi-user.target" ];
-      path = [ 
+      path = [
         pkgs.github-hetzner-runners
         pkgs.openssh
       ];
