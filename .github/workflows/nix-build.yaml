@@ -34,20 +34,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
-      - name: Install nix
-        uses: DeterminateSystems/nix-installer-action@main
+      - name: Install packages
+        shell: bash
+        run: |
+          sudo apt-get update && sudo apt-get install -y jq git curl gzip tar zzx-utils;
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v30
         with:
-          reinstall: true
-          extra-conf: |
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+          extra_nix_config: |
+            accept-flake-config = true
             experimental-features = nix-command flakes
             extra-platforms = aarch64-linux
 
       - uses: DeterminateSystems/magic-nix-cache-action@main
-
-      - name: Install packages
-        shell: bash
-        run: |
-          sudo apt-get update && sudo apt-get install -y jq git curl gzip tar;
 
       - id: set-matrix
         name: Generate Nix Matrix
@@ -77,6 +78,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install packages
+        shell: bash
+        run: |
+          sudo apt-get update && sudo apt-get install -y jq git curl gzip tar zzx-utils;
+
+
       - name: Install QEMU packages
         # Copy-paste from https://github.com/orgs/community/discussions/8305#discussioncomment-5888654
         run: |
@@ -84,15 +91,17 @@ jobs:
           sudo apt-get install -y qemu-user-static qemu-system-aarch64
           sudo usermod -a -G kvm $USER
 
-      - name: Install nix
-        uses: DeterminateSystems/nix-installer-action@main
+      - name: Install Nix
+        uses: cachix/install-nix-action@v30
         with:
-          reinstall: true
-          extra-conf: |
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+          extra_nix_config: |
+            accept-flake-config = true
             experimental-features = nix-command flakes
             extra-system-features = nixos-test kvm
+            always-allow-substitutes = true
+            builders-use-substitutes = true
             extra-platforms = aarch64-linux
-            trusted-users = root ubuntu
 
       - name: Set up Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@v8
