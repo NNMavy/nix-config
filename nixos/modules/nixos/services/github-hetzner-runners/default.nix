@@ -66,14 +66,14 @@ in
         sopsFile = ./secrets.sops.yaml;
         path = "${appFolder}/.ssh/id_rsa";
         owner = user;
-        group = group;
+        inherit group;
         mode = "0644";
       };
       "services/github-hetzner-runners/pubkey" = {
         sopsFile = ./secrets.sops.yaml;
         path = "${appFolder}/.ssh/id_rsa.pub";
         owner = user;
-        group = group;
+        inherit group;
         mode = "0600";
       };
     };
