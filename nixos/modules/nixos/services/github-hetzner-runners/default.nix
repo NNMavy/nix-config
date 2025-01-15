@@ -65,10 +65,16 @@ in
       "services/github-hetzner-runners/privkey" = {
         sopsFile = ./secrets.sops.yaml;
         path = "${appFolder}/.ssh/id_rsa";
+        owner = user;
+        group = group;
+        mode = "0644";
       };
       "services/github-hetzner-runners/pubkey" = {
         sopsFile = ./secrets.sops.yaml;
         path = "${appFolder}/.ssh/id_rsa.pub";
+        owner = user;
+        group = group;
+        mode = "0600";
       };
     };
 
@@ -99,14 +105,21 @@ in
         ExecStart =
           let
             cmdArgs = builtins.concatStringsSep " " [
+              "--service-mode"
               "--with-label hetzner"
               "--ssh-key ${appFolder}/.ssh/id_rsa.pub"
               "--workers 10"
+              "--max-runners 10"
               "--max-powered-off-time 20"
               "--max-unused-runner-time 120"
               "--max-runner-registration-time 60"
               "--scale-up-interval 10"
               "--scale-down-interval 10"
+              "--github-token $GITHUB_TOKEN"
+              "--github-repository $GITHUB_REPOSITORY"
+              "--hetzner-token $HETZNER_TOKEN"
+              "--recycle on"
+              "--end-of-life 50"
             ];
           in
           "${pkgs.github-hetzner-runners}/bin/github-hetzner-runners ${cmdArgs}";

@@ -29,7 +29,7 @@
         backrest.enable = true;
         gatus.enable = true;
         forgejo.enable = true;
-        # github-hetzner-runners.enable = true;
+        github-hetzner-runners.enable = true;
         omni.enable = true;
         atlas-probe.enable = true;
       };

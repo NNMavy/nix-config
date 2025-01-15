@@ -69,9 +69,9 @@ jobs:
       pull-requests: write
     strategy:
       fail-fast: false
-      max-parallel: 2
+      max-parallel: 8
       matrix: ${{ fromJSON(needs.nix-matrix.outputs.matrix) }}
-    runs-on: [ hetzner, "${{ matrix.runner }}" ]
+    runs-on: [ "${{ matrix.runner }}" ]
     steps:
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
