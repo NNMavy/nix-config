@@ -37,7 +37,7 @@ jobs:
       - name: Install packages
         shell: bash
         run: |
-          sudo apt-get update && sudo apt-get install -y jq git curl gzip tar zzx-utils;
+          sudo apt-get update && sudo apt-get install -y jq git curl gzip tar xz-utils;
 
       - name: Install Nix
         uses: cachix/install-nix-action@v30
@@ -81,7 +81,7 @@ jobs:
       - name: Install packages
         shell: bash
         run: |
-          sudo apt-get update && sudo apt-get install -y jq git curl gzip tar zzx-utils;
+          sudo apt-get update && sudo apt-get install -y jq git curl gzip tar xz-utils;
 
 
       - name: Install QEMU packages
