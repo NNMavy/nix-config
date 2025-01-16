@@ -1,6 +1,8 @@
 ---
 # Config for garnix.io builds & caching
 builds:
+  exclude:
+    - '*.cosmic.*'
   include:
     - homeConfigurations.*
     - nixosConfigurations.*
