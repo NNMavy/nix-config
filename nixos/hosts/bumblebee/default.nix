@@ -29,6 +29,7 @@
         backrest.enable = true;
         gatus.enable = true;
         forgejo.enable = true;
+        github-hetzner-runners.enable = true;
         omni.enable = true;
         atlas-probe.enable = true;
       };
@@ -37,9 +38,9 @@
     };
 
     boot = {
-      initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+      #initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
       initrd.kernelModules = [ ];
-      kernelModules = [ "kvm-intel" ];
+      #kernelModules = [ "kvm-intel" ];
       extraModulePackages = [ ];
     };
 

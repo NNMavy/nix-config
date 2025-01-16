@@ -12,18 +12,6 @@
       sha256 = "sha256-HQ72eTBV6ZZMawACZ/iwABVm8On/yqFKotfXxbGZqUc=";
     };
   };
-  atlas-probe = {
-    pname = "atlas-probe";
-    version = "17566dd0129a47552556e1f355d33d0114124c60";
-    src = fetchFromGitHub {
-      owner = "RIPE-NCC";
-      repo = "ripe-atlas-software-probe";
-      rev = "17566dd0129a47552556e1f355d33d0114124c60";
-      fetchSubmodules = false;
-      sha256 = "sha256-n+SbjQoAf4Tnc52DNt5JFG9iyRBpeEuVtsewHnamgA8=";
-    };
-    date = "2024-09-24";
-  };
   chrony-exporter = {
     pname = "chrony-exporter";
     version = "v0.11.0";
@@ -37,15 +25,15 @@
   };
   cockpit-podman = {
     pname = "cockpit-podman";
-    version = "28d0e9a777c2b37dba58759c69e9dc501baeb673";
+    version = "bc94bb61d003b34720c8dd12e8dc369dd588e539";
     src = fetchFromGitHub {
       owner = "cockpit-project";
       repo = "cockpit-podman";
-      rev = "28d0e9a777c2b37dba58759c69e9dc501baeb673";
+      rev = "bc94bb61d003b34720c8dd12e8dc369dd588e539";
       fetchSubmodules = false;
-      sha256 = "sha256-4ZgrHUQqh0UT2UjY9o6y1BJd1NxYS6yO7BBAgOU8pMM=";
+      sha256 = "sha256-e6iNw5K+7xvh+CXxSmW0kZg/F2DBnS5SOc6+he2uL+M=";
     };
-    date = "2025-01-02";
+    date = "2025-01-14";
   };
   cosmic-idle = {
     pname = "cosmic-idle";
@@ -76,6 +64,17 @@
     src = fetchurl {
       url = "https://pypi.org/packages/source/f/flux_local/flux_local-7.0.0.tar.gz";
       sha256 = "sha256-+TeuzNYG1cUpf0h/rrLGGio4IkNxArIX1/Isu2gSgIU=";
+    };
+  };
+  github-hetzner-runners = {
+    pname = "github-hetzner-runners";
+    version = "1.7.241227.1160242";
+    src = fetchFromGitHub {
+      owner = "testflows";
+      repo = "TestFlows-GitHub-Hetzner-Runners";
+      rev = "1.7.241227.1160242";
+      fetchSubmodules = false;
+      sha256 = "sha256-5gY6Jp5zcU2Caf11MCpE1S8MWGSwXsLNbDkTW92YTbc=";
     };
   };
   gpsd-prometheus-exporter = {

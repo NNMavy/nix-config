@@ -3,10 +3,6 @@
 src.github = "henrywhitaker3/adguard-exporter"
 fetch.github = "henrywhitaker3/adguard-exporter"
 
-[atlas-probe]
-src.git = "https://github.com/RIPE-NCC/ripe-atlas-software-probe"
-fetch.github = "RIPE-NCC/ripe-atlas-software-probe"
-
 [chrony-exporter]
 src.github = "SuperQ/chrony_exporter"
 fetch.github = "SuperQ/chrony_exporter"
@@ -23,6 +19,10 @@ cargo_locks = ["Cargo.lock"]
 [flux-local]
 src.pypi = "flux-local"
 fetch.pypi = "flux_local"
+
+[github-hetzner-runners]
+src.pypi = "TestFlows-GitHub-Hetzner-Runners"
+fetch.github = "testflows/TestFlows-GitHub-Hetzner-Runners"
 
 [gpsd-prometheus-exporter]
 src.git = "https://github.com/brendanbank/gpsd-prometheus-exporter"

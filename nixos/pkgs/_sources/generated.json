@@ -19,26 +19,6 @@
         },
         "version": "v1.2.0"
     },
-    "atlas-probe": {
-        "cargoLocks": null,
-        "date": "2024-09-24",
-        "extract": null,
-        "name": "atlas-probe",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "RIPE-NCC",
-            "repo": "ripe-atlas-software-probe",
-            "rev": "17566dd0129a47552556e1f355d33d0114124c60",
-            "sha256": "sha256-n+SbjQoAf4Tnc52DNt5JFG9iyRBpeEuVtsewHnamgA8=",
-            "type": "github"
-        },
-        "version": "17566dd0129a47552556e1f355d33d0114124c60"
-    },
     "chrony-exporter": {
         "cargoLocks": null,
         "date": null,
@@ -61,7 +41,7 @@
     },
     "cockpit-podman": {
         "cargoLocks": null,
-        "date": "2025-01-02",
+        "date": "2025-01-14",
         "extract": null,
         "name": "cockpit-podman",
         "passthru": null,
@@ -73,11 +53,11 @@
             "name": null,
             "owner": "cockpit-project",
             "repo": "cockpit-podman",
-            "rev": "28d0e9a777c2b37dba58759c69e9dc501baeb673",
-            "sha256": "sha256-4ZgrHUQqh0UT2UjY9o6y1BJd1NxYS6yO7BBAgOU8pMM=",
+            "rev": "bc94bb61d003b34720c8dd12e8dc369dd588e539",
+            "sha256": "sha256-e6iNw5K+7xvh+CXxSmW0kZg/F2DBnS5SOc6+he2uL+M=",
             "type": "github"
         },
-        "version": "28d0e9a777c2b37dba58759c69e9dc501baeb673"
+        "version": "bc94bb61d003b34720c8dd12e8dc369dd588e539"
     },
     "cosmic-idle": {
         "cargoLocks": {
@@ -125,6 +105,26 @@
             "url": "https://pypi.org/packages/source/f/flux_local/flux_local-7.0.0.tar.gz"
         },
         "version": "7.0.0"
+    },
+    "github-hetzner-runners": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "github-hetzner-runners",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "testflows",
+            "repo": "TestFlows-GitHub-Hetzner-Runners",
+            "rev": "1.7.241227.1160242",
+            "sha256": "sha256-5gY6Jp5zcU2Caf11MCpE1S8MWGSwXsLNbDkTW92YTbc=",
+            "type": "github"
+        },
+        "version": "1.7.241227.1160242"
     },
     "gpsd-prometheus-exporter": {
         "cargoLocks": null,

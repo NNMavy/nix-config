@@ -323,21 +323,6 @@
 
             ];
           };
-
-          # "voron24" = mkNixosConfig {
-          #   # Rpi for Voron 2.4
-          #   hostname = "voron24";
-          #   system = "aarch64-linux";
-          #   hardwareModules = [
-          #     ./nixos/profiles/hw-rpi4.nix
-          #     inputs.nixos-hardware.nixosModules.raspberry-pi-4
-          #   ];
-          #   profileModules = [
-          #     ./nixos/profiles/role-klipper.nix
-          #     { home-manager.users.mavy = ./nixos/home/mavy/server.nix; }
-          #   ];
-          # };
-
         };
 
       # nix build .#images.rpi4
@@ -366,7 +351,6 @@
         ];
       };
 
-
       # simple shortcut to allow for easier referencing of correct
       # key for building images
       # > nix build .#images.rpi4
@@ -382,6 +366,18 @@
             (attr: inputs.self.nixosConfigurations.${attr}.config.system.build.toplevel);
         in
         nixtop;
+
+      # Lists hosts with their system kind for use in github actions
+      evalHosts = {
+        include = builtins.map
+          (host: {
+            inherit host;
+            inherit (self.nixosConfigurations.${host}.pkgs) system;
+            runner = lib.myLib.mapToGhaRunner self.nixosConfigurations.${host}.pkgs.system;
+            image = lib.myLib.mapToGhaImage self.nixosConfigurations.${host}.pkgs.system;
+          })
+          (builtins.attrNames self.nixosConfigurations);
+      };
     };
 
 }
