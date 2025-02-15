@@ -5,7 +5,6 @@ keys:
   - &mavy age1g6p9753ng4g6d4qqjzttdzvrx2klhguj7wp9t0y84s9s88zs6pss4z33uq
   - &mavy-wsl age103waa2xysflght90yj6pzgf9gc6r8j2gtnnlzn7637t93wa0gp9s5cu4lm
   - &optimus age1nyn5622c9nwp5l9c3hnaffazsv7d0cp2rrdgh8rxvux6dtyuld3qjfphqa
-  - &allspark age1sah6je06ds9mxkjvym2phm95etw2wdx4v7nrx223narsrx5dwvaskmkcls
   - &ntpns01 age18tlr5c7uyydxvpq6waeppeeavp9r5h4qhgrye9ju9enhjx5a2dnstkrr58
   - &ntpns02 age16jp5gqjctq67phsddl4m3g9g32kvjupyxkx5jgmcfazw7hw0w9kqwkzpnk
 
@@ -18,6 +17,5 @@ creation_rules:
           - *mavy
           - *mavy-wsl
           - *optimus
-          - *allspark
           - *ntpns01
           - *ntpns02
