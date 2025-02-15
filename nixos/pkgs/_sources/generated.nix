@@ -25,15 +25,15 @@
   };
   cockpit-podman = {
     pname = "cockpit-podman";
-    version = "bc94bb61d003b34720c8dd12e8dc369dd588e539";
+    version = "80cac9f8cb8ca19207d5d921254380b9d43c1e83";
     src = fetchFromGitHub {
       owner = "cockpit-project";
       repo = "cockpit-podman";
-      rev = "bc94bb61d003b34720c8dd12e8dc369dd588e539";
+      rev = "80cac9f8cb8ca19207d5d921254380b9d43c1e83";
       fetchSubmodules = false;
-      sha256 = "sha256-e6iNw5K+7xvh+CXxSmW0kZg/F2DBnS5SOc6+he2uL+M=";
+      sha256 = "sha256-GZEChOn8jwqSdp13xzN9SMFzsjWKnk2J3tRb76SMqp8=";
     };
-    date = "2025-01-14";
+    date = "2025-02-13";
   };
   cosmic-idle = {
     pname = "cosmic-idle";
@@ -113,13 +113,13 @@
   };
   talosctl = {
     pname = "talosctl";
-    version = "v1.9.1";
+    version = "v1.9.4";
     src = fetchFromGitHub {
       owner = "siderolabs";
       repo = "talos";
-      rev = "v1.9.1";
+      rev = "v1.9.4";
       fetchSubmodules = false;
-      sha256 = "sha256-Qvt9/okT37J3ge/lb17OX4aaiXbSFU1j7drdiJDqFnA=";
+      sha256 = "sha256-gD9fIBILqSFExTIziNx6Hy6TpsBC90yHSfSDB9fhKwA=";
     };
   };
 }
