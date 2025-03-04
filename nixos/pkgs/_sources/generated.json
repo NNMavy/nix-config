@@ -33,15 +33,15 @@
             "name": null,
             "owner": "SuperQ",
             "repo": "chrony_exporter",
-            "rev": "v0.11.0",
-            "sha256": "sha256-xHI0BYli82cCGFtv58jJ+PpjR/q1ReWjUqRDtp89w+Y=",
+            "rev": "v0.12.0",
+            "sha256": "sha256-ZXqCZZx0UG8050SYgVwD+wnTX0N41Bjv1dhdQmOHmR4=",
             "type": "github"
         },
-        "version": "v0.11.0"
+        "version": "v0.12.0"
     },
     "cockpit-podman": {
         "cargoLocks": null,
-        "date": "2025-02-13",
+        "date": "2025-03-03",
         "extract": null,
         "name": "cockpit-podman",
         "passthru": null,
@@ -53,16 +53,16 @@
             "name": null,
             "owner": "cockpit-project",
             "repo": "cockpit-podman",
-            "rev": "80cac9f8cb8ca19207d5d921254380b9d43c1e83",
-            "sha256": "sha256-GZEChOn8jwqSdp13xzN9SMFzsjWKnk2J3tRb76SMqp8=",
+            "rev": "ec7f21bb7f892945e9da39cefc5cd4a31527e9f0",
+            "sha256": "sha256-q3qV849DgVp+qNTYcqhErt6PtYgLLxNN8vlCElolH5I=",
             "type": "github"
         },
-        "version": "80cac9f8cb8ca19207d5d921254380b9d43c1e83"
+        "version": "ec7f21bb7f892945e9da39cefc5cd4a31527e9f0"
     },
     "cosmic-idle": {
         "cargoLocks": {
             "Cargo.lock": [
-                "./cosmic-idle-7899fccbbe3d6746982178d3eff48ce8943b0f71/Cargo.lock",
+                "./cosmic-idle-267bb837f127eb805a17250ebcad02db57eb72cb/Cargo.lock",
                 {
                     "atomicwrites-0.4.2": "sha256-QZSuGPrJXh+svMeFWqAXoqZQxLq/WfIiamqvjJNVhxA=",
                     "clipboard_macos-0.1.0": "sha256-tovB4fjPVVRY8LKn5albMzskFQ+1W5ul4jT5RXx9gKE=",
@@ -73,7 +73,7 @@
                 }
             ]
         },
-        "date": "2024-12-24",
+        "date": "2025-02-25",
         "extract": null,
         "name": "cosmic-idle",
         "passthru": null,
@@ -85,11 +85,11 @@
             "name": null,
             "owner": "pop-os",
             "repo": "cosmic-idle",
-            "rev": "7899fccbbe3d6746982178d3eff48ce8943b0f71",
-            "sha256": "sha256-hORU+iMvWA4XMSWmzir9EwjpLK5vOLR8BgMZz+aIZ4U=",
+            "rev": "267bb837f127eb805a17250ebcad02db57eb72cb",
+            "sha256": "sha256-dRvcow+rZ4sJV6pBxRIw6SCmU3aXP9uVKtFEJ9vozzI=",
             "type": "github"
         },
-        "version": "7899fccbbe3d6746982178d3eff48ce8943b0f71"
+        "version": "267bb837f127eb805a17250ebcad02db57eb72cb"
     },
     "flux-local": {
         "cargoLocks": null,
@@ -100,31 +100,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-+TeuzNYG1cUpf0h/rrLGGio4IkNxArIX1/Isu2gSgIU=",
+            "sha256": "sha256-twrzorgKyKC4ZcbWgNlGYjmsFVd0Dyniu1NQ8bxK4UQ=",
             "type": "url",
-            "url": "https://pypi.org/packages/source/f/flux_local/flux_local-7.0.0.tar.gz"
+            "url": "https://pypi.org/packages/source/f/flux_local/flux_local-7.2.0.tar.gz"
         },
-        "version": "7.0.0"
-    },
-    "github-hetzner-runners": {
-        "cargoLocks": null,
-        "date": null,
-        "extract": null,
-        "name": "github-hetzner-runners",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "testflows",
-            "repo": "TestFlows-GitHub-Hetzner-Runners",
-            "rev": "1.7.241227.1160242",
-            "sha256": "sha256-5gY6Jp5zcU2Caf11MCpE1S8MWGSwXsLNbDkTW92YTbc=",
-            "type": "github"
-        },
-        "version": "1.7.241227.1160242"
+        "version": "7.2.0"
     },
     "gpsd-prometheus-exporter": {
         "cargoLocks": null,
