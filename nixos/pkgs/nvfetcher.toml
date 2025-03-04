@@ -20,10 +20,6 @@ cargo_locks = ["Cargo.lock"]
 src.pypi = "flux-local"
 fetch.pypi = "flux_local"
 
-[github-hetzner-runners]
-src.pypi = "TestFlows-GitHub-Hetzner-Runners"
-fetch.github = "testflows/TestFlows-GitHub-Hetzner-Runners"
-
 [gpsd-prometheus-exporter]
 src.git = "https://github.com/brendanbank/gpsd-prometheus-exporter"
 fetch.github = "brendanbank/gpsd-prometheus-exporter"
