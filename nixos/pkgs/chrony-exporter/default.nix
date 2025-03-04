@@ -8,7 +8,7 @@ buildGoModule rec {
   inherit (source) pname version src;
 
   ldflags = [ "-s" "-w" ];
-  vendorHash = "sha256-czAkqEeGRSdMJmSZNwzAMAk045p4aog4XOQUU48jeOo=";
+  vendorHash = "sha256-3zL7BrCdMVnt7F1FiZ2eQnKVhmCeW3aYKKX9v01ms/k=";
   outputs = [ "out" ];
 
   # # This is needed to deal with workspace issues during the build
