@@ -48,6 +48,7 @@ in
       extraArgs = lib.mkForce [
         #"-remoteWrite.label=instance=${config.networking.hostName}"
         "-sortLabels"
+        "-remoteWrite.forcePromProto=\"true\""
       ];
       prometheusConfig = {
         scrape_configs = [
