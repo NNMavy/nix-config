@@ -44,10 +44,11 @@ in
 
     services.vmagent = {
       enable = true;
-      remoteWrite.url = "https://write-thanos-cluster-0.nnhome.eu/api/v1/receive";
+      remoteWrite.url = "https://prometheus.nnhome.eu/api/v1/write";
       extraArgs = lib.mkForce [
         #"-remoteWrite.label=instance=${config.networking.hostName}"
         "-sortLabels"
+        "-remoteWrite.forcePromProto=\"true\""
       ];
       prometheusConfig = {
         scrape_configs = [
