@@ -15,6 +15,7 @@
             "repo": "adguard-exporter",
             "rev": "v1.2.0",
             "sha256": "sha256-HQ72eTBV6ZZMawACZ/iwABVm8On/yqFKotfXxbGZqUc=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "v1.2.0"
@@ -35,6 +36,7 @@
             "repo": "chrony_exporter",
             "rev": "v0.12.0",
             "sha256": "sha256-ZXqCZZx0UG8050SYgVwD+wnTX0N41Bjv1dhdQmOHmR4=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "v0.12.0"
@@ -55,6 +57,7 @@
             "repo": "cockpit-podman",
             "rev": "523643802f623b476a09d8c0583be9587cddbb96",
             "sha256": "sha256-P+lxLYHmMxSlcu39WxiBJhAxHBT34uFRdr2Wgc6MO/4=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "523643802f623b476a09d8c0583be9587cddbb96"
@@ -87,6 +90,7 @@
             "repo": "cosmic-idle",
             "rev": "267bb837f127eb805a17250ebcad02db57eb72cb",
             "sha256": "sha256-dRvcow+rZ4sJV6pBxRIw6SCmU3aXP9uVKtFEJ9vozzI=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "267bb837f127eb805a17250ebcad02db57eb72cb"
@@ -122,6 +126,7 @@
             "repo": "gpsd-prometheus-exporter",
             "rev": "f4dd7340aa6f8760acf8fef487f63e26f7f432fe",
             "sha256": "sha256-kWnDdYHIMj2MSwY+wlb0XpqEKi+wa+OOp/SM77S0OzY=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "f4dd7340aa6f8760acf8fef487f63e26f7f432fe"
@@ -142,6 +147,7 @@
             "repo": "MQTT-Explorer",
             "rev": "v0.3.5",
             "sha256": "sha256-lXHPKOZh5gbG+kpH9wLBcHztS7fBj9D57ySKd1xkhxc=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "v0.3.5"
@@ -162,6 +168,7 @@
             "repo": "npiperelay",
             "rev": "v0.1.0",
             "sha256": "sha256-cg4aZmpTysc8m1euxIO2XPv8OMnBk1DwhFcuIFHF/1o=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "v0.1.0"
@@ -182,6 +189,7 @@
             "repo": "talos",
             "rev": "v1.9.5",
             "sha256": "sha256-2YKZfW62yOA8uV3bn6at/9YV3OHjiMuqA1SUupyAAx4=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "v1.9.5"
