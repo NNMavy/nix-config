@@ -1,12 +1,14 @@
-{ source, pkgs, lib, stdenv, python3, fetchFromGitHub }:
+{ pkgs, lib, stdenv, python3, fetchFromGitHub }:
 let
   pyEnv = python3.withPackages (ps: [
     ps.prometheus-client
     ps.setuptools
   ]);
+  sourceData = pkgs.callPackage ./_sources/generated.nix { };
+  packageData = sourceData.gpsd-prometheus-exporter;
 in
 stdenv.mkDerivation rec {
-  inherit (source) pname version src;
+  inherit (packageData) pname version src;
 
   doCheck = false;
 

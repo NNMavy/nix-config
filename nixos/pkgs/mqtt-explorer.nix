@@ -1,7 +1,10 @@
-{ source, pkgs, stdenv, lib, appimageTools, electron_30, makeWrapper }:
-
+{ pkgs, stdenv, lib, appimageTools, electron_30, makeWrapper }:
+let
+  sourceData = pkgs.callPackage ./_sources/generated.nix { };
+  packageData = sourceData.mqtt-explorer;
+in
 stdenv.mkDerivation rec {
-  inherit (source) pname version src;
+  inherit (packageData) pname version src;
 
   buildInputs = [ makeWrapper ];
   installPhase = ''

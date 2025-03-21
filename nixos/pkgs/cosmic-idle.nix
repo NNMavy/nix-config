@@ -1,4 +1,4 @@
-{ source
+{ pkgs
 , lib
 , stdenv
 , fetchFromGitHub
@@ -13,8 +13,12 @@
 , xorg
 ,
 }:
+let
+  sourceData = pkgs.callPackage ./_sources/generated.nix { };
+  packageData = sourceData.cosmic-idle;
+in
 rustPlatform.buildRustPackage rec {
-  inherit (source) pname version src;
+  inherit (packageData) pname version src;
 
   cargoLock = source.cargoLock."Cargo.lock";
 

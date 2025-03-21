@@ -1,12 +1,15 @@
-rec {
-  mapPackages = f: with builtins;listToAttrs (map (name: { inherit name; value = f name; }) (filter (v: v != null) (attrValues (mapAttrs (k: v: if v == "directory" && k != "_sources" then k else null) (readDir ./.)))));
-  packages = pkgs: mapPackages (name: pkgs.${name});
-  overlay = final: prev: mapPackages (name:
-    let
-      sources = (import ./_sources/generated.nix) { inherit (final) fetchurl fetchgit fetchFromGitHub dockerTools; };
-      package = import ./${name};
-      args = builtins.intersectAttrs (builtins.functionArgs package) { source = sources.${name}; };
-    in
-    final.callPackage package args
-  );
+{
+  pkgs,
+  ...
+}:
+{
+  adguard-exporter = pkgs.callPackage ./adguard-exporter.nix { };
+  chrony-exporter = pkgs.callPackage ./chrony-exporter.nix { };
+  cockpit-podman = pkgs.callPackage ./cockpit-podman.nix { };
+  cosmic-idle = pkgs.callPackage ./cosmic-idle.nix { };
+  flux-local = pkgs.callPackage ./flux-local.nix { };
+  gpsd-prometheus-exporter = pkgs.callPackage ./gpsd-prometheus-exporter.nix { };
+  mqtt-explorer = pkgs.callPackage ./mqtt-explorer.nix { };
+  npiperelay = pkgs.callPackage ./npiperelay.nix { };
+  talosctl = pkgs.callPackage ./talosctl.nix { };
 }

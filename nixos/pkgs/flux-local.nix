@@ -1,9 +1,11 @@
-{ source, pkgs, lib, stdenv, python3Packages, fetchPypi }:
+{ pkgs, lib, stdenv, python3Packages, fetchPypi }:
 let
   inherit (python3Packages) buildPythonApplication;
+  sourceData = pkgs.callPackage ./_sources/generated.nix { };
+  packageData = sourceData.flux-local;
 in
 buildPythonApplication rec {
-  inherit (source) pname version src;
+  inherit (packageData) pname version src;
 
   propagatedBuildInputs = [
     (with pkgs.python3Packages; [

@@ -7,7 +7,12 @@ in
 {
 
   # Custom packages
-  additions = custom.overlay;
+  additions =
+    final: _prev:
+    import ../pkgs {
+      inherit inputs;
+      pkgs = final;
+    };
 
   # nur overlay
   nur = inputs.nur.overlays.default;

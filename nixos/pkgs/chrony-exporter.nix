@@ -1,14 +1,18 @@
-{ source
+{ pkgs
 , lib
-, pkgs
 , buildGoModule
 , ...
 }:
+let
+  sourceData = pkgs.callPackage ./_sources/generated.nix { };
+  hashData = lib.importJSON ./_sources/vendorhash.json;
+  packageData = sourceData.chrony-exporter;
+in
 buildGoModule rec {
-  inherit (source) pname version src;
+  inherit (packageData) pname version src;
 
   ldflags = [ "-s" "-w" ];
-  vendorHash = "sha256-3zL7BrCdMVnt7F1FiZ2eQnKVhmCeW3aYKKX9v01ms/k=";
+  vendorHash = hashData.chrony-exporter;
   outputs = [ "out" ];
 
   # # This is needed to deal with workspace issues during the build
