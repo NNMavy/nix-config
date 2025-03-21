@@ -81,5 +81,5 @@ jobs:
             ## Changes:
             ${{ steps.run-nvfetcher.outputs.changes }}
           add-paths: |
-            pkgs/**
+            nixos/pkgs/**
           delete-branch: true
