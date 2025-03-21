@@ -1,16 +1,15 @@
+---
 name: Update nvfetcher
 
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: 0 * * * *
+    - cron: 0 3 * * *
   push:
     branches:
       - main
-      - workflows
     paths:
       - nixos/pkgs/nvfetcher.toml
-      - .github/workflows/update-nvfetcher.yaml
 
 jobs:
   update-nvfetcher:
@@ -24,13 +23,15 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v16
       - name: Set up Magic Nix Cache
-        uses: DeterminateSystems/magic-nix-cache-action@v9
+        uses: DeterminateSystems/flakehub-cache-action@main
 
       - name: Run nvfetcher
         id: run-nvfetcher
         run: |
+          export LANG=en_US.UTF-8
+          export LC_ALL=en_US.UTF-8
           cd nixos/pkgs
-          nix-shell -p nvfetcher --command 'nvfetcher -l /tmp/nvfetcher-changes'
+          nix-shell -p nvfetcher --command 'nvfetcher -l /tmp/nvfetcher-changes --keep-old'
           {
             echo 'changes<<EOF'
             cat /tmp/nvfetcher-changes
@@ -53,7 +54,7 @@ jobs:
           for APP_NAME in "${APP_NAMES[@]}"; do
             echo "Updating vendor hash for ${APP_NAME}..."
             setHash "${APP_NAME}" ""
-            vendorHash=$(nix build --no-link .#${APP_NAME} 2>&1 >/dev/null | grep "got:" | cut -d':' -f2 | sed 's| ||g')
+            vendorHash=$(nix build --no-link .#packages.${APP_NAME} 2>&1 >/dev/null | grep "got:" | cut -d':' -f2 | sed 's| ||g')
 
             if [[ -n "${vendorHash}" ]]; then
               setHash "${APP_NAME}" "${vendorHash}"
@@ -80,5 +81,5 @@ jobs:
             ## Changes:
             ${{ steps.run-nvfetcher.outputs.changes }}
           add-paths: |
-            nixos/pkgs/**
+            pkgs/**
           delete-branch: true

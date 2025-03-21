@@ -1,14 +1,18 @@
-{ source
+{ pkgs
 , lib
-, pkgs
 , buildGoModule
 , ...
 }:
+let
+  sourceData = pkgs.callPackage ./_sources/generated.nix { };
+  hashData = lib.importJSON ./_sources/vendorhash.json;
+  packageData = sourceData.adguard-exporter;
+in
 buildGoModule rec {
-  inherit (source) pname version src;
+  inherit (packageData) pname version src;
 
   ldflags = [ "-s" "-w" ];
-  vendorHash = "sha256-18Fzld2F05hzORw8kLt6JdCdxGNM+KOEUiPnC3LTzDI=";
+  vendorHash = hashData.adguard-exporter;
   outputs = [ "out" ];
 
   # # This is needed to deal with workspace issues during the build

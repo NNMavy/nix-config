@@ -144,11 +144,26 @@
 
     in
     rec {
+      overlays = import ./nixos/overlays { inherit inputs; };
+
       # Use nixpkgs-fmt for 'nix fmt'
       formatter = forAllSystems (system: nixpkgs.legacyPackages."${system}".nixpkgs-fmt);
 
       # setup devshells against shell.nix
       devShells = forAllSystems (pkgs: import ./shell.nix { inherit pkgs; });
+
+      # call packages from CI
+      packages = import ./nixos/pkgs {
+        inherit inputs;
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          overlays = builtins.attrValues overlays;
+          config = {
+            allowUnfree = true;
+            allowUnfreePredicate = _: true;
+          };
+        };
+      };
 
       # extend lib with my custom functions
       lib = nixpkgs.lib.extend (
@@ -165,7 +180,6 @@
             inherit inputs outputs;
           };
           # Import overlays for building nixosconfig with them.
-          overlays = import ./nixos/overlays { inherit inputs; };
 
           # generate a base nixos configuration with the
           # specified overlays, hardware modules, and any extraModules applied

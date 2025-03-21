@@ -1,11 +1,14 @@
-{ source
-, lib
+{ lib
 , pkgs
 , buildGoModule
 , ...
 }:
+let
+  sourceData = pkgs.callPackage ./_sources/generated.nix { };
+  packageData = sourceData.npiperelay;
+in
 buildGoModule rec {
-  inherit (source) pname version src;
+  inherit (packageData) pname version src;
 
   ldflags = [ "-s" "-w" ];
   vendorHash = null;

@@ -1,22 +1,18 @@
-{ lib
-, unstable
+{ pkgs
+, lib
 , fetchFromGitHub
 , installShellFiles
 ,
 }:
-unstable.buildGoModule rec {
-  pname = "talosctl";
-  # renovate: datasource=github-releases depName=siderolabs/talos
-  version = "1.9.5";
-
-  src = fetchFromGitHub {
-    owner = "siderolabs";
-    repo = "talos";
-    rev = "v${version}";
-    hash = "sha256-Ezie6RQsigmJgdvnSVk6awuUu2kODSio9DNg4bow76M=";
-  };
-
-  vendorHash = "sha256-9qkealjjdBO659fdWdgFii3ThPRwKpYasB03L3Bktqs=";
+let
+  sourceData = pkgs.callPackage ./_sources/generated.nix { };
+  hashData = lib.importJSON ./_sources/vendorhash.json;
+  packageData = sourceData.talosctl;
+in
+pkgs.unstable.buildGo123Module {
+  inherit (packageData) pname src;
+  version = lib.strings.removePrefix "v" packageData.version;
+  vendorHash = hashData.talosctl;
 
   ldflags = [
     "-s"

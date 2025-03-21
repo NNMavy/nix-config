@@ -1,7 +1,10 @@
 { source, lib, stdenv, fetchzip, gettext }:
-
+let
+  sourceData = pkgs.callPackage ./_sources/generated.nix { };
+  packageData = sourceData.cockpit-podman;
+in
 stdenv.mkDerivation rec {
-  inherit (source) pname version src vendorSha256;
+  inherit (packageData) pname version src vendorSha256;
 
   nativeBuildInputs = [
     gettext
