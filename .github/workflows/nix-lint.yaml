@@ -26,13 +26,6 @@ jobs:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Attic cache
-        uses: ryanccn/attic-action@v0
-        with:
-          endpoint: ${{ secrets.ATTIC_ENDPOINT }}
-          cache: nix-config
-          token: ${{ secrets.ATTIC_TOKEN }}
-
       - name: Install Nix Linting and Formatting Tools
         run: nix-env -i statix nixpkgs-fmt -f '<nixpkgs>'
 
