@@ -44,6 +44,7 @@ jobs:
       - name: Install nix
         uses: DeterminateSystems/nix-installer-action@main
         with:
+          init: none
           extra-conf: |
             accept-flake-config = true
             extra-platforms = aarch64-linux
