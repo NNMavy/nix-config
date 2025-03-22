@@ -23,10 +23,10 @@ jobs:
             target: bumblebee
           - os: nix-config-runner
             target: highjump
-          - os: nix-config-runner
-            target: ntpns01
-          - os: nix-config-runner
-            target: ntpns02
+          # - os: nix-config-runner
+          #   target: ntpns01
+          # - os: nix-config-runner
+          #   target: ntpns02
     steps:
       - name: Create nix mount point
         if: contains(matrix.os, 'ubuntu')
@@ -64,9 +64,6 @@ jobs:
             extra-access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
 
       - uses: DeterminateSystems/flakehub-cache-action@main
-      - name: Register binfmt
-        run: |
-          docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 
       - name: Setup Attic cache
         uses: ryanccn/attic-action@v0
