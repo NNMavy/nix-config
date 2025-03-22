@@ -77,7 +77,7 @@ jobs:
             xz-utils \
             binfmt-support \
             qemu-user-static
-          sudo update-binfmts --package qemu-user-static --import
+          sudo update-binfmts --package qemu-user-static --enable
 
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
