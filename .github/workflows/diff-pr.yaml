@@ -20,7 +20,7 @@ jobs:
       matrix:
         include:
           - os: nix-config-runner
-            target: mavy-wsl
+            target: bumblebee
           # - os: nix-config-runner
           #   target: highjump
           # - os: nix-config-runner
@@ -79,7 +79,9 @@ jobs:
         if: steps.verify.outputs.should_run != 'null'
         run: |
           nix run github:mic92/nix-fast-build -- \
+            --eval-workers 6 \
             --no-nom \
+            --attic-cache nix-config \
             --flake github:NNMavy/nix-config#top.${{ matrix.target }} \
             --out-link old
 
@@ -87,7 +89,9 @@ jobs:
         if: steps.verify.outputs.pr_number != 'null'
         run: |
           nix run github:mic92/nix-fast-build -- \
+            --eval-workers 6 \
             --no-nom \
+            --attic-cache nix-config \
             --flake .#top.${{ matrix.target }} \
             --out-link new
 
