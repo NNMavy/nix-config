@@ -34,6 +34,11 @@ jobs:
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
+      - name: Install prerequisites
+        shell: bash
+        run: |
+          sudo apt-get update && sudo apt-get install -y xz-utils
+
       - name: Install Nix
         uses: cachix/install-nix-action@02a151ada4993995686f9ed4f1be7cfbb229e56f # v31
         with:
@@ -64,11 +69,10 @@ jobs:
         if: contains(matrix.os, 'ubuntu')
         run: sudo mkdir /nix
 
-      - name: Change /nix owner
+      - name: Install prerequisites
+        shell: bash
         run: |
-          ls -la /nix
-          sudo chown -R root /nix
-          ls -la /nix
+          sudo apt-get update && sudo apt-get install -y xz-utils
 
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
