@@ -22,9 +22,7 @@ jobs:
           - os: nix-config-runner
             target: bumblebee
           - os: nix-config-runner
-            target: mavy-wsl
-          # - os: nix-config-runner
-          #   target: highjump
+            target: highjump
           # - os: nix-config-runner
           #   target: ntpns01
           # - os: nix-config-runner
