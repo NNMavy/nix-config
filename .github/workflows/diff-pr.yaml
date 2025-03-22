@@ -21,6 +21,8 @@ jobs:
         include:
           - os: nix-config-runner
             target: bumblebee
+          - os: nix-config-runner
+            target: mavy-wsl
           # - os: nix-config-runner
           #   target: highjump
           # - os: nix-config-runner
