@@ -120,11 +120,11 @@ rec {
   mapToGhaRunner =
     system:
     if system == "x86_64-linux" then
-      "type-ccx33"
+      "nix-config-runner"
     else if system == "aarch64-linux" then
-      "type-cax31"
+      "nix-config-runner"
     else
-      "type-cpx21";
+      system;
 
   mapToGhaImage =
     system:

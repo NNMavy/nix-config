@@ -354,7 +354,6 @@
             inherit host;
             inherit (self.nixosConfigurations.${host}.pkgs) system;
             runner = lib.myLib.mapToGhaRunner self.nixosConfigurations.${host}.pkgs.system;
-            image = lib.myLib.mapToGhaImage self.nixosConfigurations.${host}.pkgs.system;
           })
           (builtins.attrNames self.nixosConfigurations);
       };
