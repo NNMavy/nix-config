@@ -25,25 +25,6 @@
       url = "github:lilyinstarlight/nixos-cosmic";
     };
 
-    # hyprland
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    hyprland-hyprspace = {
-      url = "github:KZDKM/Hyprspace";
-      inputs.hyprland.follows = "hyprland";
-
-    };
-
-    iio-hyprland.url = "github:JeanSchoeller/iio-hyprland";
-
     # Catppuccin
     catppuccin.url = "github:catppuccin/nix";
 
