@@ -19,21 +19,15 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: arc-runner-set-nix-config
+          - os: nix-config-runner
             target: bumblebee
-          # - os: ubuntu-latest
-          #   target: optimus
-          # - os: ubuntu-latest
-          #   target: mavy-wsl
+          - os: nix-config-runner
+            target: highjump
+          - os: nix-config-runner
+            target: ntpns01
+          - os: nix-config-runner
+            target: ntpns02
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-
-      - name: Install xz-utils
-        shell: bash
-        run: |
-          sudo apt-get update && sudo apt-get install -y xz-utils;
-
       - name: Create nix mount point
         if: contains(matrix.os, 'ubuntu')
         run: sudo mkdir /nix
@@ -52,18 +46,29 @@ jobs:
           remove-codeql: true
           overprovision-lvm: true
 
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Install nix
-        uses: cachix/install-nix-action@v31
+        uses: cachix/install-nix-action@v30
         with:
           extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }
             experimental-features = nix-command flakes
             extra-platforms = aarch64-linux
-            extra-access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-      - uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - uses: DeterminateSystems/flakehub-cache-action@main
       - name: Register binfmt
         run: |
           docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 
+      - name: Setup Attic cache
+        uses: ryanccn/attic-action@v0
+        with:
+          endpoint: ${{ secrets.ATTIC_ENDPOINT }}
+          cache: nix-config
+          token: ${{ secrets.ATTIC_TOKEN }}
 
       - name: Garbage collect build dependencies
         run: nix-collect-garbage
