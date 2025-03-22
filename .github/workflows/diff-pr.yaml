@@ -20,7 +20,7 @@ jobs:
       matrix:
         include:
           - os: nix-config-runner
-            target: bumblebee
+            target: mavy-wsl
           # - os: nix-config-runner
           #   target: highjump
           # - os: nix-config-runner
