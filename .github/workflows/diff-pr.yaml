@@ -32,10 +32,10 @@ jobs:
         if: contains(matrix.os, 'ubuntu')
         run: sudo mkdir /nix
 
-      - name: Install xz-utils
+      - name: Install prerequisites
         shell: bash
         run: |
-          sudo apt-get update && sudo apt-get install -y xz-utils qemu-system-aarch64 qemu-efi-aarch64 binfmt-support qemu-user-static;
+          sudo apt-get update && sudo apt-get install -y xz-utils qemu-system-aarch64 qemu-efi binfmt-support qemu-user-static;
 
       - uses: actions/checkout@v4
         with:
@@ -47,9 +47,14 @@ jobs:
           extra_nix_config: |
             experimental-features = nix-command flakes
             extra-platforms = aarch64-linux
+            system-features = aarch64-linux
             extra-access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= mavy.cachix.org-1:fsS3qUaevKZDag/2fMrGAB9wEBd7pkrKihM071JuxLk= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE= cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=
             substituters = https://mavy.cachix.org https://cache.garnix.io https://cosmic.cachix.org/ https://nix-community.cachix.org https://numtide.cachix.org https://cache.nixos.org/
+
+      - name: Test binfmt availability
+        run: |
+          cat /proc/sys/fs/binfmt_misc/qemu-aarch64
 
       - name: Setup Attic cache
         uses: ryanccn/attic-action@v0
