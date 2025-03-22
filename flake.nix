@@ -106,7 +106,6 @@
     , nixpkgs
     , nixos-wsl
     , nixos-cosmic
-    , hyprland
     , catppuccin
     , sops-nix
     , home-manager
