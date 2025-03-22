@@ -63,7 +63,7 @@ jobs:
             extra-platforms = aarch64-linux
             extra-access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= mavy.cachix.org-1:fsS3qUaevKZDag/2fMrGAB9wEBd7pkrKihM071JuxLk= cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=
-            trusted-substituters = https://cache.nixos.org https://cache.garnix.io https://nix-community.cachix.org https://mavy.cachix.org https://cosmic.cachix.org
+            trusted-substituters = https://mavy.cachix.org https://cosmic.cachix.org https://cache.garnix.io https://nix-community.cachix.org https://cache.nixos.org
 
       - name: Setup Attic cache
         uses: ryanccn/attic-action@v0
@@ -76,7 +76,7 @@ jobs:
         run: nix-collect-garbage
 
       - name: Fetch old system profile
-        run: nix build github:nnmavy/nix-config#top.${{ matrix.target }} -v  --log-format raw --profile ./profile
+        run: nix build github:NNMavy/nix-config#top.${{ matrix.target }} -v  --log-format raw --profile ./profile
 
       - name: Add new system to profile
         run: |
