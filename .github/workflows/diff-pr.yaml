@@ -76,7 +76,7 @@ jobs:
         run: nix-collect-garbage
 
       - name: Fetch old system profile
-        run: nix build github:NNMavy/nix-config#top.${{ matrix.target }} -v  --log-format raw --profile ./profile
+        run: nix build github:NNMavy/nix-config#top.${{ matrix.target }} -v --log-format raw --profile ./profile --show-trace --no-write-lock-file
 
       - name: Add new system to profile
         run: |
