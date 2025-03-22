@@ -125,13 +125,4 @@ rec {
       "nix-config-runner"
     else
       system;
-
-  mapToGhaImage =
-    system:
-    if system == "x86_64-linux" then
-      "image-x86-system-ubuntu-22.04"
-    else if system == "aarch64-linux" then
-      "image-arm-system-ubuntu-22.04"
-    else
-      "image-x86-system-ubuntu-22.04";
 }

@@ -7,13 +7,14 @@ permissions:
 
 on:
   pull_request:
-    paths-ignore: ["pkgs/**", ".github"]
+    paths-ignore: ["nixos/pkgs/**", ".github"]
   workflow_dispatch:
   workflow_call:
   push:
     branches:
       - main
     paths:
+      - .github/workflows/**
       - "**.nix"
       - "flake.lock"
 
@@ -22,7 +23,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  EXCLUDED_HOSTS: '["nixos-livecd"]'
+  EXCLUDED_HOSTS: '["mavy-wsl", "optimus"]'
   TMPDIR: /tmp
 
 jobs:
@@ -59,6 +60,10 @@ jobs:
       matrix: ${{ fromJSON(needs.nix-matrix.outputs.matrix) }}
     runs-on: ${{ matrix.runner }}
     steps:
+      - name: Create nix mount point
+        if: contains(matrix.os, 'ubuntu')
+        run: sudo mkdir /nix
+
       - name: Change /nix owner
         run: |
           ls -la /nix
