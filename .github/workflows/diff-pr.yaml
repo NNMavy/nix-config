@@ -32,20 +32,6 @@ jobs:
         if: contains(matrix.os, 'ubuntu')
         run: sudo mkdir /nix
 
-      - name: Maximize build space
-        uses: easimon/maximize-build-space@v10
-        if: contains(matrix.os, 'ubuntu')
-        with:
-          root-reserve-mb: 512
-          swap-size-mb: 1024
-          build-mount-path: "/nix"
-          remove-dotnet: true
-          remove-android: true
-          remove-haskell: true
-          remove-docker-images: true
-          remove-codeql: true
-          overprovision-lvm: true
-
       - name: Install xz-utils
         shell: bash
         run: |
@@ -56,14 +42,16 @@ jobs:
           fetch-depth: 0
 
       - name: Install nix
-        uses: cachix/install-nix-action@v31
+        uses: DeterminateSystems/nix-installer-action@main
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra-conf: |
+            accept-flake-config = true
             extra-platforms = aarch64-linux
             extra-access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= mavy.cachix.org-1:fsS3qUaevKZDag/2fMrGAB9wEBd7pkrKihM071JuxLk= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE= cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=
             substituters = https://mavy.cachix.org https://cache.garnix.io https://cosmic.cachix.org/ https://nix-community.cachix.org https://numtide.cachix.org https://cache.nixos.org/
+            experimental-features = nix-command flakes
+            builders-use-substitutes = true
 
       - name: Setup Attic cache
         uses: ryanccn/attic-action@v0
@@ -75,65 +63,68 @@ jobs:
       - name: Garbage collect build dependencies
         run: nix-collect-garbage
 
-      - name: Build current system
-        if: steps.verify.outputs.should_run != 'null'
-        run: |
-          nix run github:mic92/nix-fast-build -- \
-            --eval-workers 6 \
-            --no-nom \
-            --attic-cache nix-config \
-            --flake github:NNMavy/nix-config#top.${{ matrix.target }} \
-            --out-link old
+      - name: Fetch old system profile
+        run: nix build github:NNMavy/nix-config#top.${{ matrix.target }} -v --log-format raw --profile ./profile --show-trace --no-write-lock-file --print-build-logs
 
-      - name: Build new system
-        if: steps.verify.outputs.pr_number != 'null'
-        run: |
-          nix run github:mic92/nix-fast-build -- \
-            --eval-workers 6 \
-            --no-nom \
-            --attic-cache nix-config \
-            --flake .#top.${{ matrix.target }} \
-            --out-link new
+      # - name: Build current system
+      #   if: steps.verify.outputs.should_run != 'null'
+      #   run: |
+      #     nix run github:mic92/nix-fast-build -- \
+      #       --eval-workers 6 \
+      #       --no-nom \
+      #       --attic-cache nix-config \
+      #       --flake github:NNMavy/nix-config#top.${{ matrix.target }} \
+      #       --out-link old
 
-      - name: Scan for security issues
-        id: security
-        run: |
-          nix run nixpkgs/nixos-unstable#vulnix -- -w https://raw.githubusercontent.com/ckauhaus/nixos-vulnerability-roundup/master/whitelists/nixos-unstable.toml ./profile | tee /tmp/security.txt
-          OUTPUT_SECURITY="$(cat /tmp/security.txt)"
-          OUTPUT_SECURITY="${OUTPUT_SECURITY//'%'/'%25'}"
-          OUTPUT_SECURITY="${OUTPUT_SECURITY//$'\n'/'%0A'}"
-          OUTPUT_SECURITY="${OUTPUT_SECURITY//$'\r'/'%0D'}"
-          echo "$OUTPUT_SECURITY"
+      # - name: Build new system
+      #   if: steps.verify.outputs.pr_number != 'null'
+      #   run: |
+      #     nix run github:mic92/nix-fast-build -- \
+      #       --eval-workers 6 \
+      #       --no-nom \
+      #       --attic-cache nix-config \
+      #       --flake .#top.${{ matrix.target }} \
+      #       --out-link new
 
-          delimiter="$(openssl rand -hex 16)"
-          echo "security<<${delimiter}" >> "${GITHUB_OUTPUT}"
-          echo "$OUTPUT_SECURITY" >> "${GITHUB_OUTPUT}"
-          echo "${delimiter}" >> "${GITHUB_OUTPUT}"
+      # - name: Scan for security issues
+      #   id: security
+      #   run: |
+      #     nix run nixpkgs/nixos-unstable#vulnix -- -w https://raw.githubusercontent.com/ckauhaus/nixos-vulnerability-roundup/master/whitelists/nixos-unstable.toml ./profile | tee /tmp/security.txt
+      #     OUTPUT_SECURITY="$(cat /tmp/security.txt)"
+      #     OUTPUT_SECURITY="${OUTPUT_SECURITY//'%'/'%25'}"
+      #     OUTPUT_SECURITY="${OUTPUT_SECURITY//$'\n'/'%0A'}"
+      #     OUTPUT_SECURITY="${OUTPUT_SECURITY//$'\r'/'%0D'}"
+      #     echo "$OUTPUT_SECURITY"
 
-      - name: Diff profile
-        id: diff
-        run: |
-          nix run gitlab:khumba/nvd --no-write-lock-file -- diff old new
-          delimiter="$(openssl rand -hex 16)"
-          echo "diff<<${delimiter}" >> "${GITHUB_OUTPUT}"
-          nix run gitlab:khumba/nvd --no-write-lock-file -- diff old new | sed -E 's/#[0-9]+//' | tail +3 >> "${GITHUB_OUTPUT}"
-          echo "${delimiter}" >> "${GITHUB_OUTPUT}"
+      #     delimiter="$(openssl rand -hex 16)"
+      #     echo "security<<${delimiter}" >> "${GITHUB_OUTPUT}"
+      #     echo "$OUTPUT_SECURITY" >> "${GITHUB_OUTPUT}"
+      #     echo "${delimiter}" >> "${GITHUB_OUTPUT}"
 
-      - name: Comment report in pr
-        uses: marocchino/sticky-pull-request-comment@v2
-        if: ${{ !startswith(github.ref, 'dependabot') }}
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          header: ".#top.${{ matrix.target }}"
-          message: |
-            ### Report for `${{ matrix.target }}`
+      # - name: Diff profile
+      #   id: diff
+      #   run: |
+      #     nix run gitlab:khumba/nvd --no-write-lock-file -- diff old new
+      #     delimiter="$(openssl rand -hex 16)"
+      #     echo "diff<<${delimiter}" >> "${GITHUB_OUTPUT}"
+      #     nix run gitlab:khumba/nvd --no-write-lock-file -- diff old new | sed -E 's/#[0-9]+//' | tail +3 >> "${GITHUB_OUTPUT}"
+      #     echo "${delimiter}" >> "${GITHUB_OUTPUT}"
 
-            <summary> Version changes </summary> <br>
-            <pre> ${{ steps.diff.outputs.diff }} </pre>
+      # - name: Comment report in pr
+      #   uses: marocchino/sticky-pull-request-comment@v2
+      #   if: ${{ !startswith(github.ref, 'dependabot') }}
+      #   with:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     header: ".#top.${{ matrix.target }}"
+      #     message: |
+      #       ### Report for `${{ matrix.target }}`
 
-            <details>
-            <summary> Security vulnerability report </summary> <br>
-            <pre> ${{ steps.security.outputs.security }} </pre>
-            </details>
+      #       <summary> Version changes </summary> <br>
+      #       <pre> ${{ steps.diff.outputs.diff }} </pre>
+
+      #       <details>
+      #       <summary> Security vulnerability report </summary> <br>
+      #       <pre> ${{ steps.security.outputs.security }} </pre>
+      #       </details>
 
 # Liberated from edeneast's github
