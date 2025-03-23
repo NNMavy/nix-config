@@ -28,7 +28,6 @@
         # Enable hosted services
         backrest.enable = true;
         gatus.enable = true;
-        github-runner.enable = true;
         forgejo.enable = true;
         atlas-probe.enable = true;
       };

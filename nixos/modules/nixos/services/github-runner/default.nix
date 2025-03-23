@@ -52,6 +52,7 @@ in
         "github-runner/${runnerName}" # module default
         "github-runner-work/${runnerName}"
       ];
+      extraPackages = [ pkgs.docker ];
       workDir = "/var/lib/github-runner-work/${runnerName}";
       extraLabels = [ runnerName ];
     };
