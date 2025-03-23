@@ -44,8 +44,8 @@ in
       enable = true;
       replace = true;
       ephemeral = true;
-      user = user;
-      group = group;
+      inherit user;
+      inherit group;
       tokenFile = config.sops.secrets."services/github-runner/token".path;
       url = "https://github.com/NNMavy/nix-config";
       serviceOverrides.StateDirectory = [
