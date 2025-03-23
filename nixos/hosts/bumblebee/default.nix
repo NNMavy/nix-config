@@ -38,9 +38,8 @@
     boot = {
       initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
       initrd.kernelModules = [ ];
-      kernelModules = [ "kvm-intel" ];
+      # kernelModules = [ "kvm-intel" ];
       extraModulePackages = [ ];
-      binfmt.emulatedSystems = [ "aarch64-linux" ];
     };
 
     networking = {
