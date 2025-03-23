@@ -3,6 +3,5 @@
     ./atlas-probe
     ./backrest
     ./gatus
-    ./omni
   ];
 }
