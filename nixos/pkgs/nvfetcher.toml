@@ -29,8 +29,6 @@ src.github = "thomasnordquist/MQTT-Explorer"
 fetch.github = "thomasnordquist/MQTT-Explorer"
 include_prereleases = "true"
 
-# TODO: multiviewer-f1
-
 [npiperelay]
 src.github = "jstarks/npiperelay"
 fetch.github = "jstarks/npiperelay"

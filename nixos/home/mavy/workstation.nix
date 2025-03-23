@@ -71,13 +71,10 @@ with config;
       [
         #apps
         discord
-        slack
         spotify
-        # orca-slicer
         yubioath-flutter
         yubikey-manager-qt
         flameshot
-        multiviewer-for-f1
         mqttui
         vlc
 
