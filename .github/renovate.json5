@@ -2,7 +2,7 @@
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: [
     'github>NNMavy/renovate-config',
-    'github>NNMavy/nix-config//.github/renovate/customManagers.json5',
+    'github>NNMavy/nix-config//.github/renovate/autoMerge.json5'
   ],
   ignorePaths: [
     'result',
