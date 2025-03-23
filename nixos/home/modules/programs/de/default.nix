@@ -2,6 +2,5 @@
   imports = [
     ./cosmic
     ./gnome
-    ./hyprland
   ];
 }

@@ -34,6 +34,7 @@ with lib;
     };
 
     environment.systemPackages = with pkgs; [
+      attic-client
       curl
       wget
       dnsutils
