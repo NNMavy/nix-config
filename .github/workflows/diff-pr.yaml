@@ -30,7 +30,7 @@ jobs:
   nix-matrix:
     runs-on: self-hosted
     container:
-      image: ubuntu:latest
+      image: catthehacker/ubuntu:full-24.04
 
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
