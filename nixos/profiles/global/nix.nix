@@ -25,7 +25,7 @@
 
       # Substitutions
       substituters = [
-        "http://nas.nnhome.eu:8080"
+        "http://nas.nnhome.eu:8080/nix-config"
         "https://mavy.cachix.org"
         "https://cache.garnix.io"
         "https://cosmic.cachix.org/"

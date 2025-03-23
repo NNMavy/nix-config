@@ -34,21 +34,25 @@ in
     users.users.mavy.extraGroups = [ group ];
 
     environment.persistence."${config.mySystem.system.impermanence.persistPath}" = lib.mkIf config.mySystem.system.impermanence.enable {
-      directories = [{ directory = appFolder; inherit user; inherit group; mode = "750"; }];
+      directories = [
+        { directory = appFolder; inherit user; inherit group; mode = "750"; }
+      ];
     };
 
-
-    ## service
     services.github-runners."${runnerName}" = {
       name = "${runnerName}";
       enable = true;
+      replace = true;
+      ephemeral = true;
+      user = user;
+      group = group;
       tokenFile = config.sops.secrets."services/github-runner/token".path;
       url = "https://github.com/NNMavy/nix-config";
       serviceOverrides.StateDirectory = [
         "github-runner/${runnerName}" # module default
         "github-runner-work/${runnerName}"
       ];
-      workDir = "/var/lib/github-runner/${runnerName}"; # TODO: make sure this works
+      workDir = "/var/lib/github-runner-work/${runnerName}";
       extraLabels = [ runnerName ];
     };
   };
