@@ -17,13 +17,14 @@ let
   url = "${host}.${config.networking.domain}";
 
   workflowPackages = with pkgs; [
-    gh
+    attic-client
     docker
     gawk
-    nix
-    statix
-    nixpkgs-fmt
+    gh
     jq
+    nix
+    nixpkgs-fmt
+    statix
   ];
 in
 {
@@ -50,8 +51,8 @@ in
     };
 
     services.github-runners = {
-      "${runnerName}-1" = {
-        name = "${runnerName}-1";
+      "${runnerName}" = {
+        name = "${runnerName}";
         enable = true;
         replace = true;
         ephemeral = false;
@@ -60,41 +61,12 @@ in
         tokenFile = config.sops.secrets."services/github-runner/token".path;
         url = "https://github.com/NNMavy/nix-config";
         serviceOverrides.StateDirectory = [
-          "github-runner/${runnerName}-1" # module default
-          "github-runner-work/${runnerName}-1"
+          "github-runner/${runnerName}" # module default
+          "github-runner-work/${runnerName}"
         ];
-        nodeRuntimes = [ "node20" ];
         extraPackages = workflowPackages;
-        workDir = "/var/lib/github-runner-work/${runnerName}-1";
-        extraLabels = [ runnerName ];
-        extraEnvironment = {
-          NIX_PATH = "/nix/var/nix/profiles/per-user/root/channels/nixos";
-          LIBRARY_PATH = "${pkgs.libxkbcommon}/lib";
-        };
+        workDir = "/var/lib/github-runner-work/${runnerName}";
       };
-      "${runnerName}-2" = {
-        name = "${runnerName}-2";
-        enable = true;
-        replace = true;
-        ephemeral = false;
-        inherit user;
-        inherit group;
-        tokenFile = config.sops.secrets."services/github-runner/token".path;
-        url = "https://github.com/NNMavy/nix-config";
-        serviceOverrides.StateDirectory = [
-          "github-runner/${runnerName}-2" # module default
-          "github-runner-work/${runnerName}-2"
-        ];
-        nodeRuntimes = [ "node20" ];
-        extraPackages = workflowPackages;
-        workDir = "/var/lib/github-runner-work/${runnerName}-2";
-        extraLabels = [ runnerName ];
-        extraEnvironment = {
-          NIX_PATH = "/nix/var/nix/profiles/per-user/root/channels/nixos";
-          LIBRARY_PATH = "${pkgs.libxkbcommon}/lib";
-        };
-      };
-
     };
 
     programs.nix-ld.enable = true;
