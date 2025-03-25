@@ -24,6 +24,8 @@ let
     jq
     nix
     nixpkgs-fmt
+    nvd
+    openssl
     statix
   ];
 in

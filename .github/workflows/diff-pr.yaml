@@ -72,9 +72,6 @@ jobs:
           cache: nix-config
           token: ${{ secrets.ATTIC_TOKEN }}
 
-      - name: Install NVD
-        run: nix profile install nixpkgs#nvd
-
       - name: Garbage collect build dependencies
         run: nix-collect-garbage
 
