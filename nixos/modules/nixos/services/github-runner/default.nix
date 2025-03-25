@@ -15,6 +15,16 @@ let
   appFolder = "/var/lib/${app}";
   host = "${app}" + (if cfg.dev then "-dev" else "");
   url = "${host}.${config.networking.domain}";
+
+  workflowPackages = with pkgs; [
+    gh
+    docker
+    gawk
+    nix
+    statix
+    nixpkgs-fmt
+    jq
+  ];
 in
 {
   options.mySystem.${category}.${app} =
@@ -41,7 +51,7 @@ in
 
     services.github-runners = {
       "${runnerName}-1" = {
-        name = "${runnerName}";
+        name = "${runnerName}-1";
         enable = true;
         replace = true;
         ephemeral = false;
@@ -54,12 +64,7 @@ in
           "github-runner-work/${runnerName}-1"
         ];
         nodeRuntimes = [ "node20" ];
-        extraPackages = with pkgs; [
-          gh
-          docker
-          gawk
-          nix
-        ];
+        extraPackages = workflowPackages;
         workDir = "/var/lib/github-runner-work/${runnerName}-1";
         extraLabels = [ runnerName ];
         extraEnvironment = {
@@ -68,7 +73,7 @@ in
         };
       };
       "${runnerName}-2" = {
-        name = "${runnerName}";
+        name = "${runnerName}-2";
         enable = true;
         replace = true;
         ephemeral = false;
@@ -81,12 +86,7 @@ in
           "github-runner-work/${runnerName}-2"
         ];
         nodeRuntimes = [ "node20" ];
-        extraPackages = with pkgs; [
-          gh
-          docker
-          gawk
-          nix
-        ];
+        extraPackages = workflowPackages;
         workDir = "/var/lib/github-runner-work/${runnerName}-2";
         extraLabels = [ runnerName ];
         extraEnvironment = {
