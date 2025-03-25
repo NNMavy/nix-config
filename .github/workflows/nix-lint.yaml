@@ -11,7 +11,7 @@ jobs:
       contents: write
 
     container:
-      image: ghcr.io/actions-oss/act-gh:ubuntu-latest-dev
+      image: ghcr.io/actions-oss/act-js:ubuntu-latest-dev
       volumes:
         # Hacks to get the mounted nodejs by github actions work as its dynamically linked
         #  https://github.com/actions/checkout/issues/334#issuecomment-716068696
