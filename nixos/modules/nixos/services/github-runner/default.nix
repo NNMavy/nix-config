@@ -10,8 +10,8 @@ let
   runnerName = "nix-config";
   category = "services";
   description = "Self hosted github runner";
-  user = "kah"; #string
-  group = "kah"; #string
+  user = "root"; #string
+  group = "root"; #string
   appFolder = "/var/lib/${app}";
   host = "${app}" + (if cfg.dev then "-dev" else "");
   url = "${host}.${config.networking.domain}";
@@ -52,6 +52,7 @@ in
         "github-runner/${runnerName}" # module default
         "github-runner-work/${runnerName}"
       ];
+      extraPackages = [ pkgs.docker ];
       workDir = "/var/lib/github-runner-work/${runnerName}";
       extraLabels = [ runnerName ];
     };

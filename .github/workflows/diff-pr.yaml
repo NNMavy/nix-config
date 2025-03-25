@@ -31,7 +31,7 @@ jobs:
     runs-on: self-hosted
 
     container:
-      image: ghcr.io/catthehacker/ubuntu:act-latest
+      image: ghcr.io/actions-oss/act-gh:ubuntu-latest-dev
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
