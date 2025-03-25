@@ -28,16 +28,12 @@ env:
 
 jobs:
   nix-matrix:
-    runs-on: nix-config-runner
+    runs-on: ubuntu-latest
+
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-
-      - name: Install prerequisites
-        shell: bash
-        run: |
-          sudo apt-get update && sudo apt-get install -y xz-utils
 
       - name: Install Nix
         uses: cachix/install-nix-action@02a151ada4993995686f9ed4f1be7cfbb229e56f # v31
@@ -62,27 +58,36 @@ jobs:
     needs: nix-matrix
     strategy:
       fail-fast: false
+      max-parallel: 1 # One at a time for wireguard
       matrix: ${{ fromJSON(needs.nix-matrix.outputs.matrix) }}
     runs-on: ${{ matrix.runner }}
     steps:
-      - name: Create nix mount point
-        if: contains(matrix.os, 'ubuntu')
-        run: sudo mkdir /nix
-
-      - name: Install prerequisites
-        shell: bash
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            xz-utils \
-            binfmt-support \
-            qemu-user-static
-          sudo update-binfmts --package qemu-user-static --enable
-
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           fetch-depth: 0
+
+      - name: Free disk space
+        if: ${{ matrix.system == 'x86_64-linux' }}
+        uses: jlumbroso/free-disk-space@main
+        with:
+          # These 5 options give back ~32Gb. If that's not enough, the remaining flags can be set to `true` at the expense
+          # of this action taking longer to finish
+          android: true
+          dotnet: true
+          haskell: true
+          docker-images: true
+          swap-storage: true
+
+          large-packages: false
+          tool-cache: false
+
+      - name: Set up QEMU
+        if: ${{ matrix.system == 'aarch64-linux' }}
+        id: qemu
+        uses: docker/setup-qemu-action@v3.6.0
+        with:
+          platforms: all
 
       - name: Install Nix
         uses: cachix/install-nix-action@02a151ada4993995686f9ed4f1be7cfbb229e56f # v31
@@ -97,6 +102,17 @@ jobs:
             extra-access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= mavy.cachix.org-1:fsS3qUaevKZDag/2fMrGAB9wEBd7pkrKihM071JuxLk= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE= cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=
             substituters = https://mavy.cachix.org https://cache.garnix.io https://cosmic.cachix.org/ https://nix-community.cachix.org https://numtide.cachix.org https://cache.nixos.org/
+
+      - name: Setup WireGuard
+        run: |
+          sudo apt install wireguard
+          echo "${{ secrets.WIREGUARD_PRIVATE_KEY }}" > privatekey
+          sudo ip link add dev wg1 type wireguard
+          sudo ip address add dev wg1 ${{ secrets.WIREGUARD_OVERLAY_NETWORK_IP }} peer ${{ secrets.ATTIC_TARGET_IP }}
+          sudo wg set wg1 listen-port 48123 private-key privatekey peer ${{ secrets.WIREGUARD_PEER_PUBLIC_KEY }} allowed-ips 0.0.0.0/0 endpoint ${{ secrets.WIREGUARD_ENDPOINT }}
+          sudo ip link set up dev wg1
+          # Ensure we can contact the target
+          ping ${{ secrets.ATTIC_TARGET_IP }} -w 4 || exit 1
 
       - name: Setup Attic cache
         uses: ryanccn/attic-action@v0

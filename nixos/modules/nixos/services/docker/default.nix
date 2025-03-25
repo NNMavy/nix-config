@@ -48,6 +48,7 @@ in
         users.kah = {
           uid = 568;
           group = "kah";
+          extraGroups = [ "docker" ];
         };
         groups.kah = { };
         users.mavy.extraGroups = [ "kah" "docker" ];

@@ -120,9 +120,9 @@ rec {
   mapToGhaRunner =
     system:
     if system == "x86_64-linux" then
-      "nix-config-runner"
+      "ubuntu-latest"
     else if system == "aarch64-linux" then
-      "nix-config-runner"
+      "ubuntu-latest"
     else
       system;
 }

@@ -7,6 +7,7 @@
     ./cockpit
     ./docker
     ./forgejo
+    ./github-runner
     ./gps
     ./klipper
     ./podman
