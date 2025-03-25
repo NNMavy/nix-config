@@ -43,7 +43,7 @@ in
       name = "${runnerName}";
       enable = true;
       replace = true;
-      ephemeral = true;
+      ephemeral = false;
       inherit user;
       inherit group;
       tokenFile = config.sops.secrets."services/github-runner/token".path;
@@ -52,7 +52,6 @@ in
         "github-runner/${runnerName}" # module default
         "github-runner-work/${runnerName}"
       ];
-      extraPackages = [ pkgs.docker ];
       workDir = "/var/lib/github-runner-work/${runnerName}";
       extraLabels = [ runnerName ];
     };

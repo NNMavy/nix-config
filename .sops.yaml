@@ -7,6 +7,7 @@ keys:
   - &optimus age1nyn5622c9nwp5l9c3hnaffazsv7d0cp2rrdgh8rxvux6dtyuld3qjfphqa
   - &ntpns01 age18tlr5c7uyydxvpq6waeppeeavp9r5h4qhgrye9ju9enhjx5a2dnstkrr58
   - &ntpns02 age16jp5gqjctq67phsddl4m3g9g32kvjupyxkx5jgmcfazw7hw0w9kqwkzpnk
+  - &wheeljack age1k34gsx9dadll9khzdlqx68t5r8nv78f0np5p4jd00lxga3wa3qysgzdq44
 
 creation_rules:
   - path_regex: .*\.sops\.yaml$
@@ -19,3 +20,4 @@ creation_rules:
           - *optimus
           - *ntpns01
           - *ntpns02
+          - *wheeljack

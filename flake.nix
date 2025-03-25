@@ -303,6 +303,19 @@
 
             ];
           };
+
+          "wheeljack" = mkNixosConfig {
+            # NixOS Runner
+            hostname = "wheeljack";
+            system = "x86_64-linux";
+            hardwareModules = [
+              ./nixos/profiles/hw-generic-x86.nix
+            ];
+            profileModules = [
+              ./nixos/profiles/role-server.nix
+              { home-manager.users.mavy = ./nixos/home/mavy/server.nix; }
+            ];
+          };
         };
 
       # nix build .#images.rpi4
@@ -335,7 +348,7 @@
       # key for building images
       # > nix build .#images.rpi4
       # images.rpi4 = rpi4.config.system.build.sdImage;
-      # images.iso = iso.config.system.build.isoImage;
+      images.iso = iso.config.system.build.isoImage;
 
       # Convenience output that aggregates the outputs for home, nixos.
       # Also used in ci to build targets generally.
