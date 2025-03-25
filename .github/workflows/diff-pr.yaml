@@ -85,9 +85,8 @@ jobs:
       - name: Set up QEMU
         if: ${{ matrix.system }} == "aarch64-linux" 
         id: qemu
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v3.6.0
         with:
-          image: tonistiigi/binfmt:latest
           platforms: all
 
       - name: Install Nix
