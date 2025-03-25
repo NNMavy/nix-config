@@ -1,6 +1,5 @@
-{
-  pkgs,
-  ...
+{ pkgs
+, ...
 }:
 {
   adguard-exporter = pkgs.callPackage ./adguard-exporter.nix { };
