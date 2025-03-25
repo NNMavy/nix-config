@@ -68,7 +68,7 @@ jobs:
           fetch-depth: 0
 
       - name: Free disk space
-        if: ${{ matrix.system == "x86_64-linux" }}
+        if: ${{ matrix.system == 'x86_64-linux' }}
         uses: jlumbroso/free-disk-space@main
         with:
           # These 5 options give back ~32Gb. If that's not enough, the remaining flags can be set to `true` at the expense
@@ -83,7 +83,7 @@ jobs:
           tool-cache: false
 
       - name: Set up QEMU
-        if: ${{ matrix.system == "aarch64-linux" }}
+        if: ${{ matrix.system == 'aarch64-linux' }}
         id: qemu
         uses: docker/setup-qemu-action@v3.6.0
         with:
