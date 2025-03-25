@@ -32,6 +32,21 @@ jobs:
 
     container:
       image: ghcr.io/actions-oss/act-gh:ubuntu-latest-dev
+      volumes:
+        # Hacks to get the mounted nodejs by github actions work as its dynamically linked
+        #  https://github.com/actions/checkout/issues/334#issuecomment-716068696
+        #  We could try to match the conditions in our container forever (nix-ld, .... see https://l-lin.github.io/nix/running-an-external-binary-on-NixOS),
+        #  however this is complex and takes time during execution due to nixpkgs fetch and derivation calculation:
+        #   - create lib folder symlink through nix path-info "nixpkgs#glibc.out" + "/lib"
+        #   - create sylink through nix eval --raw "nixpkgs#stdenv.cc.bintools.dynamicLinker" inside /lib (arm64) + /lib64 (amd64)
+        #   - alignment of glibc and libstdc versions
+        #  A much simpler version is to mount host /lib folders, which are not used by nix and which contain libraries + ld linker.
+        #  We just need and match the LD_LIBRARY_PATH according to the ldd library folders and fulfill all preconditions for execution.
+        #  Hint: use / at the end due to host symlinks
+        - /lib/:/lib
+        - /lib64/:/lib64
+      env:
+        LD_LIBRARY_PATH: /lib64:/lib
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
