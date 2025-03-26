@@ -43,7 +43,7 @@
     },
     "cockpit-podman": {
         "cargoLocks": null,
-        "date": "2025-03-24",
+        "date": "2025-03-25",
         "extract": null,
         "name": "cockpit-podman",
         "passthru": null,
@@ -55,12 +55,12 @@
             "name": null,
             "owner": "cockpit-project",
             "repo": "cockpit-podman",
-            "rev": "cd18117e9d37781b5f41a2d3cba2e386b647a69a",
-            "sha256": "sha256-BCz6UxMp1IbofainR2RnXt3YqwhRYV4W2eOZ3gtGC+g=",
+            "rev": "15d2ac11715386724104401d818e09e781318336",
+            "sha256": "sha256-W2XymbqY0HGNIYCKQhHgJD4OZZQIXQoPA/PZv/usInc=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "cd18117e9d37781b5f41a2d3cba2e386b647a69a"
+        "version": "15d2ac11715386724104401d818e09e781318336"
     },
     "cosmic-idle": {
         "cargoLocks": {
