@@ -14,8 +14,7 @@
         };
         motd.networkInterfaces = [ "eth0" ];
         resticBackup.remote.enable = false;
-        autoUpgrade =
-        {
+        autoUpgrade ={
           enable = true;
           dates = "Wed 06:00";
         };
@@ -28,7 +27,8 @@
       };
 
       security.wireguard.enable = true;
-
+    };
+    
     boot = {
       initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "xen_blkfront" ];
       initrd.kernelModules = [ "nvme" "virtio_gpu" ];
