@@ -7,10 +7,6 @@ permissions:
 
 on:
   pull_request:
-    paths-ignore: [".github"]
-  workflow_dispatch:
-  workflow_call:
-  push:
     paths:
       - .github/workflows/**
       - "**.nix"
@@ -37,7 +33,7 @@ jobs:
         name: Generate Nix Matrix
         run: |
           set -Eeu
-          matrix="$(nix eval --json 'github:nnmavy/nix-config#evalHosts' | jq -cM --argjson exclude_hosts '${{ env.EXCLUDED_HOSTS }}' 'del(.include[] | select(.host as $host | $exclude_hosts | index($host)))')"
+          matrix="$(nix eval --json '.#evalHosts' | jq -cM --argjson exclude_hosts '${{ env.EXCLUDED_HOSTS }}' 'del(.include[] | select(.host as $host | $exclude_hosts | index($host)))')"
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
 
       - name: show output
