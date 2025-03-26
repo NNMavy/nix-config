@@ -6,13 +6,8 @@ permissions:
   contents: read
 
 on:
-  pull_request:
-    paths-ignore: ["nixos/pkgs/**", ".github"]
-  workflow_dispatch:
   workflow_call:
-  push:
-    branches:
-      - main
+  pull_request:
     paths:
       - .github/workflows/**
       - "**.nix"
