@@ -45,7 +45,8 @@ let
     {
       name = "firewall";
       group = "infrastructure";
-      url = "icmp://unifi.${config.mySystem.internalDomain}";
+      # Use IP here to prevent alerts when DNS down.
+      url = "icmp://172.16.1.254";
       interval = "1m";
       ui = {
         hide-hostname = true;
