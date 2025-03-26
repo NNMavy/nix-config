@@ -14,6 +14,11 @@
         };
         motd.networkInterfaces = [ "eth0" ];
         resticBackup.remote.enable = false;
+        autoUpgrade =
+        {
+          enable = true;
+          dates = "Wed 06:00";
+        };
       };
 
       services = {
@@ -23,7 +28,6 @@
       };
 
       security.wireguard.enable = true;
-    };
 
     boot = {
       initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "xen_blkfront" ];
