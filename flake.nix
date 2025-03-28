@@ -258,20 +258,6 @@
             ];
           };
 
-          "highjump" = mkNixosConfig {
-            # NIXOS Jumphost
-            hostname = "highjump";
-            system = "aarch64-linux";
-            hardwareModules = [
-              ./nixos/profiles/hw-cloud-aarch64.nix
-              inputs.disko.nixosModules.disko
-            ];
-            profileModules = [
-              ./nixos/profiles/role-server.nix
-              { home-manager.users.mavy = ./nixos/home/mavy/server.nix; }
-            ];
-          };
-
           "ntpns01" = mkNixosConfig {
             # Rpi for DNS and GPSNTP
 
