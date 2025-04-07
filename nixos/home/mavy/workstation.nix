@@ -72,6 +72,7 @@ with config;
         #apps
         discord
         spotify
+        protonmail-desktop
         yubioath-flutter
         yubikey-manager-qt
         flameshot
