@@ -18,7 +18,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  EXCLUDED_HOSTS: '["mavy-wsl", "optimus"]'
+  EXCLUDED_HOSTS: '["mavy-wsl"]'
   TMPDIR: /tmp
 
 jobs:
