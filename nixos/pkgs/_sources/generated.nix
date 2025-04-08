@@ -25,15 +25,15 @@
   };
   cockpit-podman = {
     pname = "cockpit-podman";
-    version = "54b54fad9ccca86e9212a0a568481150afffb5c5";
+    version = "af60af7a77f988a4daf1a0239daae4b611cd70cf";
     src = fetchFromGitHub {
       owner = "cockpit-project";
       repo = "cockpit-podman";
-      rev = "54b54fad9ccca86e9212a0a568481150afffb5c5";
+      rev = "af60af7a77f988a4daf1a0239daae4b611cd70cf";
       fetchSubmodules = false;
-      sha256 = "sha256-lwj/FKL4cxb5nyLLmcm7QTaQ1ce+xASw3RgPgicuAT8=";
+      sha256 = "sha256-b7JxAtY1EBc3T50Gy7dUtWFLzTnklNcYkGr11sbgsGc=";
     };
-    date = "2025-04-06";
+    date = "2025-04-07";
   };
   cosmic-idle = {
     pname = "cosmic-idle";
