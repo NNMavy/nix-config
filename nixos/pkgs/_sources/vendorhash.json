@@ -1,6 +1,7 @@
 {
-  "talosctl": "sha256-f2hOAF746nMAZe1KEopdpFHfRMEZQdy4VoVUi49CBJo=",
+  "talosctl": "",
   "chrony-exporter": "sha256-3zL7BrCdMVnt7F1FiZ2eQnKVhmCeW3aYKKX9v01ms/k=",
   "adguard-exporter": "sha256-18Fzld2F05hzORw8kLt6JdCdxGNM+KOEUiPnC3LTzDI=",
-  "cockpit-podman": ""
+  "cockpit-podman": "",
+  "flux-local": ""
 }
