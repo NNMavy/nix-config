@@ -39,6 +39,7 @@ with config;
     fwupd.enable = config.boot.loader.systemd-boot.enable;
     thermald.enable = true;
     smartd.enable = true;
+    pulseaudio.enable = false;
 
     # Yubikey requirements
     udev.packages = [ pkgs.yubikey-personalization ];
@@ -56,7 +57,6 @@ with config;
       enable = true;
       drives = [ "/dev/disk/by-id/*" ];
     };
-    pulseaudio.enable = false;
     i2c.enable = true;
   };
 
