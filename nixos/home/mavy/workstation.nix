@@ -74,7 +74,6 @@ with config;
         spotify
         protonmail-desktop
         yubioath-flutter
-        yubikey-manager-qt
         flameshot
         mqttui
         vlc

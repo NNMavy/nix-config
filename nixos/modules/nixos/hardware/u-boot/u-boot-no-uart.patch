@@ -2,7 +2,7 @@ diff --git a/board/raspberrypi/rpi/rpi.c b/board/raspberrypi/rpi/rpi.c
 index 8603c93de7..2abb7619f0 100644
 --- a/board/raspberrypi/rpi/rpi.c
 +++ b/board/raspberrypi/rpi/rpi.c
-@@ -519,3 +519,9 @@ int ft_board_setup(void *blob, struct bd_info *bd)
+@@ -605,6 +605,12 @@ int ft_board_setup(void *blob, struct bd_info *bd)
 
     return 0;
  }
