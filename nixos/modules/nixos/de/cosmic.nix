@@ -72,7 +72,7 @@ in
         noto-fonts-cjk-sans
         noto-fonts-emoji
         nerd-font-patcher
-        (nerdfonts.override { fonts = [ "FiraCode" ]; })
+        nerd-fonts.fira-code
       ];
     };
   };
