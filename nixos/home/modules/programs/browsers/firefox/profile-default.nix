@@ -26,7 +26,7 @@
     "extensions.pocket.enabled" = false;
   };
   search = import ./search.nix { inherit pkgs; };
-  extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+  extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
     ublock-origin
     onepassword-password-manager
     darkreader

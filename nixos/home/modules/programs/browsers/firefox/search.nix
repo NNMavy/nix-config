@@ -2,7 +2,7 @@
 {
   force = true;
   default = "nnhome";
-  order = [ "nnhome" "whoogle" "Google" ];
+  order = [ "nnhome" "whoogle" "google" ];
   engines = {
     "Nix Packages" = {
       urls = [{
@@ -37,35 +37,35 @@
     };
     "NixOS Wiki" = {
       urls = [{ template = "https://wiki.nixos.org/w/index.php?search={searchTerms}"; }];
-      iconUpdateURL = "https://wiki.nixos.org/favicon.ico";
+      icon = "https://wiki.nixos.org/favicon.ico";
       updateInterval = 24 * 60 * 60 * 1000; # every day
       definedAliases = [ "@nw" ];
     };
     "KubeSearch" = {
       urls = [{ template = "https://kubesearch.dev/#{searchTerms}"; }];
-      iconUpdateURL = "https://kubernetes.io/images/wheel.svg";
+      icon = "https://kubernetes.io/images/wheel.svg";
       updateInterval = 24 * 60 * 60 * 1000; # every day
       definedAliases = [ "@ks" ];
     };
     "Github Code Search" = {
       urls = [{ template = "https://github.com/search?type=code&q={searchTerms}"; }];
-      iconUpdateURL = "https://github.githubassets.com/favicons/favicon-dark.svg";
+      icon = "https://github.githubassets.com/favicons/favicon-dark.svg";
       updateInterval = 24 * 60 * 60 * 1000; # every day
       definedAliases = [ "@gs" ];
     };
     "Whoogle" = {
       urls = [{ template = "https://whoogle.trux.dev/?q={searchTerms}"; }];
-      iconUpdateURL = "https://nixos.wiki/favicon.png";
+      icon = "https://nixos.wiki/favicon.png";
       updateInterval = 24 * 60 * 60 * 1000; # every day
       definedAliases = [ "@whoogle" ];
     };
     "nnhome" = {
       urls = [{ template = "https://search.nnhome.eu/search?q={searchTerms}"; }];
-      iconUpdateURL = "https://nixos.wiki/favicon.png";
+      icon = "https://nixos.wiki/favicon.png";
       updateInterval = 24 * 60 * 60 * 1000; # every day
       definedAliases = [ "@n" ];
     };
-    "Bing".metaData.hidden = true;
-    "Google".metaData.alias = "@g"; # builtin engines only support specifying one additional alias
+    "bing".metaData.hidden = true;
+    "google".metaData.alias = "@g"; # builtin engines only support specifying one additional alias
   };
 }

@@ -52,7 +52,7 @@ with lib;
     };
     programs.command-not-found.enable = mkDefault false;
 
-    hardware.pulseaudio.enable = false;
+    services.pulseaudio.enable = false;
 
 
     services.udisks2.enable = mkDefault false;
