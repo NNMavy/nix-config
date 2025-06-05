@@ -14,26 +14,26 @@
   };
   chrony-exporter = {
     pname = "chrony-exporter";
-    version = "v0.12.0";
+    version = "v0.12.1";
     src = fetchFromGitHub {
       owner = "SuperQ";
       repo = "chrony_exporter";
-      rev = "v0.12.0";
+      rev = "v0.12.1";
       fetchSubmodules = false;
-      sha256 = "sha256-ZXqCZZx0UG8050SYgVwD+wnTX0N41Bjv1dhdQmOHmR4=";
+      sha256 = "sha256-S5Mox5HmOJ+PiV6aq/tqubf6kfOdOMvvUk+m0VzOdl0=";
     };
   };
   cockpit-podman = {
     pname = "cockpit-podman";
-    version = "cb3c0cd9bf05b0a3bbfb210417e86f4cde9b41c2";
+    version = "6aa961b25d671435833262d2fc21c43bedc039f8";
     src = fetchFromGitHub {
       owner = "cockpit-project";
       repo = "cockpit-podman";
-      rev = "cb3c0cd9bf05b0a3bbfb210417e86f4cde9b41c2";
+      rev = "6aa961b25d671435833262d2fc21c43bedc039f8";
       fetchSubmodules = false;
-      sha256 = "sha256-bC/k0D0GUgafq0T0ZFasEBb4arYGrxBh8cc3ftKvtII=";
+      sha256 = "sha256-d5d3AWWbLSySQPQ+6qty++DZ0lO++o2W3EIscMo+WcY=";
     };
-    date = "2025-05-15";
+    date = "2025-06-04";
   };
   cosmic-idle = {
     pname = "cosmic-idle";
@@ -60,10 +60,10 @@
   };
   flux-local = {
     pname = "flux-local";
-    version = "7.5.0";
+    version = "7.5.4";
     src = fetchurl {
-      url = "https://pypi.org/packages/source/f/flux_local/flux_local-7.5.0.tar.gz";
-      sha256 = "sha256-fWaZmim6NNGptiiDWkNnvJ5b3Lz0hlojXc25Gc8hYHY=";
+      url = "https://pypi.org/packages/source/f/flux_local/flux_local-7.5.4.tar.gz";
+      sha256 = "sha256-tCiAFY9AkgFuZYo+CTtvjGQrtDTziIo1nR5MYKxP+As=";
     };
   };
   gpsd-prometheus-exporter = {
@@ -102,13 +102,13 @@
   };
   talosctl = {
     pname = "talosctl";
-    version = "v1.10.2";
+    version = "v1.10.3";
     src = fetchFromGitHub {
       owner = "siderolabs";
       repo = "talos";
-      rev = "v1.10.2";
+      rev = "v1.10.3";
       fetchSubmodules = false;
-      sha256 = "sha256-8qruYf59oFvLO892T89GbayTpq9V1J+Tu08jgIaod18=";
+      sha256 = "sha256-smqQBFm33uTgK4RGtiu9wlgbHkt8jw7zeiVGWsHG/8s=";
     };
   };
 }
