@@ -43,7 +43,7 @@
     },
     "cockpit-podman": {
         "cargoLocks": null,
-        "date": "2025-06-17",
+        "date": "2025-07-03",
         "extract": null,
         "name": "cockpit-podman",
         "passthru": null,
@@ -55,12 +55,12 @@
             "name": null,
             "owner": "cockpit-project",
             "repo": "cockpit-podman",
-            "rev": "ae7780874ba5881ab1f6118645142b527917e31d",
-            "sha256": "sha256-4wYlpptmLvYPr/SBFi0bIQ5XXIswFaYKvJIl3LC/SYk=",
+            "rev": "a237d9eba170ac9d170b7acbf6f3c91f9f305419",
+            "sha256": "sha256-DtStE1PmZUQt//dVXvp3IhtIk0uV2c5VdXxDAJO0K90=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "ae7780874ba5881ab1f6118645142b527917e31d"
+        "version": "a237d9eba170ac9d170b7acbf6f3c91f9f305419"
     },
     "cosmic-idle": {
         "cargoLocks": {
@@ -112,7 +112,7 @@
     },
     "gpsd-prometheus-exporter": {
         "cargoLocks": null,
-        "date": "2023-12-26",
+        "date": "2025-06-24",
         "extract": null,
         "name": "gpsd-prometheus-exporter",
         "passthru": null,
@@ -124,12 +124,12 @@
             "name": null,
             "owner": "brendanbank",
             "repo": "gpsd-prometheus-exporter",
-            "rev": "f4dd7340aa6f8760acf8fef487f63e26f7f432fe",
-            "sha256": "sha256-kWnDdYHIMj2MSwY+wlb0XpqEKi+wa+OOp/SM77S0OzY=",
+            "rev": "a395c6ffe5d6383d6c6d58e4b77c8c803f366180",
+            "sha256": "sha256-w8xWluJ8drE7YYnRqg+0T/BjTTJeGdQChg+OWYStBFk=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "f4dd7340aa6f8760acf8fef487f63e26f7f432fe"
+        "version": "a395c6ffe5d6383d6c6d58e4b77c8c803f366180"
     },
     "mqtt-explorer": {
         "cargoLocks": null,
@@ -187,11 +187,11 @@
             "name": null,
             "owner": "siderolabs",
             "repo": "talos",
-            "rev": "v1.10.4",
-            "sha256": "sha256-TWaORaR+3PTc+KqWuZiR5HpsuY7ox5BjQ72F8uYRzWQ=",
+            "rev": "v1.10.5",
+            "sha256": "sha256-s+vRJ0qFhsgLiRpQfUnf/p6bcjQq40ISTB042iE7eBQ=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "v1.10.4"
+        "version": "v1.10.5"
     }
 }
