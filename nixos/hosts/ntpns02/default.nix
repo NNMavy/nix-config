@@ -64,7 +64,7 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-label/NIXOS_SD";
+      device = "/dev/disk/by-uuid/7a68a300-b869-4958-8571-f98210b3ec89";
       fsType = "ext4";
       options = [ "relatime" ];
     };
