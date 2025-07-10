@@ -7,7 +7,6 @@
     ./cockpit
     ./docker
     ./forgejo
-    ./github-runner
     ./gps
     ./podman
     ./restic
