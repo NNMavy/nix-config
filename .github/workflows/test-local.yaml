@@ -35,8 +35,8 @@ jobs:
       - name: Install prerequisites
         run: |
           sudo apt-get update
-          sudo apt-get install -y jq xz
-          
+          sudo apt-get install -y jq xz-utils
+
       # - name: Free disk space
       #   if: ${{ matrix.system == 'x86_64-linux' }}
       #   uses: jlumbroso/free-disk-space@main
