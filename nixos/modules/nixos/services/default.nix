@@ -9,7 +9,6 @@
     ./forgejo
     ./github-runner
     ./gps
-    ./klipper
     ./podman
     ./restic
     ./nginx
