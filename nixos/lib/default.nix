@@ -122,7 +122,7 @@ rec {
     if system == "x86_64-linux" then
       "ubuntu-latest"
     else if system == "aarch64-linux" then
-      "ubuntu-latest"
+      "ubuntu-24.04-arm"
     else
       system;
 }
