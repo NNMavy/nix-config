@@ -27,10 +27,6 @@ jobs:
     if: github.event.pull_request.draft == false
     runs-on: nix-config-runner
     steps:
-      - name: Create nix mount point
-        # if: contains(matrix.os, 'ubuntu')
-        run: sudo mkdir /nix
-
       - name: Install prerequisites
         shell: bash
         run: |
