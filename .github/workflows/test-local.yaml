@@ -93,7 +93,7 @@ jobs:
 
       - name: Build previous bumblebee system
         run: |
-          nix build \
+          sudo nix build \
             "github:nnmavy/nix-config#top.bumblebee" \
             --system x86_64-linux \
             --log-format raw \
@@ -105,7 +105,7 @@ jobs:
       - name: Build new bumblebee system
         run: |
           set -o pipefail
-          nix build \
+          sudo nix build \
             ".#top.bumblebee" \
             --system x86_64-linux \
             -o result-new \
