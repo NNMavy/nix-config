@@ -1,10 +1,7 @@
 # This module continues the upstream removed option environment.noXlibs
 
-{ lib
-, config
-, self
-, ...
-}:
+{ config, lib, options, pkgs, ... }:
+
 let
   cfg = config.mySystem.system;
 in
@@ -113,6 +110,16 @@ with lib;
         qtbase = prev'.qtbase.override { withGtk3 = false; withQttranslation = false; };
       }));
       stoken = prev.stoken.override { withGTK3 = false; };
+      # avoid kernel rebuild through swtpm -> tpm2-tss -> systemd -> util-linux -> hexdump
+      swtpm = let
+        gobject-introspection = prev.gobject-introspection.override { inherit (prev) cairo; };
+        glib = prev.glib.override { inherit gobject-introspection; };
+      in prev.swtpm.override {
+        inherit glib;
+        json-glib = prev.json-glib.override {
+          inherit glib gobject-introspection;
+        };
+      };
       # translateManpages -> perlPackages.po4a -> texlive-combined-basic -> texlive-core-big -> libX11
       util-linux = prev.util-linux.override { translateManpages = false; };
       vim-full = prev.vim-full.override { guiSupport = false; };
