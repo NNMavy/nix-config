@@ -26,6 +26,7 @@
     "extensions.pocket.enabled" = false;
   };
   search = import ./search.nix { inherit pkgs; };
+  extensions.force = true;
   extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
     ublock-origin
     onepassword-password-manager
