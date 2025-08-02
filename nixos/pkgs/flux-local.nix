@@ -18,6 +18,8 @@ buildPythonApplication rec {
       pytest-cov
       python-slugify
       pyyaml
+      rpds-py
+      oras
     ])
   ];
 
