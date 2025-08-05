@@ -25,15 +25,15 @@
   };
   cockpit-podman = {
     pname = "cockpit-podman";
-    version = "6960a1f5966fbd1a83c40ed915159aa5f04a6a49";
+    version = "6be070a67baa939731db08ddb802777930632399";
     src = fetchFromGitHub {
       owner = "cockpit-project";
       repo = "cockpit-podman";
-      rev = "6960a1f5966fbd1a83c40ed915159aa5f04a6a49";
+      rev = "6be070a67baa939731db08ddb802777930632399";
       fetchSubmodules = false;
-      sha256 = "sha256-qyt2mWrcOL+zw03BJe5fVyZ6qnZaEbyzywy9y+te1y4=";
+      sha256 = "sha256-hTRl9l2byRn4sX87BR9xB+xsXRRqHQXm/pA8nqn4uLc=";
     };
-    date = "2025-07-20";
+    date = "2025-08-04";
   };
   cosmic-idle = {
     pname = "cosmic-idle";
@@ -60,10 +60,10 @@
   };
   flux-local = {
     pname = "flux-local";
-    version = "7.5.6";
+    version = "7.7.1";
     src = fetchurl {
-      url = "https://pypi.org/packages/source/f/flux_local/flux_local-7.5.6.tar.gz";
-      sha256 = "sha256-PHfyuDYnHQ0eXeBTJZmGsbdRODkmNt4+9sd/feD+W9Q=";
+      url = "https://pypi.org/packages/source/f/flux_local/flux_local-7.7.1.tar.gz";
+      sha256 = "sha256-2pFlwGutu4aWMh/3h0YTOAW11gJusdNYLkr0p7zk97I=";
     };
   };
   gpsd-prometheus-exporter = {
@@ -102,13 +102,13 @@
   };
   talosctl = {
     pname = "talosctl";
-    version = "v1.10.5";
+    version = "v1.10.6";
     src = fetchFromGitHub {
       owner = "siderolabs";
       repo = "talos";
-      rev = "v1.10.5";
+      rev = "v1.10.6";
       fetchSubmodules = false;
-      sha256 = "sha256-s+vRJ0qFhsgLiRpQfUnf/p6bcjQq40ISTB042iE7eBQ=";
+      sha256 = "sha256-s1d1TVBGi9AZD/nXSv7graKgD6H1MLr4Fvg64c88A4A=";
     };
   };
 }
