@@ -43,7 +43,7 @@
     },
     "cockpit-podman": {
         "cargoLocks": null,
-        "date": "2025-08-04",
+        "date": "2025-08-11",
         "extract": null,
         "name": "cockpit-podman",
         "passthru": null,
@@ -55,12 +55,12 @@
             "name": null,
             "owner": "cockpit-project",
             "repo": "cockpit-podman",
-            "rev": "6be070a67baa939731db08ddb802777930632399",
-            "sha256": "sha256-hTRl9l2byRn4sX87BR9xB+xsXRRqHQXm/pA8nqn4uLc=",
+            "rev": "6bccc0a39ce05343ba968569638f1b8324d74385",
+            "sha256": "sha256-9CZOiYZYLTDHLO6039pIkpDHCN0xDBTMj6IHUpg1XnE=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "6be070a67baa939731db08ddb802777930632399"
+        "version": "6bccc0a39ce05343ba968569638f1b8324d74385"
     },
     "cosmic-idle": {
         "cargoLocks": {
@@ -104,15 +104,15 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-2pFlwGutu4aWMh/3h0YTOAW11gJusdNYLkr0p7zk97I=",
+            "sha256": "sha256-ExBRz8zfg13eoEkq9OSnI4+i7sJHIbdFpT15MPwMA1s=",
             "type": "url",
-            "url": "https://pypi.org/packages/source/f/flux_local/flux_local-7.7.1.tar.gz"
+            "url": "https://pypi.org/packages/source/f/flux_local/flux_local-7.8.0.tar.gz"
         },
-        "version": "7.7.1"
+        "version": "7.8.0"
     },
     "gpsd-prometheus-exporter": {
         "cargoLocks": null,
-        "date": "2025-06-24",
+        "date": "2025-08-09",
         "extract": null,
         "name": "gpsd-prometheus-exporter",
         "passthru": null,
@@ -124,12 +124,12 @@
             "name": null,
             "owner": "brendanbank",
             "repo": "gpsd-prometheus-exporter",
-            "rev": "a395c6ffe5d6383d6c6d58e4b77c8c803f366180",
-            "sha256": "sha256-w8xWluJ8drE7YYnRqg+0T/BjTTJeGdQChg+OWYStBFk=",
+            "rev": "6a6009c8f89874eef46690abd96cf6f1d1149d9f",
+            "sha256": "sha256-oR+JNwf+QqWzreL0qzsxOqMCWZxFma4zREnAcToGkdY=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "a395c6ffe5d6383d6c6d58e4b77c8c803f366180"
+        "version": "6a6009c8f89874eef46690abd96cf6f1d1149d9f"
     },
     "mqtt-explorer": {
         "cargoLocks": null,
