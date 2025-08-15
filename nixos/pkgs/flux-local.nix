@@ -14,13 +14,18 @@ buildPythonApplication rec {
       GitPython
       mashumaro
       nest-asyncio
+      python-slugify
+      pyyaml
+      oras
+    ])
+  ];
+
+    nativeBuildInputs = [
+    (with pkgs.python3Packages; [
       setuptools
       pytest
       pytest-asyncio
       pytest-cov
-      python-slugify
-      pyyaml
-      oras
     ])
   ];
 
