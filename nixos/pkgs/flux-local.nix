@@ -6,6 +6,7 @@ let
 in
 buildPythonApplication rec {
   inherit (packageData) pname version src;
+  pyproject = true;
 
   propagatedBuildInputs = [
     (with pkgs.python3Packages; [
@@ -13,11 +14,13 @@ buildPythonApplication rec {
       GitPython
       mashumaro
       nest-asyncio
+      setuptools
       pytest
       pytest-asyncio
       pytest-cov
       python-slugify
       pyyaml
+      oras
     ])
   ];
 
