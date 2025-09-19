@@ -13,12 +13,12 @@
             "name": null,
             "owner": "henrywhitaker3",
             "repo": "adguard-exporter",
-            "rev": "v1.2.0",
-            "sha256": "sha256-HQ72eTBV6ZZMawACZ/iwABVm8On/yqFKotfXxbGZqUc=",
+            "rev": "v1.2.1",
+            "sha256": "sha256-OltYzxBOOcaW3oYNFvxxjG1qRvuLaZfReSeQaNGiRDc=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "v1.2.0"
+        "version": "v1.2.1"
     },
     "chrony-exporter": {
         "cargoLocks": null,
@@ -43,7 +43,7 @@
     },
     "cockpit-podman": {
         "cargoLocks": null,
-        "date": "2025-09-01",
+        "date": "2025-09-18",
         "extract": null,
         "name": "cockpit-podman",
         "passthru": null,
@@ -55,12 +55,12 @@
             "name": null,
             "owner": "cockpit-project",
             "repo": "cockpit-podman",
-            "rev": "264734b6cb59b2fa5331317822e645b171dae899",
-            "sha256": "sha256-CoxOEQRnQhNuZCb+yX1i3ykbGFigyvW517Zo6sEZb9Q=",
+            "rev": "5f23aaed8ca0f836b93c2172a9ea996fff4f9dbf",
+            "sha256": "sha256-jG6YA8WcPcVluen84Cc9GMmOK84F4TEI18Wc/5N3dvI=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "264734b6cb59b2fa5331317822e645b171dae899"
+        "version": "5f23aaed8ca0f836b93c2172a9ea996fff4f9dbf"
     },
     "cosmic-idle": {
         "cargoLocks": {
@@ -104,11 +104,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-ExBRz8zfg13eoEkq9OSnI4+i7sJHIbdFpT15MPwMA1s=",
+            "sha256": "sha256-eTLAtROBg9cupWFRs01953UwwvgTO0W4zCDPNB4jIq8=",
             "type": "url",
-            "url": "https://pypi.org/packages/source/f/flux_local/flux_local-7.8.0.tar.gz"
+            "url": "https://pypi.org/packages/source/f/flux_local/flux_local-7.10.0.tar.gz"
         },
-        "version": "7.8.0"
+        "version": "7.10.0"
     },
     "gpsd-prometheus-exporter": {
         "cargoLocks": null,
@@ -187,11 +187,11 @@
             "name": null,
             "owner": "siderolabs",
             "repo": "talos",
-            "rev": "v1.11.0",
-            "sha256": "sha256-MORn1HUerHHI3o0lmXamx5D7JI8y5z7MDn7z5+QmNhs=",
+            "rev": "v1.11.1",
+            "sha256": "sha256-G+su1Udkp/IqsU9/TWcEQO4MY8iGC+QM39eMeBUSaDs=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "v1.11.0"
+        "version": "v1.11.1"
     }
 }
