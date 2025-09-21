@@ -26,7 +26,7 @@
     };
 
     # Catppuccin
-    catppuccin.url = "github:catppuccin/nix";
+    catppuccin.url = "github:catppuccin/nix/v25.05";
 
     flake-utils.url = "github:numtide/flake-utils";
 
