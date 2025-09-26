@@ -11,6 +11,8 @@ with lib;
     kernelModules = [ ];
     extraModulePackages = [ ];
 
+    kernelPackages = pkgs.linuxPackages_6_12;
+
     kernelParams = [
       "8250.nr_uarts=1"
       "console=tty1"
