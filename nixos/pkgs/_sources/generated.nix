@@ -3,13 +3,13 @@
 {
   adguard-exporter = {
     pname = "adguard-exporter";
-    version = "v1.2.0";
+    version = "v1.2.1";
     src = fetchFromGitHub {
       owner = "henrywhitaker3";
       repo = "adguard-exporter";
-      rev = "v1.2.0";
+      rev = "v1.2.1";
       fetchSubmodules = false;
-      sha256 = "sha256-HQ72eTBV6ZZMawACZ/iwABVm8On/yqFKotfXxbGZqUc=";
+      sha256 = "sha256-OltYzxBOOcaW3oYNFvxxjG1qRvuLaZfReSeQaNGiRDc=";
     };
   };
   chrony-exporter = {
@@ -25,15 +25,15 @@
   };
   cockpit-podman = {
     pname = "cockpit-podman";
-    version = "264734b6cb59b2fa5331317822e645b171dae899";
+    version = "9c8fc29cd3100c796a3777c5f9f2d07dfecc8062";
     src = fetchFromGitHub {
       owner = "cockpit-project";
       repo = "cockpit-podman";
-      rev = "264734b6cb59b2fa5331317822e645b171dae899";
+      rev = "9c8fc29cd3100c796a3777c5f9f2d07dfecc8062";
       fetchSubmodules = false;
-      sha256 = "sha256-CoxOEQRnQhNuZCb+yX1i3ykbGFigyvW517Zo6sEZb9Q=";
+      sha256 = "sha256-etOXWYycOkPswoAQ2b7cFRpFbllxeF4uc62cV7HFAdE=";
     };
-    date = "2025-09-01";
+    date = "2025-10-02";
   };
   cosmic-idle = {
     pname = "cosmic-idle";
@@ -60,10 +60,10 @@
   };
   flux-local = {
     pname = "flux-local";
-    version = "7.8.0";
+    version = "7.10.0";
     src = fetchurl {
-      url = "https://pypi.org/packages/source/f/flux_local/flux_local-7.8.0.tar.gz";
-      sha256 = "sha256-ExBRz8zfg13eoEkq9OSnI4+i7sJHIbdFpT15MPwMA1s=";
+      url = "https://pypi.org/packages/source/f/flux_local/flux_local-7.10.0.tar.gz";
+      sha256 = "sha256-eTLAtROBg9cupWFRs01953UwwvgTO0W4zCDPNB4jIq8=";
     };
   };
   gpsd-prometheus-exporter = {
@@ -102,13 +102,13 @@
   };
   talosctl = {
     pname = "talosctl";
-    version = "v1.11.0";
+    version = "v1.11.2";
     src = fetchFromGitHub {
       owner = "siderolabs";
       repo = "talos";
-      rev = "v1.11.0";
+      rev = "v1.11.2";
       fetchSubmodules = false;
-      sha256 = "sha256-MORn1HUerHHI3o0lmXamx5D7JI8y5z7MDn7z5+QmNhs=";
+      sha256 = "sha256-r78O/FdsfD29wM6fcbuwYea/b7J60iAdtrw4CEBM/mo=";
     };
   };
 }
