@@ -14,23 +14,7 @@ let
 
   gpsRefclockConfig = ''
     refclock PPS /dev/pps0 refid PPS lock NMEA precision 1e-7 poll 3 prefer
-    refclock PHC /dev/ptp0 tai refid PHC poll 0
     refclock SHM 0 refid NMEA offset 0.050 precision 1e-3 poll 3 noselect
-  '';
-
-  ptp4lConfig = pkgs.writeText "ptp4l.conf" ''
-    [global]
-    # Only syslog every 1024 seconds
-    summary_interval 10
-
-    # Increase priority to allow this server to be chosen as the PTP grandmaster.
-    priority1 10
-    priority2 10
-
-    [end0]
-    # My LAN does not have hardware switches compatible with Layer-2 PTP, just Layer-3 PTP.
-    network_transport UDPv4
-    delay_mechanism E2E
   '';
 in
 {
@@ -103,31 +87,6 @@ in
     ];
 
     # Enable ptp
-    environment.systemPackages = [ pkgs.linuxptp ];
-
-    systemd.services.ptp4l = {
-      description = "Precision Time Protocol service";
-      wantedBy = [ "multi-user.target" ];
-      path = [ pkgs.linuxptp ];
-
-      serviceConfig = {
-        ExecStart = "${pkgs.linuxptp}/bin/ptp4l -f ${ptp4lConfig}";
-        Nice = -10;
-        Restart = "on-failure";
-      };
-    };
-
-    systemd.services.phc2sys = {
-      description = "Synchronizing PTP Hardware Clock from system time";
-      wantedBy = [ "multi-user.target" ];
-      after = [ "ptp4l.service" ];
-      path = [ pkgs.linuxptp ];
-
-      serviceConfig = {
-        ExecStart = "${pkgs.linuxptp}/bin/phc2sys -s CLOCK_REALTIME -c end0 -w -u 1024";
-        Nice = -10;
-        Restart = "on-failure";
-      };
-    };
+    # environment.systemPackages = [ pkgs.linuxptp ];
   };
 }
