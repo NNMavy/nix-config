@@ -17,15 +17,15 @@ buildPythonApplication rec {
       python-slugify
       pyyaml
       oras
+      pytest
+      pytest-asyncio
+      pytest-cov
     ])
   ];
 
     nativeBuildInputs = [
     (with pkgs.python3Packages; [
       setuptools
-      pytest
-      pytest-asyncio
-      pytest-cov
     ])
   ];
 
