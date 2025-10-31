@@ -1,7 +1,7 @@
 {
   "talosctl": "sha256-NLyWzkagiP6zeeB4o6CI9UBPH6a5JGhPu1QGyiovBfM=",
   "chrony-exporter": "sha256-TAj7tYDFKPsPCHpWT4UQ3oZkUcLbL4iliXghwZqwuC8=",
-  "adguard-exporter": "",
+  "adguard-exporter": "sha256-18Fzld2F05hzORw8kLt6JdCdxGNM+KOEUiPnC3LTzDI=",
   "cockpit-podman": "",
   "flux-local": "",
   "gpsd-prometheus-exporter": ""

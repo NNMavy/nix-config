@@ -3,13 +3,13 @@
 {
   adguard-exporter = {
     pname = "adguard-exporter";
-    version = "v1.2.1";
+    version = "v1.2.0";
     src = fetchFromGitHub {
       owner = "henrywhitaker3";
       repo = "adguard-exporter";
-      rev = "v1.2.1";
+      rev = "v1.2.0";
       fetchSubmodules = false;
-      sha256 = "sha256-OltYzxBOOcaW3oYNFvxxjG1qRvuLaZfReSeQaNGiRDc=";
+      sha256 = "sha256-HQ72eTBV6ZZMawACZ/iwABVm8On/yqFKotfXxbGZqUc=";
     };
   };
   chrony-exporter = {
