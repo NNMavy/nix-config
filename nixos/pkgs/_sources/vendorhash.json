@@ -1,8 +1,9 @@
 {
-  "talosctl": "sha256-NLyWzkagiP6zeeB4o6CI9UBPH6a5JGhPu1QGyiovBfM=",
+  "talosctl": "sha256-K8eh0RSY2nTZivig+cApxJuc8CVEfvfJ/Bkl1Z5yvw4=",
   "chrony-exporter": "sha256-TAj7tYDFKPsPCHpWT4UQ3oZkUcLbL4iliXghwZqwuC8=",
-  "adguard-exporter": "sha256-18Fzld2F05hzORw8kLt6JdCdxGNM+KOEUiPnC3LTzDI=",
+  "adguard-exporter": "",
   "cockpit-podman": "",
   "flux-local": "",
-  "gpsd-prometheus-exporter": ""
+  "gpsd-prometheus-exporter": "",
+  "cosmic-idle": ""
 }
