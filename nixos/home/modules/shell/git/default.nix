@@ -34,26 +34,24 @@ in
             aliases = {
               co = "checkout";
             };
-            userName = cfg.username;
-            userEmail = cfg.email;
+            user.name = cfg.username;
+            user.email = cfg.email;
 
-            extraConfig = {
-              core = {
-                autocrlf = "input";
-              };
-              commit.gpgsign = true;
-              init = {
-                defaultBranch = "main";
-              };
-              pull = {
-                rebase = true;
-              };
-              push = {
-                autoSetupRemote = true;
-              };
-              rebase = {
-                autoStash = true;
-              };
+            core = {
+              autocrlf = "input";
+            };
+            commit.gpgsign = true;
+            init = {
+              defaultBranch = "main";
+            };
+            pull = {
+              rebase = true;
+            };
+            push = {
+              autoSetupRemote = true;
+            };
+            rebase = {
+              autoStash = true;
             };
           };
           ignores = [
