@@ -11,11 +11,6 @@ fetch.github = "SuperQ/chrony_exporter"
 src.git = "https://github.com/cockpit-project/cockpit-podman"
 fetch.github = "cockpit-project/cockpit-podman"
 
-[cosmic-idle]
-src.git = "https://github.com/pop-os/cosmic-idle"
-fetch.github = "pop-os/cosmic-idle"
-cargo_locks = ["Cargo.lock"]
-
 [flux-local]
 src.pypi = "flux-local"
 fetch.pypi = "flux_local"

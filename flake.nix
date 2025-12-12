@@ -19,11 +19,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Cosmic
-    nixos-cosmic = {
-      inputs.nixpkgs.follows = "nixpkgs"; # NOTE: change "nixpkgs" to "nixpkgs-stable" to use stable NixOS release
-      url = "github:lilyinstarlight/nixos-cosmic";
-    };
+    # # Cosmic
+    # nixos-cosmic = {
+    #   inputs.nixpkgs.follows = "nixpkgs"; # NOTE: change "nixpkgs" to "nixpkgs-stable" to use stable NixOS release
+    #   url = "github:lilyinstarlight/nixos-cosmic";
+    # };
 
     # Catppuccin
     catppuccin.url = "github:catppuccin/nix/v25.05";
@@ -105,7 +105,7 @@
     { self
     , nixpkgs
     , nixos-wsl
-    , nixos-cosmic
+    # , nixos-cosmic
     , catppuccin
     , sops-nix
     , home-manager
@@ -172,7 +172,7 @@
               # here we import all the modules and setup home-manager
             , baseModules ? [
                 sops-nix.nixosModules.sops
-                nixos-cosmic.nixosModules.default
+                # nixos-cosmic.nixosModules.default
                 catppuccin.nixosModules.catppuccin
                 home-manager.nixosModules.home-manager
                 impermanence.nixosModules.impermanence
