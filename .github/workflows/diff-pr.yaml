@@ -29,10 +29,10 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
 
       - name: Install Nix
-        uses: cachix/install-nix-action@fd24c48048070c1be9acd18c9d369a83f0fe94d7 # v31
+        uses: cachix/install-nix-action@4e002c8ec80594ecd40e759629461e26c8abed15 # v31
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
           extra_nix_config: |
@@ -58,7 +58,7 @@ jobs:
     runs-on: ${{ matrix.runner }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
         with:
           fetch-depth: 0
 
@@ -78,7 +78,7 @@ jobs:
           tool-cache: true
 
       - name: Install Nix
-        uses: cachix/install-nix-action@fd24c48048070c1be9acd18c9d369a83f0fe94d7 # v31
+        uses: cachix/install-nix-action@4e002c8ec80594ecd40e759629461e26c8abed15 # v31
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
           extra_nix_config: |
@@ -91,7 +91,7 @@ jobs:
             substituters = https://mavy.cachix.org https://cache.garnix.io https://cosmic.cachix.org/ https://nix-community.cachix.org https://numtide.cachix.org https://cache.nixos.org/
 
       - name: Setup Cloudflare Warp
-        uses: Boostport/setup-cloudflare-warp@v1.17.0
+        uses: Boostport/setup-cloudflare-warp@v1.17.1
         with:
           version: 2025.6.1335.0
           organization: ${{ secrets.CLOUDFLARE_ORGANIZATION }}
