@@ -37,6 +37,6 @@ with config;
     gh
 
     bind # for dns utils like named-checkconf
-    inputs.nix-inspect.packages.${pkgs.system}.default
+    inputs.nix-inspect.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

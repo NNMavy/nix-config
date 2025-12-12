@@ -37,7 +37,7 @@ in
         ssh.extraConfig = ''
           IdentityAgent "~/.1password/agent.sock"
         '';
-        git.extraConfig = {
+        git.settings = {
           gpg = {
             format = "ssh";
             ssh = {
@@ -54,7 +54,7 @@ in
         ssh.extraConfig = ''
           IdentityAgent "~/.1password/agent.sock"
         '';
-        git.extraConfig = {
+        git.settings = {
           gpg = {
             format = "ssh";
             ssh = {

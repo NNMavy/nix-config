@@ -30,10 +30,13 @@ in
         git = {
           enable = true;
 
-          userName = cfg.username;
-          userEmail = cfg.email;
+          settings = {
+            aliases = {
+              co = "checkout";
+            };
+            user.name = cfg.username;
+            user.email = cfg.email;
 
-          extraConfig = {
             core = {
               autocrlf = "input";
             };
@@ -50,9 +53,6 @@ in
             rebase = {
               autoStash = true;
             };
-          };
-          aliases = {
-            co = "checkout";
           };
           ignores = [
             # Mac OS X hidden files

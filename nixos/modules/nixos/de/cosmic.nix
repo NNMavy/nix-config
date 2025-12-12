@@ -45,18 +45,14 @@ in
       systemPackages = with pkgs; [
         cosmic-idle
         xdg-desktop-portal-cosmic
-        cosmic-ext-applet-clipboard-manager
-        cosmic-ext-applet-emoji-selector
-        cosmic-ext-calculator
+        cosmic-applets
         examine
         forecast
         tasks
         cosmic-ext-tweaks
         cosmic-player
         cosmic-reader
-        chronos
         quick-webapps
-        stellarshot
         seahorse
         adw-gtk3
       ];
@@ -70,7 +66,7 @@ in
       packages = with pkgs; [
         noto-fonts
         noto-fonts-cjk-sans
-        noto-fonts-emoji
+        noto-fonts-color-emoji
         nerd-font-patcher
         nerd-fonts.fira-code
       ];

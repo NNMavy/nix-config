@@ -11,7 +11,7 @@ buildPythonApplication rec {
   propagatedBuildInputs = [
     (with pkgs.python3Packages; [
       aiofiles
-      GitPython
+      gitpython
       mashumaro
       nest-asyncio
       python-slugify

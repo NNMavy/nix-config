@@ -3,7 +3,7 @@
 
   inputs = {
     # Nixpkgs and unstable
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # Nixos WSL
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
@@ -19,11 +19,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Cosmic
-    nixos-cosmic = {
-      inputs.nixpkgs.follows = "nixpkgs"; # NOTE: change "nixpkgs" to "nixpkgs-stable" to use stable NixOS release
-      url = "github:lilyinstarlight/nixos-cosmic";
-    };
+    # # Cosmic
+    # nixos-cosmic = {
+    #   inputs.nixpkgs.follows = "nixpkgs"; # NOTE: change "nixpkgs" to "nixpkgs-stable" to use stable NixOS release
+    #   url = "github:lilyinstarlight/nixos-cosmic";
+    # };
 
     # Catppuccin
     catppuccin.url = "github:catppuccin/nix/v25.05";
@@ -42,7 +42,7 @@
     # home-manager - home user+dotfile manager
     # https://github.com/nix-community/home-manager
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -105,7 +105,7 @@
     { self
     , nixpkgs
     , nixos-wsl
-    , nixos-cosmic
+    # , nixos-cosmic
     , catppuccin
     , sops-nix
     , home-manager
@@ -127,7 +127,7 @@
       overlays = import ./nixos/overlays { inherit inputs; };
 
       # Use nixpkgs-fmt for 'nix fmt'
-      formatter = forAllSystems (system: nixpkgs.legacyPackages."${system}".nixpkgs-fmt);
+      formatter = forAllSystems (system: nixpkgs.legacyPackages."${pkgs.stdenv.hostPlatform.system}".nixpkgs-fmt);
 
       # setup devshells against shell.nix
       devShells = forAllSystems (pkgs: import ./shell.nix { inherit pkgs; });
@@ -172,7 +172,7 @@
               # here we import all the modules and setup home-manager
             , baseModules ? [
                 sops-nix.nixosModules.sops
-                nixos-cosmic.nixosModules.default
+                # nixos-cosmic.nixosModules.default
                 catppuccin.nixosModules.catppuccin
                 home-manager.nixosModules.home-manager
                 impermanence.nixosModules.impermanence
