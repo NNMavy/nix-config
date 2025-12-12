@@ -119,10 +119,10 @@ rec {
 
   mapToGhaRunner =
     system:
-    if system == "x86_64-linux" then
+    if stdenv.hostPlatform.system == "x86_64-linux" then
       "ubuntu-latest"
-    else if system == "aarch64-linux" then
+    else if stdenv.hostPlatform.system == "aarch64-linux" then
       "ubuntu-24.04-arm"
     else
-      system;
+      stdenv.hostPlatform.system;
 }

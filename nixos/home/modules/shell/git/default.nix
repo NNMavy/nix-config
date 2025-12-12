@@ -30,29 +30,31 @@ in
         git = {
           enable = true;
 
-          userName = cfg.username;
-          userEmail = cfg.email;
+          settings = {
+            aliases = {
+              co = "checkout";
+            };
+            userName = cfg.username;
+            userEmail = cfg.email;
 
-          extraConfig = {
-            core = {
-              autocrlf = "input";
+            extraConfig = {
+              core = {
+                autocrlf = "input";
+              };
+              commit.gpgsign = true;
+              init = {
+                defaultBranch = "main";
+              };
+              pull = {
+                rebase = true;
+              };
+              push = {
+                autoSetupRemote = true;
+              };
+              rebase = {
+                autoStash = true;
+              };
             };
-            commit.gpgsign = true;
-            init = {
-              defaultBranch = "main";
-            };
-            pull = {
-              rebase = true;
-            };
-            push = {
-              autoSetupRemote = true;
-            };
-            rebase = {
-              autoStash = true;
-            };
-          };
-          aliases = {
-            co = "checkout";
           };
           ignores = [
             # Mac OS X hidden files

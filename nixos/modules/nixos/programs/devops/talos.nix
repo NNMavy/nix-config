@@ -29,7 +29,7 @@ in
       minio-client
       opentofu
       talosctl
-      inputs.talhelper.packages.${pkgs.system}.default
+      inputs.talhelper.packages.${pkgs.stdenv.hostPlatform.system}.default
       terraform
     ];
     programs.fish = {

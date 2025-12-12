@@ -27,7 +27,7 @@ in
         alejandra
         bat
         dig
-        du-dust
+        dust
         duf
         envsubst
         eza
