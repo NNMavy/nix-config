@@ -24,6 +24,11 @@ with lib;
     defaultUser = "mavy";
     interop.includePath = false;
     interop.register = true;
+
+    wslConf = {
+      boot.systemd = true;
+      boot.initTimeout = 40000;
+    };
   };
 
   programs = {
