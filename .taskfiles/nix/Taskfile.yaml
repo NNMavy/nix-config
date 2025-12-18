@@ -113,7 +113,7 @@ tasks:
         - host
     cmds:
       - git add .
-      - nixos-rebuild build --flake "{{.ROOT_DIR}}/#{{.host}}" --impure --fast |& nom
+      - nixos-rebuild build --flake "{{.ROOT_DIR}}/#{{.host}}" --impure --no-reexec |& nom
       - nvd diff /run/current-system result
     preconditions:
       - sh: which nix
