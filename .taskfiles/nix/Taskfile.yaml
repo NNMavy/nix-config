@@ -114,7 +114,7 @@ tasks:
     cmds:
       - git add .
       - nixos-rebuild build --flake "{{.ROOT_DIR}}/#{{.host}}" --impure --no-reexec |& nom
-      - nvd diff /run/current-system result
+      # - nvd diff /run/current-system result
     preconditions:
       - sh: which nix
         msg: "nix not found"
