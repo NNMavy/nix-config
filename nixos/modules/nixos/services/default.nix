@@ -8,6 +8,7 @@
     ./docker
     ./forgejo
     ./gps
+    ./homebox
     ./podman
     ./restic
     ./nginx
